@@ -19,7 +19,7 @@
                     <!-- text-->
                     <div class="dropdown-divider"></div>
                     <!-- text-->
-                    <a href="#" class="dropdown-item"><i class="fas fa-power-off"></i> Logout</a>
+                    <a href="javascript:void(0)" class="dropdown-item logout-btn"><i class="fas fa-power-off"></i> Logout</a>
                     <!-- text-->
                 </div>
             </div>
@@ -29,12 +29,15 @@
     <nav class="sidebar-nav">
         <ul id="sidebarnav">
             <li class="nav-small-cap">--- PERSONAL</li>
-            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">Dashboard <span class="badge rounded-pill bg-cyan ms-auto">4</span></span></a>
+            <li>
+                <a class="waves-effect waves-dark" href="{{ route('dashboard') }}" aria-expanded="false">
+                    <i class="far fa-circle text-danger"></i>
+                    <span class="hide-menu">Dashboard</span>
+                </a>
+            </li>
+            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">Menu <span class="badge rounded-pill bg-cyan ms-auto">4</span></span></a>
                 <ul aria-expanded="false" class="collapse">
-                    <li><a href="#">Minimal </a></li>
-                    <li><a href="#">Analytical</a></li>
-                    <li><a href="#">Demographical</a></li>
-                    <li><a href="#l">Modern</a></li>
+                    <li><a href="#">Sub Menu </a></li>
                 </ul>
             </li>
 
