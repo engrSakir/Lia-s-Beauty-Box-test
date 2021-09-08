@@ -7,7 +7,7 @@
                 <a href="javascript:void(0)" class="dropdown-toggle u-dropdown link hide-menu" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Steave Gection <span class="caret"></span></a>
                 <div class="dropdown-menu animated flipInY">
                     <!-- text-->
-                    <a href="javascript:void(0)" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
+                    <a href="{{route('profile')}}" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
                     <!-- text-->
                     <a href="javascript:void(0)" class="dropdown-item"><i class="ti-wallet"></i> My Balance</a>
                     <!-- text-->
@@ -15,7 +15,7 @@
                     <!-- text-->
                     <div class="dropdown-divider"></div>
                     <!-- text-->
-                    <a href="javascript:void(0)" class="dropdown-item"><i class="ti-settings"></i> Account Setting</a>
+                    <a href="{{route('settings')}}" class="dropdown-item"><i class="ti-settings"></i> Account Setting</a>
                     <!-- text-->
                     <div class="dropdown-divider"></div>
                     <!-- text-->
