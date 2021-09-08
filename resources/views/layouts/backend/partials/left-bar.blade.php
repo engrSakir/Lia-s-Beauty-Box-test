@@ -7,7 +7,7 @@
                 <a href="javascript:void(0)" class="dropdown-toggle u-dropdown link hide-menu" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{ auth()->user()->name }} <span class="caret"></span></a>
                 <div class="dropdown-menu animated flipInY">
                     <!-- text-->
-                    <a href="{{route('profile')}}" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
+                    <a href="{{route('backend.profile')}}" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
                     <div class="dropdown-divider"></div>
                     <!-- text-->
                     <a href="javascript:void(0)" class="dropdown-item logout-btn"><i class="fas fa-power-off"></i> Logout</a>
@@ -27,7 +27,13 @@
                 </a>
             </li>
             <li>
-                <a class="waves-effect waves-dark" href="{{ route('setting') }}" aria-expanded="false">
+                <a class="waves-effect waves-dark" href="{{ route('backend.schedule.index') }}" aria-expanded="false">
+                    <i class="far fa-circle text-danger"></i>
+                    <span class="hide-menu">Schedule</span>
+                </a>
+            </li>
+            <li>
+                <a class="waves-effect waves-dark" href="{{ route('backend.setting') }}" aria-expanded="false">
                     <i class="far fa-circle text-danger"></i>
                     <span class="hide-menu">Setting</span>
                 </a>

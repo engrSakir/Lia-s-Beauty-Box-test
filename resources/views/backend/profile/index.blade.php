@@ -66,7 +66,7 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="profile" role="tabpanel">
                         <div class="card-body">
-                            <form action="{{ route('profile') }}" method="POST" class="form-horizontal form-material" enctype="multipart/form-data">
+                            <form action="{{ route('backend.profile') }}" method="POST" class="form-horizontal form-material" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <label class="col-md-12" for="name">Full Name</label>

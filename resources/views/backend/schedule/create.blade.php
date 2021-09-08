@@ -1,17 +1,17 @@
 @extends('layouts.backend.app')
 
-@section('title') Setting @endsection
+@section('title') Schedule Create @endsection
 
 @section('bread-crumb')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h4 class="text-themecolor">Settings Page</h4>
+            <h4 class="text-themecolor">Schedule Create Page</h4>
         </div>
         <div class="col-md-7 align-self-center text-end">
             <div class="d-flex justify-content-end align-items-center">
                 <ol class="breadcrumb justify-content-end">
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                    <li class="breadcrumb-item active">Settings Page</li>
+                    <li class="breadcrumb-item active">Schedule Create Page</li>
                 </ol>
 
             </div>
@@ -26,7 +26,7 @@
                 <div class="card-header bg-info">
                     <h4 class="mb-0 text-white">Setting</h4>
                 </div>
-                <form action="{{ route('backend.setting') }}" method="POST" class="form-horizontal form-material" enctype="multipart/form-data">
+                <form action="{{ route('backend.schedule.store') }}" method="POST" class="form-horizontal form-material" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <h4 class="card-title">Person Info</h4>
