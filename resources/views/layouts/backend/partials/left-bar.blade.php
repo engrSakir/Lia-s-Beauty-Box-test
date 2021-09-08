@@ -15,7 +15,7 @@
                     <!-- text-->
                     <div class="dropdown-divider"></div>
                     <!-- text-->
-                    <a href="{{route('settings')}}" class="dropdown-item"><i class="ti-settings"></i> Account Setting</a>
+                    <a href="" class="dropdown-item"><i class="ti-settings"></i> Account Setting</a>
                     <!-- text-->
                     <div class="dropdown-divider"></div>
                     <!-- text-->

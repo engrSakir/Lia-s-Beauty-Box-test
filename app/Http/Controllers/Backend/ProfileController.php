@@ -5,111 +5,32 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $id=auth()->user()->id;
-        $user= User::where('id',$id)->first();
-
-        return view('backend.profile.index',['user' => $user]);
-
-
+        return view('backend.profile.index', ['user' => auth()->user()]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function update(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|unique:users,email,'.auth()->user()->id,
+            'phone' => 'required|string|max:11',
+        ]);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $id=auth()->user()->id;
-        
-        $update = User::find($id);
-
+        $user = auth()->user();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->phone = $request->input('phone');
         if ($request->file('image')) {
-            $imagePath = $request->file('image');
-            $imageName = $imagePath->getClientOriginalName();
-            $path = $request->file('image')->storeAs('uploads', $imageName, 'public');
-            $request->image->move(public_path('/uploads'), $imageName);
-            $update->img_name =$imageName;
-    
-    
-          }
-    
-          $update->name = $request->input('name');
-          $update->email = $request->input('email');
-          $update->phone = $request->input('phone');
-          $update->save();
-         // $request->session()->flash('success', 'Successfully Updated!');
-                return redirect(route('profile'));
-    
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-       
-
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+            $user->image = file_uploader('uploads/profile-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($user->name, '-'));
+        }
+        $user->save();
+        return back();
     }
 }
