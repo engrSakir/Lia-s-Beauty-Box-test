@@ -1,82 +1,64 @@
-# Lia-s-Beauty-Box
-Lia’s Beauty Box
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-Trello: https://trello.com/invite/b/xADLVJkO/619f176c0d36d6e8c110d85c646064a1/lia-s-beauty-box
-GitHub: https://github.com/mdsakirahmed/Lia-s-Beauty-Box
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-#Initial Project Documentation
+## About Laravel
 
-Start Date : 05.09.21                   11.09.21          End Date: 20.09.21
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-Lia’s Beauty Box    Business  Website
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Backend: Admin Dashboard, Booking Mgt , Inventory, Accounting, Billing, Customer Mgt,
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-Proposed System Overview
+## Learning Laravel
 
-A Main website to show case all Service contents: Service  Images, etc. The site’s purpose is to show that Lia’s Beauty Box is a brand focused on Fashion Industry. It will inform people of your Missions and Visions for your future endeavors.
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-Here Users can view their past work and keep up-to-date with their future Services. Next phase The site will also redirect them to their Fashion Ecommerce Website.
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-In the site, user can view your all services. A single service  can have multiple images so that users can have a clear idea of their products.
+## Laravel Sponsors
 
-From the admin panel, admins can insert new Service, create new categories for their services and admin can create new user to generate new invoice. The admin will be equipped with accounting module, so that all your transactions can be tracked, which includes: Daily Sales, Weekly Sales, Daily expenditure, Daily Purchase, Employee salary, etc.
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
+### Premium Partners
 
-Functionality to be added
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[Many](https://www.many.co.uk)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[OP.GG](https://op.gg)**
+- **[CMS Max](https://www.cmsmax.com/)**
+- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
 
-o	Homepage
-▪	Featured Video
-▪	All Service Content Showcase
-▪	Customer Booking 
-▪	News & Update
-▪	Contact Information
-o	About Us
-▪	Company Overview
-o	Services
-▪	Service  Contents/ Details
-▪	Past Clients  Showcase
-o	Blog
-Fashion trends Updates ,Etc
-o	Booking 
-▪	Client schedule booking Though Website
+## Contributing
 
-o	Contact
-Company Info
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
+## Code of Conduct
 
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-●	 Admin-end features 
+## Security Vulnerabilities
 
-o	Booking  Management
-o	Stock Management
-o	User Management
-o	Accounting Module Integration
-o	Billing 
-o	Reports
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
+## License
 
-Proposed System
-Technology 
-PHP (Laravel framework), MySQL
-
-User-end features 
-●	View website contents
-●	Book Services
-
-Reference Web Link >>UI
-http://preview.themeforest.net/item/natural-spa-responsive-wp-theme/full_screen_preview/20240687
-
-Reference Back End Link >>
-1.
-http://shopnoghuricommunication.com/login
-
-User Id :     shopnoghuri@gmail.com
-
-Pass :    shopnoghuri123
-
-2.
-Some Screen Shots of Proposed Accounting System
-
-
-
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
