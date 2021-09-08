@@ -31,13 +31,13 @@
                             <div class="col-md-6 col-lg-6">
                                 <a href="javascript:void(0)" class="link">
                                     <i class="icon-people"></i>
-                                    <font class="font-medium">254</font>
+                                    <font class="font-medium">Ref Code</font>
                                 </a>
                             </div>
                             <div class="col-md-6 col-lg-6">
                                 <a href="javascript:void(0)" class="link">
                                     <i class="icon-picture"></i>
-                                    <font class="font-medium">54</font>
+                                    <font class="font-medium">Ref User</font>
                                 </a>
                             </div>
                         </div>
@@ -59,11 +59,9 @@
         <div class="col-lg-8 col-xlg-9 col-md-7">
             <div class="card">
                 <!-- Nav tabs -->
-                <ul class="nav nav-tabs profile-tab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#profile" role="tab">Profile</a>
-                    </li>
-                </ul>
+                <div class="card-header bg-info">
+                    <h4 class="mb-0 text-white">Profile</h4>
+                </div>
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane active" id="profile" role="tabpanel">

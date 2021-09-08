@@ -20,5 +20,5 @@ Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::post('/profile', [ProfileController::class, 'update']);
 
 Route::get('/setting', [SettingController::class, 'index'])->name('setting');
-Route::get('/setting', [SettingController::class, 'update']);
+Route::post('/setting', [SettingController::class, 'update']);
 

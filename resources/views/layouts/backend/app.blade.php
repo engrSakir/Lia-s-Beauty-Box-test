@@ -84,7 +84,7 @@
         <!-- ============================================================== -->
         <footer class="footer">
             © {{ date('Y') }} All right reserved by <b>{{ config('app.name') }}</b> & Developed by
-            <a href="https://www.iciclecorporation.com/">Icicle Corporation</a>
+            <a href="https://www.iciclecorporation.com/" target="_blank">Icicle Corporation</a>
         </footer>
         <!-- ============================================================== -->
         <!-- End footer -->

@@ -9,6 +9,15 @@ class SettingController extends Controller
 {
     public function index()
     {
-        return view('backend.settings.settings');
+        return view('backend.setting.index');
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+
+        ]);
+
+        return back();
     }
 }
