@@ -62,7 +62,45 @@ class ScheduleController extends Controller
 //        return view('backend.schedule.index', compact('calendar'));
 
         $schedules = Schedule::all();
-        return view('backend.schedule.index', compact('schedules'));
+        $times = ['12 AM', '01 AM', '02 AM', '03 AM', '04 AM', '05 AM', '06 AM', '07 AM',  '08 AM', '09 AM', '10 AM', '11 AM',
+            '12 PM', '01 PM', '02 PM', '03 PM', '04 PM', '05 PM', '06 PM', '07 PM', '08 PM', '09 PM', '10 PM', '11 PM'];
+
+//        $schedule_days = ['saturday', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+
+        $schedule_days = [
+            [
+                'day_name' => 'saturday',
+                'data' =>  Schedule::where('schedule_day', 'saturday')->get()
+            ],
+            [
+                'day_name' => 'sunday',
+                'data' =>  Schedule::where('schedule_day', 'sunday')->get()
+            ],
+            [
+                'day_name' => 'monday',
+                'data' =>  Schedule::where('schedule_day', 'monday')->get()
+            ],
+            [
+                'day_name' => 'tuesday',
+                'data' =>  Schedule::where('schedule_day', 'tuesday')->get()
+            ],
+            [
+                'day_name' => 'wednesday',
+                'data' =>  Schedule::where('schedule_day', 'wednesday')->get()
+            ],
+            [
+                'day_name' => 'thursday',
+                'data' =>  Schedule::where('schedule_day', 'thursday')->get()
+            ],
+            [
+                'day_name' => 'friday',
+                'data' =>  Schedule::where('schedule_day', 'friday')->get()
+            ],
+        ];
+
+//        dd($schedule_days);
+//        return $schedule_days;
+        return view('backend.schedule.index', compact('schedules', 'times', 'schedule_days'));
     }
 
 
