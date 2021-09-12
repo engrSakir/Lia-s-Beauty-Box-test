@@ -24,131 +24,113 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header bg-info">
-                    <h4 class="mb-0 text-white">Setting</h4>
+                    <h4 class="mb-0 text-white">Create schedule</h4>
                 </div>
                 <form action="{{ route('backend.schedule.store') }}" method="POST" class="form-horizontal form-material" enctype="multipart/form-data">
                     @csrf
-                    <div class="card-body">
-                        <h4 class="card-title">Person Info</h4>
-                    </div>
-                    <hr>
                     <div class="form-body">
                         <div class="card-body">
                             <div class="row pt-3">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="form-label">First Name</label>
-                                        <input type="text" id="firstName" class="form-control" placeholder="John doe">
-                                        <small class="form-control-feedback"> This is inline help </small>
+                                        <label class="form-label" for="title">Schedule title <b class="text-danger">*</b> </label>
+                                        <input type="text" id="title" name="title" class="form-control" placeholder="Schedule title" value="{{ old('title') }}" required>
+                                        @error('title')
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
-                                        <label class="form-label">Last Name</label>
-                                        <input type="text" id="lastName" class="form-control form-control-danger" placeholder="12n">
-                                        <small class="form-control-feedback"> This field has error. </small>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <!--/row-->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group has-success">
-                                        <label class="form-label">Gender</label>
-                                        <select class="form-control form-select">
-                                            <option value="">Male</option>
-                                            <option value="">Female</option>
-                                        </select>
-                                        <small class="form-control-feedback"> Select your gender </small>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label">Date of Birth</label>
-                                        <input type="date" class="form-control">
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <!--/row-->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label">Category</label>
-                                        <select class="form-control form-select" data-placeholder="Choose a Category" tabindex="1">
-                                            <option value="Category 1">Category 1</option>
-                                            <option value="Category 2">Category 2</option>
-                                            <option value="Category 3">Category 5</option>
-                                            <option value="Category 4">Category 4</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label">Membership</label>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" id="customRadio11" name="customRadio" class="form-check-input">
-                                            <label class="form-check-label" for="customRadio11">Free</label>
+                                        <label class="form-label" for="maximum_booking">Maximum participant</label>
+                                        <input type="number" id="maximum_participant" name="maximum_participant" class="form-control form-control-danger" placeholder="3/5/10" value="{{ old('maximum_booking') }}">
+                                        @error('maximum_participant')
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ $message }}
                                         </div>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" id="customRadio22" name="customRadio" class="form-check-input">
-                                            <label class="form-check-label" for="customRadio22">Paid</label>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-3">
+                                    <div class="form-group has-danger">
+                                        <label class="form-label" for="maximum_booking">Starting time <b class="text-danger">*</b></label>
+                                        <input type="time" id="starting_time" name="starting_time" class="form-control form-control-danger" value="{{ old('starting_time') }}" required>
+                                        @error('starting_time')
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ $message }}
                                         </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <!--/span-->
-                            </div>
-                            <!--/row-->
-                            <h4 class="card-title mt-5">Address</h4>
-                        </div>
-                        <hr>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 ">
-                                    <div class="form-group">
-                                        <label class="form-label">Street</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label">City</label>
-                                        <input type="text" class="form-control">
+                                <div class="col-md-3">
+                                    <div class="form-group has-danger">
+                                        <label class="form-label" for="maximum_booking">Ending time <b class="text-danger">*</b></label>
+                                        <input type="time" id="ending_time" name="ending_time" class="form-control form-control-danger" value="{{ old('ending_time') }}" required>
+                                        @error('ending_time')
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label">State</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <!--/row-->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label">Post Code</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label">Country</label>
-                                        <select class="form-control form-select">
-                                            <option>--Select your Country--</option>
-                                            <option>India</option>
-                                            <option>Sri Lanka</option>
-                                            <option>USA</option>
-                                        </select>
+                                <div class="col-md-12">
+                                    <div class="form-group has-danger">
+                                        <label class="form-label" for="maximum_booking">Schedule day  <b class="text-danger">*</b></label>
+                                        <div class="row m-3">
+                                            <div class="form-check col">
+                                                <input class="form-check-input" type="checkbox" name="schedule_day[]" value="saturday" id="saturday" @if(old('schedule_day') == 'saturday') checked @endif>
+                                                <label class="form-check-label" for="saturday">
+                                                    Saturday
+                                                </label>
+                                            </div>
+                                            <div class="form-check col">
+                                                <input class="form-check-input" type="checkbox" name="schedule_day[]" value="sunday" id="sunday" @if(old('schedule_day') == 'sunday') checked @endif>
+                                                <label class="form-check-label" for="sunday">
+                                                    Sunday
+                                                </label>
+                                            </div>
+                                            <div class="form-check col">
+                                                <input class="form-check-input" type="checkbox" name="schedule_day[]" value="monday" id="monday" @if(old('schedule_day') == 'monday') checked @endif>
+                                                <label class="form-check-label" for="monday">
+                                                    Monday
+                                                </label>
+                                            </div>
+                                            <div class="form-check col">
+                                                <input class="form-check-input" type="checkbox" name="schedule_day[]" value="tuesday" id="tuesday" @if(old('schedule_day') == 'tuesday') checked @endif>
+                                                <label class="form-check-label" for="tuesday">
+                                                    Tuesday
+                                                </label>
+                                            </div>
+                                            <div class="form-check col">
+                                                <input class="form-check-input" type="checkbox" name="schedule_day[]" value="wednesday" id="wednesday" @if(old('schedule_day') == 'wednesday') checked @endif>
+                                                <label class="form-check-label" for="wednesday">
+                                                    Wednesday
+                                                </label>
+                                            </div>
+                                            <div class="form-check col">
+                                                <input class="form-check-input" type="checkbox" name="schedule_day[]" value="thursday" id="thursday" @if(old('schedule_day') == 'thursday') checked @endif>
+                                                <label class="form-check-label" for="thursday">
+                                                    Thursday
+                                                </label>
+                                            </div>
+                                            <div class="form-check col">
+                                                <input class="form-check-input" type="checkbox" name="schedule_day[]" value="friday" id="friday" @if(old('schedule_day') == 'friday') checked @endif>
+                                                <label class="form-check-label" for="friday">
+                                                    Friday
+                                                </label>
+                                            </div>
+                                        </div>
+                                        @error('schedule_day')
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <!--/span-->
