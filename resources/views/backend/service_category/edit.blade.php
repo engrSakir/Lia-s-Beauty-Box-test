@@ -25,7 +25,7 @@
         <div class="col-12">
             <div class="card">
             <div class="card-header bg-info">
-                    <h4 class="mb-0 text-white">Create Service Category</h4>
+                    <h4 class="mb-0 text-white">Update Service Category</h4>
                 </div>
                 <div class="card-body">
                 <form action="{{ route('backend.serviceCategory.update', $serviceCategory) }}" method="POST" class="form-horizontal form-material" enctype="multipart/form-data">
