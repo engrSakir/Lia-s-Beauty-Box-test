@@ -30,7 +30,7 @@
                     <!-- SIDE BAR START -->
                     <div class="col-md-3">
 
-                        <aside  class="side-bar">
+                        <aside class="side-bar">
 
                             <!-- 13. SEARCH -->
                             <div class="widget bg-white ">
@@ -38,10 +38,12 @@
                                 <div class="search-bx">
                                     <form role="search" method="post">
                                         <div class="input-group">
-                                            <input name="news-letter" type="text" class="form-control" placeholder="Write your text">
+                                            <input name="news-letter" type="text" class="form-control"
+                                                placeholder="Write your text">
                                             <span class="input-group-btn">
-                                                            <button type="submit" class="site-button"><i class="fa fa-search"></i></button>
-                                                        </span>
+                                                <button type="submit" class="site-button"><i
+                                                        class="fa fa-search"></i></button>
+                                            </span>
                                         </div>
                                     </form>
                                 </div>
@@ -52,12 +54,13 @@
                                 <div class="section-content">
                                     <div class="wt-tabs tabs-default border">
                                         <ul class="nav nav-tabs">
-                                            <li class="active"><a data-toggle="tab" href="#web-design-1">Calendar</a></li>
+                                            <li class="active"><a data-toggle="tab"
+                                                    href="#web-design-1">Calendar</a></li>
                                         </ul>
                                         <div class="tab-content">
                                             <div id="web-design-1" class="tab-pane active ">
                                                 <div class="widget-post-bx">
-                                                    <div class="calendar-wrapper">{{--Calender show using jQuery--}}</div>
+                                                    <div class="calendar-wrapper">{{-- Calender show using jQuery --}}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -70,73 +73,85 @@
                                 <ul>
                                     <li>
                                         <div class="wt-post-thum">
-                                            <a href="images/gallery/pic1.jpg" class="mfp-link" ><img src="images/gallery/thumb/pic1.jpg" alt=""></a>
+                                            <a href="images/gallery/pic1.jpg" class="mfp-link"><img
+                                                    src="images/gallery/thumb/pic1.jpg" alt=""></a>
                                         </div>
                                     </li>
 
                                     <li>
                                         <div class="wt-post-thum ">
-                                            <a href="images/gallery/pic2.jpg" class="mfp-link"><img src="images/gallery/thumb/pic2.jpg" alt=""></a>
+                                            <a href="images/gallery/pic2.jpg" class="mfp-link"><img
+                                                    src="images/gallery/thumb/pic2.jpg" alt=""></a>
                                         </div>
                                     </li>
 
                                     <li>
                                         <div class="wt-post-thum  ">
-                                            <a href="images/gallery/pic3.jpg" class="mfp-link"><img src="images/gallery/thumb/pic3.jpg" alt=""></a>
+                                            <a href="images/gallery/pic3.jpg" class="mfp-link"><img
+                                                    src="images/gallery/thumb/pic3.jpg" alt=""></a>
                                         </div>
                                     </li>
 
                                     <li>
                                         <div class="wt-post-thum ">
-                                            <a href="images/gallery/pic4.jpg" class="mfp-link"><img src="images/gallery/thumb/pic4.jpg" alt=""></a>
+                                            <a href="images/gallery/pic4.jpg" class="mfp-link"><img
+                                                    src="images/gallery/thumb/pic4.jpg" alt=""></a>
                                         </div>
                                     </li>
 
                                     <li>
                                         <div class="wt-post-thum ">
-                                            <a href="images/gallery/pic5.jpg" class="mfp-link"><img src="images/gallery/thumb/pic5.jpg" alt=""></a>
+                                            <a href="images/gallery/pic5.jpg" class="mfp-link"><img
+                                                    src="images/gallery/thumb/pic5.jpg" alt=""></a>
                                         </div>
                                     </li>
 
                                     <li>
                                         <div class="wt-post-thum ">
-                                            <a href="images/gallery/pic6.jpg" class="mfp-link"><img src="images/gallery/thumb/pic6.jpg" alt=""></a>
+                                            <a href="images/gallery/pic6.jpg" class="mfp-link"><img
+                                                    src="images/gallery/thumb/pic6.jpg" alt=""></a>
                                         </div>
                                     </li>
 
                                     <li>
                                         <div class="wt-post-thum">
-                                            <a href="images/gallery/pic7.jpg" class="mfp-link" ><img src="images/gallery/thumb/pic7.jpg" alt=""></a>
+                                            <a href="images/gallery/pic7.jpg" class="mfp-link"><img
+                                                    src="images/gallery/thumb/pic7.jpg" alt=""></a>
                                         </div>
                                     </li>
 
                                     <li>
                                         <div class="wt-post-thum ">
-                                            <a href="images/gallery/pic8.jpg" class="mfp-link"><img src="images/gallery/thumb/pic8.jpg" alt=""></a>
+                                            <a href="images/gallery/pic8.jpg" class="mfp-link"><img
+                                                    src="images/gallery/thumb/pic8.jpg" alt=""></a>
                                         </div>
                                     </li>
 
                                     <li>
                                         <div class="wt-post-thum  ">
-                                            <a href="images/gallery/pic7.jpg" class="mfp-link"><img src="images/gallery/thumb/pic7.jpg" alt=""></a>
+                                            <a href="images/gallery/pic7.jpg" class="mfp-link"><img
+                                                    src="images/gallery/thumb/pic7.jpg" alt=""></a>
                                         </div>
                                     </li>
 
                                     <li>
                                         <div class="wt-post-thum ">
-                                            <a href="images/gallery/pic6.jpg" class="mfp-link"><img src="images/gallery/thumb/pic6.jpg" alt=""></a>
+                                            <a href="images/gallery/pic6.jpg" class="mfp-link"><img
+                                                    src="images/gallery/thumb/pic6.jpg" alt=""></a>
                                         </div>
                                     </li>
 
                                     <li>
                                         <div class="wt-post-thum ">
-                                            <a href="images/gallery/pic5.jpg" class="mfp-link"><img src="images/gallery/thumb/pic5.jpg" alt=""></a>
+                                            <a href="images/gallery/pic5.jpg" class="mfp-link"><img
+                                                    src="images/gallery/thumb/pic5.jpg" alt=""></a>
                                         </div>
                                     </li>
 
                                     <li>
                                         <div class="wt-post-thum ">
-                                            <a href="images/gallery/pic4.jpg" class="mfp-link"><img src="images/gallery/thumb/pic4.jpg" alt=""></a>
+                                            <a href="images/gallery/pic4.jpg" class="mfp-link"><img
+                                                    src="images/gallery/thumb/pic4.jpg" alt=""></a>
                                         </div>
                                     </li>
                                 </ul>
@@ -194,7 +209,7 @@
                         <!-- TITLE END -->
 
                         <div class="row" id="schedule">
-                            {{--Schedules show using jQuery--}}
+                            {{-- Schedules show using jQuery --}}
                             {{-- date value set by jQuery --}}
                             <input type="hidden" id="appointment_data" name="appointment_data">
 
@@ -220,7 +235,8 @@
                                                 <a href="javascript:;">One Martines</a>
                                             </h4>
                                             <div class="p-t10">
-                                                <button class="site-button  m-r15" type="button">Book Now  <i class="fa fa-angle-double-right"></i></button>
+                                                <button class="site-button  m-r15" type="button">Book Now <i
+                                                        class="fa fa-angle-double-right"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -239,7 +255,8 @@
                                             <h4 class="m-a0 m-b10">Our Product</h4>
                                             <h3 class="text-uppercase m-a0 m-b10">UP TO</h3>
                                             <h5 class="text-uppercase m-a0 m-b10">10% Cashback</h5>
-                                            <a href="#" class="site-button ">ADD TO CART <i class="fa fa-angle-double-right"></i></a>
+                                            <a href="#" class="site-button ">ADD TO CART <i
+                                                    class="fa fa-angle-double-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -251,7 +268,8 @@
                                             <h4 class="m-a0 m-b10">Our Product</h4>
                                             <h3 class="text-uppercase m-a0 m-b10">UP TO</h3>
                                             <h5 class="text-uppercase m-a0 m-b10">10% Cashback</h5>
-                                            <a href="#" class="site-button ">ADD TO CART <i class="fa fa-angle-double-right"></i></a>
+                                            <a href="#" class="site-button ">ADD TO CART <i
+                                                    class="fa fa-angle-double-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -288,7 +306,9 @@
             border: 4px solid #06ec5c;
             padding: 10px;
             border-radius: 25px;
+
         }
+
     </style>
 @endpush
 
@@ -308,32 +328,29 @@
             $.ajax({
                 type: 'GET', //THIS NEEDS TO BE GET
                 url: "{{ route('booking') }}",
-                data: { appointment_data:  moment(new Date(date)).format("DD-MM-YYYY")},
-                success: function (response) {
+                data: {
+                    appointment_data: moment(new Date(date)).format("DD-MM-YYYY")
+                },
+                success: function(response) {
                     console.log(response);
                     $('#schedule').html('')
                     $.each(response.schedules, function(schedule_index, schedule) {
                         var schedule_counter = 0;
-                        // $.each(response.appointments, function(appointment_index, appointment) {
-                        //     if(appointment.schedule_id == schedule.id){
-                        //         schedule_counter ++;
-                        //     }
-                        // });
-                        //if (schedule.quantity > schedule_counter){
-                            //console.log(schedule)
-                            var html = `<div class="widget bg-white recent-posts-entry">
-                                    <div class="widget-post-bx">
+                        var html = `<div class="widget bg-white recent-posts-entry">
+                                    <div class="widget-post-bx pointer">
                                         <div class="widget-post clearfix">
                                             <div class="wt-post-media">
                                                 <img src="/assets/frontend/images/booking.png" width="200" height="143" alt="">
                                             </div>
                                             <div class="wt-post-info">
                                                 <div class="wt-post-header">
-                                                    <h6 class="post-title">`+schedule.title+`</h6>
+                                                    <h6 class="post-title">` + schedule.title + `</h6>
                                                 </div>
                                                 <div class="wt-post-meta">
                                                     <ul>
-                                                        <li class="post-author">`+moment(Date("1/1/1900 " + schedule.starting_time)).format('hh:mm:ss a')+` to `+moment(Date("1/1/1900 " + schedule.ending_time)).format('hh:mm:ss a')+`</li>
+                                                        <li class="post-author">` + moment(Date("1/1/1900 " + schedule
+                            .starting_time)).format('hh:mm:ss a') + ` to ` + moment(Date(
+                            "1/1/1900 " + schedule.ending_time)).format('hh:mm:ss a') + `</li>
                                                         <li class="post-comment"><i class="fa fa-comments"></i> 28</li>
                                                     </ul>
                                                 </div>
@@ -341,66 +358,13 @@
                                         </div>
                                     </div>
                                 </div>`;
-                            $('#schedule').append(html);
-                        //}
+                        $('#schedule').append(html);
                     });
-
                 },
                 error: function() {
                     console.log(data);
                 }
             });
-
-            {{--$.ajax({--}}
-            {{--    method: 'GET',--}}
-            {{--    url: "{{ url('/booking') }}",--}}
-            {{--    data: { appointment_data:  moment(new Date(date)).format("DD-MM-YYYY")},--}}
-            {{--    dataType: 'JSON',--}}
-            {{--    success: function (response) {--}}
-            {{--        console.log(response)--}}
-            {{--        $('#schedule').html('')--}}
-            {{--        $.each(response.schedules, function(schedule_index, schedule) {--}}
-            {{--            var schedule_counter = 0;--}}
-            {{--            $.each(response.appointments, function(appointment_index, appointment) {--}}
-            {{--                if(appointment.schedule_id == schedule.id){--}}
-            {{--                    schedule_counter ++;--}}
-            {{--                }--}}
-            {{--            });--}}
-            {{--            if (schedule.quantity > schedule_counter){--}}
-            {{--                console.log(schedule)--}}
-            {{--                var html = ` <div class="col-sm-6">--}}
-            {{--                               <label class="card shadow-sm p-3 mb-5 bg-white rounded schedule-box" for="schedule-box-`+schedule.id+`">--}}
-            {{--                                <div class="card-body">--}}
-            {{--                                    <h5 class="card-title">`+schedule.duration+`</h5>--}}
-            {{--                                    <p class="card-text">`+schedule.duration+`</p>--}}
-            {{--                                    <p class="card-text text-success"><b>`+schedule.place+`</b></p>--}}
-            {{--                                    <div class="form-check">--}}
-            {{--                                      <input class="form-check-input" type="radio" name="schedule" id="schedule-box-`+schedule.id+`" value="`+schedule.id+`">--}}
-            {{--                                    </div>--}}
-            {{--                                </div>--}}
-            {{--                              </label>--}}
-            {{--                             </div>`;--}}
-            {{--                $('#schedule').append(html);--}}
-            {{--            }--}}
-            {{--        });--}}
-            {{--    },--}}
-            {{--    error: function (xhr) {--}}
-            {{--        var errorMessage = '<div class="card bg-danger">\n' +--}}
-            {{--            '                        <div class="card-body text-center p-5">\n' +--}}
-            {{--            '                            <span class="text-white">';--}}
-            {{--        $.each(xhr.responseJSON.errors, function(key,value) {--}}
-            {{--            errorMessage +=(''+value+'<br>');--}}
-            {{--        });--}}
-            {{--        errorMessage +='</span>\n' +--}}
-            {{--            '                        </div>\n' +--}}
-            {{--            '                    </div>';--}}
-            {{--        Swal.fire({--}}
-            {{--            icon: 'error',--}}
-            {{--            title: 'Oops...',--}}
-            {{--            footer: errorMessage--}}
-            {{--        })--}}
-            {{--    },--}}
-            {{--});--}}
         }
 
         var defaultConfig = {
@@ -413,27 +377,29 @@
 
         $('.calendar-wrapper').calendar(defaultConfig);
 
-        $('#appointment-form #submit-btn').click(function(){
+        $('#appointment-form #submit-btn').click(function() {
             $.ajax({
                 method: 'PATCH',
                 url: "{{ url('requestAppointment', '$doctor') }}",
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 data: {
                     name: $("#appointment-form [name='name']").val(),
                     email: $("#appointment-form [name='email']").val(),
                     phone: $("#appointment-form [name='phone']").val(),
                     appointment_data: $("#appointment-form [name='appointment_data']").val(),
-                    schedule:  $("#appointment-form [name='schedule']:checked").val(),
+                    schedule: $("#appointment-form [name='schedule']:checked").val(),
                 },
                 dataType: 'JSON',
-                beforeSend: function (){
-                    $('#appointment-form #submit-btn').prop("disabled",true);
+                beforeSend: function() {
+                    $('#appointment-form #submit-btn').prop("disabled", true);
                 },
-                complete: function (){
-                    $('#appointment-form #submit-btn').prop("disabled",false);
+                complete: function() {
+                    $('#appointment-form #submit-btn').prop("disabled", false);
                 },
-                success: function (data) {
-                    if (data.type == 'success'){
+                success: function(data) {
+                    if (data.type == 'success') {
                         $('#appointment-form').trigger("reset");
                         Swal.fire({
                             icon: data.type,
@@ -441,8 +407,8 @@
                         });
                         setTimeout(function() {
                             //location.reload();
-                        }, 800);//
-                    }else{
+                        }, 800); //
+                    } else {
                         Swal.fire({
                             icon: data.type,
                             title: 'Oops...',
@@ -451,14 +417,14 @@
                         });
                     }
                 },
-                error: function (xhr) {
+                error: function(xhr) {
                     var errorMessage = '<div class="card bg-danger">\n' +
                         '                        <div class="card-body text-center p-5">\n' +
                         '                            <span class="text-white">';
-                    $.each(xhr.responseJSON.errors, function(key,value) {
-                        errorMessage +=(''+value+'<br>');
+                    $.each(xhr.responseJSON.errors, function(key, value) {
+                        errorMessage += ('' + value + '<br>');
                     });
-                    errorMessage +='</span>\n' +
+                    errorMessage += '</span>\n' +
                         '                        </div>\n' +
                         '                    </div>';
                     Swal.fire({
@@ -471,14 +437,14 @@
         });
 
         function formatAMPM(date) {
-  var hours = date.getHours();
-  var minutes = date.getMinutes();
-  var ampm = hours >= 12 ? 'pm' : 'am';
-  hours = hours % 12;
-  hours = hours ? hours : 12; // the hour '0' should be '12'
-  minutes = minutes < 10 ? '0'+minutes : minutes;
-  var strTime = hours + ':' + minutes + ' ' + ampm;
-  return strTime;
-}
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var ampm = hours >= 12 ? 'pm' : 'am';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            var strTime = hours + ':' + minutes + ' ' + ampm;
+            return strTime;
+        }
     </script>
 @endpush

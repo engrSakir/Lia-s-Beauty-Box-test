@@ -53,6 +53,9 @@
 <!-- REVOLUTION NAVIGATION STYLE -->
 <link rel="stylesheet" type="text/css" href="plugins/revolution/revolution/css/navigation.css">
 
+<!-- HELPER STYLE -->
+<link rel="stylesheet" type="text/css" href="{{ asset("assets/css/helper.css") }}">
+
 <!-- GOOGLE FONTS -->
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
