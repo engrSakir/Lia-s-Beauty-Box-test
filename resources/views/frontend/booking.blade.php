@@ -321,33 +321,26 @@
                         // });
                         //if (schedule.quantity > schedule_counter){
                             //console.log(schedule)
-                            var html = `<div class="col-md-3 col-sm-4 col-xs-6 col-xs-100pc m-b30">
-                                <div class="wt-box wt-product-box">
-                                    <div class="wt-thum-bx wt-img-overlay1 wt-img-effect zoom">
-                                        <img src="images/products/pic-1.jpg" alt="">
-                                        <div class="overlay-bx">
-                                            <div class="overlay-icon">
-                                                <a href="javascript:void(0);">
-                                                    <i class="fa fa-cart-plus wt-icon-box-xs"></i>
-                                                </a>
-                                                <a class="mfp-link" href="javascript:void(0);">
-                                                    <i class="fa fa-heart wt-icon-box-xs"></i>
-                                                </a>
+                            var html = `<div class="widget bg-white recent-posts-entry">
+                                    <div class="widget-post-bx">
+                                        <div class="widget-post clearfix">
+                                            <div class="wt-post-media">
+                                                <img src="/assets/frontend/images/booking.png" width="200" height="143" alt="">
+                                            </div>
+                                            <div class="wt-post-info">
+                                                <div class="wt-post-header">
+                                                    <h6 class="post-title">`+schedule.title+`</h6>
+                                                </div>
+                                                <div class="wt-post-meta">
+                                                    <ul>
+                                                        <li class="post-author">`+moment(Date("1/1/1900 " + schedule.starting_time)).format('hh:mm:ss a')+` to `+moment(Date("1/1/1900 " + schedule.ending_time)).format('hh:mm:ss a')+`</li>
+                                                        <li class="post-comment"><i class="fa fa-comments"></i> 28</li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="wt-info  text-center">
-                                        <div class="p-a10 bg-white">
-                                            <h4 class="wt-title">
-                                                <a href="javascript:;">`+schedule.title+`</a>
-                                            </h4>
-                                            <div class="p-t10">
-                                                <button class="site-button  m-r15" type="button">Book Now  <i class="fa fa-angle-double-right"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>`;
+                                </div>`;
                             $('#schedule').append(html);
                         //}
                     });
@@ -476,5 +469,16 @@
                 },
             });
         });
+
+        function formatAMPM(date) {
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  var strTime = hours + ':' + minutes + ' ' + ampm;
+  return strTime;
+}
     </script>
 @endpush
