@@ -43,6 +43,12 @@
                     <li><a href="#">Sub Menu </a></li>
                 </ul>
             </li>
+            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">Services</span></a>
+                <ul aria-expanded="false" class="collapse">
+                    <li><a href="{{ route('backend.service.index') }}">Service List </a></li>
+                    <li><a href="{{ route('backend.serviceCategory.index') }}">Service Category List </a></li>
+                </ul>
+            </li>
 
             <li class="nav-small-cap">--- SUPPORT</li>
             <li>
