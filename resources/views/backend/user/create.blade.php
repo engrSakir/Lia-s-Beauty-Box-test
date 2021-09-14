@@ -83,24 +83,24 @@
                                 </div>
                                 <div class="col-md-6">
 
-                                <div class="form-group">
+                                        <div class="form-group">
                                             <label for="exampleInputPassword11" class="form-label">Password</label>
-                                            <input type="password" name="user_pass" class="form-control" id="exampleInputPassword11"
+                                            <input type="password" name="user_pass" class="form-control" id="password"
                                                 placeholder="Password">
                                         </div>
                                         
 
-                                        </div>
-                                        <div class="col-md-6">
+                                </div>
+                                <div class="col-md-6">
 
                                 
                                         <div class="form-group">
                                             <label for="exampleInputPassword12" class="form-label">Confirm Password</label>
-                                            <input type="password" class="form-control" id="exampleInputPassword12"
-                                                placeholder="Confirm Password">
+                                            <input type="password" class="form-control" id="confirm_password"
+                                                placeholder="Confirm Password" required autocomplete="new-password">
                                         </div>
-                                        
-                                        </div>
+                                        <span id='message'></span>
+                                </div>
                                 
                             </div>
                         </div>
@@ -115,6 +115,15 @@
             </div>
         </div>
     </div>
+    <script>
+$('#password, #confirm_password').on('keyup', function () {
+  if ($('#password').val() == $('#confirm_password').val()) {
+    $('#message').html('Matching').css('color', 'green');
+  } else 
+    $('#message').html('Not Matching').css('color', 'red');
+});
+
+</script> 
 @endsection
 
 @push('head')
