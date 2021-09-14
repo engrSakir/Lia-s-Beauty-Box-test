@@ -17,6 +17,9 @@
     <!--sweetalert2 CDN -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!--Helper js -->
-    <script src="assets/js/helper.js"></script>
+    <script src="{{ asset('assets/js/helper.js') }}"></script>
+    {{--@jquery--}}
+    @toastr_js
+    @toastr_render
     <!--Page Lavel code -->
     @stack('foot')
