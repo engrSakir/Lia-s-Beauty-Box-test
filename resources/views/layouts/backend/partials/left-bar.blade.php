@@ -32,10 +32,17 @@
                     <span class="hide-menu">Schedule</span>
                 </a>
             </li>
+            
             <li>
                 <a class="waves-effect waves-dark" href="{{ route('backend.setting') }}" aria-expanded="false">
                     <i class="far fa-circle text-danger"></i>
                     <span class="hide-menu">Setting</span>
+                </a>
+            </li>
+            <li>
+                <a class="waves-effect waves-dark" href="{{ route('backend.user.index') }}" aria-expanded="false">
+                    <i class="far fa-circle text-danger"></i>
+                    <span class="hide-menu">User</span>
                 </a>
             </li>
             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">Menu <span class="badge rounded-pill bg-cyan ms-auto">4</span></span></a>
