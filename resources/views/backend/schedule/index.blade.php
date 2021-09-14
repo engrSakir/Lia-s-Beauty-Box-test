@@ -16,73 +16,50 @@
                 <a href="{{ route('backend.schedule.create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
                         class="fa fa-plus-circle"></i> Create
                     New</a>
-
             </div>
         </div>
     </div>
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header bg-info">
-                    <h4 class="mb-0 text-white">Schedule List</h4>
-                </div>
-                <table class="table table-sm">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Saturday</th>
-                        <th scope="col">Sunday</th>
-                        <th scope="col">Monday</th>
-                        <th scope="col">Tuesday</th>
-                        <th scope="col">Wednesday</th>
-                        <th scope="col">Thursday</th>
-                        <th scope="col">Friday</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($times as $time)
-                        <tr>
-                            <th scope="row" height="80px" valign="middle">{{ $time }}</th>
-                            @foreach($schedule_days as $schedule)
-                                <td>
-                                    @foreach($schedule['data'] as $schedule_data)
-                                        @if($time == date('h A', strtotime($schedule_data->starting_time)))
-                                            {{ $schedule_data->title }} (Start) <br>
-                                        @endif
-                                        @if($time == date('h A', strtotime($schedule_data->ending_time)))
-                                            {{ $schedule_data->title }} (End) <br>
-                                        @endif
-                                    @endforeach
-                                </td>
+    @foreach ($schedule_days as $schedule)
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header @if ($loop->odd) bg-success @else bg-info @endif">
+                        <h4 class="mb-0 text-white "> {{ $loop->iteration }}) Schedule List
+                            ({{ $schedule['day_name'] }})</h4>
+                    </div>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Start</th>
+                                <th scope="col">End</th>
+                                <th scope="col">Title</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($schedule['data'] as $schedule_data)
+                                <tr>
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ date('h:i A', strtotime($schedule_data->starting_time)) }}</td>
+                                    <td>{{ date('h:i A', strtotime($schedule_data->ending_time)) }}</td>
+                                    <td>{{ $schedule_data->title }}</td>
+                                </tr>
                             @endforeach
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-    {{--    <div class="row">--}}
-    {{--        <div class="col-lg-12">--}}
-    {{--            <div class="card">--}}
-    {{--                <div class="card-header bg-info">--}}
-    {{--                    <h4 class="mb-0 text-white">Setting</h4>--}}
-    {{--                </div>--}}
-    {{--                {!! $calendar->calendar() !!}--}}
-    {{--                {!! $calendar->script() !!}--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
+    @endforeach
+
+
 @endsection
 
 @push('head')
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.css"/>
+
 @endpush
 
 @push('foot')
