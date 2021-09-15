@@ -56,7 +56,18 @@
                                     </div>
                                     </div>
                                 </div>
-
+                                <div class="col-md-6">
+                                    <div class="form-group has-danger">
+                                    <label class="form-label">Image Category</label>
+                                    <select name="imagecategory_id" class="form-select col-12" id="inlineFormCustomSelect">
+                                    <option value="">--Select Category--</option>
+                                    @foreach($imageCategories as $category)
+                                    <option value="{{ $category->id }}" @if($gallery->imagecategory_id== $category->id) selected @endif>{{ $category->name }}</option>
+                                    @endforeach
+                                    </select>
+                                    </div>
+                                </div>
+                                
                                
                                 
                                 

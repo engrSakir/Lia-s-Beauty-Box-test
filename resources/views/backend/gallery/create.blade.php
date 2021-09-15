@@ -44,7 +44,7 @@
                                     <div class="form-group has-danger">
                                     <label class="col-md-12" for="image">Image <b class="text-danger">*</b></label>
                                     <div class="col-md-12">
-                                        <input type="file" name="image" accept="image/*" class="form-control image-chose-btn image-importer" id="image">
+                                        <input type="file" name="image" accept="image/*" class="form-control image-chose-btn image-importer" id="image" required>
                                         @error('image')
                                         <div class="alert alert-danger" role="alert">
                                             {{ $message }}
@@ -54,7 +54,17 @@
                                     </div>
                                 </div>
 
-                               
+                                <div class="col-md-6">
+                                    <div class="form-group has-danger">
+                                    <label class="form-label">Image Category</label>
+                                    <select name="imagecategory_id" class="form-select col-12" id="inlineFormCustomSelect">
+                                    <option value="">--Select Category--</option>
+                                    @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                    </select>
+                                    </div>
+                                </div>
                                 
                                 
                             </div>

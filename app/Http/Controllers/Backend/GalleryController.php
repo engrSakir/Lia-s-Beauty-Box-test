@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Gallery;
+use App\Models\ImageCategory;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
@@ -28,7 +29,8 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        return view('backend.gallery.create');
+        $categories= ImageCategory::all();
+        return view('backend.gallery.create',compact('categories'));
 
     }
 
@@ -41,11 +43,15 @@ class GalleryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image'         => 'nullable|image',
+            'image'         => 'required|image',
+            'short_description'         => 'nullable|string',
+            'imagecategory_id'   => 'required',
+
         ]);
 
         $gallery = new Gallery();
         $gallery->short_description = $request->short_description;
+        $gallery->imagecategory_id = $request->imagecategory_id;
         if ($request->file('image')) {
             $gallery->image = file_uploader('uploads/gallery-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($gallery->id, '-'));
         }
@@ -74,7 +80,8 @@ class GalleryController extends Controller
      */
     public function edit(Gallery $gallery)
     {
-        return view('backend.gallery.edit', compact('gallery'));
+        $imageCategories= ImageCategory::all();
+        return view('backend.gallery.edit', compact('gallery','imageCategories'));
 
     }
 
@@ -88,16 +95,21 @@ class GalleryController extends Controller
     public function update(Request $request, Gallery $gallery)
     {
         $request->validate([
-            'image'         => 'nullable|image',
+            'image'         => 'image',
+            'short_description'         => 'nullable|string',
+            'imagecategory_id'   => 'required',
+
+
         ]);
 
         $gallery->short_description = $request->short_description;
+        $gallery->imagecategory_id = $request->imagecategory_id;
         if ($request->file('image')) {
             $gallery->image = file_uploader('uploads/gallery-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($gallery->id, '-'));
         }
         $gallery->save();
 
-        toastr()->success('Successfully Saved!');
+        toastr()->success('Successfully Updated!');
         return back();
     }
 

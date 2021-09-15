@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Client;
 use App\Models\Gallery;
+use App\Models\ImageCategory;
 
 
 class FrontEndController extends Controller
@@ -15,7 +16,8 @@ class FrontEndController extends Controller
     {
         $clients = Client::all();
         $galleries = Gallery::all();
-        return view('frontend.home', ['clients' => $clients, 'galleries' => $galleries]);
+        $imageCategories= ImageCategory::all();
+        return view('frontend.home', ['clients' => $clients, 'galleries' => $galleries,'imageCategories' => $imageCategories]);
     }
 
     public function booking()

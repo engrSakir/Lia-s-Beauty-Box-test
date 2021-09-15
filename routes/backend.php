@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\ClientController;
 use App\Http\Controllers\Backend\GalleryController;
+use App\Http\Controllers\Backend\ImageCategoryController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,8 @@ Route::group(['as' => 'backend.'], function (){
     Route::resource('user', UserController::class);
     Route::resource('client', ClientController::class);
     Route::resource('gallery', GalleryController::class);
+    Route::resource('imageCategory', ImageCategoryController::class);
+
 
 
 

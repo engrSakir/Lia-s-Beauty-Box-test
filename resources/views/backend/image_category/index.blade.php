@@ -5,15 +5,15 @@
 @section('bread-crumb')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h4 class="text-themecolor">Gallery</h4>
+            <h4 class="text-themecolor">Image Category</h4>
         </div>
         <div class="col-md-7 align-self-center text-end">
             <div class="d-flex justify-content-end align-items-center">
                 <ol class="breadcrumb justify-content-end">
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                    <li class="breadcrumb-item active">Gallery</li>
+                    <li class="breadcrumb-item active">Image Category</li>
                 </ol>
-                <a href="{{ route('backend.gallery.create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create
+                <a href="{{ route('backend.imageCategory.create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create
                     New</a>
             </div>
         </div>
@@ -29,25 +29,22 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Image</th>
-                                <th scope="col">Category</th>
+                                <th scope="col">Image Category Name</th>
                                 <th scope="col">Created At</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($galleries as $gallery)
+                            @foreach($imageCategories as $imageCategory)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td><img id="image_display" width="150" src="{{ asset($gallery->image ?? 'uploads/images/no_image.png') }}" class="image-display" alt="User image"/>
-                                    </td>
-                                    <td>{{ $gallery->category->name ?? '#' }}</td>
-                                    <td>{{ $gallery->created_at->format('d/m/Y') }}</td>
+                                    <td>{{ $imageCategory->name }}</td>
+                                    <td>{{ $imageCategory->created_at->format('d/m/Y') }}</td>
                                     <td>
-                                    <a  class="text-warning" href="{{ route('backend.gallery.edit', $gallery) }}">
+                                    <a  class="text-warning" href="{{ route('backend.imageCategory.edit', $imageCategory) }}">
                                         <i class="fa fa-edit" ></i>
                                     </a>
-                                    <a  class="text-danger deleteBtn" href="{{ route('backend.gallery.show', $gallery) }}">
+                                    <a  class="text-danger deleteBtn" href="{{ route('backend.imageCategory.show', $imageCategory) }}">
                                         <i class="fa fa-trash" ></i>
                                     </a>
                                     

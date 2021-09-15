@@ -2339,11 +2339,9 @@
             <div class="filter-wrap p-a15 our-gallery  m-tb30">
                 <ul class="masonry-filter link-style  text-uppercase center-block m-t0">
                     <li class="active"><a data-filter="*" href="#">All</a></li>
-                    <li><a data-filter=".cat-filter-1" href="#">Hair cut</a></li>
-                    <li><a data-filter=".cat-filter-2" href="#">Foot</a></li>
-                    <li><a data-filter=".cat-filter-3" href="#">Body</a></li>
-                    <li><a data-filter=".cat-filter-4" href="#">Massage</a></li>
-                    <li><a data-filter=".cat-filter-5" href="#">Face massage</a></li>
+                    @foreach($imageCategories as $imageCategory)
+                    <li><a data-filter=".cat-filter-1" href="#">{{ $imageCategory->name }}</a></li>
+                    @endforeach
                 </ul>
             </div>
             <!-- PAGINATION END -->
@@ -2368,7 +2366,7 @@
                                         </a>
                                     </div>
                                     <div class="wt-info-text p-a30">
-                                        <h3>Back Massage</h3>
+                                        <h3>{{ $gallery->category->name }}</h3>
                                         <p>{{ $gallery->short_description }}</p>
                                     </div>
                                 </div>
