@@ -1,8 +1,13 @@
 <?php
 
 use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Backend\ServiceController;
+use App\Http\Controllers\Backend\ServiceCategoryController;
 use App\Http\Controllers\Backend\ScheduleController;
 use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Backend\ClientController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +28,13 @@ Route::group(['as' => 'backend.'], function (){
     Route::post('setting', [SettingController::class, 'update']);
 
     Route::resource('schedule', ScheduleController::class);
+    Route::resource('service', ServiceController::class);
+    Route::resource('serviceCategory', ServiceCategoryController::class);
+    Route::resource('user', UserController::class);
+    Route::resource('client', ClientController::class);
+
+
+
 });
 
 

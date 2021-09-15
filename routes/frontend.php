@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Frontend\FrontEndController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -9,10 +9,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.home');
-});
-
+Route::get('/', [FrontEndController::class, 'index'])->name('index');
 Route::get('/booking', function () {
     if(request()->ajax() && request()->appointment_data){
         $weekMap = [

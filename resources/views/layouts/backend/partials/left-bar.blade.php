@@ -32,15 +32,34 @@
                     <span class="hide-menu">Schedule</span>
                 </a>
             </li>
+            
             <li>
                 <a class="waves-effect waves-dark" href="{{ route('backend.setting') }}" aria-expanded="false">
                     <i class="far fa-circle text-danger"></i>
                     <span class="hide-menu">Setting</span>
                 </a>
             </li>
+            <li>
+                <a class="waves-effect waves-dark" href="{{ route('backend.user.index') }}" aria-expanded="false">
+                    <i class="far fa-circle text-danger"></i>
+                    <span class="hide-menu">User</span>
+                </a>
+            </li>
+            <li>
+                <a class="waves-effect waves-dark" href="{{ route('backend.client.index') }}" aria-expanded="false">
+                    <i class="far fa-circle text-danger"></i>
+                    <span class="hide-menu">Client</span>
+                </a>
+            </li>
             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">Menu <span class="badge rounded-pill bg-cyan ms-auto">4</span></span></a>
                 <ul aria-expanded="false" class="collapse">
                     <li><a href="#">Sub Menu </a></li>
+                </ul>
+            </li>
+            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">Services</span></a>
+                <ul aria-expanded="false" class="collapse">
+                    <li><a href="{{ route('backend.service.index') }}">Service List </a></li>
+                    <li><a href="{{ route('backend.serviceCategory.index') }}">Service Category List </a></li>
                 </ul>
             </li>
 

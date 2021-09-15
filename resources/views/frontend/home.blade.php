@@ -2583,73 +2583,6 @@
 
                             </div>
                         </div>
-
-                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 m-b40">
-                            <div class="pricingtable-wrapper pricing-table-style-4">
-                                <div class="pricingtable-inner bg-white radius">
-
-                                    <div class="overlay-wraper pricingtable-inner-overlay bg-no-repeat bg-cover" style="background-image:url(images/our-work/pic2.jpg);">
-                                        <div class="pricingtable-title">
-                                            <h3>Pro Plan</h3>
-                                        </div>
-                                        <div class="pricingtable-price">
-                                            <span class="pricingtable-bx">$49</span>
-                                            <span class="pricingtable-type">M</span>
-                                        </div>
-                                        <div class="overlay-main bg-black opacity-07"></div>
-                                    </div>
-
-
-                                    <ul class="pricingtable-features">
-                                        <li><i class="fa fa-check"></i>  Phone & Email Support  </li>
-                                        <li><i class="fa fa-check"></i> 3 Social Account </li>
-                                        <li><i class="fa fa-check"></i> Branded Reports  </li>
-                                        <li><i class="fa fa-check"></i> Unlock rewards</li>
-                                        <li><i class="fa fa-check"></i> Support Forum</li>
-                                    </ul>
-
-                                    <div class="pricingtable-footer">
-                                        <a href="javascript:void(0);" class="site-button text-uppercase radius-sm">Purchase</a>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 m-b40">
-                            <div class="pricingtable-wrapper pricing-table-style-4">
-                                <div class="pricingtable-inner bg-white radius">
-
-                                    <div class="overlay-wraper pricingtable-inner-overlay bg-no-repeat bg-cover" style="background-image:url(images/our-work/pic3.jpg);">
-                                        <div class="pricingtable-title">
-                                            <h3>Premium Plan</h3>
-                                        </div>
-                                        <div class="pricingtable-price">
-                                            <span class="pricingtable-bx">$99</span>
-                                            <span class="pricingtable-type">M</span>
-                                        </div>
-                                        <div class="overlay-main bg-black opacity-07"></div>
-                                    </div>
-
-
-                                    <ul class="pricingtable-features">
-                                        <li><i class="fa fa-check"></i>  Phone & Email Support  </li>
-                                        <li><i class="fa fa-check"></i> 3 Social Account </li>
-                                        <li><i class="fa fa-check"></i> Branded Reports  </li>
-                                        <li><i class="fa fa-check"></i> Unlock rewards</li>
-                                        <li><i class="fa fa-check"></i> Support Forum</li>
-                                    </ul>
-
-                                    <div class="pricingtable-footer">
-                                        <a href="javascript:void(0);" class="site-button text-uppercase radius-sm">Purchase</a>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -2968,103 +2901,15 @@
             <!-- IMAGE CAROUSEL START -->
             <div class="section-content">
                 <div class="owl-carousel client-logo-carousel">
-
-                    <!-- COLUMNS 1 -->
+                    @foreach($clients as $client)
                     <div class="item">
                         <div class="ow-client-logo">
                             <div class="client-logo wt-img-effect on-color">
-                                <a href="javascript:;"><img src="images/client-logo/logo1.png" alt=""></a>
+                                <a href="javascript:;"><img src="{{ asset($client->logo ?? 'uploads/images/no_image.png') }}" alt=""></a>
                             </div>
                         </div>
                     </div>
-                    <!-- COLUMNS 2 -->
-                    <div class="item">
-                        <div class="ow-client-logo">
-                            <div class="client-logo wt-img-effect on-color">
-                                <a href="javascript:;"><img src="images/client-logo/logo2.png" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- COLUMNS 3 -->
-                    <div class="item">
-                        <div class="ow-client-logo">
-                            <div class="client-logo wt-img-effect on-color">
-                                <a href="javascript:;"><img src="images/client-logo/logo3.png" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- COLUMNS 4 -->
-                    <div class="item">
-                        <div class="ow-client-logo">
-                            <div class="client-logo wt-img-effect on-color">
-                                <a href="javascript:;"><img src="images/client-logo/logo4.png" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- COLUMNS 5 -->
-                    <div class="item">
-                        <div class="ow-client-logo">
-                            <div class="client-logo wt-img-effect on-color">
-                                <a href="javascript:;"><img src="images/client-logo/logo5.png" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- COLUMNS 6 -->
-                    <div class="item">
-                        <div class="ow-client-logo">
-                            <div class="client-logo wt-img-effect on-color">
-                                <a href="javascript:;"><img src="images/client-logo/logo6.png" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- COLUMNS 7 -->
-                    <div class="item">
-                        <div class="ow-client-logo">
-                            <div class="client-logo wt-img-effect on-color">
-                                <a href="javascript:;"><img src="images/client-logo/logo7.png" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- COLUMNS 8 -->
-                    <div class="item">
-                        <div class="ow-client-logo">
-                            <div class="client-logo wt-img-effect on-color">
-                                <a href="javascript:;"><img src="images/client-logo/logo8.png" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- COLUMNS 9 -->
-                    <div class="item">
-                        <div class="ow-client-logo">
-                            <div class="client-logo wt-img-effect on-color">
-                                <a href="javascript:;"><img src="images/client-logo/logo9.png" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- COLUMNS 10 -->
-                    <div class="item">
-                        <div class="ow-client-logo">
-                            <div class="client-logo wt-img-effect on-color">
-                                <a href="javascript:;"><img src="images/client-logo/logo10.png" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- COLUMNS 11 -->
-                    <div class="item">
-                        <div class="ow-client-logo">
-                            <div class="client-logo wt-img-effect on-color">
-                                <a href="javascript:;"><img src="images/client-logo/logo11.png" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- COLUMNS 12 -->
-                    <div class="item">
-                        <div class="ow-client-logo">
-                            <div class="client-logo wt-img-effect on-color">
-                                <a href="javascript:;"><img src="images/client-logo/logo12.png" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
 
                 </div>
             </div>
