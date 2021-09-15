@@ -2662,8 +2662,7 @@
                                             </span>
                                 <div class="icon-content">
                                     <h4 class="m-b5">Email</h4>
-                                    <span class="font-12">info @example.com </span><br>
-                                    <span class="font-12">info2 @example.com </span>
+                                    <span class="font-12">{{ get_static_option('email') }} </span><br>
                                 </div>
                             </div>
 
@@ -2673,17 +2672,16 @@
                                             </span>
                                 <div class="icon-content">
                                     <h4 class="m-b5">Phone</h4>
-                                    <span class="font-12">+77 634 545 144 </span><br>
-                                    <span class="font-12">+77 634 255 147 </span>
+                                    <span class="font-12">{{ get_static_option('mobile') }}</span><br>
                                 </div>
                             </div>
 
                             <div class="Opening-hours text-white">
                                 <h3 class="wt-title text-uppercase m-t0">Opening Hours</h3>
                                 <ul class="list-unstyled">
-                                    <li>Monday - Friday <span class="pull-right">9.00 - 5.00 Pm</span></li>
-                                    <li>Saturday <span class="pull-right">9.00 - 2.00 Pm</span></li>
-                                    <li>Sunday <span class="pull-right">Closed</span></li>
+                                    <li>{{ get_static_option('line1') }} <span class="pull-right">{{ get_static_option('time1') }}</span></li>
+                                    <li>{{ get_static_option('line2') }} <span class="pull-right">{{ get_static_option('time2') }}</span></li>
+                                    <li>{{ get_static_option('line3') }} <span class="pull-right">{{ get_static_option('time3') }}</span></li>
                                 </ul>
                             </div>
 
