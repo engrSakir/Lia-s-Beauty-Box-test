@@ -8,7 +8,7 @@
                 <!-- SLIDE  -->
                 <li data-index="rs-2938" data-transition="slideleft" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="default"   data-thumb="images/main-slider/slider2/slide1.jpg"  data-rotate="0"  data-fsslotamount="7" data-saveperformance="off"  data-title="" data-param1="Additional Text" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
                     <!-- MAIN IMAGE -->
-                    <img src="images/main-slider/slider2/slide1.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
+                    <img src="/assets/frontend/images/main-slider/slider2/slide1.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
                     <!-- LAYERS -->
 
 
@@ -153,7 +153,7 @@
                 <!-- SLIDE  -->
                 <li data-index="rs-2939" data-transition="slideleft" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="default"  data-thumb="images/main-slider/slider2/slide2.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
                     <!-- MAIN IMAGE -->
-                    <img src="images/main-slider/slider2/slide2.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
+                    <img src="/assets/frontend/images/main-slider/slider2/slide2.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
                     <!-- LAYERS -->
 
 
@@ -298,7 +298,7 @@
                 <!-- SLIDE  -->
                 <li data-index="rs-2940" data-transition="slideleft" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="default"   data-thumb="images/main-slider/slider2/slide3.jpg"  data-rotate="0"   data-fsslotamount="7" data-saveperformance="off"  data-title="" data-param1="Additional Text" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
                     <!-- MAIN IMAGE -->
-                    <img src="images/main-slider/slider2/slide3.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
+                    <img src="/assets/frontend/images/main-slider/slider2/slide3.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
                     <!-- LAYERS -->
 
 
@@ -447,7 +447,7 @@
     <!-- SLIDER END -->
 
     <!-- WELCOME SECTION START -->
-    <div class="section-full p-tb100 bg-bottom-center bg-full-width bg-no-repeat" style="background-image:url(images/background/bg-1.png);">
+    <div class="section-full p-tb100 bg-bottom-center bg-full-width bg-no-repeat" style="background-image:url(assets/frontend/images/background/bg-1.png);">
         <div class="container ">
             <div class="section-head text-center">
                 <h1><span class="text-primary"> Welcome to </span> Spa center</h1>
@@ -514,7 +514,7 @@
     <!-- WELCOME COMPANY SECTION END -->
 
     <!-- OUR SERVICES SECTION START  -->
-    <div class="section-full bg-gray p-t80 p-b120 bg-repeat" style="background-image:url(images/background/bg-6.jpg);">
+    <div class="section-full bg-gray p-t80 p-b120 bg-repeat" style="background-image:url(assets/frontend/images/background/bg-6.jpg);">
         <div class="container-fluid">
             <!-- TITLE START-->
             <div class="section-head text-center">
@@ -535,7 +535,7 @@
                         <div class="wt-box p-t50">
                             <div class="wt-media text-primary m-b20 radius-bx circle-effect-1 wt-img-overlay11">
 
-                                <img src="images/our-services/large/s1.jpg" class="radius-bx "  alt="">
+                                <img src="/assets/frontend/images/our-services/large/s1.jpg" class="radius-bx "  alt="">
                                 <div class="text-center p-a30 wt-img-overlay11-content text-white">
                                     <div class="overlay-11-detail">
                                         <div class="overlay-11-info">
@@ -563,7 +563,7 @@
                         <div class="wt-box p-t50">
                             <div class="wt-media text-primary m-b20 radius-bx circle-effect-1 wt-img-overlay11">
 
-                                <img src="images/our-services/large/s2.jpg" class="radius-bx"  alt="">
+                                <img src="/assets/frontend/images/our-services/large/s2.jpg" class="radius-bx"  alt="">
                                 <div class="text-center p-a30 wt-img-overlay11-content text-white">
                                     <div class="overlay-11-detail">
                                         <div class="overlay-11-info">
@@ -591,7 +591,7 @@
                         <div class="wt-box p-t50">
                             <div class="wt-media text-primary m-b20 radius-bx circle-effect-1 wt-img-overlay11">
 
-                                <img src="images/our-services/large/s3.jpg" class="radius-bx"  alt="">
+                                <img src="/assets/frontend/images/our-services/large/s3.jpg" class="radius-bx"  alt="">
                                 <div class="text-center p-a30 wt-img-overlay11-content text-white">
                                     <div class="overlay-11-detail">
                                         <div class="overlay-11-info">
@@ -619,7 +619,7 @@
                         <div class="wt-box p-t50">
                             <div class="wt-media text-primary m-b20 radius-bx circle-effect-1 wt-img-overlay11">
 
-                                <img src="images/our-services/large/s4.jpg" class="radius-bx"  alt="">
+                                <img src="/assets/frontend/images/our-services/large/s4.jpg" class="radius-bx"  alt="">
                                 <div class="text-center p-a30 wt-img-overlay11-content text-white">
                                     <div class="overlay-11-detail">
                                         <div class="overlay-11-info">
@@ -647,7 +647,7 @@
                         <div class="wt-box p-t50">
                             <div class="wt-media text-primary m-b20 radius-bx circle-effect-1 wt-img-overlay11">
 
-                                <img src="images/our-services/large/s1.jpg" class="radius-bx"  alt="">
+                                <img src="/assets/frontend/images/our-services/large/s1.jpg" class="radius-bx"  alt="">
                                 <div class="text-center p-a30 wt-img-overlay11-content text-white">
                                     <div class="overlay-11-detail">
                                         <div class="overlay-11-info">
@@ -675,7 +675,7 @@
                         <div class="wt-box p-t50">
                             <div class="wt-media text-primary m-b20 radius-bx circle-effect-1 wt-img-overlay11">
 
-                                <img src="images/our-services/large/s2.jpg" class="radius-bx"  alt="">
+                                <img src="/assets/frontend/images/our-services/large/s2.jpg" class="radius-bx"  alt="">
                                 <div class="text-center p-a30 wt-img-overlay11-content text-white">
                                     <div class="overlay-11-detail">
                                         <div class="overlay-11-info">
@@ -703,7 +703,7 @@
                         <div class="wt-box p-t50">
                             <div class="wt-media text-primary m-b20 radius-bx circle-effect-1 wt-img-overlay11">
 
-                                <img src="images/our-services/large/s3.jpg" class="radius-bx"  alt="">
+                                <img src="/assets/frontend/images/our-services/large/s3.jpg" class="radius-bx"  alt="">
                                 <div class="text-center p-a30 wt-img-overlay11-content text-white">
                                     <div class="overlay-11-detail">
                                         <div class="overlay-11-info">
@@ -731,7 +731,7 @@
                         <div class="wt-box p-t50">
                             <div class="wt-media text-primary m-b20 radius-bx circle-effect-1 wt-img-overlay11">
 
-                                <img src="images/our-services/large/s4.jpg" class="radius-bx"  alt="">
+                                <img src="/assets/frontend/images/our-services/large/s4.jpg" class="radius-bx"  alt="">
                                 <div class="text-center p-a30 wt-img-overlay11-content text-white">
                                     <div class="overlay-11-detail">
                                         <div class="overlay-11-info">
@@ -911,7 +911,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s1.jpg" alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s1.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -938,7 +938,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s2.jpg" alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s2.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -965,7 +965,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s3.jpg" alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s3.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -992,7 +992,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s4.jpg" alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s4.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1019,7 +1019,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s5.jpg" alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s5.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1046,7 +1046,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s6.jpg" alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s6.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1092,7 +1092,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s2.jpg" alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s2.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1119,7 +1119,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s3.jpg" alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s3.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1146,7 +1146,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s4.jpg" alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s4.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1173,7 +1173,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s5.jpg" alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s5.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1200,7 +1200,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s6.jpg" alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s6.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1227,7 +1227,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s1.jpg"  alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s1.jpg"  alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1273,7 +1273,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s3.jpg"  alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s3.jpg"  alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1300,7 +1300,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s4.jpg"  alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s4.jpg"  alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1327,7 +1327,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s5.jpg"  alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s5.jpg"  alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1354,7 +1354,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s6.jpg"  alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s6.jpg"  alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1381,7 +1381,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s1.jpg"  alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s1.jpg"  alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1408,7 +1408,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s2.jpg"  alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s2.jpg"  alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1454,7 +1454,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s4.jpg"  alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s4.jpg"  alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1481,7 +1481,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s5.jpg"  alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s5.jpg"  alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1508,7 +1508,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s6.jpg"  alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s6.jpg"  alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1535,7 +1535,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s1.jpg"  alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s1.jpg"  alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1562,7 +1562,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s2.jpg"  alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s2.jpg"  alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1589,7 +1589,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s3.jpg"  alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s3.jpg"  alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1635,7 +1635,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s5.jpg"  alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s5.jpg"  alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1662,7 +1662,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s6.jpg"  alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s6.jpg"  alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1689,7 +1689,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s1.jpg"  alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s1.jpg"  alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1716,7 +1716,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s2.jpg"  alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s2.jpg"  alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1743,7 +1743,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s3.jpg"  alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s3.jpg"  alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1770,7 +1770,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s4.jpg"  alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s4.jpg"  alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1816,7 +1816,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s6.jpg" alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s6.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1843,7 +1843,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s1.jpg" alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s1.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1870,7 +1870,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s2.jpg" alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s2.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1897,7 +1897,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s4.jpg" alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s4.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1924,7 +1924,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s4.jpg" alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s4.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1951,7 +1951,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s5.jpg" alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s5.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -1997,7 +1997,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s1.jpg" alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s1.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -2024,7 +2024,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s2.jpg" alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s2.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -2051,7 +2051,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s3.jpg" alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s3.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -2078,7 +2078,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s4.jpg" alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s4.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -2105,7 +2105,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s5.jpg" alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s5.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -2132,7 +2132,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="wt-media">
-                                                    <img src="images/our-services/large/s6.jpg"  alt="">
+                                                    <img src="/assets/frontend/images/our-services/large/s6.jpg"  alt="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -2166,7 +2166,7 @@
     <!-- PRICING SECTION END  -->
 
     <!-- COMPANY STATUS SECTION START -->
-    <div class="section-full overlay-wraper bg-center bg-cover p-tb80 bg-primary"  style="background-image:url(images/background/bg-9.jpg);">
+    <div class="section-full overlay-wraper bg-center bg-cover p-tb80 bg-primary"  style="background-image:url(assets/frontend/images/background/bg-9.jpg);">
         <div class="overlay-main bg-primary opacity-09"></div>
         <div class="container summary-counter">
             <div class="row">
@@ -2247,7 +2247,7 @@
                     <div class="col-md-4 col-sm-4 p-tb15">
                         <div class="wt-box">
                             <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
-                                <img src="images/our-experts/ex1.jpg" class="radius-bx"  alt="">
+                                <img src="/assets/frontend/images/our-experts/ex1.jpg" class="radius-bx"  alt="">
                             </div>
                             <div class="wt-info p-t30 text-center">
                                 <h2>Camila</h2>
@@ -2259,7 +2259,7 @@
                     <div class="col-md-4 col-sm-4 p-tb15">
                         <div class="wt-box">
                             <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
-                                <img src="images/our-experts/ex2.jpg" class="radius-bx"  alt="">
+                                <img src="/assets/frontend/images/our-experts/ex2.jpg" class="radius-bx"  alt="">
                             </div>
                             <div class="wt-info p-t30 text-center">
                                 <h2>Milagros</h2>
@@ -2271,7 +2271,7 @@
                     <div class="col-md-4 col-sm-4 p-tb15">
                         <div class="wt-box">
                             <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
-                                <img src="images/our-experts/ex3.jpg" class="radius-bx"  alt="">
+                                <img src="/assets/frontend/images/our-experts/ex3.jpg" class="radius-bx"  alt="">
                             </div>
                             <div class="wt-info p-t30 text-center">
                                 <h2>Agustina.</h2>
@@ -2290,7 +2290,7 @@
 
     <!-- OUR SPECIAL OFFER SECTION END  -->
     <div class="section-full bg-primary">
-        <div class="container-fluid bg-top-right bg-no-repeat bg-full-height special-offer-block no-col-gap" style="background-image:url(images/special-offer.jpg);">
+        <div class="container-fluid bg-top-right bg-no-repeat bg-full-height special-offer-block no-col-gap" style="background-image:url(assets/frontend/images/special-offer.jpg);">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="section-content special-offer-outer bg-primary radius  p-tb60">
@@ -2383,7 +2383,7 @@
     <!-- OUR GALLERY CONTENT END  -->
 
     <!-- OUR PRICING TABLE SECTION START  -->
-    <div class="section-full bg-gray bg-repeat p-tb80" style="background-image:url(images/background/bg-6.jpg);">
+    <div class="section-full bg-gray bg-repeat p-tb80" style="background-image:url(assets/frontend/images/background/bg-6.jpg);">
         <div class="container">
 
             <!-- TITLE START-->
@@ -2408,7 +2408,7 @@
                             <div class="pricingtable-wrapper pricing-table-style-4">
                                 <div class="pricingtable-inner bg-white radius">
 
-                                    <div class="overlay-wraper pricingtable-inner-overlay bg-no-repeat bg-cover" style="background-image:url(images/our-work/pic1.jpg);">
+                                    <div class="overlay-wraper pricingtable-inner-overlay bg-no-repeat bg-cover" style="background-image:url(assets/frontend/images/our-work/pic1.jpg);">
                                         <div class="pricingtable-title">
                                             <h3>Basic Plan</h3>
                                         </div>
@@ -2467,7 +2467,7 @@
                     <div class="col-md-4 col-sm-4 p-tb15">
                         <div class="wt-box">
                             <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
-                                <img src="images/products/pic-8.jpg" class="radius-bx"  alt="">
+                                <img src="/assets/frontend/images/products/pic-8.jpg" class="radius-bx"  alt="">
                             </div>
                             <div class="wt-info p-t30 text-center">
                                 <h2>Massage Soap</h2>
@@ -2480,7 +2480,7 @@
                     <div class="col-md-4 col-sm-4 p-tb15">
                         <div class="wt-box">
                             <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
-                                <img src="images/products/pic-2.jpg" class="radius-bx"  alt="">
+                                <img src="/assets/frontend/images/products/pic-2.jpg" class="radius-bx"  alt="">
                             </div>
                             <div class="wt-info p-t30 text-center">
                                 <h2>Flower</h2>
@@ -2493,7 +2493,7 @@
                     <div class="col-md-4 col-sm-4 p-tb15">
                         <div class="wt-box">
                             <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
-                                <img src="images/products/pic-9.jpg" class="radius-bx"  alt="">
+                                <img src="/assets/frontend/images/products/pic-9.jpg" class="radius-bx"  alt="">
                             </div>
                             <div class="wt-info p-t30 text-center">
                                 <h2>Massage Oil.</h2>
@@ -2512,7 +2512,7 @@
     <!-- OUR PROJECTS SECTION END  -->
 
     <!-- OUR TESTIMONIAL SECTION START  -->
-    <div class="section-full bg-gray bg-repeat p-t80 p-b120" style="background-image:url(images/background/bg-6.jpg);">
+    <div class="section-full bg-gray bg-repeat p-t80 p-b120" style="background-image:url(assets/frontend/images/background/bg-6.jpg);">
         <div class="container">
             <!-- TITLE START-->
             <div class="section-head text-center">
@@ -2533,7 +2533,7 @@
                         <div class="testimonial-5 bg-white radius-sm">
                             <div class="testimonial-pic-block radius-bx">
                                 <div class="testimonial-pic radius">
-                                    <img src="images/testimonials/pic1.jpg" width="132" height="132" alt="">
+                                    <img src="/assets/frontend/images/testimonials/pic1.jpg" width="132" height="132" alt="">
                                 </div>
                             </div>
                             <div class="testimonial-text clearfix">
@@ -2555,7 +2555,7 @@
                         <div class=" testimonial-5 bg-white radius-sm">
                             <div class="testimonial-pic-block radius-bx">
                                 <div class="testimonial-pic radius">
-                                    <img src="images/testimonials/pic2.jpg" width="132" height="132" alt="">
+                                    <img src="/assets/frontend/images/testimonials/pic2.jpg" width="132" height="132" alt="">
                                 </div>
                             </div>
                             <div class="testimonial-text clearfix">
@@ -2577,7 +2577,7 @@
                         <div class="testimonial-5 bg-white radius-sm">
                             <div class="testimonial-pic-block radius-bx">
                                 <div class="testimonial-pic radius">
-                                    <img src="images/testimonials/pic1.jpg" width="132" height="132" alt="">
+                                    <img src="/assets/frontend/images/testimonials/pic1.jpg" width="132" height="132" alt="">
                                 </div>
                             </div>
                             <div class="testimonial-text clearfix">
@@ -2599,7 +2599,7 @@
                         <div class="testimonial-5 bg-white radius-sm">
                             <div class="testimonial-pic-block radius-bx">
                                 <div class="testimonial-pic radius">
-                                    <img src="images/testimonials/pic2.jpg" width="132" height="132" alt="">
+                                    <img src="/assets/frontend/images/testimonials/pic2.jpg" width="132" height="132" alt="">
                                 </div>
                             </div>
                             <div class="testimonial-text clearfix">
@@ -2642,7 +2642,7 @@
             <!-- TITLE END -->
 
             <div class="row conntact-home bg-gray">
-                <div class="col-md-4 col-sm-6 contact-home-left bg-no-repeat bg-primary bg-left-center"  style="background-image:url(images/background/contact-map.png);">
+                <div class="col-md-4 col-sm-6 contact-home-left bg-no-repeat bg-primary bg-left-center"  style="background-image:url(assets/frontend/images/background/contact-map.png);">
                     <div class="section-content">
                         <div class="p-a50">
 
@@ -2692,7 +2692,7 @@
                     <div class="section-content bg-gray">
                         <div class="contact-home-right p-a30">
                             <h5 class="text-uppercase font-26 p-b20 font-weight-400">GET IN TOUCH</h5>
-                            <form  class="cons-contact-form2" method="post" action="http://thewebmax.com/spa/form-handler2.php">
+                            <form  class="cons-contact-form2" method="post" action="#">
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
@@ -2732,7 +2732,7 @@
     <!-- CONTACT US OFFER SECTION END  -->
 
     <!-- OUR CLIENT SLIDER START -->
-    <div class="section-full p-t80 p-b50 bg-repeat" style="background-image:url(images/background/bg-6.jpg);">
+    <div class="section-full p-t80 p-b50 bg-repeat" style="background-image:url(assets/frontend/images/background/bg-6.jpg);">
         <div class="container">
 
             <!-- TITLE START -->

@@ -1,6 +1,6 @@
 <footer class="site-footer footer-light">
     <!-- COLL-TO ACTION START -->
-    <div class="section-full overlay-wraper bg-primary" style="background-image:url(images/background/bg-7.png);">
+    <div class="section-full overlay-wraper bg-primary" style="background-image:url(assets/frontend/images/background/bg-7.png);">
 
         <div class="section-content ">
             <!-- COLL-TO ACTION START -->
@@ -38,7 +38,7 @@
                     <div class="widget widget_about">
                         <h4 class="widget-title">About Company</h4>
                         <div class="logo-footer clearfix p-b15">
-                            <a href="{{ url('/') }}"><img src="images/logo.png" width="230" height="67" alt=""/></a>
+                            <a href="{{ url('/') }}"><img src="assets/frontend/images/logo.png" width="230" height="67" alt=""/></a>
                         </div>
                         <p>Item ipsum dolor sit amet, consectetuer adipiscing elit,
                             sed diam nonummy nibh euismod tincidunt ut laoreet dolore agna aliquam erat .

@@ -1,7 +1,7 @@
 @extends('layouts.frontend.app')
 @section('content')
     <!-- INNER PAGE BANNER -->
-    <div class="wt-bnr-inr overlay-wraper" style="background-image:url(images/banner/product-banner.jpg);">
+    <div class="wt-bnr-inr overlay-wraper" style="background-image:url(assets/frontend/images/banner/product-banner.jpg);">
         <div class="overlay-main bg-black opacity-07"></div>
         <div class="container">
             <div class="wt-bnr-inr-entry">
@@ -67,128 +67,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- 4. OUR GALLERY  -->
-                            <div class="widget widget_gallery mfp-gallery">
-                                <h4 class="widget-title">Our Gallery</h4>
-                                <ul>
-                                    <li>
-                                        <div class="wt-post-thum">
-                                            <a href="images/gallery/pic1.jpg" class="mfp-link"><img
-                                                    src="images/gallery/thumb/pic1.jpg" alt=""></a>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="wt-post-thum ">
-                                            <a href="images/gallery/pic2.jpg" class="mfp-link"><img
-                                                    src="images/gallery/thumb/pic2.jpg" alt=""></a>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="wt-post-thum  ">
-                                            <a href="images/gallery/pic3.jpg" class="mfp-link"><img
-                                                    src="images/gallery/thumb/pic3.jpg" alt=""></a>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="wt-post-thum ">
-                                            <a href="images/gallery/pic4.jpg" class="mfp-link"><img
-                                                    src="images/gallery/thumb/pic4.jpg" alt=""></a>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="wt-post-thum ">
-                                            <a href="images/gallery/pic5.jpg" class="mfp-link"><img
-                                                    src="images/gallery/thumb/pic5.jpg" alt=""></a>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="wt-post-thum ">
-                                            <a href="images/gallery/pic6.jpg" class="mfp-link"><img
-                                                    src="images/gallery/thumb/pic6.jpg" alt=""></a>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="wt-post-thum">
-                                            <a href="images/gallery/pic7.jpg" class="mfp-link"><img
-                                                    src="images/gallery/thumb/pic7.jpg" alt=""></a>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="wt-post-thum ">
-                                            <a href="images/gallery/pic8.jpg" class="mfp-link"><img
-                                                    src="images/gallery/thumb/pic8.jpg" alt=""></a>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="wt-post-thum  ">
-                                            <a href="images/gallery/pic7.jpg" class="mfp-link"><img
-                                                    src="images/gallery/thumb/pic7.jpg" alt=""></a>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="wt-post-thum ">
-                                            <a href="images/gallery/pic6.jpg" class="mfp-link"><img
-                                                    src="images/gallery/thumb/pic6.jpg" alt=""></a>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="wt-post-thum ">
-                                            <a href="images/gallery/pic5.jpg" class="mfp-link"><img
-                                                    src="images/gallery/thumb/pic5.jpg" alt=""></a>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="wt-post-thum ">
-                                            <a href="images/gallery/pic4.jpg" class="mfp-link"><img
-                                                    src="images/gallery/thumb/pic4.jpg" alt=""></a>
-                                        </div>
-                                    </li>
-                                </ul>
-
-                            </div>
-                            <!-- 7. OUR CLIENT -->
-                            <div class="widget">
-                                <h4 class="widget-title">Our Client</h4>
-                                <div class="owl-carousel widget-client p-t10">
-
-                                    <!-- COLUMNS 1 -->
-                                    <div class="item">
-                                        <div class="ow-client-logo">
-                                            <div class="client-logo wt-img-effect on-color">
-                                                <a href="#"><img src="images/client-logo/logo1.png" alt=""></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- COLUMNS 2 -->
-                                    <div class="item">
-                                        <div class="ow-client-logo">
-                                            <div class="client-logo wt-img-effect on-color">
-                                                <a href="#"><img src="images/client-logo/logo2.png" alt=""></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- COLUMNS 3 -->
-                                    <div class="item">
-                                        <div class="ow-client-logo">
-                                            <div class="client-logo wt-img-effect on-color">
-                                                <a href="#"><img src="images/client-logo/logo3.png" alt=""></a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
 
                         </aside>
 
@@ -197,7 +75,7 @@
                     <div class="col-md-9">
                         <!-- TITLE START -->
                         <div class="p-b10">
-                            <h3 class="text-uppercase">Today Schedule</h3>
+                            <h3 class="text-uppercase">Available Schedule</h3>
                             <div class="wt-separator-outer m-b30">
                                 <div class="wt-separator style-icon">
                                     <i class="fa fa-leaf text-black"></i>
@@ -207,88 +85,13 @@
                             </div>
                         </div>
                         <!-- TITLE END -->
-
                         <div class="row" id="schedule">
                             {{-- Schedules show using jQuery --}}
-                            {{-- date value set by jQuery --}}
-                            <input type="hidden" id="appointment_data" name="appointment_data">
-
-                            <!-- COLUMNS 1 -->
-                            <div class="col-md-3 col-sm-4 col-xs-6 col-xs-100pc m-b30">
-                                <div class="wt-box wt-product-box">
-                                    <div class="wt-thum-bx wt-img-overlay1 wt-img-effect zoom">
-                                        <img src="images/products/pic-1.jpg" alt="">
-                                        <div class="overlay-bx">
-                                            <div class="overlay-icon">
-                                                <a href="javascript:void(0);">
-                                                    <i class="fa fa-cart-plus wt-icon-box-xs"></i>
-                                                </a>
-                                                <a class="mfp-link" href="javascript:void(0);">
-                                                    <i class="fa fa-heart wt-icon-box-xs"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wt-info  text-center">
-                                        <div class="p-a10 bg-white">
-                                            <h4 class="wt-title">
-                                                <a href="javascript:;">One Martines</a>
-                                            </h4>
-                                            <div class="p-t10">
-                                                <button class="site-button  m-r15" type="button">Book Now <i
-                                                        class="fa fa-angle-double-right"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="alert alert-success text-center m-3"
+                                style="border: 2px solid red; padding: 10px; border-radius: 50px 20px;" role="alert">
+                                <h3>Please pick a date from calendar</h3>
                             </div>
                         </div>
-
-                        <!-- ADD BLOCK -->
-                        <div class="p-tb30">
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="wt-box pro-banner">
-                                        <img src="images/add/pic1.jpg" alt="">
-                                        <div class="pro-banner-disc p-a20 text-white">
-                                            <h2 class="text-uppercase m-a0 m-b10">Best time to buy</h2>
-                                            <h4 class="m-a0 m-b10">Our Product</h4>
-                                            <h3 class="text-uppercase m-a0 m-b10">UP TO</h3>
-                                            <h5 class="text-uppercase m-a0 m-b10">10% Cashback</h5>
-                                            <a href="#" class="site-button ">ADD TO CART <i
-                                                    class="fa fa-angle-double-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="wt-box pro-banner">
-                                        <img src="images/add/pic2.jpg" alt="">
-                                        <div class="pro-banner-disc p-a20 text-white">
-                                            <h2 class="text-uppercase m-a0 m-b10">Best time to buy</h2>
-                                            <h4 class="m-a0 m-b10">Our Product</h4>
-                                            <h3 class="text-uppercase m-a0 m-b10">UP TO</h3>
-                                            <h5 class="text-uppercase m-a0 m-b10">10% Cashback</h5>
-                                            <a href="#" class="site-button ">ADD TO CART <i
-                                                    class="fa fa-angle-double-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ADD BLOCK -->
-
-                        <!-- TITLE START -->
-                        <div class="p-b10">
-                            <h3 class="text-uppercase">Featured products</h3>
-                            <div class="wt-separator-outer  m-b30">
-                                <div class="wt-separator style-icon">
-                                    <i class="fa fa-leaf text-black"></i>
-                                    <span class="separator-left bg-primary"></span>
-                                    <span class="separator-right bg-primary"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- TITLE END -->
                     </div>
                 </div>
             </div>
@@ -300,20 +103,24 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="booking_modal_title">Title</h5>
-                    <b class="modal-title" id="booking_modal_sub_title">Sub Title</b>
+                    <h5 class="modal-title" id="schedule_title">Title</h5>
+                    <b class="modal-title" id="schedule_date">Date</b> &nbsp; <b class="modal-title"
+                        id="schedule_time">Sub Title</b>
                 </div>
                 <div class="modal-body">
-
-                        <div class="m-a30 wt-box border-2">
-                            <form class="cons-contact-form" method="post" action="#">
-                                <div class="row">
-                                    @guest
+                    <div class="m-a30 wt-box border-2">
+                        {{-- date value set by jQuery --}}
+                        <input type="hidden" id="appointment_data" name="appointment_data">
+                        <input type="hidden" id="schedule_id" name="schedule">
+                        <form class="cons-contact-form" id="appointment_form">
+                            <div class="row">
+                                @guest
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                                <input name="name" type="text" required="" class="form-control" placeholder="Neme">
+                                                <input name="name" type="text" required="" class="form-control"
+                                                    placeholder="Neme">
                                             </div>
                                         </div>
                                     </div>
@@ -322,7 +129,8 @@
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                                <input name="phone" type="text" required="" class="form-control" placeholder="Phone">
+                                                <input name="phone" type="text" required="" class="form-control"
+                                                    placeholder="Phone">
                                             </div>
                                         </div>
                                     </div>
@@ -331,63 +139,51 @@
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                                <input name="email" type="email" class="form-control" required="" placeholder="Email">
+                                                <input name="email" type="email" class="form-control" required=""
+                                                    placeholder="Email">
                                             </div>
                                         </div>
                                     </div>
-                                    @endguest
+                                @endguest
 
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-                                                <select name="cars" class="form-control" required="">
-                                                    <optgroup label="Swedish Cars">
-                                                      <option value="volvo">Volvo</option>
-                                                      <option value="saab">Saab</option>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+                                            <select name="service" class="form-control" required="">
+                                                <option value="" selected disabled>Please chose a service</option>
+                                                @foreach ($serviceCategories as $serviceCategory)
+                                                    <optgroup label="{{ $serviceCategory->name }}">
+                                                        @foreach ($serviceCategory->services as $service)
+                                                            <option value="{{ $service->id }}">{{ $service->name }}
+                                                            </option>
+                                                        @endforeach
                                                     </optgroup>
-                                                    <optgroup label="German Cars">
-                                                      <option value="mercedes">Mercedes</option>
-                                                      <option value="audi">Audi</option>
-                                                    </optgroup>
-                                                </select>
-                                            </div>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                <input name="date" type="date" class="form-control" required="" placeholder="Date">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <span class="input-group-addon v-align-m"><i
-                                                        class="fa fa-pencil"></i></span>
-                                                <textarea name="message" rows="4" class="form-control " required=""
-                                                    placeholder="Message"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12 text-right">
-                                        <button name="submit" type="submit" value="Submit" class="site-button  m-r15">Submit <i
-                                                class="fa fa-angle-double-right"></i></button>
-                                        <button name="Resat" type="reset" class="site-button ">Reset <i
-                                                class="fa fa-angle-double-right"></i></button>
-                                    </div>
-
                                 </div>
 
-                            </form>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon v-align-m"><i class="fa fa-pencil"></i></span>
+                                            <textarea name="message" rows="4" class="form-control " required=""
+                                                placeholder="Message"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
 
-                        </div>
-
+                                <div class="col-md-12 text-right">
+                                    <button name="submit" type="button" class="site-button  m-r15"
+                                        id="appointment_submit_btn">Submit <i class="fa fa-angle-double-right"></i></button>
+                                    <button name="Resat" type="reset" class="site-button ">Reset <i
+                                            class="fa fa-angle-double-right"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -485,71 +281,52 @@
                     schedule_id: schedule_id,
                 },
                 success: function(response) {
-                    console.log(response);
+                    //console.log(response);
                     var starting_time = moment(Date("1/1/1900 " + response.starting_time)).format('hh:mm:ss a');
                     var ending_time = moment(Date("1/1/1900 " + response.ending_time)).format('hh:mm:ss a');
-                    $('#booking_modal_title').text(response.title);
-                    $('#booking_modal_sub_title').text(starting_time + ' To ' + ending_time);
+                    $('#schedule_title').text(response.title);
+                    $('#schedule_date').text($("#appointment_data").val());
+                    $('#schedule_time').text(starting_time + ' To ' + ending_time);
+                    $('#schedule_id').val(response.id);
+                    $('#booking_modal').modal('show');
                 }
             });
-            $('#booking_modal').modal('show');
         }
 
-        $('#appointment-form #submit-btn').click(function() {
+        $('#appointment_submit_btn').click(function() {
             $.ajax({
-                method: 'PATCH',
-                url: "{{ url('requestAppointment', '$doctor') }}",
+                method: "POST",
+                url: "{{ route('booking') }}",
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 data: {
-                    name: $("#appointment-form [name='name']").val(),
-                    email: $("#appointment-form [name='email']").val(),
-                    phone: $("#appointment-form [name='phone']").val(),
-                    appointment_data: $("#appointment-form [name='appointment_data']").val(),
-                    schedule: $("#appointment-form [name='schedule']:checked").val(),
+                    appointment_data: $("#appointment_data").val(),
+                    schedule: $('#schedule_id').val(),
+                    name: $("#appointment_form [name='name']").val(),
+                    email: $("#appointment_form [name='email']").val(),
+                    phone: $("#appointment_form [name='phone']").val(),
+                    service: $("#appointment_form [name='service']").val(),
+                    message: $("#appointment_form [name='message']").val(),
                 },
                 dataType: 'JSON',
                 beforeSend: function() {
-                    $('#appointment-form #submit-btn').prop("disabled", true);
+
                 },
                 complete: function() {
-                    $('#appointment-form #submit-btn').prop("disabled", false);
+
                 },
                 success: function(data) {
-                    if (data.type == 'success') {
-                        $('#appointment-form').trigger("reset");
-                        Swal.fire({
-                            icon: data.type,
-                            title: data.message,
-                        });
-                        setTimeout(function() {
-                            //location.reload();
-                        }, 800); //
-                    } else {
-                        Swal.fire({
-                            icon: data.type,
-                            title: 'Oops...',
-                            text: data.message,
-                            footer: 'Something went wrong!'
-                        });
-                    }
-                },
-                error: function(xhr) {
-                    var errorMessage = '<div class="card bg-danger">\n' +
-                        '                        <div class="card-body text-center p-5">\n' +
-                        '                            <span class="text-white">';
-                    $.each(xhr.responseJSON.errors, function(key, value) {
-                        errorMessage += ('' + value + '<br>');
-                    });
-                    errorMessage += '</span>\n' +
-                        '                        </div>\n' +
-                        '                    </div>';
+                    console.log(data)
+                    $('#appointment_form').trigger("reset");
                     Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        footer: errorMessage
+                        icon: data.type,
+                        title: data.message,
                     });
+                    $('#booking_modal').modal('hide');
+                },
+                error: function(error) {
+                    validation_error(error);
                 },
             });
         });

@@ -11,5 +11,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontEndController::class, 'home'])->name('home');
 Route::get('/booking', [FrontEndController::class, 'booking'])->name('booking');
-
+Route::post('/booking', [FrontEndController::class, 'bookingStore']);
 
