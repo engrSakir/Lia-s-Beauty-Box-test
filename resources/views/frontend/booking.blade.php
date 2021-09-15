@@ -295,6 +295,103 @@
         </div>
     </div>
     <!-- SECTION CONTENT END -->
+
+    <div class="modal fade" id="booking_modal" aria-hidden="true" aria-labelledby="booking_modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="booking_modal_title">Title</h5>
+                    <b class="modal-title" id="booking_modal_sub_title">Sub Title</b>
+                </div>
+                <div class="modal-body">
+
+                        <div class="m-a30 wt-box border-2">
+                            <form class="cons-contact-form" method="post" action="#">
+                                <div class="row">
+                                    @guest
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                <input name="name" type="text" required="" class="form-control" placeholder="Neme">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                                <input name="phone" type="text" required="" class="form-control" placeholder="Phone">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                                <input name="email" type="email" class="form-control" required="" placeholder="Email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endguest
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+                                                <select name="cars" class="form-control" required="">
+                                                    <optgroup label="Swedish Cars">
+                                                      <option value="volvo">Volvo</option>
+                                                      <option value="saab">Saab</option>
+                                                    </optgroup>
+                                                    <optgroup label="German Cars">
+                                                      <option value="mercedes">Mercedes</option>
+                                                      <option value="audi">Audi</option>
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                <input name="date" type="date" class="form-control" required="" placeholder="Date">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon v-align-m"><i
+                                                        class="fa fa-pencil"></i></span>
+                                                <textarea name="message" rows="4" class="form-control " required=""
+                                                    placeholder="Message"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 text-right">
+                                        <button name="submit" type="submit" value="Submit" class="site-button  m-r15">Submit <i
+                                                class="fa fa-angle-double-right"></i></button>
+                                        <button name="Resat" type="reset" class="site-button ">Reset <i
+                                                class="fa fa-angle-double-right"></i></button>
+                                    </div>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('head')
@@ -307,6 +404,7 @@
             padding: 1px;
             border-radius: 12px;
         }
+
     </style>
 @endpush
 
@@ -327,15 +425,21 @@
                 type: 'GET', //THIS NEEDS TO BE GET
                 url: "{{ route('booking') }}",
                 data: {
+                    request_for: 'Schedules by Date',
                     appointment_data: moment(new Date(date)).format("DD-MM-YYYY")
                 },
                 success: function(response) {
-                    console.log(response);
+                    // console.log(response);
                     $('#schedule').html('')
                     $.each(response.schedules, function(schedule_index, schedule) {
                         var schedule_counter = 0;
-                        var html = `<input class="form-check-input" type="radio" name="schedule" id="schedule-box-`+schedule.id+`" value="`+schedule.id+`">
-                                    <div class="widget bg-white recent-posts-entry schedule-box btn waves-effect waves-light btn-outline-primary">
+                        var starting_time = moment(Date("1/1/1900 " + schedule.starting_time)).format(
+                            'hh:mm:ss a');
+                        var ending_time = moment(Date("1/1/1900 " + schedule.ending_time)).format(
+                            'hh:mm:ss a');
+                        var title = schedule.title;
+                        var html = `<div class="widget bg-white recent-posts-entry schedule-box btn waves-effect waves-light btn-outline-primary"
+                        onclick="bookingModal(` + schedule.id + `)">
                                     <div class="widget-post-bx">
                                         <div class="widget-post clearfix">
                                             <div class="wt-post-media">
@@ -343,13 +447,12 @@
                                             </div>
                                             <div class="wt-post-info">
                                                 <div class="wt-post-header">
-                                                    <h6 class="post-title">` + schedule.title + ` ny name is sakir ahmed rashed bd</h6>
+                                                    <h6 class="post-title">` + title + `</h6>
                                                 </div>
                                                 <div class="wt-post-meta">
                                                     <ul>
-                                                        <li class="post-author">` + moment(Date("1/1/1900 " + schedule
-                            .starting_time)).format('hh:mm:ss a') + ` to ` + moment(Date(
-                            "1/1/1900 " + schedule.ending_time)).format('hh:mm:ss a') + `</li>
+                                                        <li class="post-author">` + starting_time + ` to ` +
+                            ending_time + `</li>
                                                         <li class="post-comment"><i class="fa fa-comments"></i> 28</li>
                                                     </ul>
                                                 </div>
@@ -373,12 +476,24 @@
 
         $('.calendar-wrapper').calendar(defaultConfig);
 
-        $(document).on('click', $(".schedule-box") , function() {
-                //code here ....
-            //alert("The paragraph was clicked.");
-            //console.log($(this).text());
-            $(this).attr("background");
-        });
+        function bookingModal(schedule_id) {
+            $.ajax({
+                type: 'GET', //THIS NEEDS TO BE GET
+                url: "{{ route('booking') }}",
+                data: {
+                    request_for: 'Schedule Details',
+                    schedule_id: schedule_id,
+                },
+                success: function(response) {
+                    console.log(response);
+                    var starting_time = moment(Date("1/1/1900 " + response.starting_time)).format('hh:mm:ss a');
+                    var ending_time = moment(Date("1/1/1900 " + response.ending_time)).format('hh:mm:ss a');
+                    $('#booking_modal_title').text(response.title);
+                    $('#booking_modal_sub_title').text(starting_time + ' To ' + ending_time);
+                }
+            });
+            $('#booking_modal').modal('show');
+        }
 
         $('#appointment-form #submit-btn').click(function() {
             $.ajax({
