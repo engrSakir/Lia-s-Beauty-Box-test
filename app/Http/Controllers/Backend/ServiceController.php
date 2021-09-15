@@ -44,24 +44,23 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'service_name' => 'required',
-            'price' => 'required',
-            'category_id' => 'required',   
+            'service_name'  => 'required',
+            'price'         => 'required',
+            'category_id'   => 'required',
+            'image'         => 'nullable|image',
         ]);
 
-      
-
         $service = new Service();
-        $service->name = $request->service_name;   
-        $service->price = $request->price; 
-        $service->category_id = $request->category_id;                   
-        $service->description = $request->description;                
+        $service->name = $request->service_name;
+        $service->price = $request->price;
+        $service->category_id = $request->category_id;
+        $service->description = $request->description;
         if ($request->file('image')) {
             $service->image = file_uploader('uploads/service-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($service->name, '-'));
         }
         $service->save();
 
-        toastr()->success('Successfully Saved!');   
+        toastr()->success('Successfully Saved!');
         return back();
     }
 
@@ -84,11 +83,8 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        $serviceCategories=ServiceCategory::all();
-
-        
-        return view('backend.service.edit',['serviceCategories' => $serviceCategories,'service'=>$service]);
-
+        $serviceCategories = ServiceCategory::all();
+        return view('backend.service.edit', compact('service', 'serviceCategories'));
     }
 
     /**
@@ -101,24 +97,22 @@ class ServiceController extends Controller
     public function update(Request $request, Service $service)
     {
         $request->validate([
-            'service_name' => 'required',
-            'price' => 'required',
-            'category_id' => 'required',   
+            'service_name'  => 'required|string',
+            'price'         => 'required|numeric',
+            'category_id'   => 'required|exists:service_categories,id',
+            'image'         => 'nullable|image',
         ]);
 
-      
-
-      
-        $service->name = $request->service_name;   
-        $service->price = $request->price; 
-        $service->category_id = $request->category_id;                   
-        $service->description = $request->description;                
+        $service->name = $request->service_name;
+        $service->price = $request->price;
+        $service->category_id = $request->category_id;
+        $service->description = $request->description;
         if ($request->file('image')) {
             $service->image = file_uploader('uploads/service-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($service->name, '-'));
         }
         $service->save();
 
-        toastr()->success('Successfully Updated!');   
+        toastr()->success('Successfully Updated!');
         return back();
     }
 

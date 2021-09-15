@@ -46,7 +46,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
                                         <label class="form-label" for="price">Price</label>
-                                        <input type="text" id="price" name="price" class="form-control form-control-danger" placeholder="Price" value="{{ old('price') }}">
+                                        <input type="number" id="price" name="price" class="form-control form-control-danger" placeholder="Price" value="{{ old('price') }}">
                                         @error('price')
                                         <div class="alert alert-danger" role="alert">
                                             {{ $message }}
@@ -60,14 +60,10 @@
                                     <label class="form-label">Service Category</label>
                                     <select name="category_id" class="form-select col-12" id="inlineFormCustomSelect">
                                     <option value="">--Select Category--</option>
-
                                     @foreach($serviceCategories as $serviceCategory)
-
                                     <option value="{{ $serviceCategory->id }}">{{ $serviceCategory->name }}</option>
                                     @endforeach
-                                        
                                     </select>
-                                
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -94,7 +90,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                         <div class="form-actions">

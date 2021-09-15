@@ -47,7 +47,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
                                         <label class="form-label" for="price">Price</label>
-                                        <input type="text" id="price" name="price" class="form-control form-control-danger" value="{{  $service->price }}">
+                                        <input type="number" id="price" name="price" class="form-control form-control-danger" value="{{  $service->price }}">
                                         @error('price')
                                         <div class="alert alert-danger" role="alert">
                                             {{ $message }}
@@ -61,14 +61,10 @@
                                     <label class="form-label">Service Category</label>
                                     <select name="category_id" class="form-select col-12" id="inlineFormCustomSelect">
                                     <option value="">--Select Category--</option>
-
                                     @foreach($serviceCategories as $serviceCategory)
-
-                                    <option value="{{ $serviceCategory->id }}" @php if($service->category_id== $serviceCategory->id) echo "selected"; @endphp >{{ $serviceCategory->name }}</option>
+                                    <option value="{{ $serviceCategory->id }}" @if($service->category_id== $serviceCategory->id) selected @endif >{{ $serviceCategory->name }}</option>
                                     @endforeach
-                                        
                                     </select>
-                                
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -78,7 +74,6 @@
                                     <div class="col-md-12">
                                         <input type="file" name="image" class="form-control image-chose-btn image-importer" id="image">
                                         <img id="image_display" width="150" src="{{ asset($service->image ?? 'uploads/images/no_image.png') }}" class="image-display" alt="User image"/>
- 
                                         @error('image')
                                         <div class="alert alert-danger" role="alert">
                                             {{ $message }}
@@ -87,17 +82,14 @@
                                     </div>
                                     </div>
                                 </div>
-
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
                                     <label for="example-month-input2" class="col-4 col-form-label">Description</label>
                                         <div class="col-10">
-                                        <textarea class="form-control" id="description" name="description" rows="3"
-                                                    >{{ $service->description }}</textarea>
+                                        <textarea class="form-control" id="description" name="description" rows="3">{{ $service->description }}</textarea>
                                         </div>
                                     </div>
                                 </div>
-                                
                             </div>
                         </div>
                         <div class="form-actions">

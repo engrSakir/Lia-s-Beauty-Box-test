@@ -303,12 +303,10 @@
     <style>
         .schedule-box:hover {
             cursor: pointer;
-            border: 4px solid #06ec5c;
-            padding: 10px;
-            border-radius: 25px;
-
+            border: 2px solid #06ec5c;
+            padding: 1px;
+            border-radius: 12px;
         }
-
     </style>
 @endpush
 
@@ -336,15 +334,16 @@
                     $('#schedule').html('')
                     $.each(response.schedules, function(schedule_index, schedule) {
                         var schedule_counter = 0;
-                        var html = `<div class="widget bg-white recent-posts-entry">
-                                    <div class="widget-post-bx pointer">
+                        var html = `<input class="form-check-input" type="radio" name="schedule" id="schedule-box-`+schedule.id+`" value="`+schedule.id+`">
+                                    <div class="widget bg-white recent-posts-entry schedule-box btn waves-effect waves-light btn-outline-primary">
+                                    <div class="widget-post-bx">
                                         <div class="widget-post clearfix">
                                             <div class="wt-post-media">
                                                 <img src="/assets/frontend/images/booking.png" width="200" height="143" alt="">
                                             </div>
                                             <div class="wt-post-info">
                                                 <div class="wt-post-header">
-                                                    <h6 class="post-title">` + schedule.title + `</h6>
+                                                    <h6 class="post-title">` + schedule.title + ` ny name is sakir ahmed rashed bd</h6>
                                                 </div>
                                                 <div class="wt-post-meta">
                                                     <ul>
@@ -360,9 +359,6 @@
                                 </div>`;
                         $('#schedule').append(html);
                     });
-                },
-                error: function() {
-                    console.log(data);
                 }
             });
         }
@@ -376,6 +372,13 @@
         };
 
         $('.calendar-wrapper').calendar(defaultConfig);
+
+        $(document).on('click', $(".schedule-box") , function() {
+                //code here ....
+            //alert("The paragraph was clicked.");
+            //console.log($(this).text());
+            $(this).attr("background");
+        });
 
         $('#appointment-form #submit-btn').click(function() {
             $.ajax({
@@ -435,16 +438,5 @@
                 },
             });
         });
-
-        function formatAMPM(date) {
-            var hours = date.getHours();
-            var minutes = date.getMinutes();
-            var ampm = hours >= 12 ? 'pm' : 'am';
-            hours = hours % 12;
-            hours = hours ? hours : 12; // the hour '0' should be '12'
-            minutes = minutes < 10 ? '0' + minutes : minutes;
-            var strTime = hours + ':' + minutes + ' ' + ampm;
-            return strTime;
-        }
     </script>
 @endpush
