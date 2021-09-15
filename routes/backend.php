@@ -7,6 +7,8 @@ use App\Http\Controllers\Backend\ScheduleController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\ClientController;
+use App\Http\Controllers\Backend\GalleryController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +34,8 @@ Route::group(['as' => 'backend.'], function (){
     Route::resource('serviceCategory', ServiceCategoryController::class);
     Route::resource('user', UserController::class);
     Route::resource('client', ClientController::class);
+    Route::resource('gallery', GalleryController::class);
+
 
 
 

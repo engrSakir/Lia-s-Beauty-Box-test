@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Client;
+use App\Models\Gallery;
+
 
 class FrontEndController extends Controller
 {
@@ -16,7 +18,8 @@ class FrontEndController extends Controller
     public function index()
     {
         $clients= Client::all();
-        return view('frontend.home',['clients' => $clients]);
+        $galleries= Gallery::all();
+        return view('frontend.home',['clients' => $clients,'galleries' => $galleries]);
 
     }
 
