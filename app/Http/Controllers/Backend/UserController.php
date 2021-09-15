@@ -49,16 +49,11 @@ class UserController extends Controller
             'user_phone' => 'required|string|max:11',   
         ]);
 
-      
-
         $user = new User();
         $user->name = $request->user_name;  
         $user->email = $request->user_email;
         $user->phone = $request->user_phone;   
-        $user->password = Hash::make($request->user_pass);   
-
- 
-                       
+        $user->password = Hash::make($request->user_pass);                  
         if ($request->file('image')) {
             $user->image = file_uploader('uploads/user-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($user->name, '-'));
         }
@@ -106,14 +101,9 @@ class UserController extends Controller
             'user_phone' => 'required|string|max:11',   
         ]);
 
-      
-
         $user->name = $request->user_name;  
         $user->email = $request->user_email;
-        $user->phone = $request->user_phone;   
-
- 
-                       
+        $user->phone = $request->user_phone;                  
         if ($request->file('image')) {
             $user->image = file_uploader('uploads/user-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($user->name, '-'));
         }

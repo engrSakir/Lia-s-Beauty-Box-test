@@ -73,7 +73,7 @@
                                     <div class="form-group has-danger">
                                     <label class="col-md-12" for="image">User Image</label>
                                     <div class="col-md-12">
-                                        <input type="file" name="image" class="form-control image-chose-btn image-importer" id="image">
+                                        <input type="file" name="image" accept="image/*" class="form-control image-chose-btn image-importer" id="image">
                                         <img id="image_display" width="150" src="{{ asset($user->image ?? 'uploads/images/no_image.png') }}" class="image-display" alt="User image"/>
 
                                         @error('image')
