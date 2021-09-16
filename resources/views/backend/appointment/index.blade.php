@@ -37,7 +37,7 @@
                                     <th>Date Time</th>
                                     <th>Day And Time</th>
                                     <th>Status</th>
-                                    <th>RRequest At</th>
+                                    <th>Request At</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -55,30 +55,28 @@
                                         </td>
                                         <th>
                                             <div class="btn-group mt-3" data-bs-toggle="buttons" role="group">
+                                                @if($appointment->status != "Done")
                                                 <label class="btn btn-outline btn-info text-white">
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="pending-{{  $appointment->id }}" name="status-{{  $appointment->id }}" value="pending" class="form-check-input">
+                                                        <input type="radio" id="pending-{{  $appointment->id }}" name="status-{{  $appointment->id }}" value="pending" @if($appointment->status == "Pending") checked disabled @endif class="form-check-input">
                                                         <label class="form-check-label" for="pending-{{  $appointment->id }}"> <i class="ti-check text-active" aria-hidden="true"></i> Pending </label>
                                                     </div>
                                                 </label>
                                                 <label class="btn btn-outline btn-info text-white">
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="approved-{{  $appointment->id }}" name="status-{{  $appointment->id }}" value="approved" class="form-check-input">
+                                                        <input type="radio" id="approved-{{  $appointment->id }}" name="status-{{  $appointment->id }}" value="approved" @if($appointment->status == "Approved") checked disabled @endif class="form-check-input">
                                                         <label class="form-check-label" for="approved-{{  $appointment->id }}"> <i class="ti-check text-active" aria-hidden="true"></i> Approved </label>
                                                     </div>
                                                 </label>
                                                 <label class="btn btn-outline btn-danger active text-white">
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="reject-{{  $appointment->id }}" name="status-{{  $appointment->id }}" value="reject" class="form-check-input">
+                                                        <input type="radio" id="reject-{{  $appointment->id }}" name="status-{{  $appointment->id }}" value="reject" @if($appointment->status == "Reject") checked disabled @endif class="form-check-input">
                                                         <label class="form-check-label" for="reject-{{  $appointment->id }}"> <i class="ti-check text-active" aria-hidden="true"></i> Reject </label>
                                                     </div>
                                                 </label>
-                                                <label class="btn btn-outline btn-success active text-white">
-                                                    <div class="custom-control custom-radio">
-                                                        <input type="radio" id="done-{{  $appointment->id }}" name="status-{{  $appointment->id }}" value="done" class="form-check-input">
-                                                        <label class="form-check-label" for="done-{{  $appointment->id }}"> <i class="ti-check text-active" aria-hidden="true"></i> Done </label>
-                                                    </div>
-                                                </label>
+                                                @else
+                                                Invoice
+                                                @endif
                                             </div>
                                         </th>
                                         <td>{{ $appointment->created_at->format('d/m/Y h:i A') }}</td>

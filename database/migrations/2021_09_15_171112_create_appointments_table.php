@@ -21,6 +21,7 @@ class CreateAppointmentsTable extends Migration
             $table->date('appointment_data');
             $table->longText('message');
             $table->string('status')->default('Pending')->comment('Pending|Approved|Reject|Done');
+            $table->boolean('booked_by_admin')->default(false);
             $table->timestamps();
         });
     }

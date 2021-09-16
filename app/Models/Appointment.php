@@ -18,7 +18,6 @@ class Appointment extends Model
         'status',
     ];
 
-
     public function customer()
     {
         return $this->belongsTo(User::class, 'customer_id', 'id');
