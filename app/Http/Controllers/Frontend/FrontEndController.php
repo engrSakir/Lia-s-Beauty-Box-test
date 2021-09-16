@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Client;
 use App\Models\Gallery;
 use App\Models\ImageCategory;
+use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,9 @@ class FrontEndController extends Controller
         $clients = Client::all();
         $galleries = Gallery::all();
         $imageCategories= ImageCategory::all();
-        return view('frontend.home', compact('clients', 'galleries','imageCategories'));
+        $serviceCategories = ServiceCategory::all();
+        $services = Service::all();
+        return view('frontend.home', compact('clients', 'galleries','imageCategories', 'serviceCategories', 'services'));
     }
 
     public function booking()

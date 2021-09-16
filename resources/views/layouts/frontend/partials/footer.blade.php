@@ -111,12 +111,12 @@
                     <div class="widget widget_services">
                         <h4 class="widget-title">Useful links</h4>
                         <ul>
-                            <li><a href="about-1.html">About</a></li>
-                            <li><a href="faq-1.html">FAQ</a></li>
-                            <li><a href="career.html">Career</a></li>
-                            <li><a href="our-team.html">Our Team</a></li>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="gallery-grid-1.html">Gallery</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Career</a></li>
+                            <li><a href="#">Our Team</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Gallery</a></li>
                         </ul>
                     </div>
                 </div>
@@ -139,12 +139,12 @@
                     <div class="widget widget_social_inks">
                         <h4 class="widget-title">Social Links</h4>
                         <ul class="social-icons social-square social-darkest">
-                            <li><a href="javascript:void(0);" class="fa fa-facebook"></a></li>
-                            <li><a href="javascript:void(0);" class="fa fa-twitter"></a></li>
-                            <li><a href="javascript:void(0);" class="fa fa-linkedin"></a></li>
-                            <li><a href="javascript:void(0);" class="fa fa-rss"></a></li>
-                            <li><a href="javascript:void(0);" class="fa fa-youtube"></a></li>
-                            <li><a href="javascript:void(0);" class="fa fa-instagram"></a></li>
+                            <li><a href="https://www.facebook.com/Lia.Beauty.Box" target="_blank" class="fa fa-facebook"></a></li>
+                            <li><a href="https://www.facebook.com/Lia.Beauty.Box" target="_blank" class="fa fa-twitter"></a></li>
+                            <li><a href="https://www.facebook.com/Lia.Beauty.Box" target="_blank" class="fa fa-linkedin"></a></li>
+                            <li><a href="https://www.facebook.com/Lia.Beauty.Box" target="_blank" class="fa fa-rss"></a></li>
+                            <li><a href="https://www.facebook.com/Lia.Beauty.Box" target="_blank" class="fa fa-youtube"></a></li>
+                            <li><a href="https://www.facebook.com/Lia.Beauty.Box" target="_blank" class="fa fa-instagram"></a></li>
                         </ul>
                     </div>
                 </div>
