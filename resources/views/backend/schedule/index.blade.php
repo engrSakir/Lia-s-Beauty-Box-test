@@ -54,8 +54,6 @@
             </div>
         </div>
     @endforeach
-
-
 @endsection
 
 @push('head')

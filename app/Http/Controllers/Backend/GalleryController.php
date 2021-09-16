@@ -53,7 +53,7 @@ class GalleryController extends Controller
         $gallery->short_description = $request->short_description;
         $gallery->imagecategory_id = $request->imagecategory_id;
         if ($request->file('image')) {
-            $gallery->image = file_uploader('uploads/gallery-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($gallery->id, '-'));
+            $gallery->image = file_uploader('uploads/gallery-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::random(8));
         }
         $gallery->save();
 
@@ -105,7 +105,7 @@ class GalleryController extends Controller
         $gallery->short_description = $request->short_description;
         $gallery->imagecategory_id = $request->imagecategory_id;
         if ($request->file('image')) {
-            $gallery->image = file_uploader('uploads/gallery-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($gallery->id, '-'));
+            $gallery->image = file_uploader('uploads/gallery-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::random(8));
         }
         $gallery->save();
 
