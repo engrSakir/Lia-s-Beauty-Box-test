@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\AppointmentController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Backend\ServiceCategoryController;
@@ -37,6 +38,7 @@ Route::group(['as' => 'backend.'], function (){
     Route::resource('client', ClientController::class);
     Route::resource('gallery', GalleryController::class);
     Route::resource('imageCategory', ImageCategoryController::class);
+    Route::resource('appointment', AppointmentController::class);
 
 
 

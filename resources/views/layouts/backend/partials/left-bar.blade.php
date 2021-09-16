@@ -27,12 +27,17 @@
                 </a>
             </li>
             <li>
+                <a class="waves-effect waves-dark" href="{{ route('backend.appointment.index') }}" aria-expanded="false">
+                    <i class="far fa-circle text-danger"></i>
+                    <span class="hide-menu">Appointment</span>
+                </a>
+            </li>
+            <li>
                 <a class="waves-effect waves-dark" href="{{ route('backend.schedule.index') }}" aria-expanded="false">
                     <i class="far fa-circle text-danger"></i>
                     <span class="hide-menu">Schedule</span>
                 </a>
             </li>
-            
             <li>
                 <a class="waves-effect waves-dark" href="{{ route('backend.setting') }}" aria-expanded="false">
                     <i class="far fa-circle text-danger"></i>
@@ -51,16 +56,11 @@
                     <span class="hide-menu">Client</span>
                 </a>
             </li>
-           
+
             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">Gallery</span></a>
                 <ul aria-expanded="false" class="collapse">
                     <li><a href="{{ route('backend.gallery.index') }}">Gallery List</a></li>
                     <li><a href="{{ route('backend.imageCategory.index') }}">Image Category</a></li>
-                </ul>
-            </li>
-            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">Menu <span class="badge rounded-pill bg-cyan ms-auto">4</span></span></a>
-                <ul aria-expanded="false" class="collapse">
-                    <li><a href="#">Sub Menu </a></li>
                 </ul>
             </li>
             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">Services</span></a>
@@ -68,26 +68,6 @@
                     <li><a href="{{ route('backend.service.index') }}">Service List </a></li>
                     <li><a href="{{ route('backend.serviceCategory.index') }}">Service Category List </a></li>
                 </ul>
-            </li>
-
-            <li class="nav-small-cap">--- SUPPORT</li>
-            <li>
-                <a class="waves-effect waves-dark" href="#" aria-expanded="false">
-                    <i class="far fa-circle text-danger"></i>
-                    <span class="hide-menu">Documentation</span>
-                </a>
-            </li>
-            <li>
-                <a class="waves-effect waves-dark" href="#" aria-expanded="false">
-                    <i class="far fa-circle text-success"></i>
-                    <span class="hide-menu">Log Out</span>
-                </a>
-            </li>
-            <li>
-                <a class="waves-effect waves-dark" href="#" aria-expanded="false">
-                    <i class="far fa-circle text-info"></i>
-                    <span class="hide-menu">FAQs</span>
-                </a>
             </li>
         </ul>
     </nav>
