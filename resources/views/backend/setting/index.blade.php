@@ -173,11 +173,11 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                     <label for="banner_image">Logo image</label>
-                                            <input type="file" name="logo_image" value="{{ get_static_option('logo_image') }}" id="logo_image" class="form-control">
+                                            <input type="file" name="logo" value="{{ get_static_option('logo') }}" id="logo" class="form-control">
                                             <div class="image">
-                                                <img src="{{ asset(get_static_option('logo_image')) }}" width="100" class="img-circle elevation-2">
+                                                <img src="{{ asset(get_static_option('logo')) }}" width="100" class="img-circle elevation-2">
                                             </div>
-                                            @error('logo_image')
+                                            @error('logo')
                                             <div class="alert alert-danger" role="alert">
                                                 {{ $message }}
                                             </div>

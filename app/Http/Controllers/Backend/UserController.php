@@ -55,7 +55,7 @@ class UserController extends Controller
         $user->phone = $request->user_phone;   
         $user->password = Hash::make($request->user_pass);                  
         if ($request->file('image')) {
-            $user->image = file_uploader('uploads/user-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($user->name, '-'));
+            $user->image = file_uploader('uploads/user-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($request->user_name, '-'));
         }
         $user->save();
 

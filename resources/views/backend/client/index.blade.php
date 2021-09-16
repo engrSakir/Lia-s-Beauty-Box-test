@@ -35,7 +35,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($Clients as $client)
+                            @foreach($clients as $client)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $client->name }}</td>
