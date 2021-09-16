@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\Client;
 use App\Models\Gallery;
 use App\Models\ImageCategory;
+use App\Models\Schedule;
+use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +23,9 @@ class FrontEndController extends Controller
         $clients = Client::all();
         $galleries = Gallery::all();
         $imageCategories= ImageCategory::all();
-        return view('frontend.home', compact('clients', 'galleries','imageCategories'));
+        $serviceCategories = ServiceCategory::all();
+        $services = Service::all();
+        return view('frontend.home', compact('clients', 'galleries','imageCategories', 'serviceCategories', 'services'));
     }
 
     public function booking()
@@ -117,5 +121,49 @@ class FrontEndController extends Controller
 
         toastr()->success('Successfully Done!');
         return back();
+    }
+
+    public function service(){
+        $serviceCategories = ServiceCategory::all();
+        return view('frontend.service', compact('serviceCategories'));
+    }
+
+    public function serviceDetails($slug){
+        $service = Service::where('slug', $slug)->first();
+        if($service){
+            $schedule_days = [
+                [
+                    'day_name' => 'saturday',
+                    'data' =>  Schedule::where('schedule_day', 'saturday')->get()
+                ],
+                [
+                    'day_name' => 'sunday',
+                    'data' =>  Schedule::where('schedule_day', 'sunday')->get()
+                ],
+                [
+                    'day_name' => 'monday',
+                    'data' =>  Schedule::where('schedule_day', 'monday')->get()
+                ],
+                [
+                    'day_name' => 'tuesday',
+                    'data' =>  Schedule::where('schedule_day', 'tuesday')->get()
+                ],
+                [
+                    'day_name' => 'wednesday',
+                    'data' =>  Schedule::where('schedule_day', 'wednesday')->get()
+                ],
+                [
+                    'day_name' => 'thursday',
+                    'data' =>  Schedule::where('schedule_day', 'thursday')->get()
+                ],
+                [
+                    'day_name' => 'friday',
+                    'data' =>  Schedule::where('schedule_day', 'friday')->get()
+                ],
+            ];
+            return view('frontend.service-details', compact('service', 'schedule_days'));
+        }else{
+            abort(404);
+        }
     }
 }
