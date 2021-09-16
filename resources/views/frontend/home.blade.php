@@ -369,7 +369,7 @@
 
     <!-- OUR SERVICES SECTION START  -->
     <div class="section-full bg-gray p-t80 p-b120 bg-repeat"
-        style="background-image:url(assets/frontend/images/background/bg-6.jpg);">
+        style="background-image:url({{ asset('assets/frontend/images/background/bg-6.jpg') }});">
         <div class="container-fluid">
             <!-- TITLE START-->
             <div class="section-head text-center">
@@ -402,7 +402,7 @@
                                             <p class="m-b0">
                                                 {!! $service->description !!}
                                             </p>
-                                            <h4 class="m-b0"><a href="#">Book Now</a></h4>
+                                            <h4 class="m-b0"><a href="{{ route('serviceDetails', $service->slug) }}">Book Now</a></h4>
                                         </div>
                                     </div>
                                     <div class="bg-primary bg-color radius-bx opacity-08"></div>
@@ -478,7 +478,7 @@
                                                                         href="javascript:void(0);">{{ $service->name }}</a>
                                                                 </h4>
                                                                 <p>{!! $service->description !!}</p>
-                                                                <a href="javascript:void(0);" class="site-button ">Book
+                                                                <a href="{{ route('serviceDetails', $service->slug) }}" class="site-button ">Book
                                                                     Now <i class="fa fa-angle-double-right"></i></a>
                                                             </div>
                                                         </div>

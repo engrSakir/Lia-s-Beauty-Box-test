@@ -38,7 +38,7 @@
                     <div class="widget widget_about">
                         <h4 class="widget-title">About Company</h4>
                         <div class="logo-footer clearfix p-b15">
-                            <a href="{{ url('/') }}"><img src="assets/frontend/images/logo.png" width="230" height="67" alt=""/></a>
+                            <a href="{{ url('/') }}"><img src="{{ asset('assets/frontend/images/logo.png') }}" width="230" height="67" alt=""/></a>
                         </div>
                         <p>Item ipsum dolor sit amet, consectetuer adipiscing elit,
                             sed diam nonummy nibh euismod tincidunt ut laoreet dolore agna aliquam erat .
@@ -158,7 +158,7 @@
         <div class="container p-t30">
             <div class="row">
                 <div class="wt-footer-bot-left">
-                    <span class="copyrights-text">© 2017 Your Company. All Rights Reserved. Designed By Thewebmax.</span>
+                    <span class="copyrights-text">© {{ date('Y') }} {{ config('app.name') }} All Rights Reserved. Designed By <a href="https://www.iciclecorporation.com/" target="_blank">Icicle Corporation</a>.</span>
                 </div>
                 <div class="wt-footer-bot-right">
                     <ul class="copyrights-nav pull-right">

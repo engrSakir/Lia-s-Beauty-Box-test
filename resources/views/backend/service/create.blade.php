@@ -69,7 +69,7 @@
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
-                                    <label class="col-md-12" for="image">Service Image (600px / 600px)</label>
+                                    <label class="col-md-12" for="image">Service Image (300px / 300px)</label>
                                     <div class="col-md-12">
                                         <input type="file" name="image" accept="image/*" class="form-control image-chose-btn image-importer" id="image">
                                         @error('image')
