@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
-
-
 use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ServiceCategoryController extends Controller
 {
@@ -37,16 +36,17 @@ class ServiceCategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { 
+    {
         $request->validate([
-            'category_name' => 'required|unique:service_categories,name', 
+            'category_name' => 'required|unique:service_categories,name',
         ]);
 
         $serviceCategory = new ServiceCategory();
-        $serviceCategory->name = $request->category_name;                
+        $serviceCategory->name = $request->category_name;
+        $serviceCategory->slug = Str::slug($request->category_name, '-');
         $serviceCategory->save();
 
-        toastr()->success('Successfully Saved!');   
+        toastr()->success('Successfully Saved!');
         return back();
     }
 
@@ -82,13 +82,14 @@ class ServiceCategoryController extends Controller
     public function update(Request $request, ServiceCategory $serviceCategory)
     {
         $request->validate([
-            'category_name' => 'required|unique:service_categories,name,'.$serviceCategory->id, 
+            'category_name' => 'required|unique:service_categories,name,'.$serviceCategory->id,
         ]);
 
-        $serviceCategory->name = $request->category_name;                
+        $serviceCategory->name = $request->category_name;
+        $serviceCategory->slug = Str::slug($request->category_name, '-');
         $serviceCategory->save();
 
-        toastr()->success('Successfully Updated!');   
+        toastr()->success('Successfully Updated!');
         return back();
     }
 
