@@ -21,7 +21,7 @@ class FrontEndController extends Controller
         $clients = Client::all();
         $galleries = Gallery::all();
         $imageCategories= ImageCategory::all();
-        return view('frontend.home', ['clients' => $clients, 'galleries' => $galleries,'imageCategories' => $imageCategories]);
+        return view('frontend.home', compact('clients', 'galleries','imageCategories'));
     }
 
     public function booking()

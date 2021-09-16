@@ -56,7 +56,7 @@ class ServiceController extends Controller
         $service->category_id = $request->category_id;
         $service->description = $request->description;
         if ($request->file('image')) {
-            $service->image = file_uploader('uploads/service-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($service->name, '-'));
+            $service->image = file_uploader('uploads/service-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($request->service_name, '-'));
         }
         $service->save();
 
@@ -108,7 +108,7 @@ class ServiceController extends Controller
         $service->category_id = $request->category_id;
         $service->description = $request->description;
         if ($request->file('image')) {
-            $service->image = file_uploader('uploads/service-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($service->name, '-'));
+            $service->image = file_uploader('uploads/service-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($request->service_name, '-'));
         }
         $service->save();
 
