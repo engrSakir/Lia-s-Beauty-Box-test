@@ -25,7 +25,7 @@ Route::get('/dashboard', function () {
     return view('backend.dashboard.index');
 })->middleware(['auth'])->name('dashboard');
 
-Route::group(['as' => 'backend.'], function (){
+Route::group(['as' => 'backend.', 'prefix' => '/backend'], function (){
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('profile', [ProfileController::class, 'update']);
     Route::get('setting', [SettingController::class, 'index'])->name('setting');

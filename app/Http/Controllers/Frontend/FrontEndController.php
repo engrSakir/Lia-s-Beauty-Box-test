@@ -118,4 +118,9 @@ class FrontEndController extends Controller
         toastr()->success('Successfully Done!');
         return back();
     }
+
+    public function service(){
+        $serviceCategories = ServiceCategory::all();
+        return view('frontend.service', compact('serviceCategories'));
+    }
 }
