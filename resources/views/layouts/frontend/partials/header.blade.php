@@ -32,7 +32,7 @@
             <div class="container">
                 <div class="logo-header">
                     <a href="{{ url('/') }}">
-                        <img src="assets/frontend/images/logo.png" width="216" height="37" alt="" />
+                        <img src="{{ asset(get_static_option('logo')) }}" width="216" height="37" alt="" />
                     </a>
                 </div>
                 <!-- NAV Toggle Button -->

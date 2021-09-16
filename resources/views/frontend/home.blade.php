@@ -2652,7 +2652,7 @@
                                             </span>
                                 <div class="icon-content">
                                     <h4 class="m-b5">Address</h4>
-                                    <span class="font-12">295 Madison Ave, 12th Floor New York, NY 10017</span>
+                                    <span class="font-12">{{ get_static_option('address') }}</span>
                                 </div>
                             </div>
 
