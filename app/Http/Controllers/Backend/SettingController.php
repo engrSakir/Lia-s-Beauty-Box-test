@@ -33,6 +33,8 @@ class SettingController extends Controller
             'time2' => 'nullable|string',
             'time3' => 'nullable|string',
             'logo' => 'nullable|image',
+            'about' => 'nullable|string',
+
 
         ]);
 
@@ -57,6 +59,9 @@ class SettingController extends Controller
         update_static_option('time1', $request->time1);
         update_static_option('time2', $request->time2);
         update_static_option('time3', $request->time3);
+
+        update_static_option('about', $request->about);
+
 
        if($request->hasFile('logo')){
         update_static_option('logo',file_uploader('uploads/logo/', $request->logo, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::random(8)));

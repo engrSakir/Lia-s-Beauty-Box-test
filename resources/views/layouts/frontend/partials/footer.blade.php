@@ -40,11 +40,9 @@
                         <div class="logo-footer clearfix p-b15">
                             <a href="{{ url('/') }}"><img src="{{ asset('assets/frontend/images/logo.png') }}" width="230" height="67" alt=""/></a>
                         </div>
-                        <p>Item ipsum dolor sit amet, consectetuer adipiscing elit,
-                            sed diam nonummy nibh euismod tincidunt ut laoreet dolore agna aliquam erat .
-                            wisi enim ad minim veniam, quis tation. sit amet, consec tetuer.
-                            ipsum dolor sit amet, consectetuer adipiscing.ipsum dolor sit [...]
-                        </p>
+                      <p>
+                        {!! html_entity_decode(get_static_option('about')) !!}   
+                       </p> 
                     </div>
                 </div>
                 <!-- RESENT POST -->
@@ -139,12 +137,12 @@
                     <div class="widget widget_social_inks">
                         <h4 class="widget-title">Social Links</h4>
                         <ul class="social-icons social-square social-darkest">
-                            <li><a href="https://www.facebook.com/Lia.Beauty.Box" target="_blank" class="fa fa-facebook"></a></li>
-                            <li><a href="https://www.facebook.com/Lia.Beauty.Box" target="_blank" class="fa fa-twitter"></a></li>
-                            <li><a href="https://www.facebook.com/Lia.Beauty.Box" target="_blank" class="fa fa-linkedin"></a></li>
-                            <li><a href="https://www.facebook.com/Lia.Beauty.Box" target="_blank" class="fa fa-rss"></a></li>
-                            <li><a href="https://www.facebook.com/Lia.Beauty.Box" target="_blank" class="fa fa-youtube"></a></li>
-                            <li><a href="https://www.facebook.com/Lia.Beauty.Box" target="_blank" class="fa fa-instagram"></a></li>
+                            <li><a href="{{ get_static_option('facebook') }}" class="fa fa-facebook"></a></li>
+                            <li><a href="{{ get_static_option('twitter') }}" class="fa fa-twitter"></a></li>
+                            <li><a href="{{ get_static_option('linkedin') }}" class="fa fa-linkedin"></a></li>
+                            <li><a href="{{ get_static_option('rss') }}" class="fa fa-rss"></a></li>
+                            <li><a href="{{ get_static_option('youtube') }}" class="fa fa-youtube"></a></li>
+                            <li><a href="{{ get_static_option('instagram') }}" class="fa fa-instagram"></a></li>
                         </ul>
                     </div>
                 </div>

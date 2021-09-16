@@ -2442,8 +2442,7 @@
                                 </span>
                                 <div class="icon-content">
                                     <h4 class="m-b5">Address</h4>
-                                    <span class="font-12">House 116 (Level 11), Road 11, Block E, Banani(same building of coopers and Gelatissimo), Dhaka, Bangladesh
-                                    </span>
+                                    <span class="font-12">{{ get_static_option('address') }}</span>
                                 </div>
                             </div>
 
