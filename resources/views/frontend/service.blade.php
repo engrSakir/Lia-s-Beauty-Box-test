@@ -52,19 +52,24 @@
                                         <div class="section-content">
                                             <div class="row">
                                                 @foreach ($serviceCategory->services as $service)
-                                                <div class="col-md-4 col-sm-4 p-tb15">
-                                                    <div class="wt-box bg-white text-center">
-                                                        <div class="wt-media ">
-                                                            <a href="javascript:void(0);">
-                                                                <img width="200" src="{{ asset($service->image ?? 'uploads/images/no_image.png') }}" alt=""></a>
-                                                        </div>
-                                                        <div class="wt-info p-a30 bg-gray">
-                                                            <h4 class="wt-title m-t0"><a href="javascript:void(0);">{{ $service->name }}</a></h4>
-                                                            <p>{!! $service->description !!}</p>
-                                                            <a href="javascript:void(0);" class="site-button ">Book Now <i class="fa fa-angle-double-right"></i></a>
+                                                    <div class="col-md-4 col-sm-4 p-tb15">
+                                                        <div class="wt-box bg-white text-center">
+                                                            <div class="wt-media ">
+                                                                <a href="javascript:void(0);">
+                                                                    <img width="200"
+                                                                        src="{{ asset($service->image ?? 'uploads/images/no_image.png') }}"
+                                                                        alt=""></a>
+                                                            </div>
+                                                            <div class="wt-info p-a30 bg-gray">
+                                                                <h4 class="wt-title m-t0"><a
+                                                                        href="javascript:void(0);">{{ $service->name }}</a>
+                                                                </h4>
+                                                                <p>{!! $service->description !!}</p>
+                                                                <a href="{{ route('serviceDetails', $service->slug) }}" class="site-button ">Book
+                                                                    Now <i class="fa fa-angle-double-right"></i></a>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
                                                 @endforeach
                                             </div>
                                         </div>
@@ -148,8 +153,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <span class="input-group-addon v-align-m"><i
-                                                    class="fa fa-pencil"></i></span>
+                                            <span class="input-group-addon v-align-m"><i class="fa fa-pencil"></i></span>
                                             <textarea name="message" rows="4" class="form-control " required=""
                                                 placeholder="Message"></textarea>
                                         </div>
@@ -158,8 +162,7 @@
 
                                 <div class="col-md-12 text-right">
                                     <button name="submit" type="button" class="site-button  m-r15"
-                                        id="appointment_submit_btn">Submit <i
-                                            class="fa fa-angle-double-right"></i></button>
+                                        id="appointment_submit_btn">Submit <i class="fa fa-angle-double-right"></i></button>
                                     <button name="Resat" type="reset" class="site-button ">Reset <i
                                             class="fa fa-angle-double-right"></i></button>
                                 </div>

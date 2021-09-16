@@ -44,7 +44,7 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'service_name'  => 'required',
+            'service_name'  => 'required|string|unique:services,name',
             'price'         => 'required',
             'category_id'   => 'required',
             'image'         => 'nullable|image',
@@ -52,6 +52,7 @@ class ServiceController extends Controller
 
         $service = new Service();
         $service->name = $request->service_name;
+        $service->slug = Str::slug($request->service_name, '-');
         $service->price = $request->price;
         $service->category_id = $request->category_id;
         $service->description = $request->description;
@@ -97,13 +98,14 @@ class ServiceController extends Controller
     public function update(Request $request, Service $service)
     {
         $request->validate([
-            'service_name'  => 'required|string',
+            'service_name'  => 'required|string|unique:services,name,'.$service->id,
             'price'         => 'required|numeric',
             'category_id'   => 'required|exists:service_categories,id',
             'image'         => 'nullable|image',
         ]);
 
         $service->name = $request->service_name;
+        $service->slug = Str::slug($request->service_name, '-');
         $service->price = $request->price;
         $service->category_id = $request->category_id;
         $service->description = $request->description;

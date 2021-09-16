@@ -70,7 +70,7 @@
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
-                                    <label class="col-md-12" for="image">Service Image</label>
+                                    <label class="col-md-12" for="image">Service Image (300px / 300px)</label>
                                     <div class="col-md-12">
                                         <input type="file" name="image" accept="image/*" class="form-control image-chose-btn image-importer" id="image">
                                         <img id="image_display" width="150" src="{{ asset($service->image ?? 'uploads/images/no_image.png') }}" class="image-display" alt="User image"/>
