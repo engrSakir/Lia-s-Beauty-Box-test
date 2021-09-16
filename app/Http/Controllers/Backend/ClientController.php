@@ -17,8 +17,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $Clients= Client::all();
-        return view('backend.client.index',compact('Clients'));
+        $clients= Client::all();
+        return view('backend.client.index',compact('clients'));
     }
 
     /**
@@ -48,7 +48,7 @@ class ClientController extends Controller
         $client = new Client();
         $client->name = $request->client_name;
         if ($request->file('image')) {
-            $client->logo = file_uploader('uploads/client-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($client->name, '-'));
+            $client->logo = file_uploader('uploads/client-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($request->client_name, '-'));
         }
         $client->save();
 
@@ -96,7 +96,7 @@ class ClientController extends Controller
 
         $client->name = $request->client_name;
         if ($request->file('image')) {
-            $client->logo = file_uploader('uploads/client-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($client->name, '-'));
+            $client->logo = file_uploader('uploads/client-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($request->client_name, '-'));
         }
         $client->save();
 
