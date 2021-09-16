@@ -57,7 +57,7 @@
                 <div class="header-nav navbar-collapse collapse ">
                     <ul class=" nav navbar-nav">
                         <li class="active"><a href="{{ url('/') }}">Home</a></li>
-                        <li class=""><a href="{{ url('/') }}">Services</a></li>
+                        <li class=""><a href="{{ url('/service') }}">Services</a></li>
                         <li class=""><a href="{{ url('/booking') }}">Booking</a></li>
                         <li class=""><a href="{{ url('/') }}">About</a></li>
                         <li class=""><a href="{{ url('/') }}">Contact</a></li>
