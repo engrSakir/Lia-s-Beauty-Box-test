@@ -18,7 +18,7 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $appointments = Appointment::orderBy('id', 'desc')->get();
+        $appointments = Appointment::orderBy('id', 'desc')->paginate(20);
         return view('backend.appointment.index',compact('appointments'));
     }
 
@@ -140,7 +140,29 @@ class AppointmentController extends Controller
      */
     public function update(Request $request, Appointment $appointment)
     {
-        //
+        $request->validate([
+            'status' => 'required'
+        ]);
+        if($appointment->status == $request->status){
+            if($request->ajax()){
+                return response()->json([
+                    'type' => 'worning',
+                    'message' => 'Status already '.$request->status
+                ]);
+            }
+            toastr()->error('Status already '.$request->status);
+            return back();
+        }
+        $appointment->status = $request->status;
+        $appointment->save();
+        if (request()->ajax()) {
+            return response()->json([
+                'type' => 'success',
+                'message' => 'Status successfully change to '.$appointment->status
+            ]);
+        }
+        toastr()->success('Status successfully change to '.$appointment->status);
+        return back();
     }
 
     /**

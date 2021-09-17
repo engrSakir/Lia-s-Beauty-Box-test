@@ -27,6 +27,12 @@
                 </a>
             </li>
             <li>
+                <a class="waves-effect waves-dark" href="{{ route('backend.invoice.index') }}" aria-expanded="false">
+                    <i class="far fa-circle text-danger"></i>
+                    <span class="hide-menu">Invoice</span>
+                </a>
+            </li>
+            <li>
                 <a class="waves-effect waves-dark" href="{{ route('backend.appointment.index') }}" aria-expanded="false">
                     <i class="far fa-circle text-danger"></i>
                     <span class="hide-menu">Appointment</span>

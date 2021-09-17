@@ -10,8 +10,7 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\ClientController;
 use App\Http\Controllers\Backend\GalleryController;
 use App\Http\Controllers\Backend\ImageCategoryController;
-
-
+use App\Http\Controllers\Backend\InvoiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,7 +24,7 @@ Route::get('/dashboard', function () {
     return view('backend.dashboard.index');
 })->middleware(['auth'])->name('dashboard');
 
-Route::group(['as' => 'backend.', 'prefix' => 'backend/'], function (){
+Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'], function (){
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('profile', [ProfileController::class, 'update']);
     Route::get('setting', [SettingController::class, 'index'])->name('setting');
@@ -39,6 +38,7 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend/'], function (){
     Route::resource('gallery', GalleryController::class);
     Route::resource('imageCategory', ImageCategoryController::class);
     Route::resource('appointment', AppointmentController::class);
+    Route::resource('invoice', InvoiceController::class);
 
 
 
