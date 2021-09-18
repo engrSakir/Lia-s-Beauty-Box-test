@@ -31,75 +31,30 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Client Name</th>
-                                    <th>Phone Number</th>
-                                    <th>Service</th>
-                                    <th>Date Time</th>
-                                    <th>Day And Time</th>
-                                    <th>Status</th>
-                                    <th>Request At</th>
+                                    <th>INV</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Paid</th>
+                                    <th>Due</th>
+                                    <th>Created At</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($invoices as $invoice)
                                     <tr>
-                                        <th scope="row">{{ $loop->iteration }}</th>
-                                        <td>{{ $invoice->customer->name ?? '#' }}</td>
-                                        <td>{{ $invoice->customer->phone ?? '#' }}</td>
-                                        <td>{{ $invoice->service->name ?? '#' }}</td>
-                                        <td>{{ $invoice->appointment_data }}</td>
+                                        <td scope="row">{{ $loop->iteration }}</td>
+                                        <td>{{ '#1010' }}</td>
+                                        <td>{{ $invoice->appointment->customer->name ?? '#' }}</td>
                                         <td>
-                                            {{ date('h:i A', strtotime($invoice->schedule->starting_time)) ?? '#' }}
-                                            to
-                                            {{ date('h:i A', strtotime($invoice->schedule->ending_time)) ?? '#' }} of
-                                            {{ $invoice->schedule->schedule_day ?? '#' }}
+                                            {{ $invoice->items()->sum(\DB::raw('quantity * price')) ?? '#' }}
                                         </td>
-                                        <th class="status_group">
-                                            <input type="hidden" class="appointment_id" value="{{ $invoice->id }}">
-                                            <div class="btn-group mt-3" data-bs-toggle="buttons" role="group">
-                                                @if ($invoice->status != 'Done')
-                                                    <label class="btn btn-outline btn-info text-white">
-                                                        <div class="custom-control custom-radio">
-                                                            <input type="radio" id="pending-{{ $invoice->id }}"
-                                                                name="status-{{ $invoice->id }}" value="Pending"
-                                                                @if ($invoice->status == 'Pending') checked disabled @endif
-                                                                class="form-check-input status_btn">
-                                                            <label class="form-check-label"
-                                                                for="pending-{{ $invoice->id }}"> <i
-                                                                    class="ti-check text-active" aria-hidden="true"></i>
-                                                                Pending </label>
-                                                        </div>
-                                                    </label>
-                                                    <label class="btn btn-outline btn-info text-white">
-                                                        <div class="custom-control custom-radio">
-                                                            <input type="radio" id="approved-{{ $invoice->id }}"
-                                                                name="status-{{ $invoice->id }}" value="Approved"
-                                                                @if ($invoice->status == 'Approved') checked disabled @endif
-                                                                class="form-check-input status_btn">
-                                                            <label class="form-check-label"
-                                                                for="approved-{{ $invoice->id }}"> <i
-                                                                    class="ti-check text-active" aria-hidden="true"></i>
-                                                                Approved </label>
-                                                        </div>
-                                                    </label>
-                                                    <label class="btn btn-outline btn-danger text-white">
-                                                        <div class="custom-control custom-radio">
-                                                            <input type="radio" id="reject-{{ $invoice->id }}"
-                                                                name="status-{{ $invoice->id }}" value="Reject"
-                                                                @if ($invoice->status == 'Reject') checked disabled @endif
-                                                                class="form-check-input status_btn">
-                                                            <label class="form-check-label"
-                                                                for="reject-{{ $invoice->id }}"> <i
-                                                                    class="ti-check text-active" aria-hidden="true"></i>
-                                                                Reject </label>
-                                                        </div>
-                                                    </label>
-                                                @else
-                                                    Invoice
-                                                @endif
-                                            </div>
-                                        </th>
+                                        <td>{{ 'Paid' }}</td>
+                                        <td>{{ 'Due' }}</td>
                                         <td>{{ $invoice->created_at->format('d/m/Y h:i A') }}</td>
+                                        <td>
+                                            <a href="{{ route('backend.invoice.show', $invoice->id) }}" target="_blank" class="btn btn-primary waves-effect btn-rounded waves-light"> <i class="fas fa-print"></i> </button>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

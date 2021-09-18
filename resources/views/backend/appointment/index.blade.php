@@ -43,7 +43,7 @@
                             <tbody>
                                 @foreach ($appointments as $appointment)
                                     <tr>
-                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <td scope="row">{{ $loop->iteration }}</td>
                                         <td>{{ $appointment->customer->name ?? '#' }}</td>
                                         <td>{{ $appointment->customer->phone ?? '#' }}</td>
                                         <td>{{ $appointment->service->name ?? '#' }}</td>
@@ -54,7 +54,7 @@
                                             {{ date('h:i A', strtotime($appointment->schedule->ending_time)) ?? '#' }} of
                                             {{ $appointment->schedule->schedule_day ?? '#' }}
                                         </td>
-                                        <th class="status_group">
+                                        <td class="status_group">
                                             <input type="hidden" class="appointment_id" value="{{ $appointment->id }}">
                                             <div class="btn-group mt-3" data-bs-toggle="buttons" role="group">
                                                 @if ($appointment->status != 'Done')
@@ -98,7 +98,7 @@
                                                     Invoice
                                                 @endif
                                             </div>
-                                        </th>
+                                        </td>
                                         <td>{{ $appointment->created_at->format('d/m/Y h:i A') }}</td>
                                     </tr>
                                 @endforeach

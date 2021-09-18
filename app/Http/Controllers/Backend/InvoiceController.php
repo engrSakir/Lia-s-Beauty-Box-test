@@ -8,6 +8,7 @@ use App\Models\InvoiceItem;
 use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use PDF;
 
 class InvoiceController extends Controller
 {
@@ -102,7 +103,11 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        //
+        $data = [
+            'foo' => 'bar'
+        ];
+        $pdf = PDF::loadView('backend.invoice.pdf', $data);
+        return $pdf->stream('document.pdf');
     }
 
     /**
