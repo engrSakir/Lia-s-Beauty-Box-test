@@ -44,7 +44,8 @@
         <div class="col-md-6 col-lg-4 col-xlg-2">
             <div class="card">
                 <div class="box bg-primary text-center">
-                    <h1 class="font-light text-white">{{ $invoice->items()->sum(DB::raw('quantity * price')) - $invoice->payments->sum('amount') }}</h1>
+                    <h1 class="font-light text-white">
+                        {{ $invoice->items()->sum(DB::raw('quantity * price')) - $invoice->payments->sum('amount') }}</h1>
                     <h6 class="text-white">Total Due Amount</h6>
                 </div>
             </div>
@@ -72,8 +73,8 @@
                                         <td>{{ $payment->created_at->format('d/m/Y h:i A') }}</td>
                                         <td>
                                             <a href="{{ route('backend.paymentReceipt', $payment) }}" target="_blank"
-                                            class="btn btn-primary waves-effect btn-rounded waves-light"> <i
-                                                class="fas fa-print"></i> </a>
+                                                class="btn btn-primary waves-effect btn-rounded waves-light"> <i
+                                                    class="fas fa-print"></i> </a>
                                         </td>
 
                                     </tr>
@@ -96,9 +97,13 @@
                         @csrf
                         <div class="form-body">
                             <h3 class="card-title">Total Price: BDT
-                                {{ $invoice->items()->sum(\DB::raw('quantity * price')) }}</h3>
+                                {{ $invoice->items()->sum(\DB::raw('quantity * price')) }} <a
+                                href="{{ route('backend.invoice.show', $invoice) }}" target="_blank"
+                                class="btn btn-primary waves-effect btn-rounded waves-light"> <i class="fas fa-print"></i>
+                            </a></h3>
                             <hr>
-                            @if (($invoice->items()->sum(DB::raw('quantity * price')) - $invoice->payments->sum('amount')) > 0)
+                            @if (($invoice->items()->sum(DB::raw('quantity * price')) - $invoice->payments->sum('amount')) >
+                            0)
                             <div class="row p-t-20">
                                 <div class="col-md-6">
                                     <div class="form-group has-success">
@@ -120,7 +125,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="form-label">New Payment Amount</label>
-                                        <input type="number" id="payment_amount" name="payment_amount" class="form-control"
+                                        <input type="number" id="payment_amount" name="payment_amount"
+                                            class="form-control"
                                             placeholder="{{ $invoice->items()->sum(DB::raw('quantity * price')) - $invoice->payments->sum('amount') }}">
                                         @error('payment_amount')
                                             <div class="alert alert-danger" role="alert">
@@ -135,7 +141,7 @@
                                     Add Payment</button>
                                 <button type="reset" class="btn btn-inverse">Cancel</button>
                             </div>
-                            @else
+                        @else
                             <h3 class="card-title text-success">Payment Full Clear</h3>
                             @endif
                         </div>
