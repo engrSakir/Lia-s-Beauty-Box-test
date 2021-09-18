@@ -114,9 +114,9 @@
 								</td>
 
 								<td>
-									Invoice #: 123<br />
-									Created: January 1, 2015<br />
-									Due: February 1, 2015
+									Invoice #: {{ $invoice->id }}<br /><br />
+									Date: {{ $invoice->created_at->format('d/m/Y') }}<br />
+									Time: {{ $invoice->created_at->format('h:i A') }}
 								</td>
 							</tr>
 						</table>
@@ -142,19 +142,8 @@
 						</table>
 					</td>
 				</tr>
-
 				<tr class="heading">
-					<td>Payment Method</td>
-					<td>Check #</td>
-				</tr>
-
-				<tr class="details">
-					<td>Check</td>
-					<td>A/C: 00-00-00-00</td>
-				</tr>
-
-				<tr class="heading">
-					<td>Item</td>
+					<td>Service</td>
 					<td>Price</td>
 				</tr>
                 @foreach ($invoice->items as $item)
@@ -167,7 +156,15 @@
 
 				<tr class="total">
 					<td></td>
-					<td>Total: XXXX</td>
+					<td>Total: BDT {{ $invoice->items()->sum(\DB::raw('quantity * price')) }}</td>
+				</tr>
+				<tr class="total">
+					<td></td>
+					<td>Paid: BDT {{ $invoice->payments->sum('amount') }}</td>
+				</tr>
+				<tr class="total">
+					<td></td>
+					<td style="color:red;">DUE: BDT {{ $invoice->items()->sum(DB::raw('quantity * price')) - $invoice->payments->sum('amount') }}</td>
 				</tr>
 			</table>
             <table cellpadding="0" cellspacing="0" style="margin-top: 60px;">
