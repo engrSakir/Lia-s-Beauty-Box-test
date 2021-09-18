@@ -35,7 +35,7 @@
         <div class="col-md-6 col-lg-4 col-xlg-2">
             <div class="card">
                 <div class="box bg-info text-center">
-                    <h1 class="font-light text-white">2,064</h1>
+                    <h1 class="font-light text-white">{{ $total_paid }}</h1>
                     <h6 class="text-white">Total Paid Amount</h6>
                 </div>
             </div>
@@ -44,7 +44,7 @@
         <div class="col-md-6 col-lg-4 col-xlg-2">
             <div class="card">
                 <div class="box bg-primary text-center">
-                    <h1 class="font-light text-white">2,064</h1>
+                    <h1 class="font-light text-white">{{ $total_due }}</h1>
                     <h6 class="text-white">Total Due Amount</h6>
                 </div>
             </div>
@@ -77,14 +77,14 @@
                                         <td>
                                             {{ $invoice->items()->sum(\DB::raw('quantity * price')) ?? '#' }}
                                         </td>
-                                        <td>{{ 'Paid' }}</td>
-                                        <td>{{ 'Due' }}</td>
+                                        <td>{{ $invoice->payments->sum('amount') }}</td>
+                                        <td>{{ $invoice->items()->sum(DB::raw('quantity * price')) - $invoice->payments->sum('amount') }}</td>
                                         <td>{{ $invoice->created_at->format('d/m/Y h:i A') }}</td>
                                         <td>
                                             <a href="{{ route('backend.invoice.show', $invoice) }}" target="_blank"
                                                 class="btn btn-primary waves-effect btn-rounded waves-light"> <i
                                                     class="fas fa-print"></i> </a>
-                                            <a href="{{ route('backend.invoice.payment', $invoice) }}" target="_blank"
+                                            <a href="{{ route('backend.invoice.payment', $invoice) }}"
                                                 class="btn btn-info waves-effect btn-rounded waves-light"> <i
                                                     class="fas fa-credit-card"></i> </a>
                                         </td>

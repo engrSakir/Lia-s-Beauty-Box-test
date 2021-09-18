@@ -33,8 +33,8 @@ class Appointment extends Model
         return $this->belongsTo(Schedule::class, 'schedule_id', 'id');
     }
 
-    public function invoices()
+    public function invoice()
     {
-        return $this->hasMany(Invoice::class, 'appointment_id', 'id');
+        return $this->hasOne(Invoice::class, 'appointment_id', 'id');
     }
 }

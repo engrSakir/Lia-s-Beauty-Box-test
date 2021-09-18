@@ -9,6 +9,7 @@ use App\Models\Payment;
 use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use PDF;
 
 class InvoiceController extends Controller
@@ -20,8 +21,10 @@ class InvoiceController extends Controller
      */
     public function index()
     {
+        $total_paid = Payment::all()->sum('amount');
+        $total_due = InvoiceItem::sum(DB::raw('quantity * price')) - Payment::all()->sum('amount');
         $invoices = Invoice::orderBy('id', 'desc')->paginate(20);
-        return view('backend.invoice.index',compact('invoices'));
+        return view('backend.invoice.index',compact('invoices', 'total_paid','total_due'));
     }
 
     /**

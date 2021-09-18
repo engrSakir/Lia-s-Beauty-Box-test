@@ -76,6 +76,30 @@
             </div>
         </div>
     </div>
+    <div class="col-md-6 col-lg-4 col-xlg-2">
+        <div class="card">
+            <div class="box bg-white text-center">
+                <h6>{{ $user_chart->options['chart_title'] }}</h6>
+                {!! $user_chart->renderHtml() !!}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-4 col-xlg-2">
+        <div class="card">
+            <div class="box bg-white text-center">
+                <h6>{{ $invoice_chart->options['chart_title'] }}</h6>
+                {!! $invoice_chart->renderHtml() !!}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-4 col-xlg-2">
+        <div class="card">
+            <div class="box bg-white text-center">
+                <h6>{{ $appointment_chart->options['chart_title'] }}</h6>
+                {!! $appointment_chart->renderHtml() !!}
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 
@@ -84,5 +108,8 @@
 @endpush
 
 @push('foot')
-
+{!! $user_chart->renderChartJsLibrary() !!}
+{!! $user_chart->renderJs() !!}
+{!! $invoice_chart->renderJs() !!}
+{!! $appointment_chart->renderJs() !!}
 @endpush

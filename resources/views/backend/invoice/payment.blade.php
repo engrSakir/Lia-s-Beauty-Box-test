@@ -98,6 +98,7 @@
                             <h3 class="card-title">Total Price: BDT
                                 {{ $invoice->items()->sum(\DB::raw('quantity * price')) }}</h3>
                             <hr>
+                            @if (($invoice->items()->sum(DB::raw('quantity * price')) - $invoice->payments->sum('amount')) > 0)
                             <div class="row p-t-20">
                                 <div class="col-md-6">
                                     <div class="form-group has-success">
@@ -134,6 +135,9 @@
                                     Add Payment</button>
                                 <button type="reset" class="btn btn-inverse">Cancel</button>
                             </div>
+                            @else
+                            <h3 class="card-title text-success">Payment Full Clear</h3>
+                            @endif
                         </div>
                     </form>
                 </div>

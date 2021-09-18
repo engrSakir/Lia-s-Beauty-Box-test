@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\ScheduleController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\ClientController;
+use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\GalleryController;
 use App\Http\Controllers\Backend\ImageCategoryController;
 use App\Http\Controllers\Backend\InvoiceController;
@@ -20,9 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/dashboard', function () {
-    return view('backend.dashboard.index');
-})->middleware(['auth'])->name('dashboard');
+Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
 Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'], function (){
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
