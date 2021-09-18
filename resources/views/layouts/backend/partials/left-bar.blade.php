@@ -19,7 +19,7 @@
     <!-- Sidebar navigation-->
     <nav class="sidebar-nav">
         <ul id="sidebarnav">
-            <li class="nav-small-cap">--- PERSONAL</li>
+            <li class="nav-small-cap">--- MENU ITEMS</li>
             <li>
                 <a class="waves-effect waves-dark" href="{{ route('dashboard') }}" aria-expanded="false">
                     <i class="far fa-circle text-danger"></i>

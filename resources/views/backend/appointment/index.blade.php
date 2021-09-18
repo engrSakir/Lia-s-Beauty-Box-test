@@ -38,6 +38,7 @@
                                     <th>Day And Time</th>
                                     <th>Status</th>
                                     <th>Request At</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -102,6 +103,12 @@
                                             </div>
                                         </td>
                                         <td>{{ $appointment->created_at->format('d/m/Y h:i A') }}</td>
+                                        <td>
+                                            <a href="{{ route('backend.appointment.edit', $appointment) }}"
+                                                class="btn btn-warning btn-circle"><i class="fa fa-pen"></i> </a>
+                                            <button value="{{ route('backend.appointment.destroy', $appointment) }}"
+                                                class="btn btn-danger btn-circle delete-btn"><i class="fa fa-trash"></i> </button>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -142,6 +149,7 @@
                             },
                             data: {
                                 status: this_btn.val(),
+                                request_for: 'StatusChange',
                             },
                             dataType: 'JSON',
                             beforeSend: function() {
