@@ -103,10 +103,7 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        $data = [
-            'foo' => 'bar'
-        ];
-        $pdf = PDF::loadView('backend.invoice.pdf', $data);
+        $pdf = PDF::loadView('backend.invoice.pdf', compact('invoice'));
         return $pdf->stream('document.pdf');
     }
 
