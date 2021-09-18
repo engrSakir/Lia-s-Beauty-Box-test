@@ -125,7 +125,20 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, Schedule $schedule)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'starting_time' => 'required',
+            'ending_time' => 'required',
+            'schedule_day' => 'required',
+        ]);
+        $schedule->title                = $request->title;
+        $schedule->starting_time        = $request->starting_time;
+        $schedule->ending_time          = $request->ending_time;
+        $schedule->schedule_day         = $request->schedule_day;
+        $schedule->maximum_participant  = $request->maximum_participant;
+        $schedule->save();
+        toastr()->success('successfully updated!');
+        return back();
     }
 
     /**
