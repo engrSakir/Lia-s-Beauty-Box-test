@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
+use App\Models\Payment;
 use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -46,7 +47,7 @@ class InvoiceController extends Controller
         $request->validate([
             'appointment_id'    => 'required|exists:appointments,id',
             'service_data_set'  => 'required',
-            'vat_percentage'    => 'nullable|numeric|min:0|max:5',
+            'vat_percentage'    => 'nullable|numeric|min:0|max:100',
             'note'              => 'nullable|string',
         ]);
         //Change appointment status
@@ -104,7 +105,7 @@ class InvoiceController extends Controller
     public function show(Invoice $invoice)
     {
         $pdf = PDF::loadView('backend.invoice.pdf', compact('invoice'));
-        return $pdf->stream('document.pdf');
+        return $pdf->stream('Invoice-'.config('app.name').'.pdf');
     }
 
     /**
@@ -139,5 +140,25 @@ class InvoiceController extends Controller
     public function destroy(Invoice $invoice)
     {
         //
+    }
+
+    public function payment(Invoice $invoice)
+    {
+        return view('backend.invoice.payment',compact('invoice'));
+    }
+
+    public function paymentStore(Request $request, Invoice $invoice)
+    {
+        $request->validate([
+            'payment_amount'    => 'required|numeric|min:1',
+        ]);
+
+        $payment = new Payment();
+        $payment->invoice_id = $invoice->id;
+        $payment->amount = $request->payment_amount;
+        $payment->save();
+
+        toastr()->success('successfully payment done!');
+        return back();
     }
 }

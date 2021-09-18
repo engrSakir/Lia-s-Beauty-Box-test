@@ -30,6 +30,9 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'
     Route::get('setting', [SettingController::class, 'index'])->name('setting');
     Route::post('setting', [SettingController::class, 'update']);
 
+    Route::get('payment/{invoice}', [InvoiceController::class, 'payment'])->name('invoice.payment');
+    Route::patch('payment/{invoice}', [InvoiceController::class, 'paymentStore']);
+
     Route::resource('schedule', ScheduleController::class);
     Route::resource('service', ServiceController::class);
     Route::resource('serviceCategory', ServiceCategoryController::class);

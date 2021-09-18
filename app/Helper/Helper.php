@@ -1,9 +1,11 @@
 <?php
 
+use App\Models\Invoice;
 use App\Models\StaticOption;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 
 
 if (!function_exists('random_code')) {
@@ -70,5 +72,10 @@ if (!function_exists('random_code')) {
         }catch (\Exception$exception){
 
         }
+    }
+
+    function get_paid_amount_of_a_invoice(Invoice $invoice){
+        $price = $invoice->items()->sum(DB::raw('quantity * price'));
+        $paid = $invoice->payments->sum('amount');
     }
 }

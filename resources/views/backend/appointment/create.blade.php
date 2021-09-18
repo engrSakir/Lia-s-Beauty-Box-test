@@ -122,9 +122,9 @@
                                 </div>
 
                                 <div class="col-md-12 text-right">
-                                    <button name="submit" type="button" class="site-button  m-r15"
+                                    <button name="submit" type="button" class="btn waves-effect waves-light btn-outline-success"
                                         id="appointment_submit_btn">Submit <i class="fa fa-angle-double-right"></i></button>
-                                    <button name="Resat" type="reset" class="site-button ">Reset <i
+                                    <button name="Resat" type="reset" class="btn waves-effect waves-light btn-outline-info">Reset <i
                                             class="fa fa-angle-double-right"></i></button>
                                 </div>
                             </div>

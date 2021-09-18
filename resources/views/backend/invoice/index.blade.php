@@ -22,10 +22,38 @@
 
 @section('content')
     <div class="row">
+        <!-- Invoice -->
+        <div class="col-md-6 col-lg-4 col-xlg-2">
+            <div class="card">
+                <div class="box bg-warning text-center">
+                    <h1 class="font-light text-white">{{ $invoices->count() }}</h1>
+                    <h6 class="text-white">Total Invoice</h6>
+                </div>
+            </div>
+        </div>
+        <!-- Paid -->
+        <div class="col-md-6 col-lg-4 col-xlg-2">
+            <div class="card">
+                <div class="box bg-info text-center">
+                    <h1 class="font-light text-white">2,064</h1>
+                    <h6 class="text-white">Total Paid Amount</h6>
+                </div>
+            </div>
+        </div>
+        <!-- Due -->
+        <div class="col-md-6 col-lg-4 col-xlg-2">
+            <div class="card">
+                <div class="box bg-primary text-center">
+                    <h1 class="font-light text-white">2,064</h1>
+                    <h6 class="text-white">Total Due Amount</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Invoice List</h4>
                     <div class="table-responsive">
                         <table class="table color-table primary-table">
                             <thead>
@@ -53,7 +81,12 @@
                                         <td>{{ 'Due' }}</td>
                                         <td>{{ $invoice->created_at->format('d/m/Y h:i A') }}</td>
                                         <td>
-                                            <a href="{{ route('backend.invoice.show', $invoice->id) }}" target="_blank" class="btn btn-primary waves-effect btn-rounded waves-light"> <i class="fas fa-print"></i> </button>
+                                            <a href="{{ route('backend.invoice.show', $invoice) }}" target="_blank"
+                                                class="btn btn-primary waves-effect btn-rounded waves-light"> <i
+                                                    class="fas fa-print"></i> </a>
+                                            <a href="{{ route('backend.invoice.payment', $invoice) }}" target="_blank"
+                                                class="btn btn-info waves-effect btn-rounded waves-light"> <i
+                                                    class="fas fa-credit-card"></i> </a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -72,59 +105,5 @@
 @endpush
 
 @push('foot')
-    <script>
-        $(document).ready(function() {
-            $('.status_btn').click(function() {
-                this_btn = $(this);
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "Status change to " + this_btn.val(),
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, change it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            method: "PATCH",
-                            url: "backend/invoice/" + this_btn.closest('tr').find(
-                                '.appointment_id').val(),
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            data: {
-                                status: this_btn.val(),
-                            },
-                            dataType: 'JSON',
-                            beforeSend: function() {
 
-                            },
-                            complete: function() {
-
-                            },
-                            success: function(response) {
-                                console.log(response)
-                                Swal.fire({
-                                    position: 'top-end',
-                                    icon: response.type,
-                                    title: response.message,
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                })
-                                if(response.type == 'success'){
-                                    location.reload();
-                                }
-                            },
-                            error: function(error) {
-                                validation_error(error);
-                            },
-                        });
-                    } else {
-                        location.reload();
-                    }
-                })
-            });
-        });
-    </script>
 @endpush

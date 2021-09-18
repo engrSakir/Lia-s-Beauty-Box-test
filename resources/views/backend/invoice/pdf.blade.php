@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>A simple, clean, and responsive HTML invoice template</title>
+		<title>Invoice - {{ config('app.name') }}</title>
         @page {
             header: page-header;
             footer: page-footer;
