@@ -30,7 +30,7 @@
                         <h4 class="mb-0 text-white "> {{ $loop->iteration }}) Schedule List
                             ({{ $schedule['day_name'] }})</h4>
                     </div>
-                    <table class="table table-sm">
+                    <table class="table color-table primary-table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>

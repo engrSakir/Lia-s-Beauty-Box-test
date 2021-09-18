@@ -25,7 +25,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                <table class="table table-sm">
+                <table class="table color-table primary-table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -50,7 +50,7 @@
                                     <a  class="text-danger deleteBtn" href="{{ route('backend.gallery.show', $gallery) }}">
                                         <i class="fa fa-trash" ></i>
                                     </a>
-                                    
+
                                     </td>
                                 </tr>
                             @endforeach
