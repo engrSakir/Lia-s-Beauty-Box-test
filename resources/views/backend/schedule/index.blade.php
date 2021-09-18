@@ -42,7 +42,7 @@
                         <tbody>
                             @foreach ($schedule['data'] as $schedule_data)
                                 <tr>
-                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ date('h:i A', strtotime($schedule_data->starting_time)) }}</td>
                                     <td>{{ date('h:i A', strtotime($schedule_data->ending_time)) }}</td>
                                     <td>{{ $schedule_data->title }}</td>
