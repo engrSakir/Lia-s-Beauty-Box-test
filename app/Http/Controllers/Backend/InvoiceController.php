@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use App\Models\Invoice;
+use App\Models\InvoiceItem;
 use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -41,7 +42,56 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'appointment_id'    => 'required|exists:appointments,id',
+            'service_data_set'  => 'required',
+            'vat_percentage'    => 'nullable|numeric|min:0|max:5',
+            'note'              => 'nullable|string',
+        ]);
+        //Change appointment status
+        $appointment = Appointment::find($request->appointment_id);
+        if($appointment->status != 'Approved'){
+            return [
+                'type' => 'error',
+                'message' => 'This appointment is not approved.',
+            ];
+        }
+        $appointment->status = 'Done';
+        $appointment->save();
+        //Create invoice
+        $invoice = new Invoice();
+        $invoice->appointment_id = $appointment->id;
+        $invoice->vat_percentage = $request->vat_percentage ?? 0;
+        $invoice->note = $request->note;
+        // $invoice->due_date;
+        // $invoice->custom_counter;
+        // $invoice->bar_code;
+        $invoice->save();
+        //Invoice item save with this invoice ID
+        try{
+            foreach($request->service_data_set as $service_data){
+                $invoiceItem = new InvoiceItem();
+                $invoiceItem->invoice_id   = $invoice->id;
+                $invoiceItem->service_id   = $service_data['service'];
+                $invoiceItem->quantity  = $service_data['quantity'];
+                $invoiceItem->price     = $service_data['price'];
+                $invoiceItem->save();
+            }
+        }catch(\Exception $e){
+            // Appointment status back and invoice delete
+            $invoice->delete();
+            $appointment->status = 'Approved';
+            $appointment->save();
+            return [
+                'type' => 'error',
+                'message' => $e->getMessage(),
+            ];
+        }
+
+        return [
+            'type' => 'success',
+            'message' => 'Successfully Created',
+        ];
     }
 
     /**

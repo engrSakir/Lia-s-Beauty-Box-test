@@ -34,7 +34,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <select name="appointment" class="form-control" required="">
+                                        <select name="appointment" id="appointment" class="form-control" required="">
                                             <option value="" selected disabled>Please chose a approved appointment</option>
                                             @foreach ($appointments as $appointment)
                                                 <option value="{{ $appointment->id }}">
@@ -150,9 +150,9 @@
                         {{-- Start Submit Btn section --}}
                         <div class="row clearfix">
                             <div class="col-md-12">
-                                <button id="invoice_save_btn" onclick="invoiceSaveFunction()"
-                                    class="btn btn-default pull-left">Save</button>
-                                <button id="" class="btn btn-default pull-right">Reload</button>
+                                <button type="button" class="btn waves-effect waves-light btn-lg btn-success pull-left" id="invoice_save_btn" onclick="invoiceSaveFunction()">Save Invoice</button>
+
+                                <button id="" class="btn btn-default pull-right" onClick="window.location.reload();">Refresh Page</button>
                             </div>
                         </div>
                         {{-- End Submit Btn section --}}
@@ -239,14 +239,61 @@
         function invoiceSaveFunction() {
             var services = document.getElementsByName('services[]');
             // console.log(services.length);
-            const service_ids = [];
+            const service_data_set = [];
             $.each(services, function(index, element) {
-                // console.log(element.value);
-                if(element.value){
-                    service_ids.push(element.value);
+                service = element.value;
+                quantity = element.parentNode.parentNode.querySelector('.qty').value;
+                price = element.parentNode.parentNode.querySelector('.price').value;
+                if (service && quantity > 0 && price) {
+                    service_data_set.push({
+                        'service': service,
+                        'quantity': quantity,
+                        'price': price,
+                    });
                 }
+                $.ajax({
+                    method: "POST",
+                    url: "{{ route('backend.invoice.store') }}",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {
+                        service_data_set: service_data_set,
+                        vat_percentage: document.getElementById('tax').value,
+                        appointment_id: document.getElementById('appointment').value,
+                    },
+                    dataType: 'JSON',
+                    beforeSend: function() {
+
+                    },
+                    complete: function() {
+
+                    },
+                    success: function(data) {
+                        console.log(data)
+                        if (data.type == 'success') {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Your invoice has been saved',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        } else {
+                            Swal.fire({
+                                icon: data.type,
+                                title: 'Oops...',
+                                text: data.message,
+                                footer: 'We are sorry for unable.'
+                            })
+                        }
+                    },
+                    error: function(error) {
+                        validation_error(error);
+                    },
+                });
             });
-            console.log(service_ids)
+
         }
     </script>
 @endpush

@@ -10,9 +10,9 @@ class Appointment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'customer_id',
-        'schedule_id',
-        'service_id',
+        'appointment_id',
+        'vat_percentage',
+        'note',
         'appointment_data',
         'message',
         'status',
@@ -31,5 +31,10 @@ class Appointment extends Model
     public function schedule()
     {
         return $this->belongsTo(Schedule::class, 'schedule_id', 'id');
+    }
+
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class, 'appointment_id', 'id');
     }
 }
