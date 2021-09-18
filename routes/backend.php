@@ -31,6 +31,7 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'
 
     Route::get('payment/{invoice}', [InvoiceController::class, 'payment'])->name('invoice.payment');
     Route::patch('payment/{invoice}', [InvoiceController::class, 'paymentStore']);
+    Route::get('payment-receipt/{payment}', [InvoiceController::class, 'paymentReceipt'])->name('paymentReceipt');
 
     Route::resource('schedule', ScheduleController::class);
     Route::resource('service', ServiceController::class);

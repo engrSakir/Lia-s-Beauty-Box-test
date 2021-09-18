@@ -107,7 +107,7 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        $pdf = PDF::loadView('backend.invoice.pdf', compact('invoice'));
+        $pdf = PDF::loadView('backend.invoice.invoice-pdf', compact('invoice'));
         return $pdf->stream('Invoice-'.config('app.name').'.pdf');
     }
 
@@ -163,5 +163,11 @@ class InvoiceController extends Controller
 
         toastr()->success('successfully payment done!');
         return back();
+    }
+
+    public function paymentReceipt(Payment $payment)
+    {
+        $pdf = PDF::loadView('backend.invoice.receipt-pdf', compact('payment'));
+        return $pdf->stream('Payment Receipt-'.config('app.name').'.pdf');
     }
 }

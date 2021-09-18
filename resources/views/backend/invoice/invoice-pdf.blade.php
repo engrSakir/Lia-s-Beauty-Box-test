@@ -152,8 +152,6 @@
                     <td>BDT {{ $item->price }} x {{ $item->quantity }} = BDT {{ $invoice->items()->sum(\DB::raw('quantity * price')) ?? '#' }}</td>
                 </tr>
                 @endforeach
-
-
 				<tr class="total">
 					<td></td>
 					<td>Total: BDT {{ $invoice->items()->sum(\DB::raw('quantity * price')) }}</td>

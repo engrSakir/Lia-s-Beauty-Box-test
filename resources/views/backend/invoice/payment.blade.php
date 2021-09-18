@@ -71,7 +71,7 @@
                                         <td>{{ $payment->amount }}</td>
                                         <td>{{ $payment->created_at->format('d/m/Y h:i A') }}</td>
                                         <td>
-                                            <a href="{{ route('backend.invoice.show', $invoice) }}" target="_blank"
+                                            <a href="{{ route('backend.paymentReceipt', $payment) }}" target="_blank"
                                             class="btn btn-primary waves-effect btn-rounded waves-light"> <i
                                                 class="fas fa-print"></i> </a>
                                         </td>
