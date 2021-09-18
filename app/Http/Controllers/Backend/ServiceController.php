@@ -73,7 +73,9 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        //
+        if(request()->ajax()){
+            return $service;
+        }
     }
 
     /**

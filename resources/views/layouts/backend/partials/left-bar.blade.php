@@ -19,11 +19,17 @@
     <!-- Sidebar navigation-->
     <nav class="sidebar-nav">
         <ul id="sidebarnav">
-            <li class="nav-small-cap">--- PERSONAL</li>
+            <li class="nav-small-cap">--- MENU ITEMS</li>
             <li>
                 <a class="waves-effect waves-dark" href="{{ route('dashboard') }}" aria-expanded="false">
                     <i class="far fa-circle text-danger"></i>
                     <span class="hide-menu">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a class="waves-effect waves-dark" href="{{ route('backend.invoice.index') }}" aria-expanded="false">
+                    <i class="far fa-circle text-danger"></i>
+                    <span class="hide-menu">Invoice</span>
                 </a>
             </li>
             <li>
