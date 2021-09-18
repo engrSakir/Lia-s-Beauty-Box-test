@@ -16,7 +16,9 @@ class Appointment extends Model
         'appointment_data',
         'message',
         'status',
+        'booked_by_admin',
     ];
+
 
     public function customer()
     {
@@ -31,5 +33,10 @@ class Appointment extends Model
     public function schedule()
     {
         return $this->belongsTo(Schedule::class, 'schedule_id', 'id');
+    }
+
+    public function invoice()
+    {
+        return $this->hasOne(Invoice::class, 'appointment_id', 'id');
     }
 }

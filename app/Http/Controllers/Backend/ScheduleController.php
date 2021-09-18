@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Acaronlex\LaravelCalendar\Calendar;
 use App\Http\Controllers\Controller;
 use App\Models\Schedule;
-use Carbon\Carbon; 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
@@ -113,7 +112,7 @@ class ScheduleController extends Controller
      */
     public function edit(Schedule $schedule)
     {
-        //
+        return view('backend.schedule.edit', compact('schedule'));
     }
 
     /**
@@ -125,7 +124,20 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, Schedule $schedule)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'starting_time' => 'required',
+            'ending_time' => 'required',
+            'schedule_day' => 'required',
+        ]);
+        $schedule->title                = $request->title;
+        $schedule->starting_time        = $request->starting_time;
+        $schedule->ending_time          = $request->ending_time;
+        $schedule->schedule_day         = $request->schedule_day;
+        $schedule->maximum_participant  = $request->maximum_participant;
+        $schedule->save();
+        toastr()->success('successfully updated!');
+        return back();
     }
 
     /**
@@ -136,6 +148,16 @@ class ScheduleController extends Controller
      */
     public function destroy(Schedule $schedule)
     {
-        //
+        if($schedule->appointments()->count() > 0){
+            return [
+                'type' => 'worning',
+                'message' => 'This item is not deletable. Because the schedule associate with '.$schedule->appointments()->count().' appointments',
+            ];
+        }
+        $schedule->delete();
+        return [
+            'type' => 'success',
+            'message' => 'Successfully destroy',
+        ];
     }
 }

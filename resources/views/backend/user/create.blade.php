@@ -66,7 +66,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
+
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
@@ -88,12 +88,12 @@
                                             <input type="password" name="user_pass" class="form-control" id="password"
                                                 placeholder="Password">
                                         </div>
-                                        
+
 
                                 </div>
                                 <div class="col-md-6">
 
-                                
+
                                         <div class="form-group">
                                             <label for="exampleInputPassword12" class="form-label">Confirm Password</label>
                                             <input type="password" class="form-control" id="confirm_password"
@@ -101,13 +101,13 @@
                                         </div>
                                         <span id='message'></span>
                                 </div>
-                                
+
                             </div>
                         </div>
                         <div class="form-actions">
                             <div class="card-body">
                                 <button type="submit" class="btn btn-success text-white"> <i class="fa fa-check"></i> Save</button>
-                                <button type="button" class="btn btn-dark">Cancel</button>
+                                <button type="reset" class="btn btn-danger">Reset form</button>
                             </div>
                         </div>
                     </div>
@@ -119,11 +119,11 @@
 $('#password, #confirm_password').on('keyup', function () {
   if ($('#password').val() == $('#confirm_password').val()) {
     $('#message').html('Matching').css('color', 'green');
-  } else 
+  } else
     $('#message').html('Not Matching').css('color', 'red');
 });
 
-</script> 
+</script>
 @endsection
 
 @push('head')

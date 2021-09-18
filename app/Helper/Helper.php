@@ -1,9 +1,12 @@
 <?php
 
+use App\Models\Invoice;
+use App\Models\Schedule;
 use App\Models\StaticOption;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 
 
 if (!function_exists('random_code')) {
@@ -71,4 +74,8 @@ if (!function_exists('random_code')) {
 
         }
     }
+
+/*
+Schedule has lot of appointment
+*/
 }
