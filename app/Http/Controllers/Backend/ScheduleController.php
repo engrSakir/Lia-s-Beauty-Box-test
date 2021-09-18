@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Acaronlex\LaravelCalendar\Calendar;
 use App\Http\Controllers\Controller;
 use App\Models\Schedule;
 use Carbon\Carbon;
@@ -149,6 +148,16 @@ class ScheduleController extends Controller
      */
     public function destroy(Schedule $schedule)
     {
-        //
+        if($schedule->appointments()->count() > 0){
+            return [
+                'type' => 'worning',
+                'message' => 'This item is not deletable. Because the schedule associate with '.$schedule->appointments()->count().' appointments',
+            ];
+        }
+        $schedule->delete();
+        return [
+            'type' => 'success',
+            'message' => 'Successfully destroy',
+        ];
     }
 }
