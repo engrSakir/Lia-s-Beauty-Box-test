@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Acaronlex\LaravelCalendar\Calendar;
 use App\Http\Controllers\Controller;
 use App\Models\Schedule;
-use Carbon\Carbon; 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
@@ -113,7 +113,7 @@ class ScheduleController extends Controller
      */
     public function edit(Schedule $schedule)
     {
-        //
+        return view('backend.schedule.edit', compact('schedule'));
     }
 
     /**

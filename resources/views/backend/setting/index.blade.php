@@ -153,7 +153,7 @@
                                     </div>
                                 </div>
                                 <!--/span-->
-                           
+
                             <!--/row-->
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -215,13 +215,13 @@
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
-                                
-                                    
+
+
                                 </div>
                                 <!--/span-->
                             </div>
                             <!--/row-->
-                            
+
                             <h4>Opening Hours</h4>
 
                             <div class="row">
@@ -232,7 +232,7 @@
                                 <input type="text" name="line2" value="{{ get_static_option('line2') }}" id="line2" class="form-control">
                                 <input type="text" name="line3" value="{{ get_static_option('line3') }}" id="line3" class="form-control">
 
-                                       
+
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -261,8 +261,8 @@
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
-                                
-                                    
+
+
                                 </div>
                                 <!--/span-->
                             </div>
@@ -271,7 +271,7 @@
                         <div class="form-actions">
                             <div class="card-body">
                                 <button type="submit" name="submit" class="btn btn-success text-white"> <i class="fa fa-check"></i> Save</button>
-                                <button type="button" class="btn btn-dark">Cancel</button>
+                                <button type="reset" class="btn btn-danger">Reset form</button>
                             </div>
                         </div>
                     </div>

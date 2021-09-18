@@ -13,7 +13,7 @@
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                     <li class="breadcrumb-item active">Image Category</li>
                 </ol>
-                
+
             </div>
         </div>
     </div>
@@ -49,7 +49,7 @@
                         <div class="form-actions">
                             <div class="card-body">
                                 <button type="submit" class="btn btn-success text-white"> <i class="fa fa-check"></i> Save</button>
-                                <button type="button" class="btn btn-dark">Cancel</button>
+                                <button type="reset" class="btn btn-danger">Reset form</button>
                             </div>
                         </div>
                     </div>

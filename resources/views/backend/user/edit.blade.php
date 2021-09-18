@@ -67,7 +67,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
+
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
@@ -85,13 +85,13 @@
                                     </div>
                                 </div>
 
-                                
+
                             </div>
                         </div>
                         <div class="form-actions">
                             <div class="card-body">
                                 <button type="submit" class="btn btn-success text-white"> <i class="fa fa-check"></i> Save</button>
-                                <button type="button" class="btn btn-dark">Cancel</button>
+                                <button type="reset" class="btn btn-danger">Reset form</button>
                             </div>
                         </div>
                     </div>

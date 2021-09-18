@@ -37,6 +37,7 @@
                                 <th scope="col">Start</th>
                                 <th scope="col">End</th>
                                 <th scope="col">Title</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,6 +47,10 @@
                                     <td>{{ date('h:i A', strtotime($schedule_data->starting_time)) }}</td>
                                     <td>{{ date('h:i A', strtotime($schedule_data->ending_time)) }}</td>
                                     <td>{{ $schedule_data->title }}</td>
+                                    <td>
+                                        <a href="{{ route('backend.schedule.edit', $schedule_data) }}" class="btn btn-warning btn-circle"><i class="fa fa-pen"></i> </a>
+                                        <button value="{{ route('backend.schedule.destroy', $schedule_data) }}" class="btn btn-danger btn-circle"><i class="fa fa-trash"></i> </button>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
