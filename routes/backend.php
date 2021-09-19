@@ -4,6 +4,8 @@ use App\Http\Controllers\Backend\AppointmentController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Backend\ServiceCategoryController;
+use App\Http\Controllers\Backend\ExpenseController;
+use App\Http\Controllers\Backend\ExpenseCategoryController;
 use App\Http\Controllers\Backend\ScheduleController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\UserController;
@@ -42,6 +44,10 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'
     Route::resource('imageCategory', ImageCategoryController::class);
     Route::resource('appointment', AppointmentController::class);
     Route::resource('invoice', InvoiceController::class);
+    Route::resource('expense', ExpenseController::class);
+    Route::resource('expenseCategory', ExpenseCategoryController::class);
+
+
 
 
 
