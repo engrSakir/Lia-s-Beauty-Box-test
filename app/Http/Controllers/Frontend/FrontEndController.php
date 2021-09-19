@@ -12,6 +12,8 @@ use App\Models\Schedule;
 use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\User;
+use App\Models\Banner;
+use App\Models\Testimonial;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -25,7 +27,9 @@ class FrontEndController extends Controller
         $imageCategories= ImageCategory::all();
         $serviceCategories = ServiceCategory::all();
         $services = Service::all();
-        return view('frontend.home', compact('clients', 'galleries','imageCategories', 'serviceCategories', 'services'));
+        $banners = Banner::all();
+        $testimonials = Testimonial::all();
+        return view('frontend.home', compact('testimonials','banners','clients', 'galleries','imageCategories', 'serviceCategories', 'services'));
     }
 
     public function booking()

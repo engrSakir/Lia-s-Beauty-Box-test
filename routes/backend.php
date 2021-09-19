@@ -14,6 +14,11 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\GalleryController;
 use App\Http\Controllers\Backend\ImageCategoryController;
 use App\Http\Controllers\Backend\InvoiceController;
+use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\Backend\TestimonialController;
+use App\Http\Controllers\Backend\QuestionaireController;
+
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,9 +51,9 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'
     Route::resource('invoice', InvoiceController::class);
     Route::resource('expense', ExpenseController::class);
     Route::resource('expenseCategory', ExpenseCategoryController::class);
-
-
-
+    Route::resource('banner', BannerController::class);
+    Route::resource('testimonial', TestimonialController::class);
+    Route::resource('questionaire', QuestionaireController::class);
 
 
 
