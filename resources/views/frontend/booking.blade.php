@@ -120,7 +120,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                                 <input name="name" type="text" required="" class="form-control"
-                                                    placeholder="Neme">
+                                                    placeholder="Name">
                                             </div>
                                         </div>
                                     </div>
@@ -141,6 +141,24 @@
                                                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                                                 <input name="email" type="email" class="form-control" required=""
                                                     placeholder="Email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                                <input name="transaction_id" type="text" class="form-control" required=""
+                                                    placeholder="Bkash Transaction ID">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+                                                <input name="advance_amount" type="number" class="form-control" required=""
+                                                    placeholder="Advance Amount">
                                             </div>
                                         </div>
                                     </div>
@@ -306,6 +324,8 @@
                     name: $("#appointment_form [name='name']").val(),
                     email: $("#appointment_form [name='email']").val(),
                     phone: $("#appointment_form [name='phone']").val(),
+                    transaction_id: $("#appointment_form [name='transaction_id']").val(),
+                    advance_amount: $("#appointment_form [name='advance_amount']").val(),
                     service: $("#appointment_form [name='service']").val(),
                     message: $("#appointment_form [name='message']").val(),
                 },

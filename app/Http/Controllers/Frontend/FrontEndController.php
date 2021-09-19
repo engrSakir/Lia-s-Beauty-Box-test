@@ -65,6 +65,8 @@ class FrontEndController extends Controller
                 'name'      => 'required|string',
                 'email'     => 'required|unique:users,email',
                 'phone'     => 'required|unique:users,phone',
+                'transaction_id'     => 'nullable',
+                'advance_amount'     => 'nullable|numeric',
                 'appointment_data' => 'required|string', // get from hidden
                 'schedule'  => 'required|exists:schedules,id', // get from hidden
                 'service'   => 'required|exists:services,id',
@@ -100,6 +102,8 @@ class FrontEndController extends Controller
             $appointment->schedule_id       = $request->schedule;
             $appointment->service_id        = $request->service;
             $appointment->message           = $request->message;
+            $appointment->transaction_id        = $request->transaction_id;
+            $appointment->advance_amount           = $request->advance_amount;
             $appointment->save();
         }catch(\Exception $exception){
             if (request()->ajax()) {

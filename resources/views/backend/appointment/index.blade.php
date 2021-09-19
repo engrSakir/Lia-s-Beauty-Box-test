@@ -33,6 +33,8 @@
                                     <th>#</th>
                                     <th>Client Name</th>
                                     <th>Phone Number</th>
+                                    <th>Transaction ID</th>
+                                    <th>Advance Amount</th>
                                     <th>Service</th>
                                     <th>Date Time</th>
                                     <th>Day And Time</th>
@@ -47,6 +49,8 @@
                                         <td scope="row">{{ $loop->iteration }}</td>
                                         <td>{{ $appointment->customer->name ?? '#' }}</td>
                                         <td>{{ $appointment->customer->phone ?? '#' }}</td>
+                                        <td>{{ $appointment->transaction_id ?? '#' }}</td>
+                                        <td>{{ $appointment->advance_amount ?? '#' }}</td>
                                         <td>{{ $appointment->service->name ?? '#' }}</td>
                                         <td>{{ $appointment->appointment_data }}</td>
                                         <td>
