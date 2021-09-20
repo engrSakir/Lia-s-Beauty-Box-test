@@ -15,8 +15,8 @@ class ServiceCategoryController extends Controller
      */
     public function index()
     {
-        $serviceCategories = ServiceCategory::all();
-        return view('backend.service_category.index',compact('serviceCategories'));
+        $serviceCategories = ServiceCategory::orderBy('id','DESC')->get();
+        return view('backend.service_category.index', compact('serviceCategories'));
     }
 
     /**
@@ -40,12 +40,10 @@ class ServiceCategoryController extends Controller
         $request->validate([
             'category_name' => 'required|unique:service_categories,name',
         ]);
-
         $serviceCategory = new ServiceCategory();
         $serviceCategory->name = $request->category_name;
         $serviceCategory->slug = Str::slug($request->category_name, '-');
         $serviceCategory->save();
-
         toastr()->success('Successfully Saved!');
         return back();
     }
@@ -69,7 +67,7 @@ class ServiceCategoryController extends Controller
      */
     public function edit(ServiceCategory $serviceCategory)
     {
-        return view('backend.service_category.edit',compact('serviceCategory'));
+        return view('backend.service_category.edit', compact('serviceCategory'));
     }
 
     /**
@@ -84,11 +82,9 @@ class ServiceCategoryController extends Controller
         $request->validate([
             'category_name' => 'required|unique:service_categories,name,'.$serviceCategory->id,
         ]);
-
         $serviceCategory->name = $request->category_name;
         $serviceCategory->slug = Str::slug($request->category_name, '-');
         $serviceCategory->save();
-
         toastr()->success('Successfully Updated!');
         return back();
     }

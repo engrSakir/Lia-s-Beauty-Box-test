@@ -17,8 +17,8 @@ class ImageCategoryController extends Controller
      */
     public function index()
     {
-        $imageCategories= ImageCategory::all();
-        return view('backend.image_category.index',compact('imageCategories'));
+        $imageCategories = ImageCategory::orderBy('id','DESC')->get();
+        return view('backend.image_category.index', compact('imageCategories'));
     }
 
     /**
@@ -28,7 +28,7 @@ class ImageCategoryController extends Controller
      */
     public function create()
     {
-        $imageCategories= ImageCategory::all();
+        $imageCategories = ImageCategory::all();
         return view('backend.image_category.create',compact('imageCategories'));
 
     }
@@ -44,11 +44,9 @@ class ImageCategoryController extends Controller
         $request->validate([
             'category_name' => 'required|string', 
         ]);
-
         $imageCategory = new ImageCategory();
         $imageCategory->name = $request->category_name;                
         $imageCategory->save();
-
         toastr()->success('Successfully Saved!');   
         return back();
     }
@@ -88,10 +86,8 @@ class ImageCategoryController extends Controller
         $request->validate([
             'category_name' => 'required|string', 
         ]);
-
         $imageCategory->name = $request->category_name;                
         $imageCategory->save();
-
         toastr()->success('Successfully Saved!');   
         return back();
     }

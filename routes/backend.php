@@ -4,6 +4,8 @@ use App\Http\Controllers\Backend\AppointmentController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Backend\ServiceCategoryController;
+use App\Http\Controllers\Backend\ExpenseController;
+use App\Http\Controllers\Backend\ExpenseCategoryController;
 use App\Http\Controllers\Backend\ScheduleController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\UserController;
@@ -12,6 +14,12 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\GalleryController;
 use App\Http\Controllers\Backend\ImageCategoryController;
 use App\Http\Controllers\Backend\InvoiceController;
+use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\Backend\TestimonialController;
+use App\Http\Controllers\Backend\QuestionaireController;
+use App\Http\Controllers\Backend\UserCategoryController;
+
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,7 +50,12 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'
     Route::resource('imageCategory', ImageCategoryController::class);
     Route::resource('appointment', AppointmentController::class);
     Route::resource('invoice', InvoiceController::class);
-
+    Route::resource('expense', ExpenseController::class);
+    Route::resource('expenseCategory', ExpenseCategoryController::class);
+    Route::resource('banner', BannerController::class);
+    Route::resource('testimonial', TestimonialController::class);
+    Route::resource('questionaire', QuestionaireController::class);
+    Route::resource('userCategory', UserCategoryController::class);
 
 
 

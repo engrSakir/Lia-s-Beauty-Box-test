@@ -38,7 +38,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label">Mobile Number</label>
-                                        <input type="text" name="mobile" value="{{ get_static_option('mobile') }}" id="mobile" class="form-control">
+                                        <input type="number" name="mobile" value="{{ get_static_option('mobile') }}" id="mobile" class="form-control">
                                             @error('mobile')
                                             <div class="alert alert-danger" role="alert">
                                                 {{ $message }}

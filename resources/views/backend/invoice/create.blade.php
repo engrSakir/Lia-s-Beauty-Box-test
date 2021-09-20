@@ -135,6 +135,16 @@
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <th class="text-center">Discount</th>
+                                                <td class="text-center">
+                                                    <div class="input-group mb-2 mb-sm-0">
+                                                        <input type="number" class="form-control" id="discount" name="discount"
+                                                            placeholder="0">
+                                                        <div class="input-group-addon">%</div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <th class="text-center">Grand Total</th>
                                                 <td class="text-center"><input type="number" name='total_amount'
                                                         id="total_amount" placeholder='0.00' class="form-control"
@@ -260,6 +270,7 @@
                     data: {
                         service_data_set: service_data_set,
                         vat_percentage: document.getElementById('tax').value,
+                        discount_percentage: document.getElementById('discount').value,
                         appointment_id: document.getElementById('appointment').value,
                     },
                     dataType: 'JSON',

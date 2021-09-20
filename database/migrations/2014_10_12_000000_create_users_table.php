@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('phone')->nullable();
             $table->string('image')->nullable();
-
+            $table->foreignId('category_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

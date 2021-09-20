@@ -12,6 +12,8 @@ use App\Models\Schedule;
 use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\User;
+use App\Models\Banner;
+use App\Models\Testimonial;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -25,7 +27,9 @@ class FrontEndController extends Controller
         $imageCategories= ImageCategory::all();
         $serviceCategories = ServiceCategory::all();
         $services = Service::all();
-        return view('frontend.home', compact('clients', 'galleries','imageCategories', 'serviceCategories', 'services'));
+        $banners = Banner::all();
+        $testimonials = Testimonial::all();
+        return view('frontend.home', compact('testimonials','banners','clients', 'galleries','imageCategories', 'serviceCategories', 'services'));
     }
 
     public function booking()
@@ -65,6 +69,8 @@ class FrontEndController extends Controller
                 'name'      => 'required|string',
                 'email'     => 'required|unique:users,email',
                 'phone'     => 'required|unique:users,phone',
+                'transaction_id'     => 'nullable',
+                'advance_amount'     => 'nullable|numeric',
                 'appointment_data' => 'required|string', // get from hidden
                 'schedule'  => 'required|exists:schedules,id', // get from hidden
                 'service'   => 'required|exists:services,id',
@@ -100,6 +106,8 @@ class FrontEndController extends Controller
             $appointment->schedule_id       = $request->schedule;
             $appointment->service_id        = $request->service;
             $appointment->message           = $request->message;
+            $appointment->transaction_id        = $request->transaction_id;
+            $appointment->advance_amount           = $request->advance_amount;
             $appointment->save();
         }catch(\Exception $exception){
             if (request()->ajax()) {

@@ -19,8 +19,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users= User::all();
-        return view('backend.user.index',compact('users'));
+        $users= User::orderBy('id','DESC')->get();
+        return view('backend.user.index', compact('users'));
 
     }
 
@@ -32,7 +32,6 @@ class UserController extends Controller
     public function create()
     {
         return view('backend.user.create');
-
     }
 
     /**
@@ -52,7 +51,8 @@ class UserController extends Controller
         $user = new User();
         $user->name = $request->user_name;  
         $user->email = $request->user_email;
-        $user->phone = $request->user_phone;   
+        $user->phone = $request->user_phone;  
+        $user->category_id = $request->category_id ?? '';   
         $user->password = Hash::make($request->user_pass);                  
         if ($request->file('image')) {
             $user->image = file_uploader('uploads/user-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($request->user_name, '-'));
@@ -103,7 +103,8 @@ class UserController extends Controller
 
         $user->name = $request->user_name;  
         $user->email = $request->user_email;
-        $user->phone = $request->user_phone;                  
+        $user->phone = $request->user_phone;   
+        $user->category_id = $request->category_id ?? '';   
         if ($request->file('image')) {
             $user->image = file_uploader('uploads/user-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($user->name, '-'));
         }

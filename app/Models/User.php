@@ -41,4 +41,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(UserCategory::class, 'category_id', 'id');
+    }
 }
