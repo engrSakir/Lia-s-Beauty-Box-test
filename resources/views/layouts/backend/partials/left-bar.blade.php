@@ -68,11 +68,11 @@
                     <span class="hide-menu">FAQ</span>
                 </a>
             </li>
-            <li>
-                <a class="waves-effect waves-dark" href="{{ route('backend.user.index') }}" aria-expanded="false">
-                    <i class="far fa-circle text-danger"></i>
-                    <span class="hide-menu">User</span>
-                </a>
+            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">User</span></a>
+                <ul aria-expanded="false" class="collapse">
+                    <li><a href="{{ route('backend.user.index') }}">User List</a></li>
+                    <li><a href="{{ route('backend.userCategory.index') }}">User Category</a></li>
+                </ul>
             </li>
             <li>
                 <a class="waves-effect waves-dark" href="{{ route('backend.client.index') }}" aria-expanded="false">

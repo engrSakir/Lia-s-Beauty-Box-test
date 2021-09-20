@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\InvoiceController;
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\QuestionaireController;
+use App\Http\Controllers\Backend\UserCategoryController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -54,6 +55,7 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'
     Route::resource('banner', BannerController::class);
     Route::resource('testimonial', TestimonialController::class);
     Route::resource('questionaire', QuestionaireController::class);
+    Route::resource('userCategory', UserCategoryController::class);
 
 
 
