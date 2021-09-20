@@ -15,8 +15,8 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses= Expense::all();
-        return view('backend.expense.index',compact('expenses'));
+        $expenses = Expense::orderBy('id','DESC')->get();
+        return view('backend.expense.index', compact('expenses'));
     }
 
     /**
@@ -26,8 +26,8 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        $expenseCategories=ExpenseCategory::all();
-        return view('backend.expense.create',compact('expenseCategories'));
+        $expenseCategories = ExpenseCategory::all();
+        return view('backend.expense.create', compact('expenseCategories'));
     }
 
     /**
@@ -39,18 +39,16 @@ class ExpenseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'amount'         => 'required',
-            'category_id'   => 'required',
+            'amount'         => 'required|numeric',
+            'category_id'   => 'required|exists:expense_categories,id',
             'description'   => 'nullable',
 
         ]);
-
         $expense = new Expense();
         $expense->amount = $request->amount;
         $expense->category_id = $request->category_id;
         $expense->description = $request->description;
         $expense->save();
-
         toastr()->success('Successfully Saved!');
         return back();
     }
@@ -88,8 +86,8 @@ class ExpenseController extends Controller
     public function update(Request $request, Expense $expense)
     {
         $request->validate([
-            'amount'         => 'required',
-            'category_id'   => 'required',
+            'amount'         => 'required|numeric',
+            'category_id'   => 'required|exists:expense_categories,id',
             'description'   => 'nullable',
 
         ]);
@@ -97,7 +95,6 @@ class ExpenseController extends Controller
         $service->category_id = $request->category_id;
         $expense->description = $request->description;
         $expense->save();
-
         toastr()->success('Successfully Updated!');
         return back();
     }

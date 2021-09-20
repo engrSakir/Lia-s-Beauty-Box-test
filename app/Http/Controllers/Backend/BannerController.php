@@ -17,8 +17,8 @@ class BannerController extends Controller
      */
     public function index()
     {
-        $banners= Banner::all();
-        return view('backend.banner.index',compact('banners'));
+        $banners = Banner::orderBy('id','DESC')->get();
+        return view('backend.banner.index', compact('banners'));
     }
 
     /**
@@ -29,7 +29,6 @@ class BannerController extends Controller
     public function create()
     {
         return view('backend.banner.create');
-
     }
 
     /**
@@ -49,7 +48,6 @@ class BannerController extends Controller
             'link'         => 'nullable|string',
 
         ]);
-
         $banner = new Banner();
         $banner->name = $request->title;
         $banner->primary_text = $request->primary_text;
@@ -60,7 +58,6 @@ class BannerController extends Controller
             $banner->image = file_uploader('uploads/banner-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::random(8));
         }
         $banner->save();
-
         toastr()->success('Successfully Saved!');
         return back();
     }
@@ -85,7 +82,6 @@ class BannerController extends Controller
     public function edit(Banner $banner)
     {
         return view('backend.banner.edit', compact('banner'));
-
     }
 
     /**
@@ -116,7 +112,6 @@ class BannerController extends Controller
             $banner->image = file_uploader('uploads/banner-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::random(8));
         }
         $banner->save();
-
         toastr()->success('Successfully Updated!');
         return back();
     }

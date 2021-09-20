@@ -17,8 +17,8 @@ class TestimonialController extends Controller
      */
     public function index()
     {
-        $testimonials= Testimonial::all();
-        return view('backend.testimonial.index',compact('testimonials'));
+        $testimonials = Testimonial::orderBy('id','DESC')->get();
+        return view('backend.testimonial.index', compact('testimonials'));
     }
 
     /**
@@ -29,7 +29,6 @@ class TestimonialController extends Controller
     public function create()
     {
         return view('backend.testimonial.create');
-
     }
 
     /**
@@ -48,7 +47,6 @@ class TestimonialController extends Controller
             
 
         ]);
-
         $testimonial = new Testimonial();
         $testimonial->name = $request->name;
         $testimonial->message = $request->message;
@@ -57,7 +55,6 @@ class TestimonialController extends Controller
             $testimonial->image = file_uploader('uploads/testimonial-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::random(8));
         }
         $testimonial->save();
-
         toastr()->success('Successfully Saved!');
         return back();
     }
@@ -82,7 +79,6 @@ class TestimonialController extends Controller
     public function edit(Testimonial $testimonial)
     {
         return view('backend.testimonial.edit', compact('testimonial'));
-
     }
 
     /**
@@ -102,7 +98,6 @@ class TestimonialController extends Controller
             
 
         ]);
-
         $testimonial->name = $request->name;
         $testimonial->message = $request->message;
         $testimonial->designation = $request->designation;
@@ -110,7 +105,6 @@ class TestimonialController extends Controller
             $testimonial->image = file_uploader('uploads/testimonial-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::random(8));
         }
         $testimonial->save();
-
         toastr()->success('Successfully Updated!');
         return back();
     }

@@ -16,8 +16,8 @@ class ExpenseCategoryController extends Controller
      */
     public function index()
     {
-        $expenseCategories = ExpenseCategory::all();
-        return view('backend.expense_category.index',compact('expenseCategories'));
+        $expenseCategories = ExpenseCategory::orderBy('id','DESC')->get();
+        return view('backend.expense_category.index', compact('expenseCategories'));
     }
 
     /**
@@ -28,7 +28,6 @@ class ExpenseCategoryController extends Controller
     public function create()
     {
         return view('backend.expense_category.create');
-
     }
 
     /**
@@ -42,12 +41,10 @@ class ExpenseCategoryController extends Controller
         $request->validate([
             'category_name' => 'required|unique:expense_categories,name',
         ]);
-
         $expenseCategory = new ExpenseCategory();
         $expenseCategory->name = $request->category_name;
         $expenseCategory->slug = Str::slug($request->category_name, '-');
         $expenseCategory->save();
-
         toastr()->success('Successfully Saved!');
         return back();
     }
@@ -71,8 +68,7 @@ class ExpenseCategoryController extends Controller
      */
     public function edit(ExpenseCategory $expenseCategory)
     {
-        return view('backend.expense_category.edit',compact('expenseCategory'));
-
+        return view('backend.expense_category.edit', compact('expenseCategory'));
     }
 
     /**
@@ -87,11 +83,9 @@ class ExpenseCategoryController extends Controller
         $request->validate([
             'category_name' => 'required|unique:expense_categories,name,'.$expenseCategory->id,
         ]);
-
         $expenseCategory->name = $request->category_name;
         $expenseCategory->slug = Str::slug($request->category_name, '-');
         $expenseCategory->save();
-
         toastr()->success('Successfully Updated!');
         return back();
     }

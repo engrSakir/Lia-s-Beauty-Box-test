@@ -18,8 +18,8 @@ class QuestionaireController extends Controller
      */
     public function index()
     {
-        $questionaires= Questionaire::all();
-        return view('backend.faq.index',compact('questionaires'));
+        $questionaires = Questionaire::orderBy('id','DESC')->get();
+        return view('backend.faq.index', compact('questionaires'));
     }
 
     /**
@@ -30,7 +30,6 @@ class QuestionaireController extends Controller
     public function create()
     {
         return view('backend.faq.create');
-
     }
 
     /**
@@ -46,12 +45,10 @@ class QuestionaireController extends Controller
             'answer'         => 'nullable|string',
             
         ]);
-
         $faq = new Questionaire();
         $faq->question = $request->question;
         $faq->answer = $request->answer;
         $faq->save();
-
         toastr()->success('Successfully Saved!');
         return back();
     }
@@ -76,7 +73,6 @@ class QuestionaireController extends Controller
     public function edit(Questionaire $questionaire)
     {
         return view('backend.faq.edit', compact('questionaire'));
-
     }
 
     /**
@@ -93,11 +89,9 @@ class QuestionaireController extends Controller
             'answer'         => 'nullable|string',
             
         ]);
-
         $questionaire->question = $request->question;
         $questionaire->answer = $request->answer;
         $questionaire->save();
-
         toastr()->success('Successfully Saved!');
         return back();
     }

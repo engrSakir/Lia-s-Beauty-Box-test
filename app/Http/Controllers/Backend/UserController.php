@@ -19,8 +19,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users= User::all();
-        return view('backend.user.index',compact('users'));
+        $users= User::orderBy('id','DESC')->get();
+        return view('backend.user.index', compact('users'));
 
     }
 
@@ -32,7 +32,6 @@ class UserController extends Controller
     public function create()
     {
         return view('backend.user.create');
-
     }
 
     /**

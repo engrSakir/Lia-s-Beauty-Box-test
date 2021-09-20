@@ -18,8 +18,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services= Service::all();
-        return view('backend.service.index',compact('services'));
+        $services = Service::orderBy('id','DESC')->get();
+        return view('backend.service.index', compact('services'));
 
     }
 
@@ -30,9 +30,8 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        $serviceCategories=ServiceCategory::all();
-        return view('backend.service.create',compact('serviceCategories'));
-
+        $serviceCategories = ServiceCategory::all();
+        return view('backend.service.create', compact('serviceCategories'));
     }
 
     /**
@@ -46,10 +45,9 @@ class ServiceController extends Controller
         $request->validate([
             'service_name'  => 'required|string|unique:services,name',
             'price'         => 'required',
-            'category_id'   => 'required',
+            'category_id'   => 'required|exists:service_categories,id',
             'image'         => 'nullable|image',
         ]);
-
         $service = new Service();
         $service->name = $request->service_name;
         $service->slug = Str::slug($request->service_name, '-');
@@ -60,7 +58,6 @@ class ServiceController extends Controller
             $service->image = file_uploader('uploads/service-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($request->service_name, '-'));
         }
         $service->save();
-
         toastr()->success('Successfully Saved!');
         return back();
     }
