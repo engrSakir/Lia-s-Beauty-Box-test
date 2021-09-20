@@ -67,6 +67,7 @@ class InvoiceController extends Controller
         $invoice = new Invoice();
         $invoice->appointment_id = $appointment->id;
         $invoice->vat_percentage = $request->vat_percentage ?? 0;
+        $invoice->discount_percentage = $request->discount_percentage ?? 0;
         $invoice->note = $request->note;
         // $invoice->due_date;
         // $invoice->custom_counter;

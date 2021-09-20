@@ -65,6 +65,8 @@ class AppointmentController extends Controller
                 'schedule'  => 'required|exists:schedules,id', // get from hidden
                 'service'   => 'required|exists:services,id',
                 'message'   => 'nullable|string',
+                'transaction_id'     => 'nullable',
+                'advance_amount'     => 'nullable|numeric',
             ],
             [
                 'email.unique' => 'This email already used. Please use another email.',
@@ -85,6 +87,8 @@ class AppointmentController extends Controller
             $appointment->appointment_data  = date('Y-m-d',strtotime($request->appointment_data));
             $appointment->schedule_id       = $request->schedule;
             $appointment->service_id        = $request->service;
+            $appointment->transaction_id        = $request->transaction_id;
+            $appointment->advance_amount           = $request->advance_amount;
             $appointment->message           = 'Booking by admin';
             $appointment->booked_by_admin   = true;
             $appointment->save();
@@ -222,6 +226,8 @@ class AppointmentController extends Controller
                     'schedule'  => 'required|exists:schedules,id', // get from hidden
                     'service'   => 'required|exists:services,id',
                     'message'   => 'nullable|string',
+                    'transaction_id'     => 'nullable',
+                    'advance_amount'     => 'nullable|numeric',
                 ],
                 [
                     'email.unique' => 'This email already used. Please use another email.',
@@ -241,6 +247,8 @@ class AppointmentController extends Controller
                 $appointment->appointment_data  = date('Y-m-d',strtotime($request->appointment_data));
                 $appointment->schedule_id       = $request->schedule;
                 $appointment->service_id        = $request->service;
+                $appointment->transaction_id        = $request->transaction_id;
+                $appointment->advance_amount           = $request->advance_amount;
                 $appointment->message           = 'Booking by admin';
                 $appointment->booked_by_admin   = true;
                 $appointment->save();

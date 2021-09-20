@@ -54,6 +54,22 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input name="transaction_id" type="text" class="form-control" required=""
+                                                    placeholder="Bkash Transaction ID" value="{{ $appointment->transaction_id ?? '' }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input name="advance_amount" type="number" class="form-control" required=""
+                                                    placeholder="Advance Amount" value="{{ $appointment->advance_amount ?? '' }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="input-group">
                                         <select name="service" class="form-control" required="">

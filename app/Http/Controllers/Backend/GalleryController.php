@@ -18,8 +18,8 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        $galleries= Gallery::all();
-        return view('backend.gallery.index',compact('galleries'));
+        $galleries = Gallery::orderBy('id','DESC')->get();
+        return view('backend.gallery.index', compact('galleries'));
     }
 
     /**
@@ -29,9 +29,8 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        $categories= ImageCategory::all();
-        return view('backend.gallery.create',compact('categories'));
-
+        $categories = ImageCategory::all();
+        return view('backend.gallery.create', compact('categories'));
     }
 
     /**
@@ -45,10 +44,9 @@ class GalleryController extends Controller
         $request->validate([
             'image'         => 'required|image',
             'short_description'         => 'nullable|string',
-            'imagecategory_id'   => 'required',
+            'imagecategory_id'   => 'required:exists:image_categories,id',
 
         ]);
-
         $gallery = new Gallery();
         $gallery->short_description = $request->short_description;
         $gallery->imagecategory_id = $request->imagecategory_id;
@@ -56,7 +54,6 @@ class GalleryController extends Controller
             $gallery->image = file_uploader('uploads/gallery-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::random(8));
         }
         $gallery->save();
-
         toastr()->success('Successfully Saved!');
         return back();
     }
@@ -80,9 +77,8 @@ class GalleryController extends Controller
      */
     public function edit(Gallery $gallery)
     {
-        $imageCategories= ImageCategory::all();
+        $imageCategories = ImageCategory::all();
         return view('backend.gallery.edit', compact('gallery','imageCategories'));
-
     }
 
     /**
@@ -97,18 +93,16 @@ class GalleryController extends Controller
         $request->validate([
             'image'         => 'image',
             'short_description'         => 'nullable|string',
-            'imagecategory_id'   => 'required',
+            'imagecategory_id'   => 'required:exists:image_categories,id',
 
 
         ]);
-
         $gallery->short_description = $request->short_description;
         $gallery->imagecategory_id = $request->imagecategory_id;
         if ($request->file('image')) {
             $gallery->image = file_uploader('uploads/gallery-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::random(8));
         }
         $gallery->save();
-
         toastr()->success('Successfully Updated!');
         return back();
     }
