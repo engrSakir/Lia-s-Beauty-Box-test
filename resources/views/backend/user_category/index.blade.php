@@ -31,6 +31,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">User Category Name</th>
                                 <th scope="col">VAT %</th>
+                                <th scope="col">OFF %</th>
                                 <th scope="col">Created At</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -41,6 +42,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $userCategory->name }}</td>
                                     <td>{{ $userCategory->vat_percentage }}</td>
+                                    <td>{{ $userCategory->off_percentage }}</td>
                                     <td>{{ $userCategory->created_at->format('d/m/Y') }}</td>
                                     <td>
                                     <a  class="text-warning" href="{{ route('backend.userCategory.edit', $userCategory) }}">

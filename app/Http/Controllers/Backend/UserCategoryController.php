@@ -40,13 +40,14 @@ class UserCategoryController extends Controller
     {
         $request->validate([
             'category_name' => 'required|unique:user_categories,name',
-            'vat_percentage'    => 'nullable|numeric|min:0|max:100',
-
+            'vat_percentage'    => 'required|numeric|min:0|max:100',
+            'off_percentage'    => 'required|numeric|min:0|max:100',
         ]);
         $userCategory = new UserCategory();
         $userCategory->name = $request->category_name;
         $userCategory->slug = Str::slug($request->category_name, '-');
         $userCategory->vat_percentage = $request->vat_percentage;
+        $userCategory->off_percentage = $request->off_percentage;
         $userCategory->save();
         toastr()->success('Successfully Saved!');
         return back();
@@ -84,13 +85,15 @@ class UserCategoryController extends Controller
     public function update(Request $request, UserCategory $userCategory)
     {
         $request->validate([
-            'category_name' => 'required|exists:user_categories,name',
-            'vat_percentage'    => 'nullable|numeric|min:0|max:100',
-
+            'category_name' => 'required|unique:user_categories,name,'.$userCategory->id,
+            'vat_percentage'    => 'required|numeric|min:0|max:100',
+            'off_percentage'    => 'required|numeric|min:0|max:100',
         ]);
+
         $userCategory->name = $request->category_name;
         $userCategory->slug = Str::slug($request->category_name, '-');
         $userCategory->vat_percentage = $request->vat_percentage;
+        $userCategory->off_percentage = $request->off_percentage;
         $userCategory->save();
         toastr()->success('Successfully Saved!');
         return back();

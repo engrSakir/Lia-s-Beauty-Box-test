@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\UserCategory;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
@@ -31,7 +32,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('backend.user.create');
+        $userCategories = UserCategory::all();
+        return view('backend.user.create', compact('userCategories'));
     }
 
     /**
@@ -45,21 +47,22 @@ class UserController extends Controller
         $request->validate([
             'user_name' => 'required|string',
             'user_email' => 'required|unique:users,email',
-            'user_phone' => 'required|string|max:11',   
+            'user_phone' => 'required|string|max:11',
+            'user_category' => 'nullable|exists:user_categories,id',
         ]);
 
         $user = new User();
-        $user->name = $request->user_name;  
+        $user->name = $request->user_name;
         $user->email = $request->user_email;
-        $user->phone = $request->user_phone;  
-        $user->category_id = $request->category_id ?? '';   
-        $user->password = Hash::make($request->user_pass);                  
+        $user->phone = $request->user_phone;
+        $user->category_id = $request->user_category;
+        $user->password = Hash::make($request->user_pass);
         if ($request->file('image')) {
             $user->image = file_uploader('uploads/user-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($request->user_name, '-'));
         }
         $user->save();
 
-        toastr()->success('Successfully Saved!');   
+        toastr()->success('Successfully Saved!');
         return back();
     }
 
@@ -82,8 +85,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('backend.user.edit',compact('user'));
-
+        $userCategories = UserCategory::all();
+        return view('backend.user.edit',compact('user', 'userCategories'));
     }
 
     /**
@@ -95,22 +98,24 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        
+
         $request->validate([
             'user_name' => 'required|string',
-            'user_phone' => 'required|string|max:11',   
+            'user_email' => 'required|unique:users,email,'.$user->id,
+            'user_phone' => 'required|string|max:11',
+            'user_category' => 'nullable|exists:user_categories,id',
         ]);
 
-        $user->name = $request->user_name;  
+        $user->name = $request->user_name;
         $user->email = $request->user_email;
-        $user->phone = $request->user_phone;   
-        $user->category_id = $request->category_id ?? '';   
+        $user->phone = $request->user_phone;
+        $user->category_id = $request->user_category;
         if ($request->file('image')) {
             $user->image = file_uploader('uploads/user-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($user->name, '-'));
         }
         $user->save();
 
-        toastr()->success('Successfully Updated!');   
+        toastr()->success('Successfully Updated!');
         return back();
     }
 

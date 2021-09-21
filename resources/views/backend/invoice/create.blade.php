@@ -25,7 +25,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header bg-info">
-                    <h4 class="mb-0 text-white">Schedules</h4>
+                    <h4 class="mb-0 text-white">Invice Create</h4>
                 </div>
                 <div class="card-body">
                     <div class="container">
@@ -34,7 +34,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <select name="appointment" id="appointment" class="form-control" required="">
+                                        <select name="appointment" id="appointment" class="form-control" required="" onchange="changeAppointment(this)">
                                             <option value="" selected disabled>Please chose a approved appointment</option>
                                             @foreach ($appointments as $appointment)
                                                 <option value="{{ $appointment->id }}">
@@ -98,16 +98,18 @@
                         </div>
                         {{-- End Dynamic Service section --}}
                         {{-- Start Add And Remove Item section --}}
-                        <div class="row clearfix">
-                            <div class="col-md-12">
-                                <button id="add_row" class="btn btn-default pull-left">Add Row</button>
-                                <button id='delete_row' class="pull-right btn btn-default">Delete Row</button>
+                        <div class="row clearfix m-1">
+                            <div class="col-md-12 d-flex justify-content-between">
+                                <button id="add_row" class="btn btn-lg btn-success btn-default pull-left">Add Row</button>
+                                <button id='delete_row' class="btn btn-lg btn-danger pull-right btn btn-default">Delete Row</button>
                             </div>
                         </div>
                         {{-- End Add And Remove Item section --}}
                         {{-- Start Sumation section --}}
-                        <div class="row clearfix" style="margin-top:20px">
-                            <div class="col-md-12">
+                        <div class="row clearfix" style="margin-top:20px;">
+                            <div class="col-md-6">
+                            </div>
+                            <div class="col-md-6">
                                 <div class="pull-right">
                                     <table class="table table-bordered table-hover" id="tab_logic_total">
                                         <tbody>
@@ -118,12 +120,11 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th class="text-center">Tax</th>
+                                                <th class="text-center">Tax (%)</th>
                                                 <td class="text-center">
                                                     <div class="input-group mb-2 mb-sm-0">
                                                         <input type="number" class="form-control" id="tax"
                                                             placeholder="0">
-                                                        <div class="input-group-addon">%</div>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -135,13 +136,19 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th class="text-center">Discount</th>
+                                                <th class="text-center">Discount (%)</th>
                                                 <td class="text-center">
                                                     <div class="input-group mb-2 mb-sm-0">
                                                         <input type="number" class="form-control" id="discount" name="discount"
                                                             placeholder="0">
-                                                        <div class="input-group-addon">%</div>
                                                     </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-center">Discount Amount</th>
+                                                <td class="text-center"><input type="number" name='discount_amount'
+                                                        id="discount_amount" placeholder='0.00' class="form-control"
+                                                        readonly />
                                                 </td>
                                             </tr>
                                             <tr>
@@ -159,10 +166,10 @@
                         {{-- End Sumation section --}}
                         {{-- Start Submit Btn section --}}
                         <div class="row clearfix">
-                            <div class="col-md-12">
-                                <button type="button" class="btn waves-effect waves-light btn-lg btn-success pull-left" id="invoice_save_btn" onclick="invoiceSaveFunction()">Save Invoice</button>
+                            <div class="col-md-12 d-flex justify-content-between">
+                                <button type="button" class="btn btn-lg btn-success waves-effect waves-light" id="invoice_save_btn" onclick="invoiceSaveFunction(this)">Save Invoice</button>
 
-                                <button id="" class="btn btn-default pull-right" onClick="window.location.reload();">Refresh Page</button>
+                                <button id="" class="btn btn-lg btn-danger btn-default pull-right" onClick="window.location.reload();">Refresh Page</button>
                             </div>
                         </div>
                         {{-- End Submit Btn section --}}
@@ -174,7 +181,7 @@
 @endsection
 
 @push('head')
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    {{-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> --}}
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
@@ -204,6 +211,9 @@
             $('#tax').on('keyup change', function() {
                 calc_total();
             });
+            $('#discount').on('keyup change', function() {
+                calc_total();
+            });
 
 
         });
@@ -226,20 +236,43 @@
             $('.total').each(function() {
                 total += parseInt($(this).val());
             });
+
             $('#sub_total').val(total.toFixed(2));
+
             tax_sum = total / 100 * $('#tax').val();
             $('#tax_amount').val(tax_sum.toFixed(2));
             $('#total_amount').val((tax_sum + total).toFixed(2));
+
+            discount_sum = total / 100 * $('#discount').val();
+            $('#discount_amount').val(discount_sum.toFixed(2));
+            $('#total_amount').val((total - discount_sum).toFixed(2));
         }
 
         function service_selector(objButton) {
             $.ajax({
                 type: 'GET',
-                url: "/backend/service/" + objButton.value,
+                url: "/backend/service/" + objButton.value, //show
                 success: function(response) {
                     // console.log(response);
                     objButton.parentNode.parentNode.querySelector('.price').value = response.price;
                     // console.log(objButton.parentNode.parentNode.querySelector('.price').value);
+                    calc();
+                    calc_total();
+                }
+            });
+        }
+
+        function changeAppointment(objButton) {
+            console.log(objButton.value);
+            $.ajax({
+                type: 'GET',
+                url: "/backend/appointment/" + objButton.value, //show
+                success: function(response) {
+                    // console.log(response);
+                    $('#addr0').find('.service').val(response.appointment.service_id)
+                    $('#addr0').find('.price').val(response.service.price)
+                    $('#tax').val(response.customer_category.vat_percentage)
+                    $('#discount').val(response.customer_category.off_percentage)
                     calc();
                     calc_total();
                 }
