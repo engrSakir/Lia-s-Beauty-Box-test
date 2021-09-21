@@ -20,7 +20,7 @@ class AppointmentController extends Controller
     public function index()
     {
         $appointments = Appointment::orderBy('id', 'desc')->paginate(20);
-        return view('backend.appointment.index',compact('appointments'));
+        return view('backend.appointment.index', compact('appointments'));
     }
 
     /**
@@ -32,7 +32,7 @@ class AppointmentController extends Controller
     {
         $users = User::all();
         $serviceCategories = ServiceCategory::all();
-        return view('backend.appointment.create',compact('users', 'serviceCategories'));
+        return view('backend.appointment.create', compact('users', 'serviceCategories'));
     }
 
     /**
@@ -49,29 +49,31 @@ class AppointmentController extends Controller
 
         $user = User::where('phone', $request->phone)->first();
 
-        if($user){
+        if ($user) {
             $request->validate([
                 'appointment_data'  => 'required|string', // get from hidden
                 'schedule'          => 'required|exists:schedules,id', // get from hidden
                 'service'           => 'required|exists:services,id',
                 'message'           => 'nullable|string',
             ]);
-        }else{
-            $request->validate([
-                'name'      => 'required|string',
-                'email'     => 'required|unique:users,email',
-                'phone'     => 'required|unique:users,phone',
-                'appointment_data' => 'required|string', // get from hidden
-                'schedule'  => 'required|exists:schedules,id', // get from hidden
-                'service'   => 'required|exists:services,id',
-                'message'   => 'nullable|string',
-                'transaction_id'     => 'nullable',
-                'advance_amount'     => 'nullable|numeric',
-            ],
-            [
-                'email.unique' => 'This email already used. Please use another email.',
-                'phone.unique' => 'This phone number already used. Please use another phone number.',
-            ]);
+        } else {
+            $request->validate(
+                [
+                    'name'      => 'required|string',
+                    'email'     => 'required|unique:users,email',
+                    'phone'     => 'required|unique:users,phone',
+                    'appointment_data' => 'required|string', // get from hidden
+                    'schedule'  => 'required|exists:schedules,id', // get from hidden
+                    'service'   => 'required|exists:services,id',
+                    'message'   => 'nullable|string',
+                    'transaction_id'     => 'nullable',
+                    'advance_amount'     => 'nullable|numeric',
+                ],
+                [
+                    'email.unique' => 'This email already used. Please use another email.',
+                    'phone.unique' => 'This phone number already used. Please use another phone number.',
+                ]
+            );
             $password = Str::random(8);
             $user = new User();
             $user->name         = $request->name;
@@ -81,10 +83,10 @@ class AppointmentController extends Controller
             $user->save();
         }
 
-        try{
+        try {
             $appointment = new Appointment();
             $appointment->customer_id       = $user->id;
-            $appointment->appointment_data  = date('Y-m-d',strtotime($request->appointment_data));
+            $appointment->appointment_data  = date('Y-m-d', strtotime($request->appointment_data));
             $appointment->schedule_id       = $request->schedule;
             $appointment->service_id        = $request->service;
             $appointment->transaction_id        = $request->transaction_id;
@@ -92,7 +94,7 @@ class AppointmentController extends Controller
             $appointment->message           = 'Booking by admin';
             $appointment->booked_by_admin   = true;
             $appointment->save();
-        }catch(\Exception $exception){
+        } catch (\Exception $exception) {
             if (request()->ajax()) {
                 return [
                     'type' => 'error',
@@ -122,7 +124,13 @@ class AppointmentController extends Controller
      */
     public function show(Appointment $appointment)
     {
-        //
+        if (request()->ajax()) {
+            return [
+                'appointment' => $appointment,
+                'service' => $appointment->service ?? null,
+                'customer_category' => $appointment->customer->category ?? null
+            ];
+        }
     }
 
     /**
@@ -165,7 +173,7 @@ class AppointmentController extends Controller
                 'data' =>  Schedule::where('schedule_day', 'friday')->get()
             ],
         ];
-        return view('backend.appointment.edit',compact('appointment', 'users', 'serviceCategories', 'schedule_days'));
+        return view('backend.appointment.edit', compact('appointment', 'users', 'serviceCategories', 'schedule_days'));
     }
 
     /**
@@ -178,18 +186,18 @@ class AppointmentController extends Controller
     public function update(Request $request, Appointment $appointment)
     {
         //Only Status change
-        if($request->request_for == 'StatusChange'){
+        if ($request->request_for == 'StatusChange') {
             $request->validate([
                 'status' => 'required'
             ]);
-            if($appointment->status == $request->status){
-                if($request->ajax()){
+            if ($appointment->status == $request->status) {
+                if ($request->ajax()) {
                     return response()->json([
                         'type' => 'worning',
-                        'message' => 'Status already '.$request->status
+                        'message' => 'Status already ' . $request->status
                     ]);
                 }
-                toastr()->error('Status already '.$request->status);
+                toastr()->error('Status already ' . $request->status);
                 return back();
             }
             $appointment->status = $request->status;
@@ -197,12 +205,12 @@ class AppointmentController extends Controller
             if (request()->ajax()) {
                 return response()->json([
                     'type' => 'success',
-                    'message' => 'Status successfully change to '.$appointment->status
+                    'message' => 'Status successfully change to ' . $appointment->status
                 ]);
             }
-            toastr()->success('Status successfully change to '.$appointment->status);
+            toastr()->success('Status successfully change to ' . $appointment->status);
             return back();
-        }else{
+        } else {
             //Full update
             $request->validate([
                 'phone'     => 'required',
@@ -210,29 +218,31 @@ class AppointmentController extends Controller
 
             $user = User::where('phone', $request->phone)->first();
 
-            if($user){
+            if ($user) {
                 $request->validate([
                     'appointment_data'  => 'required|string', // get from hidden
                     'schedule'          => 'required|exists:schedules,id', // get from hidden
                     'service'           => 'required|exists:services,id',
                     'message'           => 'nullable|string',
                 ]);
-            }else{
-                $request->validate([
-                    'name'      => 'required|string',
-                    'email'     => 'required|unique:users,email',
-                    'phone'     => 'required|unique:users,phone',
-                    'appointment_data' => 'required|string', // get from hidden
-                    'schedule'  => 'required|exists:schedules,id', // get from hidden
-                    'service'   => 'required|exists:services,id',
-                    'message'   => 'nullable|string',
-                    'transaction_id'     => 'nullable',
-                    'advance_amount'     => 'nullable|numeric',
-                ],
-                [
-                    'email.unique' => 'This email already used. Please use another email.',
-                    'phone.unique' => 'This phone number already used. Please use another phone number.',
-                ]);
+            } else {
+                $request->validate(
+                    [
+                        'name'      => 'required|string',
+                        'email'     => 'required|unique:users,email',
+                        'phone'     => 'required|unique:users,phone',
+                        'appointment_data' => 'required|string', // get from hidden
+                        'schedule'  => 'required|exists:schedules,id', // get from hidden
+                        'service'   => 'required|exists:services,id',
+                        'message'   => 'nullable|string',
+                        'transaction_id'     => 'nullable',
+                        'advance_amount'     => 'nullable|numeric',
+                    ],
+                    [
+                        'email.unique' => 'This email already used. Please use another email.',
+                        'phone.unique' => 'This phone number already used. Please use another phone number.',
+                    ]
+                );
                 $password = Str::random(8);
                 $user = new User();
                 $user->name         = $request->name;
@@ -242,9 +252,9 @@ class AppointmentController extends Controller
                 $user->save();
             }
 
-            try{
+            try {
                 $appointment->customer_id       = $user->id;
-                $appointment->appointment_data  = date('Y-m-d',strtotime($request->appointment_data));
+                $appointment->appointment_data  = date('Y-m-d', strtotime($request->appointment_data));
                 $appointment->schedule_id       = $request->schedule;
                 $appointment->service_id        = $request->service;
                 $appointment->transaction_id        = $request->transaction_id;
@@ -252,7 +262,7 @@ class AppointmentController extends Controller
                 $appointment->message           = 'Booking by admin';
                 $appointment->booked_by_admin   = true;
                 $appointment->save();
-            }catch(\Exception $exception){
+            } catch (\Exception $exception) {
                 if (request()->ajax()) {
                     return [
                         'type' => 'error',
@@ -273,7 +283,6 @@ class AppointmentController extends Controller
             toastr()->success('Successfully updated!');
             return back();
         }
-
     }
 
     /**

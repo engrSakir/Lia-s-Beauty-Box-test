@@ -13,7 +13,7 @@
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                     <li class="breadcrumb-item active">User Category</li>
                 </ol>
-                
+
             </div>
         </div>
     </div>
@@ -43,20 +43,28 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label class="form-label" for="vat_percentage">Vat Percentage<b class="text-danger">*</b> </label>
                                         <input type="number" id="vat_percentage" name="vat_percentage" class="form-control" placeholder="Vat Percentage" value="{{ old('vat_percentage') }}" required>
-                                        @error('category_name')
+                                        @error('vat_percentage')
                                         <div class="alert alert-danger" role="alert">
                                             {{ $message }}
                                         </div>
                                         @enderror
                                     </div>
                                 </div>
-
-
-
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="form-label" for="off_percentage">Off Percentage<b class="text-danger">*</b> </label>
+                                        <input type="number" id="off_percentage" name="off_percentage" class="form-control" placeholder="Off Percentage" value="{{ old('off_percentage') }}" required>
+                                        @error('off_percentage')
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-actions">
