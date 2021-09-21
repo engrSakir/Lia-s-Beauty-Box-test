@@ -1785,8 +1785,7 @@
 
     <!-- OUR EXPERTS SECTION START  -->
     <div class="section-full bg-white p-tb80">
-        <div class="container">
-            <!-- TITLE START-->
+        <!--<div class="container">
             <div class="section-head text-center">
                 <h1><span class="text-primary">Our</span> Experts</h1>
                 <div class="wt-separator-outer ">
@@ -1800,11 +1799,9 @@
                     sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                     himenaeos.</p>
             </div>
-            <!-- TITLE END-->
             <div class="section-content">
                 <div class="row">
 
-                    <!-- COLUMNS 1 -->
                     <div class="col-md-4 col-sm-4 p-tb15">
                         <div class="wt-box">
                             <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
@@ -1816,7 +1813,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- COLUMNS 2 -->
                     <div class="col-md-4 col-sm-4 p-tb15">
                         <div class="wt-box">
                             <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
@@ -1828,7 +1824,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- COLUMNS 3 -->
                     <div class="col-md-4 col-sm-4 p-tb15">
                         <div class="wt-box">
                             <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
@@ -1840,14 +1835,13 @@
                             </div>
                         </div>
                     </div>
-                    <!-- COLUMNS 4 -->
 
 
                 </div>
             </div>
-        </div>
+        </div>-->
     </div>
-    <!-- OUR EXPERTS SECTION END  -->
+    
 
     <!-- OUR SPECIAL OFFER SECTION END  -->
     <div class="section-full bg-primary">
@@ -1952,11 +1946,10 @@
     <!-- OUR GALLERY CONTENT END  -->
 
     <!-- OUR PRICING TABLE SECTION START  -->
-    <div class="section-full bg-gray bg-repeat p-tb80"
+    <!--<div class="section-full bg-gray bg-repeat p-tb80"
         style="background-image:url(assets/frontend/images/background/bg-6.jpg);">
         <div class="container">
 
-            <!-- TITLE START-->
             <div class="section-head text-center">
                 <h1><span class="text-primary">Our</span> Pricing</h1>
                 <div class="wt-separator-outer ">
@@ -1970,7 +1963,6 @@
                     sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                     himenaeos.</p>
             </div>
-            <!-- TITLE END-->
 
             <div class="section-content">
                 <div class="pricingtable-row">
@@ -2016,12 +2008,11 @@
 
         </div>
     </div>
-    <!-- OUR PRICING TABLEL SECTION END  -->
+     -->
 
     <!-- OUR PROJECTS SECTION START  -->
-    <div class="section-full bg-white p-tb80">
+   <!-- <div class="section-full bg-white p-tb80">
         <div class="container">
-            <!-- TITLE START-->
             <div class="section-head text-center">
                 <h1><span class="text-primary">Our</span> Products</h1>
                 <div class="wt-separator-outer ">
@@ -2035,11 +2026,9 @@
                     sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                     himenaeos.</p>
             </div>
-            <!-- TITLE END-->
             <div class="section-content">
                 <div class="row">
 
-                    <!-- COLUMNS 1 -->
                     <div class="col-md-4 col-sm-4 p-tb15">
                         <div class="wt-box">
                             <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
@@ -2052,7 +2041,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- COLUMNS 2 -->
                     <div class="col-md-4 col-sm-4 p-tb15">
                         <div class="wt-box">
                             <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
@@ -2065,7 +2053,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- COLUMNS 3 -->
                     <div class="col-md-4 col-sm-4 p-tb15">
                         <div class="wt-box">
                             <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
@@ -2078,14 +2065,13 @@
                             </div>
                         </div>
                     </div>
-                    <!-- COLUMNS 4 -->
 
 
                 </div>
             </div>
         </div>
     </div>
-    <!-- OUR PROJECTS SECTION END  -->
+      -->
 
     <!-- OUR TESTIMONIAL SECTION START  -->
     <div class="section-full bg-gray bg-repeat p-t80 p-b120"
