@@ -32,6 +32,7 @@
                                 <th scope="col">UserName</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Phone</th>
+                                <th scope="col">Category</th>
                                 <th scope="col">Created At</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -43,6 +44,7 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->phone }}</td>
+                                    <td>{{ $user->category->name ?? '-' }}</td>
                                     <td>{{ $user->created_at->format('d/m/Y') }}</td>
                                     <td>
                                     <a  class="text-warning" href="{{ route('backend.user.edit', $user) }}">
