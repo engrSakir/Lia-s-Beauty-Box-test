@@ -24,12 +24,12 @@ class FrontEndController extends Controller
     {
         $clients = Client::all();
         $galleries = Gallery::all();
-        $imageCategories= ImageCategory::all();
+        $imageCategories = ImageCategory::all();
         $serviceCategories = ServiceCategory::all();
         $services = Service::all();
         $banners = Banner::all();
         $testimonials = Testimonial::all();
-        return view('frontend.home', compact('testimonials','banners','clients', 'galleries','imageCategories', 'serviceCategories', 'services'));
+        return view('frontend.home', compact('testimonials', 'banners', 'clients', 'galleries', 'imageCategories', 'serviceCategories', 'services'));
     }
 
     public function booking()
@@ -49,13 +49,20 @@ class FrontEndController extends Controller
                 return [
                     'day_name' => $day_name,
                     'date' => request()->appointment_data,
-                    'userCount' => Appointment::where('schedule_id', request()->schedule_id)->count(),
                     'schedules' => \App\Models\Schedule::where('schedule_day', $day_name)->get()
                 ];
             }
-
             if (request()->request_for == "Schedule Details") {
-                return  \App\Models\Schedule::find(request()->schedule_id) ?? null;
+                $schedule = \App\Models\Schedule::find(request()->schedule_id) ?? null;
+                if ($schedule) {
+                    $max_participent_in_this_day = Appointment::where('appointment_data', date('Y-m-d', strtotime(request()->appointment_data)))->where('schedule_id',  $schedule->id)->count();
+                    return [
+                        'schedule' => $schedule,
+                        'booking_count' => $max_participent_in_this_day,
+                    ];
+                } else {
+                    return 'Invalid Schedule';
+                }
             }
         }
 
@@ -63,24 +70,27 @@ class FrontEndController extends Controller
         return view('frontend.booking', compact('serviceCategories'));
     }
 
-    public function bookingStore(Request $request){
-        if(!auth()->check()){
+    public function bookingStore(Request $request)
+    {
+        if (!auth()->check()) {
             //Validation check for gust user | Create user first
-            $request->validate([
-                'name'      => 'required|string',
-                'email'     => 'required|unique:users,email',
-                'phone'     => 'required|unique:users,phone',
-                'transaction_id'     => 'nullable',
-                'advance_amount'     => 'nullable|numeric',
-                'appointment_data' => 'required|string', // get from hidden
-                'schedule'  => 'required|exists:schedules,id', // get from hidden
-                'service'   => 'required|exists:services,id',
-                'message'   => 'nullable|string',
-            ],
-            [
-                'email.unique' => 'Already you have an account. Please login before order or use another email.',
-                'phone.unique' => 'Already you have an account. Please login before order or use another phone.',
-            ]);
+            $request->validate(
+                [
+                    'name'      => 'required|string',
+                    'email'     => 'required|unique:users,email',
+                    'phone'     => 'required|unique:users,phone',
+                    'transaction_id'     => 'required|string',
+                    'advance_amount'     => 'required|numeric',
+                    'appointment_data' => 'required|string', // get from hidden
+                    'schedule'  => 'required|exists:schedules,id', // get from hidden
+                    'service'   => 'required|exists:services,id',
+                    'message'   => 'nullable|string',
+                ],
+                [
+                    'email.unique' => 'Already you have an account. Please login before order or use another email.',
+                    'phone.unique' => 'Already you have an account. Please login before order or use another phone.',
+                ]
+            );
 
             $password = Str::random(8);
             $user = new User();
@@ -89,7 +99,7 @@ class FrontEndController extends Controller
             $user->phone        = $request->phone;
             $user->password     = bcrypt($password);
             $user->save();
-        }else{
+        } else {
             //Validation check for auth user
             $request->validate([
                 'appointment_data'  => 'required|string', // get from hidden
@@ -100,22 +110,31 @@ class FrontEndController extends Controller
             $user = Auth::user();
         }
 
-        try{
-            $appointment = new Appointment();
-            $appointment->customer_id       = $user->id;
-            $appointment->appointment_data  = date('Y-m-d',strtotime($request->appointment_data));
-            $appointment->schedule_id       = $request->schedule;
-            $appointment->service_id        = $request->service;
-            $appointment->message           = $request->message;
-            $appointment->transaction_id        = $request->transaction_id;
-            $appointment->advance_amount           = $request->advance_amount;
-            $appointment->save();
-            
-        }catch(\Exception $exception){
+        try {
+            $schedule = \App\Models\Schedule::find($request->schedule) ?? null;
+            $max_participent_in_this_day = Appointment::where('appointment_data', date('Y-m-d', strtotime(request()->appointment_data)))->where('schedule_id',  $request->schedule)->count();
+            if ($max_participent_in_this_day < $schedule->maximum_participant) {
+                $appointment = new Appointment();
+                $appointment->customer_id       = $user->id;
+                $appointment->appointment_data  = date('Y-m-d', strtotime($request->appointment_data));
+                $appointment->schedule_id       = $request->schedule;
+                $appointment->service_id        = $request->service;
+                $appointment->message           = $request->message;
+                $appointment->transaction_id    = $request->transaction_id;
+                $appointment->advance_amount    = $request->advance_amount;
+                $appointment->save();
+            } else {
+                return [
+                    'type' => 'error',
+                    'message' => 'Housefull',
+                ];
+            }
+        } catch (\Exception $exception) {
             if (request()->ajax()) {
                 return [
                     'type' => 'error',
                     'message' => 'Something went wrong.',
+                    // 'message' => $exception->getMessage(),
                 ];
             }
             toastr()->error('Something went wrong!');
@@ -133,14 +152,16 @@ class FrontEndController extends Controller
         return back();
     }
 
-    public function service(){
+    public function service()
+    {
         $serviceCategories = ServiceCategory::all();
         return view('frontend.service', compact('serviceCategories'));
     }
 
-    public function serviceDetails($slug){
+    public function serviceDetails($slug)
+    {
         $service = Service::where('slug', $slug)->first();
-        if($service){
+        if ($service) {
             $schedule_days = [
                 [
                     'day_name' => 'saturday',
@@ -172,7 +193,7 @@ class FrontEndController extends Controller
                 ],
             ];
             return view('frontend.service-details', compact('service', 'schedule_days'));
-        }else{
+        } else {
             abort(404);
         }
     }

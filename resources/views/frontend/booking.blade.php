@@ -115,13 +115,13 @@
                         <form class="cons-contact-form" id="appointment_form">
                             <div class="row">
                                 @guest
-                                <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <div class="input-group">
-                                            <label for="address">Message</label></br>
-                                            {{ get_static_option('advance_message') }} </br>
-                                            <label for="address">Minimum Advance Amount:-</label>
-                                            {{ get_static_option('advance_amount') }} 
+                                                <label for="address">Message</label></br>
+                                                {{ get_static_option('advance_message') }} </br>
+                                                <label for="address">Minimum Advance Amount:-</label>
+                                                {{ get_static_option('advance_amount') }}
                                             </div>
                                         </div>
                                     </div>
@@ -154,26 +154,25 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                                <input name="transaction_id" type="text" class="form-control" required=""
-                                                    placeholder="Transaction ID">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-                                                <input name="advance_amount" type="number" class="form-control" required=""
-                                                    placeholder="Advance Amount">
-                                            </div>
-                                        </div>
-                                    </div>
                                 @endguest
-
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                            <input name="transaction_id" type="text" class="form-control" required=""
+                                                placeholder="Transaction ID">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+                                            <input name="advance_amount" type="number" class="form-control" required=""
+                                                placeholder="Advance Amount">
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="input-group">
@@ -205,7 +204,8 @@
 
                                 <div class="col-md-12 text-right">
                                     <button name="submit" type="button" class="site-button  m-r15"
-                                        id="appointment_submit_btn">Submit <i class="fa fa-angle-double-right"></i></button>
+                                        id="appointment_submit_btn">Submit <i
+                                            class="fa fa-angle-double-right"></i></button>
                                     <button name="Resat" type="reset" class="site-button ">Reset <i
                                             class="fa fa-angle-double-right"></i></button>
                                 </div>
@@ -252,21 +252,17 @@
                     request_for: 'Schedules by Date',
                     appointment_data: moment(new Date(date)).format("DD-MM-YYYY"),
                 },
-                success: function(response) {                   
-                     // console.log(response);
-                     var userCount = response.userCount;
-                     alert(userCount);
+                success: function(response) {
                     $('#schedule').html('')
                     $.each(response.schedules, function(schedule_index, schedule) {
                         var schedule_counter = 0;
-                        var maxUser = schedule.maximum_participant;
-                        var message =`<div>Housefull</div>` ;
-                            $('#schedule_id').val(schedule.id);
+                        $('#schedule_id').val(schedule.id);
                         var starting_time = moment(Date("1/1/1900 " + schedule.starting_time)).format(
                             'hh:mm:ss a');
                         var ending_time = moment(Date("1/1/1900 " + schedule.ending_time)).format(
                             'hh:mm:ss a');
                         var title = schedule.title;
+                        var maximum_participant = schedule.maximum_participant;
                         var html = `<div class="widget bg-white recent-posts-entry schedule-box btn waves-effect waves-light btn-outline-primary"
                         onclick="bookingModal(` + schedule.id + `)">
                                     <div class="widget-post-bx">
@@ -282,19 +278,15 @@
                                                     <ul>
                                                         <li class="post-author">` + starting_time + ` to ` +
                             ending_time + `</li>
-                                                        <li class="post-comment"><i class="fa fa-comments"></i> 28</li>
+                                                        <li class="post-comment"><i class="fa fa-comments"></i> ` +
+                            maximum_participant + `</li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>`;
-                                if(userCount<=maxUser){
-                                    $('#schedule').append(html);
-                                }
-                                else{
-                                    $('#schedule').append(message);
-                                }
+                        $('#schedule').append(html);
                     });
                 }
             });
@@ -317,16 +309,23 @@
                 data: {
                     request_for: 'Schedule Details',
                     schedule_id: schedule_id,
+                    appointment_data: $("#appointment_data").val(),
                 },
                 success: function(response) {
-                    //console.log(response);
-                    var starting_time = moment(Date("1/1/1900 " + response.starting_time)).format('hh:mm:ss a');
-                    var ending_time = moment(Date("1/1/1900 " + response.ending_time)).format('hh:mm:ss a');
-                    $('#schedule_title').text(response.title);
-                    $('#schedule_date').text($("#appointment_data").val());
-                    $('#schedule_time').text(starting_time + ' To ' + ending_time);
-                    $('#schedule_id').val(response.id);
-                    $('#booking_modal').modal('show');
+                    console.log(response);
+                    if (response.booking_count <= response.schedule.maximum_participant) {
+                        var starting_time = moment(Date("1/1/1900 " + response.schedule.starting_time)).format(
+                            'hh:mm:ss a');
+                        var ending_time = moment(Date("1/1/1900 " + response.schedule.ending_time)).format(
+                            'hh:mm:ss a');
+                        $('#schedule_title').text(response.schedule.title);
+                        $('#schedule_date').text($("#appointment_data").val());
+                        $('#schedule_time').text(starting_time + ' To ' + ending_time);
+                        $('#schedule_id').val(response.schedule.id);
+                        $('#booking_modal').modal('show');
+                    } else {
+                        alert('Housefull');
+                    }
                 }
             });
         }
