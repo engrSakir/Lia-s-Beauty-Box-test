@@ -85,7 +85,7 @@
         style="background-image:url(assets/frontend/images/background/bg-1.png);">
         <div class="container ">
             <div class="section-head text-center">
-                <h1><span class="text-primary"> Welcome to </span> Spa center</h1>
+                <h1><span class="text-primary"> Welcome to </span> Lia's Beauty Box</h1>
                 <div class="wt-separator-outer ">
                     <div class="wt-separator style-icon">
                         <i class="fa fa-leaf text-black"></i>
@@ -95,9 +95,7 @@
                 </div>
 
                 <p class="font-16"><strong>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor
-                        tellus sollicitudin at.Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-                        inceptos himenaeos.
+                Hello,I am a international certified makeup artist.I do bridal makeover.I use all the highend produc
                     </strong>
                 </p>
 
@@ -126,9 +124,8 @@
                                 <span class="icon-cell text-white"><span class="flaticon-female-hairs"></span></span>
                             </div>
                             <div class="icon-content">
-                                <h4 class="wt-tilte font-weight-500">Massage Therapy</h4>
-                                <p class="text-secondry">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                    industry.</p>
+                                <h4 class="wt-tilte font-weight-500"> Bridal Makeup</h4>
+                                <p class="text-secondry"></p>
                             </div>
                         </div>
                     </div>
@@ -138,9 +135,8 @@
                                 <span class="icon-cell text-white"><span class="flaticon-scissors"></span></span>
                             </div>
                             <div class="icon-content">
-                                <h4 class="wt-tilte font-weight-500">Natural Spa</h4>
-                                <p class="text-secondry">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                    industry.</p>
+                                <h4 class="wt-tilte font-weight-500">Hair Treatment</h4>
+                                <p class="text-secondry"></p>
                             </div>
                         </div>
                     </div>
@@ -151,8 +147,7 @@
                             </div>
                             <div class="icon-content">
                                 <h4 class="wt-tilte font-weight-500">Skin & Beauty Care</h4>
-                                <p class="text-secondry">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                    industry.</p>
+                                <p class="text-secondry"></p>
                             </div>
                         </div>
                     </div>
@@ -176,9 +171,7 @@
                         <span class="separator-right bg-primary"></span>
                     </div>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus
-                    sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                    himenaeos.</p>
+                <p></p>
             </div>
             <!-- TITLE END-->
             <div class="section-content   our-services-index">
@@ -235,9 +228,7 @@
                         <span class="separator-right bg-primary"></span>
                     </div>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus
-                    sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                    himenaeos.</p>
+                <p></p>
             </div>
             <!-- TITLE END-->
             <div class="tab-content">
@@ -2074,10 +2065,9 @@
       -->
 
     <!-- OUR TESTIMONIAL SECTION START  -->
-    <div class="section-full bg-gray bg-repeat p-t80 p-b120"
+    <!--<div class="section-full bg-gray bg-repeat p-t80 p-b120"
         style="background-image:url(assets/frontend/images/background/bg-6.jpg);">
         <div class="container">
-            <!-- TITLE START-->
             <div class="section-head text-center">
                 <h1><span class="text-primary">What</span> People Say</h1>
                 <div class="wt-separator-outer ">
@@ -2089,7 +2079,6 @@
                 </div>
                
             </div>
-            <!-- TITLE END-->
             <div class="section-content">
                 <div class="owl-carousel home-carousel-1">
                 @foreach ($testimonials as $testimonial)
@@ -2118,7 +2107,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
     <!-- OUR TESTIMONIAL SECTION END  -->
 
     <!-- CONTACT US SECTION END  -->
