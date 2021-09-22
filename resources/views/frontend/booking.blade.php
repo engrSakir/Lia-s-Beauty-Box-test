@@ -115,6 +115,16 @@
                         <form class="cons-contact-form" id="appointment_form">
                             <div class="row">
                                 @guest
+                                <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                            <label for="address">Message</label></br>
+                                            {{ get_static_option('advance_message') }} </br>
+                                            <label for="address">Minimum Advance Amount:-</label>
+                                            {{ get_static_option('advance_amount') }} 
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <div class="input-group">
@@ -149,7 +159,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                                                 <input name="transaction_id" type="text" class="form-control" required=""
-                                                    placeholder="Bkash Transaction ID">
+                                                    placeholder="Transaction ID">
                                             </div>
                                         </div>
                                     </div>
@@ -240,13 +250,18 @@
                 url: "{{ route('booking') }}",
                 data: {
                     request_for: 'Schedules by Date',
-                    appointment_data: moment(new Date(date)).format("DD-MM-YYYY")
+                    appointment_data: moment(new Date(date)).format("DD-MM-YYYY"),
                 },
-                success: function(response) {
-                    // console.log(response);
+                success: function(response) {                   
+                     // console.log(response);
+                     var userCount = response.userCount;
+                     alert(userCount);
                     $('#schedule').html('')
                     $.each(response.schedules, function(schedule_index, schedule) {
                         var schedule_counter = 0;
+                        var maxUser = schedule.maximum_participant;
+                        var message =`<div>Housefull</div>` ;
+                            $('#schedule_id').val(schedule.id);
                         var starting_time = moment(Date("1/1/1900 " + schedule.starting_time)).format(
                             'hh:mm:ss a');
                         var ending_time = moment(Date("1/1/1900 " + schedule.ending_time)).format(
@@ -274,7 +289,12 @@
                                         </div>
                                     </div>
                                 </div>`;
-                        $('#schedule').append(html);
+                                if(userCount<=maxUser){
+                                    $('#schedule').append(html);
+                                }
+                                else{
+                                    $('#schedule').append(message);
+                                }
                     });
                 }
             });

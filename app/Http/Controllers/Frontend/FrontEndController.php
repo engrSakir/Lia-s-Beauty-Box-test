@@ -49,6 +49,7 @@ class FrontEndController extends Controller
                 return [
                     'day_name' => $day_name,
                     'date' => request()->appointment_data,
+                    'userCount' => Appointment::where('schedule_id', request()->schedule_id)->count(),
                     'schedules' => \App\Models\Schedule::where('schedule_day', $day_name)->get()
                 ];
             }
@@ -109,6 +110,7 @@ class FrontEndController extends Controller
             $appointment->transaction_id        = $request->transaction_id;
             $appointment->advance_amount           = $request->advance_amount;
             $appointment->save();
+            
         }catch(\Exception $exception){
             if (request()->ajax()) {
                 return [
