@@ -17,8 +17,8 @@ class SettingController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'mobile' => 'required|numeric',
-            'email' => 'required|email',
+            'mobile' => 'nullable|numeric',
+            'email' => 'nullable|email',
             'facebook' => 'nullable|string',
             'twitter' => 'nullable|string',
             'linkedin' => 'nullable|string',
@@ -34,7 +34,8 @@ class SettingController extends Controller
             'time3' => 'nullable|string',
             'logo' => 'nullable|image',
             'about' => 'nullable|string',
-
+            'advance_amount' => 'nullable|numeric',
+            'advance_message' => 'nullable|string',
 
         ]);
 
@@ -61,7 +62,8 @@ class SettingController extends Controller
         update_static_option('time3', $request->time3);
 
         update_static_option('about', $request->about);
-
+        update_static_option('advance_amount', $request->advance_amount);
+        update_static_option('advance_message', $request->advance_message);
 
        if($request->hasFile('logo')){
         update_static_option('logo',file_uploader('uploads/logo/', $request->logo, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::random(8)));

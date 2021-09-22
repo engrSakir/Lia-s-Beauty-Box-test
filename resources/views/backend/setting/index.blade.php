@@ -65,7 +65,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group has-success">
                                     <label for="address">Address</label>
-                                            <input type="text" name="address" value="{{ get_static_option('address') }}" id="address" class="form-control">
+                                            <textarea class="form-control" name="address"  id="address">{{ get_static_option('address') }}</textarea>
                                             @error('address')
                                             <div class="alert alert-danger" role="alert">
                                                 {{ $message }}
@@ -261,6 +261,33 @@
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
+
+
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                        <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                    <label for="address">Minimum Advance Amount</label>
+                                         <input type="number" name="advance_amount" value="{{ get_static_option('advance_amount') }}" id="advance_amount" class="form-control">
+                                            @error('advance_amount')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                <label for="address">Message</label>
+                                            <textarea class="form-control" name="advance_message">{{ get_static_option('advance_message') }}</textarea>
+                                            @error('advance_message')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
 
 
                                 </div>
