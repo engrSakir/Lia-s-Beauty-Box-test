@@ -112,7 +112,7 @@ class FrontEndController extends Controller
 
         try {
             $schedule = \App\Models\Schedule::find($request->schedule) ?? null;
-            $max_participent_in_this_day = Appointment::where('appointment_data', date('Y-m-d', strtotime(request()->appointment_data)))->where('schedule_id',  $request->schedule)->count();
+            $max_participent_in_this_day = Appointment::where('appointment_data', date('Y-m-d', strtotime(request()->appointment_data)))->where('schedule_id',  $request->schedule)->where('status','!=', 'Reject')->count();
             if ($max_participent_in_this_day < $schedule->maximum_participant) {
                 $appointment = new Appointment();
                 $appointment->customer_id       = $user->id;

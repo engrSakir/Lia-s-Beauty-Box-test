@@ -356,7 +356,7 @@
 
                 },
                 success: function(data) {
-                    console.log(data)
+                    // console.log(data)
                     $('#appointment_form').trigger("reset");
                     Swal.fire({
                         icon: data.type,

@@ -236,12 +236,12 @@
                 },
                 success: function(response) {
                     //console.log(response);
-                    var starting_time = moment(Date("1/1/1900 " + response.starting_time)).format('hh:mm:ss a');
-                    var ending_time = moment(Date("1/1/1900 " + response.ending_time)).format('hh:mm:ss a');
-                    $('#schedule_title').text(response.title);
+                    var starting_time = moment(Date("1/1/1900 " + response.schedule.starting_time)).format('hh:mm:ss a');
+                    var ending_time = moment(Date("1/1/1900 " + response.schedule.ending_time)).format('hh:mm:ss a');
+                    $('#schedule_title').text(response.schedule.title);
                     $('#schedule_date').text($("#appointment_data").val());
                     $('#schedule_time').text(starting_time + ' To ' + ending_time);
-                    $('#schedule_id').val(response.id);
+                    $('#schedule_id').val(response.schedule.id);
                     $('#booking_modal').modal('show');
                 }
             });

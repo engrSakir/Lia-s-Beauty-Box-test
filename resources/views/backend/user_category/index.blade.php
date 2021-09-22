@@ -42,7 +42,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $userCategory->name }}</td>
                                     <td>{{ $userCategory->vat_percentage }}</td>
-                                    <td>{{ $userCategory->off_percentage }}</td>
+                                    <td>{{ $userCategory->discount_percentage }}</td>
                                     <td>{{ $userCategory->created_at->format('d/m/Y') }}</td>
                                     <td>
                                     <a  class="text-warning" href="{{ route('backend.userCategory.edit', $userCategory) }}">

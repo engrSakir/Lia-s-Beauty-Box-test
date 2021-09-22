@@ -51,6 +51,9 @@ class InvoiceController extends Controller
             'appointment_id'    => 'required|exists:appointments,id',
             'service_data_set'  => 'required',
             'vat_percentage'    => 'nullable|numeric|min:0|max:100',
+            'discount_percentage'=> 'nullable|numeric|min:0|max:100',
+            // 'advance_payment_amount'=> 'nullable|numeric', // get from invoice
+            'new_payment_amount'=> 'nullable|numeric',
             'note'              => 'nullable|string',
         ]);
         //Change appointment status
@@ -83,6 +86,10 @@ class InvoiceController extends Controller
                 $invoiceItem->price     = $service_data['price'];
                 $invoiceItem->save();
             }
+            $payment = new Payment();
+            $payment->invoice_id = $invoice->id;
+            $payment->amount = $request->new_payment_amount + $appointment->advance_amount ?? 0;
+            $payment->save();
         }catch(\Exception $e){
             // Appointment status back and invoice delete
             $invoice->delete();
@@ -97,6 +104,7 @@ class InvoiceController extends Controller
         return [
             'type' => 'success',
             'message' => 'Successfully Created',
+            'invoice_url' => route('backend.invoice.show', $invoice->id),
         ];
     }
 

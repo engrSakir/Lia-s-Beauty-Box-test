@@ -56,9 +56,9 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="form-label" for="off_percentage">Off Percentage<b class="text-danger">*</b> </label>
-                                        <input type="number" id="off_percentage" name="off_percentage" class="form-control" placeholder="Off Percentage" value="{{ old('off_percentage') }}" required>
-                                        @error('off_percentage')
+                                        <label class="form-label" for="discount_percentage">Discount percentage<b class="text-danger">*</b> </label>
+                                        <input type="number" id="discount_percentage" name="discount_percentage" class="form-control" placeholder="Discount percentage" value="{{ old('discount_percentage') }}" required>
+                                        @error('discount_percentage')
                                         <div class="alert alert-danger" role="alert">
                                             {{ $message }}
                                         </div>
