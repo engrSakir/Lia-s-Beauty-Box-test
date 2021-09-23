@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title') Dashboard @endsection
+@section('title') Banner @endsection
 
 @section('bread-crumb')
     <div class="row page-titles">
@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="form-label" for="title">Short Description </label>
+                                        <label class="form-label" for="short_description">Short Description </label>
                                         <textarea class="form-control" id="short_description" name="short_description" rows="3"
                                                     >{{ $banner->short_description }}</textarea>
                                     </div>
@@ -92,7 +92,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
                                     <label class="form-label">Link</label>
-                                    <input type="text" id="title" name="link" class="form-control" placeholder="URL" value="{{ $banner->link }}">
+                                    <input type="text" id="link" name="link" class="form-control" placeholder="URL" value="{{ $banner->link }}">
                                         @error('link')
                                         <div class="alert alert-danger" role="alert">
                                             {{ $message }}

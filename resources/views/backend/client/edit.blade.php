@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title') Dashboard @endsection
+@section('title') Client @endsection
 
 @section('bread-crumb')
     <div class="row page-titles">
@@ -48,7 +48,7 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
-                                    <label class="col-md-12" for="image">Logo</label>
+                                    <label class="col-md-12" for="image">Logo <b class="text-danger">*</b></label>
                                     <div class="col-md-12">
                                         <input type="file" name="image" accept="image/*" class="form-control image-chose-btn image-importer" id="image">
                                         <img id="image_display" width="150" src="{{ asset($client->logo ?? 'uploads/images/no_image.png') }}" class="image-display" alt="User image"/>
