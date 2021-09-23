@@ -31,36 +31,32 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
-Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'], function (){
+Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'], function () {
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('profile', [ProfileController::class, 'update']);
-    Route::get('setting', [SettingController::class, 'index'])->name('setting');
-    Route::post('setting', [SettingController::class, 'update']);
 
-    Route::get('payment/{invoice}', [InvoiceController::class, 'payment'])->name('invoice.payment');
-    Route::patch('payment/{invoice}', [InvoiceController::class, 'paymentStore']);
-    Route::get('payment-receipt/{payment}', [InvoiceController::class, 'paymentReceipt'])->name('paymentReceipt');
+    Route::group(['middleware' => ['role:Admin']], function () {
+        Route::get('setting', [SettingController::class, 'index'])->name('setting');
+        Route::post('setting', [SettingController::class, 'update']);
 
-    Route::resource('schedule', ScheduleController::class);
-    Route::resource('service', ServiceController::class);
-    Route::resource('serviceCategory', ServiceCategoryController::class);
-    Route::resource('user', UserController::class);
-    Route::resource('client', ClientController::class);
-    Route::resource('gallery', GalleryController::class);
-    Route::resource('imageCategory', ImageCategoryController::class);
-    Route::resource('appointment', AppointmentController::class);
-    Route::resource('invoice', InvoiceController::class);
-    Route::resource('expense', ExpenseController::class);
-    Route::resource('expenseCategory', ExpenseCategoryController::class);
-    Route::resource('banner', BannerController::class);
-    Route::resource('testimonial', TestimonialController::class);
-    Route::resource('questionaire', QuestionaireController::class);
-    Route::resource('userCategory', UserCategoryController::class);
+        Route::get('payment/{invoice}', [InvoiceController::class, 'payment'])->name('invoice.payment');
+        Route::patch('payment/{invoice}', [InvoiceController::class, 'paymentStore']);
+        Route::get('payment-receipt/{payment}', [InvoiceController::class, 'paymentReceipt'])->name('paymentReceipt');
 
-
-
-
+        Route::resource('schedule', ScheduleController::class);
+        Route::resource('service', ServiceController::class);
+        Route::resource('serviceCategory', ServiceCategoryController::class);
+        Route::resource('user', UserController::class);
+        Route::resource('client', ClientController::class);
+        Route::resource('gallery', GalleryController::class);
+        Route::resource('imageCategory', ImageCategoryController::class);
+        Route::resource('appointment', AppointmentController::class);
+        Route::resource('invoice', InvoiceController::class);
+        Route::resource('expense', ExpenseController::class);
+        Route::resource('expenseCategory', ExpenseCategoryController::class);
+        Route::resource('banner', BannerController::class);
+        Route::resource('testimonial', TestimonialController::class);
+        Route::resource('questionaire', QuestionaireController::class);
+        Route::resource('userCategory', UserCategoryController::class);
+    });
 });
-
-
-

@@ -20,5 +20,14 @@ class UserSeeder extends Seeder
         $user->email = 'admin@gmail.com';
         $user->password = bcrypt('password');
         $user->save();
+        $user->assignRole('Admin');
+
+        //Customer
+        $user = new User();
+        $user->name = 'Customer';
+        $user->email = 'customer@gmail.com';
+        $user->password = bcrypt('password');
+        $user->save();
+        $user->assignRole('Customer');
     }
 }
