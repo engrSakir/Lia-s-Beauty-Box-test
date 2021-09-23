@@ -293,8 +293,9 @@
             $('#total_amount').val((total - discount_sum).toFixed(2));
 
             total_after_discount = $('#total_amount').val();
-            tax_sum = total_after_discount / 100 * $('#tax').val();
+            tax_sum = total / 100 * $('#tax').val();
             $('#tax_amount').val(tax_sum.toFixed(2));
+
             $('#total_amount').val((parseFloat(tax_sum) + parseFloat(total_after_discount)).toFixed(2));
             $('#due_after_advance_amount').val((parseFloat(tax_sum) + parseFloat(total_after_discount) - $(
                 '#advance_payment_amount').val()).toFixed(2));
