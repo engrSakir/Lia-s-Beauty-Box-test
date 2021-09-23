@@ -49,6 +49,7 @@ class UserController extends Controller
             'user_email' => 'required|unique:users,email',
             'user_phone' => 'required|string|max:11',
             'user_category' => 'nullable|exists:user_categories,id',
+            'password'      => 'required'
         ]);
 
         $user = new User();
