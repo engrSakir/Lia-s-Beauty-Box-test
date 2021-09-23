@@ -25,7 +25,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                <table class="table color-table primary-table">
+                <table class="table color-bordered-table primary-bordered-table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -38,7 +38,7 @@
                             @foreach($questionaires as $questionaire)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $questionaire->question ?? '#' }}</td>                                    
+                                    <td>{{ $questionaire->question ?? '#' }}</td>
                                     <td>{{ $questionaire->created_at->format('d/m/Y') }}</td>
                                     <td>
                                     <a  class="text-warning" href="{{ route('backend.questionaire.edit', $questionaire) }}">
