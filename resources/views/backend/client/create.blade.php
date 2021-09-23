@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title') Dashboard @endsection
+@section('title') Client @endsection
 
 @section('bread-crumb')
     <div class="row page-titles">
@@ -34,8 +34,8 @@
                             <div class="row pt-3">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="form-label" for="title">Client Name<b class="text-danger">*</b> </label>
-                                        <input type="text" id="title" name="client_name" class="form-control" placeholder="Client Name" value="{{ old('client_name') }}" required>
+                                        <label class="form-label" for="client_name">Client Name<b class="text-danger">*</b> </label>
+                                        <input type="text" id="client_name" name="client_name" class="form-control" placeholder="Client Name" value="{{ old('client_name') }}" required>
                                         @error('client_name')
                                         <div class="alert alert-danger" role="alert">
                                             {{ $message }}
@@ -46,9 +46,9 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
-                                    <label class="col-md-12" for="image">Logo</label>
+                                    <label class="col-md-12" for="image">Logo <b class="text-danger">*</b></label>
                                     <div class="col-md-12">
-                                        <input type="file" name="image" accept="image/*" class="form-control image-chose-btn image-importer" id="image">
+                                        <input type="file" name="image" accept="image/*" class="form-control image-chose-btn image-importer" id="image" required>
                                         @error('image')
                                         <div class="alert alert-danger" role="alert">
                                             {{ $message }}

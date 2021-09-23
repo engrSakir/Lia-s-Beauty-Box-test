@@ -13,7 +13,7 @@ class ScheduleController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response 
      */
     public function index()
     {
@@ -71,6 +71,7 @@ class ScheduleController extends Controller
     {
         $request->validate([
             'title' => 'required',
+            'maximum_participant' => 'required|numeric|min:1',
             'starting_time' => 'required',
             'ending_time' => 'required',
             'schedule_day' => 'required',
@@ -101,7 +102,10 @@ class ScheduleController extends Controller
      */
     public function show(Schedule $schedule)
     {
-        //
+        if(request()->ajax()){
+            return $schedule;
+        }
+        return view('backend.schedule.show', compact('schedule'));
     }
 
     /**
@@ -126,6 +130,7 @@ class ScheduleController extends Controller
     {
         $request->validate([
             'title' => 'required',
+            'maximum_participant' => 'required|numeric|min:1',
             'starting_time' => 'required',
             'ending_time' => 'required',
             'schedule_day' => 'required',

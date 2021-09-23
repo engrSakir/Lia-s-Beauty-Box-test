@@ -363,11 +363,10 @@
     <!-- WELCOME COMPANY SECTION END -->
 
     <!-- OUR SERVICES SECTION START  -->
-    <div class="section-full bg-gray p-t80 p-b120 bg-repeat"
+    <!--<div class="section-full bg-gray p-t80 p-b120 bg-repeat"
         style="background-image:url({{ asset('assets/frontend/images/background/bg-6.jpg') }});">
         <div class="container-fluid">
-            <!-- TITLE START-->
-            <div class="section-head text-center">
+          <div class="section-head text-center">
                 <h1><span class="text-primary">Services </span> For You</h1>
                 <div class="wt-separator-outer ">
                     <div class="wt-separator style-icon">
@@ -378,7 +377,6 @@
                 </div>
                 <p></p>
             </div>
-            <!-- TITLE END-->
             <div class="section-content   our-services-index">
                 <div class="owl-carousel home-carousel-2">
                     @foreach ($services as $service)
@@ -417,7 +415,7 @@
             </div>
 
         </div>
-    </div>
+    </div>-->
     <!-- OUR SERVICES SECTION END  -->
 
     <!-- PRICING SECTION START  -->
