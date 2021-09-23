@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title') Dashboard @endsection
+@section('title') Gallery @endsection
 
 @section('bread-crumb')
     <div class="row page-titles">

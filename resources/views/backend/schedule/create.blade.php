@@ -46,7 +46,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
                                         <label class="form-label" for="maximum_participant">Maximum participant <b class="text-danger">*</b></label>
-                                        <input type="number" id="maximum_participant" name="maximum_participant" class="form-control form-control-danger" placeholder="3/5/10" value="{{ old('maximum_participant') }}">
+                                        <input type="number" id="maximum_participant" name="maximum_participant" class="form-control form-control-danger" placeholder="3/5/10" value="{{ old('maximum_participant') }}" required>
                                         @error('maximum_participant')
                                         <div class="alert alert-danger" role="alert">
                                             {{ $message }}
