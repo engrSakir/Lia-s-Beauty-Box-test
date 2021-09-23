@@ -100,6 +100,7 @@ class FrontEndController extends Controller
             $user->phone        = $request->phone;
             $user->password     = bcrypt($password);
             $user->save();
+            $user->assignRole('Customer');
         } else {
             //Validation check for auth user
             $request->validate([

@@ -81,6 +81,7 @@ class AppointmentController extends Controller
             $user->phone        = $request->phone;
             $user->password     = bcrypt($password);
             $user->save();
+            $user->assignRole('Customer');
         }
 
         try {
@@ -260,6 +261,7 @@ class AppointmentController extends Controller
                 $user->phone        = $request->phone;
                 $user->password     = bcrypt($password);
                 $user->save();
+                $user->assignRole('Customer');
             }
 
             try {

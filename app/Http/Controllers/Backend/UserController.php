@@ -61,6 +61,7 @@ class UserController extends Controller
             $user->image = file_uploader('uploads/user-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($request->user_name, '-'));
         }
         $user->save();
+        $user->assignRole('Customer');
 
         toastr()->success('Successfully Saved!');
         return back();
