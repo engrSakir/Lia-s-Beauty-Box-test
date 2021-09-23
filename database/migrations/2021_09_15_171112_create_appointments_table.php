@@ -21,7 +21,7 @@ class CreateAppointmentsTable extends Migration
             $table->date('appointment_data');
             $table->string('transaction_id')->nullable();
             $table->double('advance_amount')->default(0);
-            $table->longText('message');
+            $table->longText('message')->nullable();
             $table->string('status')->default('Pending')->comment('Pending|Approved|Reject|Done');
             $table->boolean('booked_by_admin')->default(false);
             $table->timestamps();

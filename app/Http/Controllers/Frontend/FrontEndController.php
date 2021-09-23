@@ -85,6 +85,7 @@ class FrontEndController extends Controller
                     'schedule'  => 'required|exists:schedules,id', // get from hidden
                     'service'   => 'required|exists:services,id',
                     'message'   => 'nullable|string',
+                    'advance_amount'   => 'required|numeric|min:'.get_static_option('advance_amount'),
                 ],
                 [
                     'email.unique' => 'Already you have an account. Please login before order or use another email.',
@@ -106,6 +107,7 @@ class FrontEndController extends Controller
                 'schedule'          => 'required|exists:schedules,id', // get from hidden
                 'service'           => 'required|exists:services,id',
                 'message'           => 'nullable|string',
+                'advance_amount'   => 'required|numeric|min:'.get_static_option('advance_amount'),
             ]);
             $user = Auth::user();
         }
@@ -134,7 +136,7 @@ class FrontEndController extends Controller
                 return [
                     'type' => 'error',
                     'message' => 'Something went wrong.',
-                    // 'message' => $exception->getMessage(),
+                    //'message' => $exception->getMessage(),
                 ];
             }
             toastr()->error('Something went wrong!');
