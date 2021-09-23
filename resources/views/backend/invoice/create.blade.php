@@ -34,7 +34,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <select name="appointment" id="appointment" class="form-control" required="" onchange="changeAppointment(this)">
+                                        <select name="appointment" id="appointment" class="form-control" required=""
+                                            onchange="changeAppointment(this)">
                                             <option value="" selected disabled>Please chose a approved appointment</option>
                                             @foreach ($appointments as $appointment)
                                                 <option value="{{ $appointment->id }}">
@@ -101,79 +102,114 @@
                         <div class="row clearfix m-1">
                             <div class="col-md-12 d-flex justify-content-between">
                                 <button id="add_row" class="btn btn-lg btn-success btn-default pull-left">Add Row</button>
-                                <button id='delete_row' class="btn btn-lg btn-danger pull-right btn btn-default">Delete Row</button>
+                                <button id='delete_row' class="btn btn-lg btn-danger pull-right btn btn-default">Delete
+                                    Row</button>
                             </div>
                         </div>
                         {{-- End Add And Remove Item section --}}
                         {{-- Start Sumation section --}}
                         <div class="row clearfix" style="margin-top:20px;">
-                            <div class="col-md-6">
-                            </div>
-                            <div class="col-md-6">
-                                <div class="pull-right">
-                                    <table class="table table-bordered table-hover" id="tab_logic_total">
-                                        <tbody>
-                                            <tr>
-                                                <th class="text-center">Sub Total</th>
-                                                <td class="text-center"><input type="number" name='sub_total'
-                                                        placeholder='0.00' class="form-control" id="sub_total" readonly />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th class="text-center">Tax (%)</th>
-                                                <td class="text-center">
-                                                    <div class="input-group mb-2 mb-sm-0">
-                                                        <input type="number" class="form-control" id="tax"
-                                                            placeholder="0">
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th class="text-center">Tax Amount</th>
-                                                <td class="text-center"><input type="number" name='tax_amount'
-                                                        id="tax_amount" placeholder='0.00' class="form-control"
-                                                        readonly />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th class="text-center">Discount (%)</th>
-                                                <td class="text-center">
-                                                    <div class="input-group mb-2 mb-sm-0">
-                                                        <input type="number" class="form-control" id="discount" name="discount"
-                                                            placeholder="0">
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th class="text-center">Discount Amount</th>
-                                                <td class="text-center"><input type="number" name='discount_amount'
-                                                        id="discount_amount" placeholder='0.00' class="form-control"
-                                                        readonly />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th class="text-center">Grand Total</th>
-                                                <td class="text-center"><input type="number" name='total_amount'
-                                                        id="total_amount" placeholder='0.00' class="form-control"
-                                                        readonly />
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <div class="col-md-12">
+                                <table class="table table-bordered" id="tab_logic_total">
+                                    <tbody>
+                                        <tr>
+                                            <th class="text-center">Sub Total</th>
+                                            <td></td>
+                                            <td class="text-center"><input type="number" name='sub_total'
+                                                    placeholder='0.00' class="form-control" id="sub_total" readonly />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-center">Discount (%)</th>
+                                            <td class="text-center">
+                                                <div class="input-group mb-2 mb-sm-0">
+                                                    <input type="number" class="form-control" id="discount"
+                                                        name="discount" placeholder="0">
+                                                </div>
+                                            </td>
+                                            <td class="text-center"><input type="number" name='discount_amount'
+                                                    id="discount_amount" placeholder='0.00' class="form-control"
+                                                    readonly />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-center">Tax (%)</th>
+                                            <td class="text-center">
+                                                <div class="input-group mb-2 mb-sm-0">
+                                                    <input type="number" class="form-control" id="tax" placeholder="0">
+                                                </div>
+                                            </td>
+                                            <td class="text-center"><input type="number" name='tax_amount'
+                                                    id="tax_amount" placeholder='0.00' class="form-control" readonly />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-center">Grand Total</th>
+                                            <td></td>
+                                            <td class="text-center"><input type="number" name='total_amount'
+                                                    id="total_amount" placeholder='0.00'
+                                                    class="form-control bg-success fs-6 fw-bold" readonly />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-center">Advance Payment</th>
+                                            <td class="text-center"><input type="number" name='advance_payment_amount'
+                                                    id="advance_payment_amount" placeholder='0.00' class="form-control"
+                                                    readonly />
+                                            </td>
+                                            <td class="text-center"><input type="number" name='due_after_advance_amount'
+                                                    id="due_after_advance_amount" placeholder='Due Amount'
+                                                    class="form-control bg-warning fs-6 fw-bold" readonly />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-center">New Payment</th>
+                                            <td class="text-center"><input type="number" name='new_payment_amount'
+                                                    id="new_payment_amount" placeholder='0.00' class="form-control" />
+                                            </td>
+                                            <td class="text-center"><input type="number" name='due_payment_amount'
+                                                    id="due_payment_amount" placeholder='Due Amount'
+                                                    class="form-control bg-primary fs-6 fw-bold" readonly />
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                         {{-- End Sumation section --}}
                         {{-- Start Submit Btn section --}}
                         <div class="row clearfix">
                             <div class="col-md-12 d-flex justify-content-between">
-                                <button type="button" class="btn btn-lg btn-success waves-effect waves-light" id="invoice_save_btn" onclick="invoiceSaveFunction(this)">Save Invoice</button>
+                                <button type="button" class="btn btn-lg btn-success waves-effect waves-light"
+                                    id="invoice_save_btn" onclick="invoiceSaveFunction(this)">Save Invoice</button>
 
-                                <button id="" class="btn btn-lg btn-danger btn-default pull-right" onClick="window.location.reload();">Refresh Page</button>
+                                <button id="" class="btn btn-lg btn-danger btn-default pull-right"
+                                    onClick="window.location.reload();">Refresh Page</button>
                             </div>
                         </div>
                         {{-- End Submit Btn section --}}
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">Invoice</h5>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="modal_close_btn">Close</button>
                 </div>
             </div>
         </div>
@@ -190,6 +226,15 @@
 @push('foot')
     <script>
         $(document).ready(function() {
+            $('#modal').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+            $('#modal_close_btn').click(function() {
+                $('#modal').modal('hide');
+                location.reload();
+            });
+
             var i = 1;
             $("#add_row").click(function() {
                 b = i - 1;
@@ -212,6 +257,10 @@
                 calc_total();
             });
             $('#discount').on('keyup change', function() {
+                calc_total();
+            });
+
+            $('#new_payment_amount').on('keyup change', function() {
                 calc_total();
             });
 
@@ -239,13 +288,18 @@
 
             $('#sub_total').val(total.toFixed(2));
 
-            tax_sum = total / 100 * $('#tax').val();
-            $('#tax_amount').val(tax_sum.toFixed(2));
-            $('#total_amount').val((tax_sum + total).toFixed(2));
-
             discount_sum = total / 100 * $('#discount').val();
             $('#discount_amount').val(discount_sum.toFixed(2));
             $('#total_amount').val((total - discount_sum).toFixed(2));
+
+            total_after_discount = $('#total_amount').val();
+            tax_sum = total_after_discount / 100 * $('#tax').val();
+            $('#tax_amount').val(tax_sum.toFixed(2));
+            $('#total_amount').val((parseFloat(tax_sum) + parseFloat(total_after_discount)).toFixed(2));
+            $('#due_after_advance_amount').val((parseFloat(tax_sum) + parseFloat(total_after_discount) - $(
+                '#advance_payment_amount').val()).toFixed(2));
+            $('#due_payment_amount').val((parseFloat(tax_sum) + parseFloat(total_after_discount) - $(
+                '#advance_payment_amount').val() - $('#new_payment_amount').val()).toFixed(2));
         }
 
         function service_selector(objButton) {
@@ -268,11 +322,12 @@
                 type: 'GET',
                 url: "/backend/appointment/" + objButton.value, //show
                 success: function(response) {
-                    // console.log(response);
+                    console.log(response);
                     $('#addr0').find('.service').val(response.appointment.service_id)
                     $('#addr0').find('.price').val(response.service.price)
-                    $('#tax').val(response.customer_category.vat_percentage)
-                    $('#discount').val(response.customer_category.off_percentage)
+                    $('#tax').val(response.vat_percentage)
+                    $('#discount').val(response.discount_percentage)
+                    $('#advance_payment_amount').val(response.appointment.advance_amount)
                     calc();
                     calc_total();
                 }
@@ -302,9 +357,11 @@
                     },
                     data: {
                         service_data_set: service_data_set,
+                        appointment_id: document.getElementById('appointment').value,
                         vat_percentage: document.getElementById('tax').value,
                         discount_percentage: document.getElementById('discount').value,
-                        appointment_id: document.getElementById('appointment').value,
+                        advance_payment_amount: document.getElementById('advance_payment_amount').value,
+                        new_payment_amount: document.getElementById('new_payment_amount').value,
                     },
                     dataType: 'JSON',
                     beforeSend: function() {
@@ -323,6 +380,9 @@
                                 showConfirmButton: false,
                                 timer: 1500
                             })
+                            $('#modal').modal('show');
+                            $('#modal-body').html(`<iframe src="` + data.invoice_url +
+                                `" width="100%" height="400"></iframe>`);
                         } else {
                             Swal.fire({
                                 icon: data.type,

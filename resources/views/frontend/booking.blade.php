@@ -118,16 +118,6 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <label for="address">Message</label></br>
-                                                {{ get_static_option('advance_message') }} </br>
-                                                <label for="address">Minimum Advance Amount:-</label>
-                                                {{ get_static_option('advance_amount') }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                                 <input name="name" type="text" required="" class="form-control"
                                                     placeholder="Name">
@@ -155,6 +145,9 @@
                                         </div>
                                     </div>
                                 @endguest
+                                <div class="col-md-12">
+                                    <h5><i>{{ get_static_option('advance_message') }}</i></h3>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="input-group">
@@ -169,7 +162,7 @@
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
                                             <input name="advance_amount" type="number" class="form-control" required=""
-                                                placeholder="Advance Amount">
+                                                placeholder="Minimum Advance {{ get_static_option('advance_amount') }} Taka">
                                         </div>
                                     </div>
                                 </div>
@@ -356,7 +349,7 @@
 
                 },
                 success: function(data) {
-                    console.log(data)
+                    // console.log(data)
                     $('#appointment_form').trigger("reset");
                     Swal.fire({
                         icon: data.type,

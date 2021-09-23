@@ -75,6 +75,49 @@ if (!function_exists('random_code')) {
         }
     }
 
+    function inv_calculator(Invoice $invoice){
+        $main_price = $invoice->items()->sum(DB::raw('quantity * price'));
+        $price = $main_price;
+        if($invoice->vat_percentage > 0){
+            $vat_percentage = $invoice->vat_percentage;
+            $vat_amount     = ($main_price / 100) * $invoice->vat_percentage;
+            $price_after_vat = $main_price + ($main_price / 100) * $invoice->vat_percentage;
+        }else{
+            $vat_percentage = 0;
+            $vat_amount     = 0;
+            $price_after_vat = $main_price;
+        }
+
+        if($invoice->discount_percentage > 0){
+            $discount_percentage = $invoice->discount_percentage;
+            $discount_amount     = ($main_price / 100) * $invoice->discount_percentage;
+            $price_after_discount= $main_price - ($main_price / 100) * $invoice->discount_percentage;
+        }else{
+            $discount_percentage = 0;
+            $discount_amount = 0;
+            $price_after_discount = $main_price;
+        }
+        $price +=$vat_amount;
+        $price -=$discount_amount;
+
+        $paid = $invoice->payments->sum('amount');
+        $due = $price - $paid;
+
+        $data = [
+            'vat_percentage'    => $vat_percentage,
+            'vat_amount'        => $vat_amount,
+            'discount_percentage'    => $discount_percentage,
+            'discount_amount'        => $discount_amount,
+            'price' => $price,
+            'main_price' => $main_price,
+            'price_after_discount' => $price_after_discount,
+            'price_after_vat' => $price_after_vat,
+            'paid' => $paid,
+            'due' => $due,
+        ];
+        return $data;
+    }
+
 /*
 Schedule has lot of appointment
 */

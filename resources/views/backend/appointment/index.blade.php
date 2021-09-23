@@ -21,7 +21,7 @@
 @endsection
 
 @section('content')
-    <div class="row">
+    <div class="row" id="wrapper">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
@@ -67,8 +67,7 @@
                                                         <div class="custom-control custom-radio">
                                                             <input type="radio" id="pending-{{ $appointment->id }}"
                                                                 name="status-{{ $appointment->id }}" value="Pending"
-                                                                @if ($appointment->status == 'Pending') checked disabled @endif
-                                                                class="form-check-input status_btn">
+                                                                @if ($appointment->status == 'Pending') checked disabled @endif class="form-check-input status_btn">
                                                             <label class="form-check-label"
                                                                 for="pending-{{ $appointment->id }}"> <i
                                                                     class="ti-check text-active" aria-hidden="true"></i>
@@ -79,8 +78,7 @@
                                                         <div class="custom-control custom-radio">
                                                             <input type="radio" id="approved-{{ $appointment->id }}"
                                                                 name="status-{{ $appointment->id }}" value="Approved"
-                                                                @if ($appointment->status == 'Approved') checked disabled @endif
-                                                                class="form-check-input status_btn">
+                                                                @if ($appointment->status == 'Approved') checked disabled @endif class="form-check-input status_btn">
                                                             <label class="form-check-label"
                                                                 for="approved-{{ $appointment->id }}"> <i
                                                                     class="ti-check text-active" aria-hidden="true"></i>
@@ -91,8 +89,7 @@
                                                         <div class="custom-control custom-radio">
                                                             <input type="radio" id="reject-{{ $appointment->id }}"
                                                                 name="status-{{ $appointment->id }}" value="Reject"
-                                                                @if ($appointment->status == 'Reject') checked disabled @endif
-                                                                class="form-check-input status_btn">
+                                                                @if ($appointment->status == 'Reject') checked disabled @endif class="form-check-input status_btn">
                                                             <label class="form-check-label"
                                                                 for="reject-{{ $appointment->id }}"> <i
                                                                     class="ti-check text-active" aria-hidden="true"></i>
@@ -100,9 +97,10 @@
                                                         </div>
                                                     </label>
                                                 @else
-                                                <a href="{{ route('backend.invoice.show', $appointment->invoice) }}" target="_blank"
-                                                class="btn btn-primary waves-effect btn-rounded waves-light"> <i
-                                                    class="fas fa-print"></i> </a>
+                                                    <a href="{{ route('backend.invoice.show', $appointment->invoice) }}"
+                                                        target="_blank"
+                                                        class="btn btn-primary waves-effect btn-rounded waves-light"> <i
+                                                            class="fas fa-print"></i> </a>
                                                 @endif
                                             </div>
                                         </td>
@@ -111,7 +109,8 @@
                                             <a href="{{ route('backend.appointment.edit', $appointment) }}"
                                                 class="btn btn-warning btn-circle"><i class="fa fa-pen"></i> </a>
                                             <button value="{{ route('backend.appointment.destroy', $appointment) }}"
-                                                class="btn btn-danger btn-circle delete-btn"><i class="fa fa-trash"></i> </button>
+                                                class="btn btn-danger btn-circle delete-btn"><i class="fa fa-trash"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -132,7 +131,8 @@
 @push('foot')
     <script>
         $(document).ready(function() {
-            $('.status_btn').click(function() {
+            $( '#wrapper' ).on( 'click', '.status_btn', function () {
+            // $('.status_btn').click(function() {
                 this_btn = $(this);
                 Swal.fire({
                     title: 'Are you sure?',
@@ -171,7 +171,7 @@
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
-                                if(response.type == 'success'){
+                                if (response.type == 'success') {
                                     location.reload();
                                 }
                             },

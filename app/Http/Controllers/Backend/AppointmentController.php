@@ -84,21 +84,30 @@ class AppointmentController extends Controller
         }
 
         try {
-            $appointment = new Appointment();
-            $appointment->customer_id       = $user->id;
-            $appointment->appointment_data  = date('Y-m-d', strtotime($request->appointment_data));
-            $appointment->schedule_id       = $request->schedule;
-            $appointment->service_id        = $request->service;
-            $appointment->transaction_id        = $request->transaction_id;
-            $appointment->advance_amount           = $request->advance_amount;
-            $appointment->message           = 'Booking by admin';
-            $appointment->booked_by_admin   = true;
-            $appointment->save();
+            $schedule = \App\Models\Schedule::find($request->schedule) ?? null;
+            $max_participent_in_this_day = Appointment::where('appointment_data', date('Y-m-d', strtotime(request()->appointment_data)))->where('schedule_id',  $request->schedule)->where('status','!=', 'Reject')->count();
+            if ($max_participent_in_this_day < $schedule->maximum_participant) {
+                $appointment = new Appointment();
+                $appointment->customer_id       = $user->id;
+                $appointment->appointment_data  = date('Y-m-d', strtotime($request->appointment_data));
+                $appointment->schedule_id       = $request->schedule;
+                $appointment->service_id        = $request->service;
+                $appointment->message           = $request->message;
+                $appointment->transaction_id    = $request->transaction_id;
+                $appointment->advance_amount    = $request->advance_amount;
+                $appointment->save();
+            } else {
+                return [
+                    'type' => 'error',
+                    'message' => 'Housefull',
+                ];
+            }
         } catch (\Exception $exception) {
             if (request()->ajax()) {
                 return [
                     'type' => 'error',
                     'message' => 'Something went wrong.',
+                    // 'message' => $exception->getMessage(),
                 ];
             }
             toastr()->error('Something went wrong!');
@@ -128,7 +137,8 @@ class AppointmentController extends Controller
             return [
                 'appointment' => $appointment,
                 'service' => $appointment->service ?? null,
-                'customer_category' => $appointment->customer->category ?? null
+                'vat_percentage' => $appointment->customer->category->vat_percentage ?? 0,
+                'discount_percentage' => $appointment->customer->category->discount_percentage ?? 0,
             ];
         }
     }

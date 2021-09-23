@@ -18,7 +18,7 @@ class CreateUserCategoriesTable extends Migration
             $table->string('name');
             $table->string('slug')->nullable();
             $table->double('vat_percentage')->default(0);
-            $table->double('off_percentage')->default(0);
+            $table->double('discount_percentage')->default(0);
             $table->timestamps();
         });
     }

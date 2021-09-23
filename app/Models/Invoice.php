@@ -12,6 +12,7 @@ class Invoice extends Model
     protected $fillable = [
         'appointment_id',
         'vat_percentage',
+        'discount_percentage',
         'note'
     ];
 
@@ -28,5 +29,14 @@ class Invoice extends Model
     public function payments()
     {
         return $this->hasMany(Payment::class, 'invoice_id', 'id');
+    }
+
+     // Auto delete depend data
+    public static function boot() {
+        parent::boot();
+        static::deleting(function($invoice) {
+             $invoice->items()->delete();
+             $invoice->payments()->delete();
+        });
     }
 }
