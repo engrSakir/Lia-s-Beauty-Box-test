@@ -27,10 +27,16 @@
                 </a>
             </li>
             <li>
-                <a class="waves-effect waves-dark" href="{{ route('backend.invoice.index') }}" aria-expanded="false">
+                <a class="waves-effect waves-dark" href="{{ route('backend.schedule.index') }}" aria-expanded="false">
                     <i class="far fa-circle text-danger"></i>
-                    <span class="hide-menu">Invoice</span>
+                    <span class="hide-menu">Schedule</span>
                 </a>
+            </li>
+            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i class="far fa-circle text-danger"></i><span class="hide-menu">Services</span></a>
+                <ul aria-expanded="false" class="collapse">
+                    <li><a href="{{ route('backend.service.index') }}">Service List </a></li>
+                    <li><a href="{{ route('backend.serviceCategory.index') }}">Service Category </a></li>
+                </ul>
             </li>
             <li>
                 <a class="waves-effect waves-dark" href="{{ route('backend.appointment.index') }}" aria-expanded="false">
@@ -39,66 +45,69 @@
                 </a>
             </li>
             <li>
-                <a class="waves-effect waves-dark" href="{{ route('backend.schedule.index') }}" aria-expanded="false">
+                <a class="waves-effect waves-dark" href="{{ route('backend.invoice.index') }}" aria-expanded="false">
                     <i class="far fa-circle text-danger"></i>
-                    <span class="hide-menu">Schedule</span>
+                    <span class="hide-menu">Invoice</span>
                 </a>
             </li>
-            <li>
-                <a class="waves-effect waves-dark" href="{{ route('backend.setting') }}" aria-expanded="false">
-                    <i class="far fa-circle text-danger"></i>
-                    <span class="hide-menu">Setting</span>
-                </a>
-            </li>
-            <li>
-                <a class="waves-effect waves-dark" href="{{ route('backend.banner.index') }}" aria-expanded="false">
-                    <i class="far fa-circle text-danger"></i>
-                    <span class="hide-menu">Banner</span>
-                </a>
-            </li>
-            <li>
-                <a class="waves-effect waves-dark" href="{{ route('backend.testimonial.index') }}" aria-expanded="false">
-                    <i class="far fa-circle text-danger"></i>
-                    <span class="hide-menu">Testimonial</span>
-                </a>
-            </li>
-            <li>
-                <a class="waves-effect waves-dark" href="{{ route('backend.questionaire.index') }}" aria-expanded="false">
-                    <i class="far fa-circle text-danger"></i>
-                    <span class="hide-menu">FAQ</span>
-                </a>
-            </li>
-            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">User</span></a>
-                <ul aria-expanded="false" class="collapse">
-                    <li><a href="{{ route('backend.user.index') }}">User List</a></li>
-                    <li><a href="{{ route('backend.userCategory.index') }}">User Category</a></li>
-                </ul>
-            </li>
-            <li>
-                <a class="waves-effect waves-dark" href="{{ route('backend.client.index') }}" aria-expanded="false">
-                    <i class="far fa-circle text-danger"></i>
-                    <span class="hide-menu">Client</span>
-                </a>
-            </li>
-
-            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">Gallery</span></a>
-                <ul aria-expanded="false" class="collapse">
-                    <li><a href="{{ route('backend.gallery.index') }}">Gallery List</a></li>
-                    <li><a href="{{ route('backend.imageCategory.index') }}">Image Category</a></li>
-                </ul>
-            </li>
-            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">Services</span></a>
-                <ul aria-expanded="false" class="collapse">
-                    <li><a href="{{ route('backend.service.index') }}">Service List </a></li>
-                    <li><a href="{{ route('backend.serviceCategory.index') }}">Service Category List </a></li>
-                </ul>
-            </li>
-            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">Expense</span></a>
+            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i class="far fa-circle text-danger"></i><span class="hide-menu">Expense</span></a>
                 <ul aria-expanded="false" class="collapse">
                     <li><a href="{{ route('backend.expense.index') }}">Expense List</a></li>
                     <li><a href="{{ route('backend.expenseCategory.index') }}">Expense Category</a></li>
                 </ul>
             </li>
+            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i class="far fa-circle text-danger"></i><span class="hide-menu">User</span></a>
+                <ul aria-expanded="false" class="collapse">
+                    <li><a href="{{ route('backend.user.index') }}">User List</a></li>
+                    <li><a href="{{ route('backend.userCategory.index') }}">User Category</a></li>
+                </ul>
+            </li>
+            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i class="far fa-circle text-danger"></i><span class="hide-menu">More</span></a>
+                <ul aria-expanded="false" class="collapse">
+                    <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i class="far fa-circle text-danger"></i><span class="hide-menu"> Gallery </span></a>
+                        <ul aria-expanded="false" class="collapse">
+                            <li><a href="{{ route('backend.gallery.index') }}">Gallery List</a></li>
+                            <li><a href="{{ route('backend.imageCategory.index') }}">Image Category</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="waves-effect waves-dark" href="{{ route('backend.banner.index') }}" aria-expanded="false">
+                            <i class="far fa-circle text-danger"></i>
+                            <span class="hide-menu">Banner</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="waves-effect waves-dark" href="{{ route('backend.testimonial.index') }}" aria-expanded="false">
+                            <i class="far fa-circle text-danger"></i>
+                            <span class="hide-menu">Testimonial</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="waves-effect waves-dark" href="{{ route('backend.questionaire.index') }}" aria-expanded="false">
+                            <i class="far fa-circle text-danger"></i>
+                            <span class="hide-menu">FAQ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="waves-effect waves-dark" href="{{ route('backend.client.index') }}" aria-expanded="false">
+                            <i class="far fa-circle text-danger"></i>
+                            <span class="hide-menu">Client Logo</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="waves-effect waves-dark" href="{{ route('backend.setting') }}" aria-expanded="false">
+                            <i class="far fa-circle text-danger"></i>
+                            <span class="hide-menu">Setting</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </li>
+
+
+
+
         </ul>
     </nav>
     <!-- End Sidebar navigation -->

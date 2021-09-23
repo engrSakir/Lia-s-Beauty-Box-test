@@ -26,12 +26,13 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <table class="table color-table primary-table">
+                    <table class="table color-bordered-table primary-bordered-table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Service Name</th>
                                 <th scope="col">Category</th>
+                                <th scope="col">Price</th>
                                 <th scope="col">Created At</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -42,15 +43,14 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $service->name }}</td>
                                     <td>{{ $service->category->name ?? '#' }}</td>
+                                    <td>BDT {{ $service->price }}</td>
                                     <td>{{ $service->created_at->format('d/m/Y') }}</td>
                                     <td>
-                                        <a class="text-warning" href="{{ route('backend.service.edit', $service) }}">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <a class="text-danger deleteBtn"
-                                            href="{{ route('backend.service.show', $service) }}">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
+                                        <a href="{{ route('backend.service.show', $service) }}" class="btn btn-info btn-circle"><i class="fa fa-eye"></i> </a>
+                                        <a href="{{ route('backend.service.edit', $service) }}" class="btn btn-warning btn-circle"><i class="fa fa-pen"></i> </a>
+                                        <button value="{{ route('backend.service.destroy', $service) }}"
+                                            class="btn btn-danger btn-circle delete-btn"><i class="fa fa-trash"></i>
+                                        </button>
                                     </td>
                                 </tr>
                             @endforeach

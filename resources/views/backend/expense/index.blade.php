@@ -26,7 +26,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <table class="table color-table primary-table">
+                    <table class="table color-bordered-table primary-bordered-table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>

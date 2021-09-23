@@ -73,6 +73,7 @@ class ServiceController extends Controller
         if(request()->ajax()){
             return $service;
         }
+        return view('backend.service.show', compact('service'));
     }
 
     /**
@@ -119,12 +120,21 @@ class ServiceController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
      * @param  \App\Models\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
     public function destroy(Service $service)
     {
-        //
+        if($service->appointments()->count() > 0 || $service->invoiceItems()->count() > 0){
+            return [
+                'type' => 'worning',
+                'message' => 'This item is not deletable. Because the service associate with appointments or invoice items',
+            ];
+        }
+        $service->delete();
+        return [
+            'type' => 'success',
+            'message' => 'Successfully destroy',
+        ];
     }
 }
