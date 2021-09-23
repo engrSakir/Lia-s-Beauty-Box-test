@@ -85,6 +85,7 @@ class FrontEndController extends Controller
                     'schedule'  => 'required|exists:schedules,id', // get from hidden
                     'service'   => 'required|exists:services,id',
                     'message'   => 'nullable|string',
+                    'advance_amount'   => 'required|numeric|min:'.get_static_option('advance_amount'),
                 ],
                 [
                     'email.unique' => 'Already you have an account. Please login before order or use another email.',
@@ -106,13 +107,14 @@ class FrontEndController extends Controller
                 'schedule'          => 'required|exists:schedules,id', // get from hidden
                 'service'           => 'required|exists:services,id',
                 'message'           => 'nullable|string',
+                'advance_amount'   => 'required|numeric|min:'.get_static_option('advance_amount'),
             ]);
             $user = Auth::user();
         }
 
         try {
             $schedule = \App\Models\Schedule::find($request->schedule) ?? null;
-            $max_participent_in_this_day = Appointment::where('appointment_data', date('Y-m-d', strtotime(request()->appointment_data)))->where('schedule_id',  $request->schedule)->count();
+            $max_participent_in_this_day = Appointment::where('appointment_data', date('Y-m-d', strtotime(request()->appointment_data)))->where('schedule_id',  $request->schedule)->where('status','!=', 'Reject')->count();
             if ($max_participent_in_this_day < $schedule->maximum_participant) {
                 $appointment = new Appointment();
                 $appointment->customer_id       = $user->id;
@@ -134,7 +136,7 @@ class FrontEndController extends Controller
                 return [
                     'type' => 'error',
                     'message' => 'Something went wrong.',
-                    // 'message' => $exception->getMessage(),
+                    //'message' => $exception->getMessage(),
                 ];
             }
             toastr()->error('Something went wrong!');

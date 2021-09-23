@@ -149,20 +149,37 @@
                 @foreach ($invoice->items as $item)
                 <tr class="item @if($loop->last) last @endif">
                     <td>{{ $item->service->name }}</td>
-                    <td>BDT {{ $item->price }} x {{ $item->quantity }} = BDT {{ $invoice->items()->sum(\DB::raw('quantity * price')) ?? '#' }}</td>
+                    <td>BDT {{ $item->price }} x {{ $item->quantity }} = BDT {{ $item->price * $item->quantity }}</td>
                 </tr>
                 @endforeach
 				<tr class="total">
 					<td></td>
-					<td>Total: BDT {{ $invoice->items()->sum(\DB::raw('quantity * price')) }}</td>
+					<td>
+                        Total:
+                        @if(inv_calculator($invoice)['discount_amount'] > 0)
+                        <del><small>BDT {{ inv_calculator($invoice)['main_price'] }}</small></del><sup>{{  inv_calculator($invoice)['discount_percentage'] }}%OFF</sup>
+                        BDT {{ inv_calculator($invoice)['price_after_discount'] }}
+                        @else
+                        BDT {{ inv_calculator($invoice)['main_price'] }}
+                        @endif
+                    </td>
+				</tr>
+
+				<tr class="total">
+					<td></td>
+					<td>Vat({{ inv_calculator($invoice)['vat_percentage'] }}%): BDT {{ inv_calculator($invoice)['vat_amount'] }}</td>
 				</tr>
 				<tr class="total">
 					<td></td>
-					<td>Paid: BDT {{ $invoice->payments->sum('amount') }}</td>
+					<td>Grand Total: BDT {{ inv_calculator($invoice)['price'] }}</td>
 				</tr>
 				<tr class="total">
 					<td></td>
-					<td style="color:red;">DUE: BDT {{ $invoice->items()->sum(DB::raw('quantity * price')) - $invoice->payments->sum('amount') }}</td>
+					<td>Paid: BDT {{ inv_calculator($invoice)['paid'] }}</td>
+				</tr>
+				<tr class="total">
+					<td></td>
+					<td style="color:red;">DUE: BDT {{ inv_calculator($invoice)['due'] }}</td>
 				</tr>
 			</table>
             <table cellpadding="0" cellspacing="0" style="margin-top: 60px;">
