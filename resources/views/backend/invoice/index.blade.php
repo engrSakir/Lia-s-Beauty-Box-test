@@ -55,7 +55,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table color-table primary-table">
+                        <table class="table color-bordered-table primary-bordered-table">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -75,10 +75,10 @@
                                         <td>{{ '#1010' }}</td>
                                         <td>{{ $invoice->appointment->customer->name ?? '#' }}</td>
                                         <td>
-                                            {{ $invoice->items()->sum(\DB::raw('quantity * price')) ?? '#' }}
+                                            {{ inv_calculator($invoice)['price'] ?? '#' }}
                                         </td>
                                         <td>{{ $invoice->payments->sum('amount') }}</td>
-                                        <td>{{ $invoice->items()->sum(DB::raw('quantity * price')) - $invoice->payments->sum('amount') }}</td>
+                                        <td>{{ inv_calculator($invoice)['due'] }}</td>
                                         <td>{{ $invoice->created_at->format('d/m/Y h:i A') }}</td>
                                         <td>
                                             <a href="{{ route('backend.invoice.show', $invoice) }}" target="_blank"

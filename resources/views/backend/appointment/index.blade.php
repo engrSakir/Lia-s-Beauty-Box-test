@@ -27,7 +27,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Appointment List</h4>
                     <div class="table-responsive">
-                        <table class="table color-table primary-table">
+                        <table class="table color-bordered-table primary-bordered-table">
                             <thead>
                                 <tr>
                                     <th>#</th>

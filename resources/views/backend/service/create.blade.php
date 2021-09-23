@@ -33,8 +33,8 @@
                             <div class="row pt-3">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="form-label" for="title">Service title <b class="text-danger">*</b> </label>
-                                        <input type="text" id="title" name="service_name" class="form-control" placeholder="Service Name" value="{{ old('service_name') }}" required>
+                                        <label class="form-label" for="service_name">Service Name <b class="text-danger">*</b> </label>
+                                        <input type="text" id="service_name" name="service_name" class="form-control" placeholder="Service Name" value="{{ old('service_name') }}" required>
                                         @error('service_name')
                                         <div class="alert alert-danger" role="alert">
                                             {{ $message }}
