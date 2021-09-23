@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -46,4 +47,22 @@ class User extends Authenticatable
     {
         return $this->belongsTo(UserCategory::class, 'category_id', 'id');
     }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class, 'customer_id', 'id');
+    }
+
+    public function invoices()
+    {
+        return $this->hasManyThrough(
+            Invoice::class,
+            Appointment::class,
+            'customer_id',
+            'appointment_id',
+            'id',
+            'id'
+        );
+    }
+
 }

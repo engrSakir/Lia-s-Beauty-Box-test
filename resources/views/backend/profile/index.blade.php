@@ -51,6 +51,12 @@
                     <h6>{{ $user->phone ?? 'Phone not found' }}</h6>
                     <small class="text-muted p-t-30 db">Address</small>
                     <h6>{{ $user->address ?? 'Address not found' }}</h6>
+                    <small class="text-muted p-t-30 db">Role</small>
+                    <h6>
+                        @foreach (auth()->user()->getRoleNames() as $role)
+                            {{ $role }}, &nbsp;
+                        @endforeach
+                    </h6>
                 </div>
             </div>
         </div>
