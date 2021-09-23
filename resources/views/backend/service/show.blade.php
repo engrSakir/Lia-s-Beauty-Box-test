@@ -28,13 +28,18 @@
                 <div class="card-header bg-success">
                     <h4 class="m-b-0 text-white">Details</h4></div>
                 <div class="card-body">
+                <img class="img-responsive" width="150px" height="150px" src="{{ asset($service->image ?? 'uploads/images/no_image.png') }}">
                     <h3 class="card-title">{{ $service->name }}</h3>
                     <p class="card-text">{!! $service->description !!}</p>
                     <dl>
-                        <dt>Standard Description List</dt>
-                        <dd>Description Text</dd>
-                        <dt>Description List Title</dt>
-                        <dd>Description List Text</dd>
+                        <dt>Category</dt>
+                        <dd>{{ $service->category->name }} </dd>
+                        <dt>Price</dt>
+                        <dd>{{ $service->price }} Taka</dd>
+                        <dt>Created At</dt>
+                        <dd>{{ $service->created_at->format('d/m/Y h:i A') }} </dd>
+                        <dt>Updated At</dt>
+                        <dd>{{ $service->updated_at->format('d/m/Y h:i A') }} </dd>
                     </dl>
                     <a href="{{ route('backend.service.index') }}" class="btn btn-dark">Go back to list</a>
                 </div>

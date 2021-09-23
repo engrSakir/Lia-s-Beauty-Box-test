@@ -49,6 +49,7 @@
                                         <td>{{ date('h:i A', strtotime($schedule_data->ending_time)) }}</td>
                                         <td>{{ $schedule_data->title }}</td>
                                         <td>
+                                            <a href="{{ route('backend.schedule.show', $schedule_data) }}" class="btn btn-info btn-circle"><i class="fa fa-eye"></i> </a>
                                             <a href="{{ route('backend.schedule.edit', $schedule_data) }}"
                                                 class="btn btn-warning btn-circle"><i class="fa fa-pen"></i> </a>
                                             <button value="{{ route('backend.schedule.destroy', $schedule_data) }}"

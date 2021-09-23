@@ -41,7 +41,7 @@ class ClientController extends Controller
     {
         $request->validate([
             'client_name'  => 'required',
-            'image'         => 'nullable|image',
+            'image'         => 'required|image',
         ]);
         $client = new Client();
         $client->name = $request->client_name;
@@ -87,7 +87,7 @@ class ClientController extends Controller
     {
         $request->validate([
             'client_name'  => 'required',
-            'image'         => 'nullable|image',
+            'image'         => 'image',
         ]);
         $client->name = $request->client_name;
         if ($request->file('image')) {

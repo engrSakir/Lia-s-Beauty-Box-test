@@ -45,8 +45,8 @@
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
-                                        <label class="form-label" for="maximum_booking">Maximum participant</label>
-                                        <input type="number" id="maximum_participant" name="maximum_participant" class="form-control form-control-danger" placeholder="3/5/10" value="{{ old('maximum_booking') }}">
+                                        <label class="form-label" for="maximum_participant">Maximum participant <b class="text-danger">*</b></label>
+                                        <input type="number" id="maximum_participant" name="maximum_participant" class="form-control form-control-danger" placeholder="3/5/10" value="{{ old('maximum_participant') }}">
                                         @error('maximum_participant')
                                         <div class="alert alert-danger" role="alert">
                                             {{ $message }}
@@ -57,7 +57,7 @@
                                 <!--/span-->
                                 <div class="col-md-3">
                                     <div class="form-group has-danger">
-                                        <label class="form-label" for="maximum_booking">Starting time <b class="text-danger">*</b></label>
+                                        <label class="form-label" for="starting_time">Starting time <b class="text-danger">*</b></label>
                                         <input type="time" id="starting_time" name="starting_time" class="form-control form-control-danger" value="{{ old('starting_time') }}" required>
                                         @error('starting_time')
                                         <div class="alert alert-danger" role="alert">
@@ -69,7 +69,7 @@
                                 <!--/span-->
                                 <div class="col-md-3">
                                     <div class="form-group has-danger">
-                                        <label class="form-label" for="maximum_booking">Ending time <b class="text-danger">*</b></label>
+                                        <label class="form-label" for="ending_time">Ending time <b class="text-danger">*</b></label>
                                         <input type="time" id="ending_time" name="ending_time" class="form-control form-control-danger" value="{{ old('ending_time') }}" required>
                                         @error('ending_time')
                                         <div class="alert alert-danger" role="alert">
@@ -81,7 +81,7 @@
                                 <!--/span-->
                                 <div class="col-md-12">
                                     <div class="form-group has-danger">
-                                        <label class="form-label" for="maximum_booking">Schedule day  <b class="text-danger">*</b></label>
+                                        <label class="form-label">Schedule day  <b class="text-danger">*</b></label>
                                         <div class="row m-3">
                                             <div class="form-check col">
                                                 <input class="form-check-input" type="checkbox" name="schedule_day[]" value="saturday" id="saturday" @if(old('schedule_day') == 'saturday') checked @endif>
