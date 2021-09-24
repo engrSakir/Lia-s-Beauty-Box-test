@@ -89,11 +89,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="col-md-12" for="user_category">User category</label>
+                                        <label class="col-md-12" for="user_category">User category <b class="text-danger">*</b></label>
                                         <div class="input-group">
-                                            <select name="user_category" id="user_category" class="form-control">
+                                            <select name="user_category" id="user_category" class="form-control" required>
                                                 <option value="" selected disabled>Select user category
                                                 </option>
                                                 @foreach ($userCategories as $userCategory)
@@ -111,6 +111,26 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label class="col-md-12" for="user_role">User Role <b class="text-danger">*</b></label>
+                                        <div class="input-group">
+                                            <select name="user_role" id="user_role" class="form-control" required>
+                                                <option value="" selected disabled>Select user role
+                                                </option>
+                                                @foreach ($roles as $role)
+                                                    <option value="{{ $role->name }}">
+                                                        {{ $role->name ?? '#' }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('user_role')
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label for="user_pass" class="form-label">Password <b class="text-danger">*</b></label>
                                         <input type="password" name="user_pass" class="form-control" id="user_pass"
                                             placeholder="Password" required>
@@ -118,14 +138,12 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="confirm_password" class="form-label">Confirm Password</label>
+                                        <label for="confirm_password" class="form-label">Confirm Password <b class="text-danger">*</b></label>
                                         <input type="password" class="form-control" id="confirm_password"
                                             placeholder="Confirm Password" required autocomplete="new-password">
                                     </div>
                                     <span id='message'></span>
                                 </div>
-
-
                             </div>
                         </div>
                         <div class="form-actions">

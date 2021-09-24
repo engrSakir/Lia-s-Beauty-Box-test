@@ -209,7 +209,7 @@
                     ...
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="modal_close_btn">Close</button>
+                    <a href="javascript:void(0)" class="btn btn-primary mdal_close_a" id="modal_close_btn">Close</a>
                 </div>
             </div>
         </div>
@@ -350,7 +350,9 @@
                         'price': price,
                     });
                 }
-                $.ajax({
+            });
+            // console.log(service_data_set)
+            $.ajax({
                     method: "POST",
                     url: "{{ route('backend.invoice.store') }}",
                     headers: {
@@ -384,6 +386,8 @@
                             $('#modal').modal('show');
                             $('#modal-body').html(`<iframe src="` + data.invoice_url +
                                 `" width="100%" height="400"></iframe>`);
+
+                            $(".mdal_close_a").attr("href", data.btn_url)
                         } else {
                             Swal.fire({
                                 icon: data.type,
@@ -397,7 +401,6 @@
                         validation_error(error);
                     },
                 });
-            });
 
         }
     </script>

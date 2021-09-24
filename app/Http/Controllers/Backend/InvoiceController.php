@@ -59,53 +59,55 @@ class InvoiceController extends Controller
         //Change appointment status
         $appointment = Appointment::find($request->appointment_id);
         if($appointment->status != 'Approved'){
+            // return back();
             return [
                 'type' => 'error',
-                'message' => 'This appointment is not approved.',
+                'message' => 'This appointment is not approved. ('.$appointment->id.')',
             ];
-        }
-        $appointment->status = 'Done';
-        $appointment->save();
-        //Create invoice
-        $invoice = new Invoice();
-        $invoice->appointment_id = $appointment->id;
-        $invoice->vat_percentage = $request->vat_percentage ?? 0;
-        $invoice->discount_percentage = $request->discount_percentage ?? 0;
-        $invoice->note = $request->note;
-        // $invoice->due_date;
-        // $invoice->custom_counter;
-        // $invoice->bar_code;
-        $invoice->save();
-        //Invoice item save with this invoice ID
-        try{
-            foreach($request->service_data_set as $service_data){
-                $invoiceItem = new InvoiceItem();
-                $invoiceItem->invoice_id   = $invoice->id;
-                $invoiceItem->service_id   = $service_data['service'];
-                $invoiceItem->quantity  = $service_data['quantity'];
-                $invoiceItem->price     = $service_data['price'];
-                $invoiceItem->save();
-            }
-            $payment = new Payment();
-            $payment->invoice_id = $invoice->id;
-            $payment->amount = $request->new_payment_amount + $appointment->advance_amount ?? 0;
-            $payment->save();
-        }catch(\Exception $e){
-            // Appointment status back and invoice delete
-            $invoice->delete();
-            $appointment->status = 'Approved';
+        }else{
+            $appointment->status = 'Done';
             $appointment->save();
-            return [
-                'type' => 'error',
-                'message' => $e->getMessage(),
-            ];
+            //Create invoice
+            $invoice = new Invoice();
+            $invoice->appointment_id = $appointment->id;
+            $invoice->vat_percentage = $request->vat_percentage ?? 0;
+            $invoice->discount_percentage = $request->discount_percentage ?? 0;
+            $invoice->note = $request->note;
+            // $invoice->due_date;
+            // $invoice->custom_counter;
+            // $invoice->bar_code;
+            $invoice->save();
+            //Invoice item save with this invoice ID
+            try{
+                foreach($request->service_data_set as $service_data){
+                    $invoiceItem = new InvoiceItem();
+                    $invoiceItem->invoice_id   = $invoice->id;
+                    $invoiceItem->service_id   = $service_data['service'];
+                    $invoiceItem->quantity  = $service_data['quantity'];
+                    $invoiceItem->price     = $service_data['price'];
+                    $invoiceItem->save();
+                }
+                $payment = new Payment();
+                $payment->invoice_id = $invoice->id;
+                $payment->amount = $request->new_payment_amount + $appointment->advance_amount ?? 0;
+                $payment->save();
+                return [
+                    'type' => 'success',
+                    'message' => 'Successfully Created',
+                    'invoice_url' => route('backend.invoice.show', $invoice),
+                    'btn_url' => route('backend.invoice.payment', $invoice),
+                ];
+            }catch(\Exception $e){
+                // Appointment status back and invoice delete
+                $invoice->delete();
+                $appointment->status = 'Approved';
+                $appointment->save();
+                return [
+                    'type' => 'error',
+                    'message' => $e->getMessage(),
+                ];
+            }
         }
-
-        return [
-            'type' => 'success',
-            'message' => 'Successfully Created',
-            'invoice_url' => route('backend.invoice.show', $invoice->id),
-        ];
     }
 
     /**

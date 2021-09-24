@@ -33,6 +33,7 @@
                                 <th scope="col">Email</th>
                                 <th scope="col">Phone</th>
                                 <th scope="col">Category</th>
+                                <th scope="col">Role</th>
                                 <th scope="col">Created At</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -45,6 +46,7 @@
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->phone }}</td>
                                     <td>{{ $user->category->name ?? '-' }}</td>
+                                    <td>{{ $user->roles()->first()->name ?? '-' }}</td>
                                     <td>{{ $user->created_at->format('d/m/Y') }}</td>
                                     <td>
                                     <a  class="text-warning" href="{{ route('backend.user.edit', $user) }}">
@@ -53,7 +55,6 @@
                                     <a  class="text-danger deleteBtn" href="{{ route('backend.user.show', $user) }}">
                                         <i class="fa fa-trash" ></i>
                                     </a>
-
                                     </td>
                                 </tr>
                             @endforeach
