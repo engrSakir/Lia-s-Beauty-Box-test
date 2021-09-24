@@ -9,7 +9,7 @@ use App\Models\UserCategory;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
-
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -33,7 +33,8 @@ class UserController extends Controller
     public function create()
     {
         $userCategories = UserCategory::all();
-        return view('backend.user.create', compact('userCategories'));
+        $roles = Role::all();
+        return view('backend.user.create', compact('userCategories', 'roles'));
     }
 
     /**
@@ -45,10 +46,11 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'user_name' => 'required|string',
-            'user_email' => 'required|unique:users,email',
-            'user_phone' => 'required|string|max:11',
-            'user_category' => 'nullable|exists:user_categories,id',
+            'user_name'     => 'required|string',
+            'user_email'    => 'required|unique:users,email',
+            'user_phone'    => 'required|string|max:11',
+            'user_category' => 'required|exists:user_categories,id',
+            'user_role'     => 'required|exists:roles,name',
         ]);
 
         $user = new User();
@@ -61,6 +63,7 @@ class UserController extends Controller
             $user->image = file_uploader('uploads/user-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($request->user_name, '-'));
         }
         $user->save();
+        $user->assignRole($request->user_role);
 
         toastr()->success('Successfully Saved!');
         return back();

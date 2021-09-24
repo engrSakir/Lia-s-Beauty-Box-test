@@ -53,9 +53,7 @@
                     <h6>{{ $user->address ?? 'Address not found' }}</h6>
                     <small class="text-muted p-t-30 db">Role</small>
                     <h6>
-                        @foreach (auth()->user()->getRoleNames() as $role)
-                            {{ $role }}, &nbsp;
-                        @endforeach
+                        {{ $user->roles()->first()->name ?? '*' }}
                     </h6>
                 </div>
             </div>
