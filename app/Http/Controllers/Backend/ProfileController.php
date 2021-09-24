@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -21,12 +22,15 @@ class ProfileController extends Controller
             'name' => 'required|string',
             'email' => 'required|unique:users,email,'.auth()->user()->id,
             'phone' => 'required|string|max:11',
+            'user_pass' => 'required',
+            'image' => 'image',
         ]);
 
         $user = auth()->user();
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->phone = $request->input('phone');
+        $user->password = Hash::make($request->user_pass);
         if ($request->file('image')) {
             $user->image = file_uploader('uploads/profile-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($user->name, '-'));
         }

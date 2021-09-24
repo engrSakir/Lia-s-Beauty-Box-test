@@ -41,10 +41,10 @@
                                     <td>{{ $expenseCategory->name }}</td>
                                     <td>{{ $expenseCategory->created_at->format('d/m/Y') }}</td>
                                     <td>
-                                    <a  class="text-warning" href="{{ route('backend.expenseCategory.edit', $expenseCategory) }}">
-                                        <i class="fa fa-edit" ></i>
+                                    <a  class="btn btn-warning btn-circle" href="{{ route('backend.expenseCategory.edit', $expenseCategory) }}">
+                                        <i class="fa fa-pen" ></i>
                                     </a>
-                                    <a  class="text-danger deleteBtn" href="{{ route('backend.expenseCategory.show', $expenseCategory) }}">
+                                    <a  class="btn btn-danger btn-circle deleteBtn" href="{{ route('backend.expenseCategory.show', $expenseCategory) }}">
                                         <i class="fa fa-trash" ></i>
                                     </a>
 

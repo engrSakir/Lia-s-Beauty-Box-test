@@ -51,7 +51,9 @@ class UserController extends Controller
             'user_phone'    => 'required|string|max:11',
             'user_category' => 'required|exists:user_categories,id',
             'user_role'     => 'required|exists:roles,name',
-            'password'      => 'required'
+            'user_pass'      => 'required',
+            'image' => 'nullable|image',
+
         ]);
 
         $user = new User();
@@ -108,12 +110,15 @@ class UserController extends Controller
             'user_email' => 'required|unique:users,email,'.$user->id,
             'user_phone' => 'required|string|max:11',
             'user_category' => 'nullable|exists:user_categories,id',
+            'user_pass'      => 'nullable',
+            'image' => 'nullable|image',
         ]);
 
         $user->name = $request->user_name;
         $user->email = $request->user_email;
         $user->phone = $request->user_phone;
         $user->category_id = $request->user_category;
+        $user->password = Hash::make($request->user_pass);
         if ($request->file('image')) {
             $user->image = file_uploader('uploads/user-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($user->name, '-'));
         }

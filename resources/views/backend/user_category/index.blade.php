@@ -45,10 +45,10 @@
                                     <td>{{ $userCategory->discount_percentage }}</td>
                                     <td>{{ $userCategory->created_at->format('d/m/Y') }}</td>
                                     <td>
-                                    <a  class="text-warning" href="{{ route('backend.userCategory.edit', $userCategory) }}">
-                                        <i class="fa fa-edit" ></i>
+                                    <a  class="btn btn-warning btn-circle" href="{{ route('backend.userCategory.edit', $userCategory) }}">
+                                        <i class="fa fa-pen" ></i>
                                     </a>
-                                    <a  class="text-danger deleteBtn" href="{{ route('backend.userCategory.show', $userCategory) }}">
+                                    <a  class="btn btn-danger btn-circle deleteBtn" href="{{ route('backend.userCategory.show', $userCategory) }}">
                                         <i class="fa fa-trash" ></i>
                                     </a>
 
