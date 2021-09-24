@@ -2388,6 +2388,8 @@
                         <div class="contact-home-right p-a30">
                             <h5 class="text-uppercase font-26 p-b20 font-weight-400">GET IN TOUCH</h5>
                             <form class="cons-contact-form2" method="post" action="{{ url('contact-us')}}">
+                            @csrf
+
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
