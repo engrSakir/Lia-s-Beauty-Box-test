@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title') Dashboard @endsection
+@section('title') Service Category @endsection
 
 @section('bread-crumb')
     <div class="row page-titles">
@@ -36,8 +36,8 @@
                             <div class="row pt-3">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="form-label" for="title">Service Category<b class="text-danger">*</b> </label>
-                                        <input type="text" id="title" name="category_name" class="form-control"  value="{{ $serviceCategory->name }}">
+                                        <label class="form-label" for="category_name">Service Category<b class="text-danger">*</b> </label>
+                                        <input type="text" id="category_name" name="category_name" class="form-control"  value="{{ $serviceCategory->name }}" required>
                                         @error('category_name')
                                         <div class="alert alert-danger" role="alert">
                                             {{ $message }}

@@ -45,14 +45,14 @@ class ServiceController extends Controller
         $request->validate([
             'service_name'  => 'required|string|unique:services,name',
             'price'         => 'required',
-            'category_id'   => 'required|exists:service_categories,id',
+            'category'   => 'required|exists:service_categories,id',
             'image'         => 'nullable|image',
         ]);
         $service = new Service();
         $service->name = $request->service_name;
         $service->slug = Str::slug($request->service_name, '-');
         $service->price = $request->price;
-        $service->category_id = $request->category_id;
+        $service->category_id = $request->category;
         $service->description = $request->description;
         if ($request->file('image')) {
             $service->image = file_uploader('uploads/service-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($request->service_name, '-'));
@@ -100,14 +100,14 @@ class ServiceController extends Controller
         $request->validate([
             'service_name'  => 'required|string|unique:services,name,'.$service->id,
             'price'         => 'required|numeric',
-            'category_id'   => 'required|exists:service_categories,id',
+            'category'   => 'required|exists:service_categories,id',
             'image'         => 'nullable|image',
         ]);
 
         $service->name = $request->service_name;
         $service->slug = Str::slug($request->service_name, '-');
         $service->price = $request->price;
-        $service->category_id = $request->category_id;
+        $service->category_id = $request->category;
         $service->description = $request->description;
         if ($request->file('image')) {
             $service->image = file_uploader('uploads/service-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($request->service_name, '-'));

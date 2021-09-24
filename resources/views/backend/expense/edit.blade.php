@@ -35,8 +35,8 @@
                                     <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
-                                        <label class="form-label" for="price">Amount</label>
-                                        <input type="number" id="amount" name="amount" class="form-control form-control-danger" value="{{  $expense->amount }}">
+                                        <label class="form-label" for="amount">Amount <b class="text-danger">*</b></label>
+                                        <input type="number" id="amount" name="amount" class="form-control form-control-danger" value="{{  $expense->amount }}" required>
                                         @error('amount')
                                         <div class="alert alert-danger" role="alert">
                                             {{ $message }}
@@ -48,7 +48,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
                                     <label class="form-label">Expense Category</label>
-                                    <select name="category_id" class="form-select col-12" id="inlineFormCustomSelect">
+                                    <select name="category_id" class="form-select col-12" id="category_id" required>
                                     <option value="">--Select Category--</option>
                                     @foreach($expenseCategories as $expenseCategory)
                                     <option value="{{ $expenseCategory->id }}" @if($expense->category_id== $expenseCategory->id) selected @endif >{{ $expenseCategory->name }}</option>
