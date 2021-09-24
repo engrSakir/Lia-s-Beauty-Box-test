@@ -110,6 +110,22 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="user_pass" class="form-label">Password <b class="text-danger">*</b></label>
+                                        <input type="password" name="user_pass" class="form-control" id="user_pass"
+                                            placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="confirm_password" class="form-label">Confirm Password <b class="text-danger">*</b></label>
+                                        <input type="password" class="form-control" id="confirm_password"
+                                            placeholder="Confirm Password"  autocomplete="new-password">
+                                    </div>
+                                    <span id='message'></span>
+                                </div>
+                            </div>
                             </div>
                         </div>
                         <div class="form-actions">

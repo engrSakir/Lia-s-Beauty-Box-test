@@ -41,10 +41,10 @@
                                     <td>{{ $questionaire->question ?? '#' }}</td>
                                     <td>{{ $questionaire->created_at->format('d/m/Y') }}</td>
                                     <td>
-                                    <a  class="text-warning" href="{{ route('backend.questionaire.edit', $questionaire) }}">
-                                        <i class="fa fa-edit" ></i>
+                                    <a  class="btn btn-warning btn-circle" href="{{ route('backend.questionaire.edit', $questionaire) }}">
+                                        <i class="fa fa-pen" ></i>
                                     </a>
-                                    <a  class="text-danger deleteBtn" href="{{ route('backend.questionaire.show', $questionaire) }}">
+                                    <a  class="btn btn-danger btn-circle deleteBtn" href="{{ route('backend.questionaire.show', $questionaire) }}">
                                         <i class="fa fa-trash" ></i>
                                     </a>
 
