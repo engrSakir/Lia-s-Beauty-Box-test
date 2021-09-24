@@ -38,7 +38,7 @@
                     <i class="far fa-circle text-danger"></i>
                     <span class="hide-menu">Schedule</span>
                 </a>
-            </li>
+            </li>           
             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i
                         class="far fa-circle text-danger"></i><span class="hide-menu">Services</span></a>
                 <ul aria-expanded="false" class="collapse">
@@ -57,6 +57,12 @@
                 <a class="waves-effect waves-dark" href="{{ route('backend.invoice.index') }}" aria-expanded="false">
                     <i class="far fa-circle text-danger"></i>
                     <span class="hide-menu">Invoice</span>
+                </a>
+            </li>
+            <li>
+                <a class="waves-effect waves-dark" href="{{ route('backend.employeeSalary.index') }}" aria-expanded="false">
+                    <i class="far fa-circle text-danger"></i>
+                    <span class="hide-menu">Salary</span>
                 </a>
             </li>
             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i
