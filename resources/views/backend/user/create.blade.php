@@ -48,10 +48,10 @@
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
-                                        <label class="form-label" for="price">Email</label>
+                                        <label class="form-label" for="price">Email <b class="text-danger">*</b></label>
                                         <input type="email" id="user_email" name="user_email"
                                             class="form-control form-control-danger" placeholder="Your Email"
-                                            value="{{ old('user_email') }}">
+                                            value="{{ old('user_email') }}" required>
                                         @error('user_email')
                                             <div class="alert alert-danger" role="alert">
                                                 {{ $message }}
@@ -62,10 +62,10 @@
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
-                                        <label class="form-label" for="phone">Phone</label>
+                                        <label class="form-label" for="phone">Phone <b class="text-danger">*</b></label>
                                         <input type="number" id="user_phone" name="user_phone"
                                             class="form-control form-control-danger" placeholder="Your Mobile Number"
-                                            value="{{ old('user_phone') }}">
+                                            value="{{ old('user_phone') }}" required>
                                         @error('user_phone')
                                             <div class="alert alert-danger" role="alert">
                                                 {{ $message }}
@@ -89,11 +89,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="col-md-12" for="user_category">User category</label>
+                                        <label class="col-md-12" for="user_category">User category <b class="text-danger">*</b></label>
                                         <div class="input-group">
-                                            <select name="user_category" id="user_category" class="form-control">
+                                            <select name="user_category" id="user_category" class="form-control" required>
                                                 <option value="" selected disabled>Select user category
                                                 </option>
                                                 @foreach ($userCategories as $userCategory)
@@ -111,21 +111,39 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="password" class="form-label">Password</label>
-                                        <input type="password" name="user_pass" class="form-control" id="password"
-                                            placeholder="Password">
+                                        <label class="col-md-12" for="user_role">User Role <b class="text-danger">*</b></label>
+                                        <div class="input-group">
+                                            <select name="user_role" id="user_role" class="form-control" required>
+                                                <option value="" selected disabled>Select user role
+                                                </option>
+                                                @foreach ($roles as $role)
+                                                    <option value="{{ $role->name }}">
+                                                        {{ $role->name ?? '#' }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('user_role')
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="confirm_password" class="form-label">Confirm Password</label>
+                                        <label for="password" class="form-label">Password <b class="text-danger">*</b></label>
+                                        <input type="password" name="user_pass" class="form-control" id="password"
+                                            placeholder="Password" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="confirm_password" class="form-label">Confirm Password <b class="text-danger">*</b></label>
                                         <input type="password" class="form-control" id="confirm_password"
                                             placeholder="Confirm Password" required autocomplete="new-password">
                                     </div>
                                     <span id='message'></span>
                                 </div>
-
-
                             </div>
                         </div>
                         <div class="form-actions">
