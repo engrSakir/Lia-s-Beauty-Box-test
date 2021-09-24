@@ -336,7 +336,6 @@
         }
 
         function invoiceSaveFunction() {
-            alert(document.getElementById('appointment').value)
             var services = document.getElementsByName('services[]');
             // console.log(services.length);
             const service_data_set = [];
@@ -351,7 +350,9 @@
                         'price': price,
                     });
                 }
-                $.ajax({
+            });
+            // console.log(service_data_set)
+            $.ajax({
                     method: "POST",
                     url: "{{ route('backend.invoice.store') }}",
                     headers: {
@@ -400,7 +401,6 @@
                         validation_error(error);
                     },
                 });
-            });
 
         }
     </script>
