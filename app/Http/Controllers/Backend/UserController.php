@@ -48,12 +48,10 @@ class UserController extends Controller
         $request->validate([
             'user_name'     => 'required|string',
             'user_email'    => 'required|unique:users,email',
-            'user_phone'    => 'required|string|max:11',
+            'user_phone'    => 'required|string|max:11|unique:users,phone',
             'user_category' => 'required|exists:user_categories,id',
             'user_role'     => 'required|exists:roles,name',
-            'user_pass'      => 'required',
-            'image' => 'nullable|image',
-
+            'user_pass'     => 'required|min:4',
         ]);
 
         $user = new User();
@@ -92,7 +90,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $userCategories = UserCategory::all();
-        return view('backend.user.edit',compact('user', 'userCategories'));
+        $roles = Role::all();
+        return view('backend.user.edit',compact('user', 'userCategories', 'roles'));
     }
 
     /**
@@ -104,25 +103,27 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-
         $request->validate([
-            'user_name' => 'required|string',
-            'user_email' => 'required|unique:users,email,'.$user->id,
-            'user_phone' => 'required|string|max:11',
-            'user_category' => 'nullable|exists:user_categories,id',
-            'user_pass'      => 'nullable',
-            'image' => 'nullable|image',
+            'user_name'     => 'required|string',
+            'user_email'    => 'required|unique:users,email,'.$user->id,
+            'user_phone'    => 'required|string|max:11|unique:users,phone,'.$user->id,
+            'user_category' => 'required|exists:user_categories,id',
+            'user_role'     => 'required|exists:roles,name',
+            'user_pass'     => 'nullable|min:4',
         ]);
 
         $user->name = $request->user_name;
         $user->email = $request->user_email;
         $user->phone = $request->user_phone;
         $user->category_id = $request->user_category;
-        $user->password = Hash::make($request->user_pass);
+        if($request->user_pass){
+            $user->password = Hash::make($request->user_pass);
+        }
         if ($request->file('image')) {
-            $user->image = file_uploader('uploads/user-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($user->name, '-'));
+            $user->image = file_uploader('uploads/user-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($request->user_name, '-'));
         }
         $user->save();
+        $user->assignRole($request->user_role);
 
         toastr()->success('Successfully Updated!');
         return back();
