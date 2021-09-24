@@ -117,6 +117,21 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="user_pass" class="form-label">Password <b class="text-danger">*</b></label>
+                                        <input type="password" name="user_pass" class="form-control" id="user_pass"
+                                            placeholder="Password" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="confirm_password" class="form-label">Confirm Password</label>
+                                        <input type="password" class="form-control" id="confirm_password"
+                                            placeholder="Confirm Password" required autocomplete="new-password">
+                                    </div>
+                                    <span id='message'></span>
+                                </div>
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <button type="submit" class="btn btn-success text-white">Update Profile</button>
