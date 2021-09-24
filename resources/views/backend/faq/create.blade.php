@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title') Dashboard @endsection
+@section('title') FAQ @endsection
 
 @section('bread-crumb')
     <div class="row page-titles">
@@ -34,8 +34,8 @@
                             <div class="row pt-3">
                             <div class="col-md-6">
                                     <div class="form-group has-danger">
-                                    <label class="form-label">Question</label>
-                                    <input type="text" id="question" name="question" class="form-control" placeholder="Question" value="{{ old('question') }}">
+                                    <label class="form-label">Question  <b class="text-danger">*</b></label>
+                                    <input type="text" id="question" name="question" class="form-control" placeholder="Question" value="{{ old('question') }}" required>
                                         @error('question')
                                         <div class="alert alert-danger" role="alert">
                                             {{ $message }}

@@ -92,7 +92,7 @@ class ExpenseController extends Controller
 
         ]);
         $expense->amount = $request->amount;
-        $service->category_id = $request->category_id;
+        $expense->category_id = $request->category_id;
         $expense->description = $request->description;
         $expense->save();
         toastr()->success('Successfully Updated!');

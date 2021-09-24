@@ -63,7 +63,7 @@
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
-                                        <label class="form-label" for="phone">Phone <b class="text-danger">*</b></label>
+                                        <label class="form-label" for="user_phone">Phone <b class="text-danger">*</b></label>
                                         <input type="number" id="user_phone" name="user_phone"
                                             class="form-control form-control-danger" placeholder="Your Mobile Number"
                                             value="{{ $user->phone }}" required>

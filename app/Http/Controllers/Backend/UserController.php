@@ -51,6 +51,7 @@ class UserController extends Controller
             'user_phone'    => 'required|string|max:11',
             'user_category' => 'required|exists:user_categories,id',
             'user_role'     => 'required|exists:roles,name',
+            'password'      => 'required'
         ]);
 
         $user = new User();

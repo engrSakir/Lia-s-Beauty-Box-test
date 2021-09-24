@@ -38,7 +38,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label">Mobile Number</label>
-                                        <input type="number" name="mobile" value="{{ get_static_option('mobile') }}" id="mobile" class="form-control">
+                                        <input type="number" name="mobile" placeholder="Companies Mobile Number" value="{{ get_static_option('mobile') }}" id="mobile" class="form-control">
                                             @error('mobile')
                                             <div class="alert alert-danger" role="alert">
                                                 {{ $message }}
@@ -50,7 +50,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
                                         <label class="form-label">Email</label>
-                                        <input type="email" name="email" value="{{ get_static_option('email') }}" id="email" class="form-control">
+                                        <input type="email" name="email" placeholder="Companies Email" value="{{ get_static_option('email') }}" id="email" class="form-control">
                                             @error('email')
                                             <div class="alert alert-danger" role="alert">
                                                 {{ $message }}
@@ -77,7 +77,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                     <label for="facebook">Facebook</label>
-                                            <input type="text" name="facebook" value="{{ get_static_option('facebook') }}" id="facebook" class="form-control">
+                                            <input type="text" name="facebook"  value="{{ get_static_option('facebook') }}" id="facebook" class="form-control">
                                             @error('facebook')
                                             <div class="alert alert-danger" role="alert">
                                                 {{ $message }}
@@ -228,9 +228,9 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                     <label for="facebook_page_access_token">Day</label>
-                                <input type="text" name="line1" value="{{ get_static_option('line1') }}" id="line1" class="form-control">
-                                <input type="text" name="line2" value="{{ get_static_option('line2') }}" id="line2" class="form-control">
-                                <input type="text" name="line3" value="{{ get_static_option('line3') }}" id="line3" class="form-control">
+                                <input type="text" name="line1" placeholder="Saturday-Sunday" value="{{ get_static_option('line1') }}" id="line1" class="form-control">
+                                <input type="text" name="line2" placeholder="Saturday-Sunday" value="{{ get_static_option('line2') }}" id="line2" class="form-control">
+                                <input type="text" name="line3" placeholder="Saturday-Sunday" value="{{ get_static_option('line3') }}" id="line3" class="form-control">
 
 
                                     </div>
@@ -239,9 +239,9 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                     <label for="facebook_page_access_token">Time</label>
-                                <input type="text" name="time1" value="{{ get_static_option('time1') }}" id="time1" class="form-control">
-                                <input type="text" name="time2" value="{{ get_static_option('time2') }}" id="time2" class="form-control">
-                                <input type="text" name="time3" value="{{ get_static_option('time3') }}" id="time3" class="form-control">
+                                <input type="text" name="time1" placeholder="1:00 AM-3:00PM" value="{{ get_static_option('time1') }}" id="time1" class="form-control">
+                                <input type="text" name="time2" placeholder="1:00 AM-3:00PM" value="{{ get_static_option('time2') }}" id="time2" class="form-control">
+                                <input type="text" name="time3" placeholder="1:00 AM-3:00PM" value="{{ get_static_option('time3') }}" id="time3" class="form-control">
 
                                     </div>
                                 </div>

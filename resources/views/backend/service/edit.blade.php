@@ -34,8 +34,8 @@
                             <div class="row pt-3">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="form-label" for="title">Service title <b class="text-danger">*</b> </label>
-                                        <input type="text" id="title" name="service_name" class="form-control"  value="{{ $service->name }}" required>
+                                        <label class="form-label" for="service_name">Service title <b class="text-danger">*</b> </label>
+                                        <input type="text" id="service_name" name="service_name" class="form-control"  value="{{ $service->name }}" required>
                                         @error('service_name')
                                         <div class="alert alert-danger" role="alert">
                                             {{ $message }}
@@ -46,8 +46,8 @@
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
-                                        <label class="form-label" for="price">Price</label>
-                                        <input type="number" id="price" name="price" class="form-control form-control-danger" value="{{  $service->price }}">
+                                        <label class="form-label" for="price">Price <b class="text-danger">*</b></label>
+                                        <input type="number" id="price" name="price" class="form-control form-control-danger" value="{{  $service->price }}" required>
                                         @error('price')
                                         <div class="alert alert-danger" role="alert">
                                             {{ $message }}
@@ -58,8 +58,8 @@
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
-                                    <label class="form-label">Service Category</label>
-                                    <select name="category_id" class="form-select col-12" id="inlineFormCustomSelect">
+                                    <label class="form-label">Service Category <b class="text-danger">*</b></label>
+                                    <select name="category" class="form-select col-12" id="category" required>
                                     <option value="">--Select Category--</option>
                                     @foreach($serviceCategories as $serviceCategory)
                                     <option value="{{ $serviceCategory->id }}" @if($service->category_id== $serviceCategory->id) selected @endif >{{ $serviceCategory->name }}</option>

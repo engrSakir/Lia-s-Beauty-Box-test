@@ -36,7 +36,7 @@
                             <div class="row pt-3">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="form-label" for="title">Short Description </label>
+                                        <label class="form-label" for="short_description">Short Description </label>
                                         <textarea class="form-control" id="short_description" name="short_description" rows="3"
                                                     >{{ $gallery->short_description }}</textarea>
                                     </div>
@@ -58,8 +58,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
-                                    <label class="form-label">Image Category</label>
-                                    <select name="imagecategory_id" class="form-select col-12" id="inlineFormCustomSelect">
+                                    <label class="form-label">Image Category <b class="text-danger">*</b></label>
+                                    <select name="imagecategory_id" class="form-select col-12" id="imagecategory_id" required>
                                     <option value="">--Select Category--</option>
                                     @foreach($imageCategories as $category)
                                     <option value="{{ $category->id }}" @if($gallery->imagecategory_id== $category->id) selected @endif>{{ $category->name }}</option>
