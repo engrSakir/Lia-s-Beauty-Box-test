@@ -95,7 +95,7 @@ class EmployeeSalaryController extends Controller
     {
         $request->validate([
             'amount'         => 'required|numeric',
-            'employee'   => 'required|exists:users,id'.$employeeSalary->id,
+            'employee'   => 'required|exists:users,id',
             'comment'         => 'nullable',
             'salary_date'   => 'required',
 
@@ -117,6 +117,10 @@ class EmployeeSalaryController extends Controller
      */
     public function destroy(EmployeeSalary $employeeSalary)
     {
-        //
+        $employeeSalary->delete();
+        return [
+            'type' => 'success',
+            'message' => 'Successfully destroy',
+        ];
     }
 }

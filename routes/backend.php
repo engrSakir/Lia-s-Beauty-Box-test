@@ -32,6 +32,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::get('account', [DashboardController::class, 'account'])->middleware(['auth'])->name('account');
 
 Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'], function () {
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
