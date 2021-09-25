@@ -53,6 +53,11 @@
                                     <option value="{{ $emp->id }}" @if($employeeSalary->employee_id== $emp->id) selected @endif >{{ $emp->name }}</option>
                                     @endforeach
                                     </select>
+                                    @error('employee')
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                     </div>
                                 </div>
                                
@@ -61,6 +66,11 @@
                                     <label for="comment" class="col-4 col-form-label">Comment</label>
                                         <div class="col-10">
                                         <textarea class="form-control" id="comment" name="comment" rows="3">{{ $employeeSalary->comment }}</textarea>
+                                        @error('comment')
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                         </div>
                                     </div>
                                 </div>

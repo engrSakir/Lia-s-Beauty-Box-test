@@ -42,8 +42,8 @@ class EmployeeSalaryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'amount'         => 'required',
-            'employee'   => 'required',
+            'amount'         => 'required|numeric',
+            'employee'   => 'required:exist:users,id',
             'comment'         => 'nullable',
             'salary_date'   => 'required',
 
@@ -94,8 +94,8 @@ class EmployeeSalaryController extends Controller
     public function update(Request $request, EmployeeSalary $employeeSalary)
     {
         $request->validate([
-            'amount'         => 'required',
-            'employee'   => 'required',
+            'amount'         => 'required|numeric',
+            'employee'   => 'required|exists:users,id'.$employeeSalary->id,
             'comment'         => 'nullable',
             'salary_date'   => 'required',
 

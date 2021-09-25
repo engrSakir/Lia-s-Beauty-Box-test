@@ -54,6 +54,11 @@
                                     <option value="{{ $emp->id }}">{{ $emp->name }}</option>
                                     @endforeach
                                     </select>
+                                    @error('employee')
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -62,7 +67,12 @@
                                     <label for="comment" class="col-4 col-form-label">Comment</label>
                                         <div class="col-10">
                                         <textarea class="form-control" id="comment" name="comment" rows="3"
-                                                    placeholder="Salary Description"></textarea>
+                                                    placeholder="Salary Description">{{ old('comment') }}</textarea>
+                                        @error('comment')
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                         </div>
                                     </div>
                                 </div>
