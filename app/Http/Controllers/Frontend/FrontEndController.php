@@ -16,6 +16,7 @@ use App\Models\Banner;
 use App\Models\Testimonial;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Mail;
 
 class FrontEndController extends Controller
 {
@@ -199,5 +200,18 @@ class FrontEndController extends Controller
         } else {
             abort(404);
         }
+    }
+
+    public function handleContactForm(Request $request)
+    {
+        $this->validate($request, ['name' => 'required', 'email' => 'required|email', 'phone' => 'required|numeric','message' => 'required']);
+        $data = ['name' => $request->get('name') , 'email' => $request->get('email') ,'phone' => $request->get('phone'), 'messageBody' => $request->get('message') ];
+        Mail::send('emails.email', $data, function ($message) use ($data)        {
+            $message->from($data['email'], $data['name']);
+            $message->to('moumitasub@gmail.com', 'Admin')
+                ->subject('Contact Us Message');
+        });
+        toastr()->success('Thank you for your feedback');
+        return back();            
     }
 }

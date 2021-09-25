@@ -2387,18 +2387,20 @@
                     <div class="section-content bg-gray">
                         <div class="contact-home-right p-a30">
                             <h5 class="text-uppercase font-26 p-b20 font-weight-400">GET IN TOUCH</h5>
-                            <form class="cons-contact-form2" method="post" action="#">
+                            <form class="cons-contact-form2" method="post" action="{{ url('contact-us')}}">
+                            @csrf
+
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                        <input name="username" type="text" required class="form-control"
+                                        <input name="name" type="text" required class="form-control"
                                             placeholder="Name">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                        <input name="email" type="text" class="form-control" required
+                                        <input name="email" type="email" class="form-control" required
                                             placeholder="Email">
                                     </div>
                                 </div>
@@ -2413,7 +2415,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon v-align-t"><i class="fa fa-pencil"></i></span>
                                         <textarea name="message" class="form-control" rows="4"
-                                            placeholder="Message"></textarea>
+                                            placeholder="Message" required></textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class="site-button skew-icon-btn radius-sm">
