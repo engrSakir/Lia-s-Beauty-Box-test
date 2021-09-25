@@ -26,8 +26,7 @@
                 <div class="card-header bg-info">
                     <h4 class="mb-0 text-white">Update User</h4>
                 </div>
-                <form action="{{ route('backend.user.update', $user) }}" method="POST"
-                    class="form-horizontal form-material" enctype="multipart/form-data">
+                <form action="{{ route('backend.user.update', $user) }}" method="POST" class="form-horizontal form-material" enctype="multipart/form-data">
                     @csrf
                     @method('patch')
                     <div class="form-body">
@@ -90,7 +89,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="col-md-12" for="user_category">User category</label>
                                         <div class="input-group">
@@ -112,20 +111,30 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="user_pass" class="form-label">Password <b class="text-danger">*</b></label>
-                                        <input type="password" name="user_pass" class="form-control" id="user_pass"
-                                            placeholder="Password">
+                                        <label class="col-md-12" for="user_role">User Role <b class="text-danger">*</b></label>
+                                        <div class="input-group">
+                                            <select name="user_role" id="user_role" class="form-control" required>
+                                                <option value="" selected disabled>Select user role</option>
+                                                @foreach ($roles as $role)
+                                                    <option value="{{ $role->name }}" @if($role->name == $user->roles()->first()->name) selected @endif>
+                                                        {{ $role->name ?? '#' }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('user_role')
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="confirm_password" class="form-label">Confirm Password <b class="text-danger">*</b></label>
-                                        <input type="password" class="form-control" id="confirm_password"
-                                            placeholder="Confirm Password"  autocomplete="new-password">
+                                        <label for="user_pass" class="form-label">Password</label>
+                                        <input type="password" name="user_pass" class="form-control" id="user_pass"
+                                            placeholder="Password">
                                     </div>
-                                    <span id='message'></span>
                                 </div>
-                            </div>
                             </div>
                         </div>
                         <div class="form-actions">

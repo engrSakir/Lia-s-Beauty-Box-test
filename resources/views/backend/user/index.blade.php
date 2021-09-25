@@ -52,7 +52,7 @@
                                     <a  class="btn btn-warning btn-circle" href="{{ route('backend.user.edit', $user) }}">
                                         <i class="fa fa-pen" ></i>
                                     </a>
-                                    <a  class="btn btn-danger btn-circle deleteBtn" href="{{ route('backend.user.show', $user) }}">
+                                    <a  class="btn btn-danger btn-circle delete-btn" href="{{ route('backend.user.show', $user) }}">
                                         <i class="fa fa-trash" ></i>
                                     </a>
                                     </td>
