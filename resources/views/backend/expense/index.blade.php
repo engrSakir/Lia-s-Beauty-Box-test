@@ -47,7 +47,7 @@
                                         <a class="btn btn-warning btn-circle" href="{{ route('backend.expense.edit', $expense) }}">
                                             <i class="fa fa-pen"></i>
                                         </a>
-                                        <a class="btn btn-danger btn-circle deleteBtn"
+                                        <a class="btn btn-danger btn-circle delete-btn"
                                             href="{{ route('backend.expense.show', $expense) }}">
                                             <i class="fa fa-trash"></i>
                                         </a>

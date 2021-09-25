@@ -44,7 +44,7 @@
                                     <a  class="btn btn-warning btn-circle" href="{{ route('backend.questionaire.edit', $questionaire) }}">
                                         <i class="fa fa-pen" ></i>
                                     </a>
-                                    <a  class="btn btn-danger btn-circle deleteBtn" href="{{ route('backend.questionaire.show', $questionaire) }}">
+                                    <a  class="btn btn-danger btn-circle delete-btn" href="{{ route('backend.questionaire.show', $questionaire) }}">
                                         <i class="fa fa-trash" ></i>
                                     </a>
 

@@ -44,7 +44,7 @@
                                     <a  class="btn btn-warning btn-circle" href="{{ route('backend.client.edit', $client) }}">
                                         <i class="fa fa-pen" ></i>
                                     </a>
-                                    <a  class="btn btn-danger btn-circle deleteBtn" href="{{ route('backend.client.show', $client) }}">
+                                    <a  class="btn btn-danger btn-circle delete-btn" href="{{ route('backend.client.show', $client) }}">
                                         <i class="fa fa-trash" ></i>
                                     </a>
 

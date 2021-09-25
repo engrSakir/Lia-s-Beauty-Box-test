@@ -48,7 +48,7 @@
                                     <a  class="btn btn-warning btn-circle" href="{{ route('backend.userCategory.edit', $userCategory) }}">
                                         <i class="fa fa-pen" ></i>
                                     </a>
-                                    <a  class="btn btn-danger btn-circle deleteBtn" href="{{ route('backend.userCategory.show', $userCategory) }}">
+                                    <a  class="btn btn-danger btn-circle delete-btn" href="{{ route('backend.userCategory.show', $userCategory) }}">
                                         <i class="fa fa-trash" ></i>
                                     </a>
 
