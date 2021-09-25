@@ -97,6 +97,10 @@ class ServiceCategoryController extends Controller
      */
     public function destroy(ServiceCategory $serviceCategory)
     {
-        //
+        $serviceCategory->delete();
+        return [
+            'type' => 'success',
+            'message' => 'Successfully destroy',
+        ];
     }
 }

@@ -47,7 +47,7 @@
                                     <a  class="btn btn-warning btn-circle" href="{{ route('backend.testimonial.edit', $testimonial) }}">
                                         <i class="fa fa-pen" ></i>
                                     </a>
-                                    <a  class="btn btn-danger btn-circle deleteBtn" href="{{ route('backend.testimonial.show', $testimonial) }}">
+                                    <a  class="btn btn-danger btn-circle delete-btn" href="{{ route('backend.testimonial.show', $testimonial) }}">
                                         <i class="fa fa-trash" ></i>
                                     </a>
 
