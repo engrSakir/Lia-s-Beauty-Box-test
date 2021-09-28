@@ -53,7 +53,8 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header  bg-success text-white">
-                    <h5 class="modal-title" id="schedule_title">Title</h5> <hr>
+                    <h5 class="modal-title" id="schedule_title">Title</h5>
+                    <hr>
                     <b class="modal-title" id="schedule_date">Date</b> &nbsp; <b class="modal-title"
                         id="schedule_time">Sub Title</b>
                 </div>
@@ -64,51 +65,32 @@
                         <input type="hidden" id="schedule_id" name="schedule">
                         <form class="cons-contact-form" id="appointment_form">
                             <div class="row">
-
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <input name="name" type="text" required="" class="form-control"
-                                                    placeholder="Name">
-                                            </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input name="name" type="text" required="" class="form-control"
+                                                placeholder="Name">
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <input name="phone" type="text" required="" class="form-control"
-                                                    placeholder="Phone">
-                                            </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input name="phone" type="text" required="" class="form-control"
+                                                placeholder="Phone">
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <input name="email" type="email" class="form-control" required=""
-                                                    placeholder="Email">
-                                            </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input name="email" type="email" class="form-control" required=""
+                                                placeholder="Email">
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <input name="transaction_id" type="text" class="form-control" required=""
-                                                    placeholder="Bkash Transaction ID">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <input name="advance_amount" type="number" class="form-control" required=""
-                                                    placeholder="Advance Amount">
-                                            </div>
-                                        </div>
-                                    </div>
-
-
+                                </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="input-group">
@@ -126,21 +108,12 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon v-align-m"><i class="fa fa-pencil"></i></span>
-                                            <textarea name="message" rows="4" class="form-control " required=""
-                                                placeholder="Message"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div class="col-md-12 text-right">
-                                    <button name="submit" type="button" class="btn waves-effect waves-light btn-outline-success"
+                                    <button name="submit" type="button"
+                                        class="btn waves-effect waves-light btn-outline-success"
                                         id="appointment_submit_btn">Submit <i class="fa fa-angle-double-right"></i></button>
-                                    <button name="Resat" type="reset" class="btn waves-effect waves-light btn-outline-info">Reset <i
+                                    <button name="Resat" type="reset"
+                                        class="btn waves-effect waves-light btn-outline-info">Reset <i
                                             class="fa fa-angle-double-right"></i></button>
                                 </div>
                             </div>
@@ -196,7 +169,8 @@
                         var ending_time = moment(Date("1/1/1900 " + schedule.ending_time)).format(
                             'hh:mm:ss a');
                         var title = schedule.title;
-                        var html = `<a href="javascript:void(0)"  onclick="bookingModal(` + schedule.id + `)">
+                        var html = `<a href="javascript:void(0)"  onclick="bookingModal(` + schedule
+                            .id + `)">
                                 <div class="user-img">
                                     <img src="/assets/frontend/images/booking.png" alt="user" class="img-circle">
                                     <span class="profile-status online pull-right"></span>
@@ -236,8 +210,10 @@
                 },
                 success: function(response) {
                     //console.log(response);
-                    var starting_time = moment(Date("1/1/1900 " + response.schedule.starting_time)).format('hh:mm:ss a');
-                    var ending_time = moment(Date("1/1/1900 " + response.schedule.ending_time)).format('hh:mm:ss a');
+                    var starting_time = moment(Date("1/1/1900 " + response.schedule.starting_time)).format(
+                        'hh:mm:ss a');
+                    var ending_time = moment(Date("1/1/1900 " + response.schedule.ending_time)).format(
+                        'hh:mm:ss a');
                     $('#schedule_title').text(response.schedule.title);
                     $('#schedule_date').text($("#appointment_data").val());
                     $('#schedule_time').text(starting_time + ' To ' + ending_time);
@@ -260,10 +236,7 @@
                     name: $("#appointment_form [name='name']").val(),
                     email: $("#appointment_form [name='email']").val(),
                     phone: $("#appointment_form [name='phone']").val(),
-                    transaction_id: $("#appointment_form [name='transaction_id']").val(),
-                    advance_amount: $("#appointment_form [name='advance_amount']").val(),
                     service: $("#appointment_form [name='service']").val(),
-                    message: $("#appointment_form [name='message']").val(),
                 },
                 dataType: 'JSON',
                 beforeSend: function() {
