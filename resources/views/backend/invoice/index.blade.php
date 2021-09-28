@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <!-- Due -->
+        {{-- <!-- Due -->
         <div class="col-md-6 col-lg-4 col-xlg-2">
             <div class="card">
                 <div class="box bg-primary text-center">
@@ -48,7 +48,7 @@
                     <h6 class="text-white">Total Due Amount</h6>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
     <div class="row">
         <div class="col-lg-12">
@@ -63,7 +63,7 @@
                                     <th>Name</th>
                                     <th>Price</th>
                                     <th>Paid</th>
-                                    <th>Due</th>
+                                    {{-- <th>Due</th> --}}
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
@@ -78,7 +78,7 @@
                                             {{ inv_calculator($invoice)['price'] ?? '#' }}
                                         </td>
                                         <td>{{ $invoice->payments->sum('amount') }}</td>
-                                        <td>{{ inv_calculator($invoice)['due'] }}</td>
+                                        {{-- <td>{{ inv_calculator($invoice)['due'] }}</td> --}}
                                         <td>{{ $invoice->created_at->format('d/m/Y h:i A') }}</td>
                                         <td>
                                             <a href="{{ route('backend.invoice.show', $invoice) }}" target="_blank"
