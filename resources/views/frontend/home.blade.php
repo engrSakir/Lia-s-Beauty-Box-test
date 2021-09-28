@@ -299,10 +299,10 @@
                     </div>
                 </div>
 
-                <p class="font-16"><strong>
+                <!--<p class="font-16"><strong>
                 Hello,I am a international certified makeup artist.I do bridal makeover.I use all the highend product
                     </strong>
-                </p>
+                </p>-->
 
             </div>
             <div class="section-content text-center about-spa">
@@ -2047,10 +2047,9 @@
                         <div class="special-offer radius p-tb60">
                             <div class="wt-left-part special-offer-in">
                                 <div class="wt-box p-r100 text-white">
-                                    <h1>Our Special Offer</h1>
+                                    <h1>Our Bridal Offer</h1>
                                     <h2 class="text-uppercase">You Owe Yourself This Moment</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis,
-                                        a porttitor tellus sollicitudin squ ad litora torquent per conubia.</p>
+                                    <p>Bridal Campaign with In-House Makeup Artist. Feel special on the most important day of your life.</p>
                                     <a class="site-button text-uppercase radius-sm font-weight-700 button-lg">view
                                         packages</a>
                                 </div>
@@ -2083,9 +2082,9 @@
                         <span class="separator-right bg-primary"></span>
                     </div>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus
+               <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus
                     sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                    himenaeos.</p>
+                    himenaeos.</p>-->
             </div>
             <!-- TITLE END-->
 
@@ -2327,8 +2326,8 @@
                         <span class="separator-right bg-primary"></span>
                     </div>
                 </div>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s.</p>
+               <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s.</p>-->
             </div>
             <!-- TITLE END -->
 
@@ -2368,7 +2367,7 @@
                                 </div>
                             </div>
 
-                            <div class="Opening-hours text-white">
+                            <!--<div class="Opening-hours text-white">
                                 <h3 class="wt-title text-uppercase m-t0">Opening Hours</h3>
                                 <ul class="list-unstyled">
                                     <li>{{ get_static_option('line1') }} <span
@@ -2378,7 +2377,7 @@
                                     <li>{{ get_static_option('line3') }} <span
                                             class="pull-right">{{ get_static_option('time3') }}</span></li>
                                 </ul>
-                            </div>
+                            </div>-->
 
                         </div>
                     </div>
@@ -2433,11 +2432,10 @@
     <!-- CONTACT US OFFER SECTION END  -->
 
     <!-- OUR CLIENT SLIDER START -->
-    <div class="section-full p-t80 p-b50 bg-repeat"
+    <!--<div class="section-full p-t80 p-b50 bg-repeat"
         style="background-image:url(assets/frontend/images/background/bg-6.jpg);">
         <div class="container">
 
-            <!-- TITLE START -->
             <div class="section-head text-center">
                 <h1><span class="text-primary"> Our</span> Client</h1>
                 <div class="wt-separator-outer ">
@@ -2447,12 +2445,9 @@
                         <span class="separator-right bg-primary"></span>
                     </div>
                 </div>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s.</p>
+               
             </div>
-            <!-- TITLE END -->
-
-            <!-- IMAGE CAROUSEL START -->
+           
             <div class="section-content">
                 <div class="owl-carousel client-logo-carousel">
                     @foreach ($clients as $client)
@@ -2468,9 +2463,8 @@
 
                 </div>
             </div>
-            <!-- IMAGE CAROUSEL START -->
         </div>
-    </div>
+    </div>-->
     <!-- OUR CLIENT SLIDER END -->
 @endsection
 
