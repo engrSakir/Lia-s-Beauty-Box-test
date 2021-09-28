@@ -67,7 +67,8 @@
                                                         <div class="custom-control custom-radio">
                                                             <input type="radio" id="pending-{{ $appointment->id }}"
                                                                 name="status-{{ $appointment->id }}" value="Pending"
-                                                                @if ($appointment->status == 'Pending') checked disabled @endif class="form-check-input status_btn">
+                                                                @if ($appointment->status == 'Pending') checked disabled @endif
+                                                                class="form-check-input status_btn">
                                                             <label class="form-check-label"
                                                                 for="pending-{{ $appointment->id }}"> <i
                                                                     class="ti-check text-active" aria-hidden="true"></i>
@@ -78,7 +79,8 @@
                                                         <div class="custom-control custom-radio">
                                                             <input type="radio" id="approved-{{ $appointment->id }}"
                                                                 name="status-{{ $appointment->id }}" value="Approved"
-                                                                @if ($appointment->status == 'Approved') checked disabled @endif class="form-check-input status_btn">
+                                                                @if ($appointment->status == 'Approved') checked disabled @endif
+                                                                class="form-check-input status_btn">
                                                             <label class="form-check-label"
                                                                 for="approved-{{ $appointment->id }}"> <i
                                                                     class="ti-check text-active" aria-hidden="true"></i>
@@ -89,7 +91,8 @@
                                                         <div class="custom-control custom-radio">
                                                             <input type="radio" id="reject-{{ $appointment->id }}"
                                                                 name="status-{{ $appointment->id }}" value="Reject"
-                                                                @if ($appointment->status == 'Reject') checked disabled @endif class="form-check-input status_btn">
+                                                                @if ($appointment->status == 'Reject') checked disabled @endif
+                                                                class="form-check-input status_btn">
                                                             <label class="form-check-label"
                                                                 for="reject-{{ $appointment->id }}"> <i
                                                                     class="ti-check text-active" aria-hidden="true"></i>
@@ -131,8 +134,8 @@
 @push('foot')
     <script>
         $(document).ready(function() {
-            $( '#wrapper' ).on( 'click', '.status_btn', function () {
-            // $('.status_btn').click(function() {
+            $('#wrapper').on('click', '.status_btn', function() {
+                // $('.status_btn').click(function() {
                 this_btn = $(this);
                 Swal.fire({
                     title: 'Are you sure?',
@@ -184,6 +187,8 @@
                     }
                 })
             });
+
+
         });
     </script>
 @endpush

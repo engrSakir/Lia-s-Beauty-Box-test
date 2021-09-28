@@ -27,7 +27,20 @@
                     <h4 class="mb-0 text-white">Schedules</h4>
                 </div>
                 <div class="card-body">
-                    <form class="cons-contact-form" id="appointment_form">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form class="cons-contact-form" id="appointment_form" method="post"
+                        action="{{ route('backend.appointment.update', $appointment) }}">
+                        @csrf
+                        @method('patch')
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -54,21 +67,22 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <input name="transaction_id" type="text" class="form-control" required=""
-                                                    placeholder="Bkash Transaction ID" value="{{ $appointment->transaction_id ?? '' }}">
-                                            </div>
-                                        </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input name="transaction_id" type="text" class="form-control"
+                                            placeholder="Bkash Transaction ID"
+                                            value="{{ $appointment->transaction_id ?? '' }}">
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <input name="advance_amount" type="number" class="form-control" required=""
-                                                    placeholder="Advance Amount" value="{{ $appointment->advance_amount ?? '' }}">
-                                            </div>
-                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input name="advance_amount" type="number" class="form-control"
+                                            placeholder="Advance Amount" value="{{ $appointment->advance_amount ?? '' }}">
                                     </div>
+                                </div>
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="input-group">
@@ -90,12 +104,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <select name="service" class="form-control" required="">
+                                        <select name="schedule" class="form-control" required="">
                                             <option value="" selected disabled>Please chose a schedule</option>
                                             @foreach ($schedule_days as $schedule)
                                                 <optgroup label="{{ $schedule['day_name'] }}">
                                                     @foreach ($schedule['data'] as $schedule_data)
-                                                        <option value="{{ $schedule_data->id }}"  @if ($appointment->schedule_id == $schedule_data->id) selected @endif>
+                                                        <option value="{{ $schedule_data->id }}"
+                                                            @if ($appointment->schedule_id == $schedule_data->id) selected @endif>
                                                             {{ $schedule_data->title }}
                                                             ({{ date('h:i A', strtotime($schedule_data->starting_time)) }}
                                                             to
@@ -113,14 +128,14 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon v-align-m"><i class="fa fa-pencil"></i></span>
-                                        <textarea name="message" rows="4" class="form-control " required=""
+                                        <textarea name="message" rows="4" class="form-control "
                                             placeholder="Message">{!! $appointment->message !!}</textarea>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-md-12 text-right">
-                                <button name="submit" type="button" class="btn waves-effect waves-light btn-outline-success"
+                                <button name="submit" type="submit" class="btn waves-effect waves-light btn-outline-success"
                                     id="appointment_submit_btn">Submit <i class="fa fa-angle-double-right"></i></button>
                                 <button name="Resat" type="reset"
                                     class="btn waves-effect waves-light btn-outline-info">Reset <i
