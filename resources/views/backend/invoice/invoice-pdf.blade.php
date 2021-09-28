@@ -177,10 +177,10 @@
 					<td></td>
 					<td>Paid: BDT {{ inv_calculator($invoice)['paid'] }}</td>
 				</tr>
-				<tr class="total">
+				{{-- <tr class="total">
 					<td></td>
 					<td style="color:red;">DUE: BDT {{ inv_calculator($invoice)['due'] }}</td>
-				</tr>
+				</tr> --}}
 			</table>
             <table cellpadding="0" cellspacing="0" style="margin-top: 60px;">
                 <tr>

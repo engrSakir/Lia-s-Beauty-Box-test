@@ -162,8 +162,8 @@
                                                     class="form-control bg-warning fs-6 fw-bold" readonly />
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <th class="text-center">New Payment</th>
+                                        <tr style="display: none">
+                                            <th class="text-center">Payment</th>
                                             <td class="text-center"><input type="number" name='new_payment_amount'
                                                     id="new_payment_amount" placeholder='0.00' class="form-control" />
                                             </td>
@@ -364,7 +364,8 @@
                         vat_percentage: document.getElementById('tax').value,
                         discount_percentage: document.getElementById('discount').value,
                         advance_payment_amount: document.getElementById('advance_payment_amount').value,
-                        new_payment_amount: document.getElementById('new_payment_amount').value,
+                        // new_payment_amount: document.getElementById('new_payment_amount').value,
+                        new_payment_amount: document.getElementById('due_after_advance_amount').value,
                     },
                     dataType: 'JSON',
                     beforeSend: function() {

@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <!-- Due -->
+        {{-- <!-- Due -->
         <div class="col-md-6 col-lg-4 col-xlg-2">
             <div class="card">
                 <div class="box bg-primary text-center">
@@ -49,7 +49,7 @@
                     <h6 class="text-white">Total Due Amount</h6>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
     <div class="row">
         <div class="col-lg-6">
