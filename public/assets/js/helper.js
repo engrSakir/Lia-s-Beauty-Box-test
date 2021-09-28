@@ -39,66 +39,66 @@ $(document).ready(function () {
     });
 
     //delete btn
-    $('.delete-btn').click(function (event) {
-        let url = $(this).val();
-        if (!url) {
-            Swal.fire(
-                'Wrong!',
-                'Empty URL',
-                'warning'
-            )
-        } else {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        method: 'DELETE',
-                        url: url,
-                        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                        success: function (data) {
-                            if (data.type == 'success') {
-                                Swal.fire(
-                                    'Deleted!',
-                                    'Your file has been deleted. ' + data.message,
-                                    'success'
-                                )
-                                if (data.url) {
-                                    setTimeout(function () {
-                                        location.replace(data.url);
-                                    }, 800);//
-                                } else {
-                                    setTimeout(function () {
-                                        location.reload();
-                                    }, 800);//
-                                }
-                            } else {
-                                if (data.message) {
-                                    Swal.fire(
-                                        'Wrong!',
-                                        data.message,
-                                        'warning'
-                                    )
-                                } else {
-                                    Swal.fire(
-                                        'Wrong!',
-                                        'Something going wrong.',
-                                        'warning'
-                                    )
-                                }
-                            }
-                        },
-                    })
-                }
-            })
-        }
-    });
+    // $('.delete-btn').click(function (event) {
+    //     let url = $(this).val();
+    //     if (!url) {
+    //         Swal.fire(
+    //             'Wrong!',
+    //             'Empty URL',
+    //             'warning'
+    //         )
+    //     } else {
+    //         Swal.fire({
+    //             title: 'Are you sure?',
+    //             text: "You won't be able to revert this!",
+    //             icon: 'warning',
+    //             showCancelButton: true,
+    //             confirmButtonColor: '#3085d6',
+    //             cancelButtonColor: '#d33',
+    //             confirmButtonText: 'Yes, delete it!'
+    //         }).then((result) => {
+    //             if (result.isConfirmed) {
+    //                 $.ajax({
+    //                     method: 'DELETE',
+    //                     url: url,
+    //                     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+    //                     success: function (data) {
+    //                         if (data.type == 'success') {
+    //                             Swal.fire(
+    //                                 'Deleted!',
+    //                                 'Your file has been deleted. ' + data.message,
+    //                                 'success'
+    //                             )
+    //                             if (data.url) {
+    //                                 setTimeout(function () {
+    //                                     location.replace(data.url);
+    //                                 }, 800);//
+    //                             } else {
+    //                                 setTimeout(function () {
+    //                                     location.reload();
+    //                                 }, 800);//
+    //                             }
+    //                         } else {
+    //                             if (data.message) {
+    //                                 Swal.fire(
+    //                                     'Wrong!',
+    //                                     data.message,
+    //                                     'warning'
+    //                                 )
+    //                             } else {
+    //                                 Swal.fire(
+    //                                     'Wrong!',
+    //                                     'Something going wrong.',
+    //                                     'warning'
+    //                                 )
+    //                             }
+    //                         }
+    //                     },
+    //                 })
+    //             }
+    //         })
+    //     }
+    // });
 
     // select all check box
     $('.select-all').click(function (event) {
@@ -183,3 +183,5 @@ function validation_error(error) {
         html: errorMessage,
     })
 }
+
+
