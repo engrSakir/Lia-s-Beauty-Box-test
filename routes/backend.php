@@ -19,9 +19,7 @@ use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\QuestionaireController;
 use App\Http\Controllers\Backend\UserCategoryController;
 use App\Http\Controllers\Backend\EmployeeSalaryController;
-
-
-
+use App\Http\Controllers\Backend\ReferralDiscountPercentageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,5 +60,6 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'
         Route::resource('questionaire', QuestionaireController::class);
         Route::resource('userCategory', UserCategoryController::class);
         Route::resource('employeeSalary', EmployeeSalaryController::class);
+        Route::resource('referralDiscountPercentage', ReferralDiscountPercentageController::class);
     });
 });

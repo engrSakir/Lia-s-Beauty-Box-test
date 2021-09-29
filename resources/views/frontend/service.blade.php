@@ -1,4 +1,5 @@
 @extends('layouts.frontend.app')
+@push('title') Service @endpush
 @section('content')
     <!-- INNER PAGE BANNER -->
     <div class="wt-bnr-inr overlay-wraper" style="background-image:url(assets/frontend/images/banner/product-banner.jpg);">

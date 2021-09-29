@@ -124,6 +124,13 @@
                         </a>
                     </li>
                     <li>
+                        <a class="waves-effect waves-dark" href="{{ route('backend.referralDiscountPercentage.index') }}"
+                            aria-expanded="false">
+                            <i class="far fa-circle text-danger"></i>
+                            <span class="hide-menu">Referral Manage</span>
+                        </a>
+                    </li>
+                    <li>
                         <a class="waves-effect waves-dark" href="{{ route('backend.setting') }}"
                             aria-expanded="false">
                             <i class="far fa-circle text-danger"></i>
