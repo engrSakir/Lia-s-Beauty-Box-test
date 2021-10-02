@@ -6,6 +6,7 @@ use App\Models\Appointment;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
 use App\Models\Payment;
+use App\Models\ReferralDiscountPercentage;
 use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -77,9 +78,6 @@ class InvoiceController extends Controller
             $invoice->vat_percentage = $request->vat_percentage ?? 0;
             $invoice->discount_percentage = $request->discount_percentage ?? 0;
             $invoice->note = $request->note;
-            // $invoice->due_date;
-            // $invoice->custom_counter;
-            // $invoice->bar_code;
             $invoice->save();
             //Invoice item save with this invoice ID
             try{
