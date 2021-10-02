@@ -30,14 +30,14 @@
                         <div class="row text-center justify-content-md-center">
                             <div class="col-md-6 col-lg-6">
                                 <a href="javascript:void(0)" class="link">
-                                    <i class="icon-people"></i>
-                                    <font class="font-medium">Ref Code</font>
+                                    <i class="fas fa-arrow-alt-circle-right"></i>
+                                    <font class="font-medium">Ref Code: &nbsp; {{ $user->referral_code }}</font>
                                 </a>
                             </div>
                             <div class="col-md-6 col-lg-6">
                                 <a href="javascript:void(0)" class="link">
-                                    <i class="icon-picture"></i>
-                                    <font class="font-medium">Ref User</font>
+                                    <i class="icon-people"></i>
+                                    <font class="font-medium">Referance: &nbsp; {{ $user->referUsers->count() }}</font>
                                 </a>
                             </div>
                         </div>
@@ -49,8 +49,7 @@
                 <div class="card-body">
                     <small class="text-muted">Phone </small>
                     <h6>{{ $user->phone ?? 'Phone not found' }}</h6>
-                    <small class="text-muted p-t-30 db">Address</small>
-                    <h6>{{ $user->address ?? 'Address not found' }}</h6>
+                    <br>
                     <small class="text-muted p-t-30 db">Role</small>
                     <h6>
                         {{ $user->roles()->first()->name ?? '*' }}
@@ -73,9 +72,9 @@
                             <form action="{{ route('backend.profile') }}" method="POST" class="form-horizontal form-material" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                    <label class="col-md-12" for="name">Full Name</label>
+                                    <label class="col-md-12" for="name">Full Name <b class="text-danger">*</b></label>
                                     <div class="col-md-12">
-                                        <input type="text" name="name" value="{{ $user->name }}" placeholder="Type your name" class="form-control form-control-line" id="name">
+                                        <input type="text" name="name" required value="{{ $user->name }}" placeholder="Type your name" class="form-control form-control-line" id="name">
                                         @error('name')
                                             <div class="alert alert-danger" role="alert">
                                                 {{ $message }}
@@ -84,9 +83,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="email" class="col-md-12">Email</label>
+                                    <label for="email" class="col-md-12">Email <b class="text-danger">*</b></label>
                                     <div class="col-md-12">
-                                        <input type="email" name="email" value="{{ $user->email }}" placeholder="Type your email" class="form-control form-control-line" id="email">
+                                        <input type="email" name="email" required value="{{ $user->email }}" placeholder="Type your email" class="form-control form-control-line" id="email">
                                         @error('email')
                                         <div class="alert alert-danger" role="alert">
                                             {{ $message }}
@@ -119,16 +118,16 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="user_pass" class="form-label">Password <b class="text-danger">*</b></label>
+                                        <label for="user_pass" class="form-label">Password</label>
                                         <input type="password" name="user_pass" class="form-control" id="user_pass"
-                                            placeholder="Password" required>
+                                            placeholder="Password">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="confirm_password" class="form-label">Confirm Password</label>
                                         <input type="password" class="form-control" id="confirm_password"
-                                            placeholder="Confirm Password" required autocomplete="new-password">
+                                            placeholder="Confirm Password" autocomplete="new-password">
                                     </div>
                                     <span id='message'></span>
                                 </div>

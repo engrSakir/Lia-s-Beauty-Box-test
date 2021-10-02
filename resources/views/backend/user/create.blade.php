@@ -93,7 +93,7 @@
                                     <div class="form-group">
                                         <label class="col-md-12" for="user_category">User category</label>
                                         <div class="input-group">
-                                            <select name="user_category" id="user_category" class="form-control" required>
+                                            <select name="user_category" id="user_category" class="form-control">
                                                 <option value="" selected disabled>Select user category
                                                 </option>
                                                 @foreach ($userCategories as $userCategory)
