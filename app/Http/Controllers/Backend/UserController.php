@@ -48,8 +48,8 @@ class UserController extends Controller
         $request->validate([
             'user_name'     => 'required|string',
             'user_email'    => 'required|unique:users,email',
-            'user_phone'    => 'required|string|max:11|unique:users,phone',
-            'user_category' => 'required|exists:user_categories,id',
+            'user_phone'    => 'nullable|string|max:11|unique:users,phone',
+            'user_category' => 'nullable|exists:user_categories,id',
             'user_role'     => 'required|exists:roles,name',
             'user_pass'     => 'required|min:4',
         ]);
@@ -108,8 +108,8 @@ class UserController extends Controller
         $request->validate([
             'user_name'     => 'required|string',
             'user_email'    => 'required|unique:users,email,'.$user->id,
-            'user_phone'    => 'required|string|max:11|unique:users,phone,'.$user->id,
-            'user_category' => 'required|exists:user_categories,id',
+            'user_phone'    => 'nullable|string|max:11|unique:users,phone,'.$user->id,
+            'user_category' => 'nullable|exists:user_categories,id',
             'user_role'     => 'required|exists:roles,name',
             'user_pass'     => 'nullable|min:4',
         ]);

@@ -60,26 +60,7 @@
         </div>
     </div>
 </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                <table class="table color-bordered-table primary-bordered-table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Percentage</th>
-                                <th scope="col">Effective From</th>
-                                <th scope="col">Last Efective date</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($referralDiscountPercentages as $referralDiscountPercentage)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $referralDiscountPercentage->amount }}</td>
-                                    <td>{{ $referralDiscountPercentage->created_at->format('d/m/Y') }}</td>
+    <div class="row">Y') }}</td>
 
                                     <td> @if($referralDiscountPercentage->next()) {{ $referralDiscountPercentage->next()->created_at->format('d/m/Y') }} @else Running ... @endif</td>
 

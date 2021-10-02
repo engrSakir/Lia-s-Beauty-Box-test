@@ -99,6 +99,19 @@ class DashboardController extends Controller
                 'chart_type' => 'bar',
             ]);
             return view('backend.dashboard.admin-dashboard', compact('dashboard_items', 'user_chart', 'invoice_chart', 'appointment_chart'));
+        }else if (auth()->user()->hasRole('Employee')) {
+            $dashboard_items = [
+                [
+                    'title' => 'Title 1',
+                    'count' => 0,
+                ],
+                [
+                    'title' => 'Title 2',
+                    'count' => 0,
+                ],
+
+            ];
+            return view('backend.dashboard.employee-dashboard', compact('dashboard_items'));
         }else if (auth()->user()->hasRole('Customer')) {
             $dashboard_items = [
                 [

@@ -25,20 +25,23 @@
     <nav class="sidebar-nav">
         <ul id="sidebarnav">
             <li class="nav-small-cap">--- MENU ITEMS</li>
-            @role('Admin')
+            @hasanyrole('Admin|Employee|Customer')
             <li>
                 <a class="waves-effect waves-dark" href="{{ route('dashboard') }}" aria-expanded="false">
                     <i class="far fa-circle text-danger"></i>
                     <span class="hide-menu">Dashboard</span>
                 </a>
             </li>
+            @endhasanyrole
+            @role('Admin')
             <li>
                 <a class="waves-effect waves-dark" href="{{ route('account') }}" aria-expanded="false">
                     <i class="far fa-circle text-danger"></i>
                     <span class="hide-menu">Account</span>
                 </a>
             </li>
-
+            @endrole
+            @hasanyrole('Admin|Employee')
             <li>
                 <a class="waves-effect waves-dark" href="{{ route('backend.schedule.index') }}" aria-expanded="false">
                     <i class="far fa-circle text-danger"></i>
@@ -65,6 +68,8 @@
                     <span class="hide-menu">Invoice</span>
                 </a>
             </li>
+            @endhasanyrole
+            @role('Admin')
             <li>
                 <a class="waves-effect waves-dark" href="{{ route('backend.employeeSalary.index') }}" aria-expanded="false">
                     <i class="far fa-circle text-danger"></i>
@@ -140,14 +145,6 @@
 
 
                 </ul>
-            </li>
-            @endrole
-            @role('Customer')
-            <li>
-                <a class="waves-effect waves-dark" href="{{ route('dashboard') }}" aria-expanded="false">
-                    <i class="far fa-circle text-danger"></i>
-                    <span class="hide-menu">Dashboard</span>
-                </a>
             </li>
             @endrole
         </ul>

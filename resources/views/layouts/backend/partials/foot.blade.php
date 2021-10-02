@@ -14,7 +14,9 @@
     <script src="{{ asset('assets/backend/node_modules/sparkline/jquery.sparkline.min.js') }}"></script>
     <!--Custom JavaScript -->
     <script src="{{ asset('assets/backend/dist/js/custom.min.js') }}"></script>
-    {{-- All table are datatable JS Start--}}
+    <!--Custom JavaScript helper -->
+    <script src="{{ asset('assets/js/helper.js') }}"></script>
+    {{-- All table are datatable JS Start --}}
     <link href="//cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css" rel="stylesheet">
     <script src="//cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
     <script>
@@ -35,64 +37,65 @@
     {{-- Ajax Delete code --}}
     <script>
         $('.table').on('click', '.delete-btn', function(event) {
-    let url = $(this).val();
-    if (!url) {
-        Swal.fire(
-            'Wrong!',
-            'Empty URL',
-            'warning'
-        )
-    } else {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    method: 'DELETE',
-                    url: url,
-                    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                    success: function (data) {
-                        if (data.type == 'success') {
-                            Swal.fire(
-                                'Deleted!',
-                                'Your file has been deleted. ' + data.message,
-                                'success'
-                            )
-                            if (data.url) {
-                                setTimeout(function () {
-                                    location.replace(data.url);
-                                }, 800);//
-                            } else {
-                                setTimeout(function () {
-                                    location.reload();
-                                }, 800);//
-                            }
-                        } else {
-                            if (data.message) {
-                                Swal.fire(
-                                    'Wrong!',
-                                    data.message,
-                                    'warning'
-                                )
-                            } else {
-                                Swal.fire(
-                                    'Wrong!',
-                                    'Something going wrong.',
-                                    'warning'
-                                )
-                            }
-                        }
-                    },
+            let url = $(this).val();
+            if (!url) {
+                Swal.fire(
+                    'Wrong!',
+                    'Empty URL',
+                    'warning'
+                )
+            } else {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            method: 'DELETE',
+                            url: url,
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            success: function(data) {
+                                if (data.type == 'success') {
+                                    Swal.fire(
+                                        'Deleted!',
+                                        'Your file has been deleted. ' + data.message,
+                                        'success'
+                                    )
+                                    if (data.url) {
+                                        setTimeout(function() {
+                                            location.replace(data.url);
+                                        }, 800); //
+                                    } else {
+                                        setTimeout(function() {
+                                            location.reload();
+                                        }, 800); //
+                                    }
+                                } else {
+                                    if (data.message) {
+                                        Swal.fire(
+                                            'Wrong!',
+                                            data.message,
+                                            'warning'
+                                        )
+                                    } else {
+                                        Swal.fire(
+                                            'Wrong!',
+                                            'Something going wrong.',
+                                            'warning'
+                                        )
+                                    }
+                                }
+                            },
+                        })
+                    }
                 })
             }
-        })
-    }
-});
-
+        });
     </script>
