@@ -131,7 +131,34 @@ class DashboardController extends Controller
     }
 
     public function account(){
+        $total_vat_of_the_month = 0;
+        foreach(Invoice::whereMonth('created_at', date('m'))->get() as $invoice){
+            $total_vat_of_the_month += $invoice->items()->sum(DB::raw('quantity * price')) / 100 * $invoice->vat_percentage;
+        }
+        $total_vat_of_the_year = 0;
+        foreach(Invoice::whereYear('created_at', date('Y'))->get() as $invoice){
+            $total_vat_of_the_year += $invoice->items()->sum(DB::raw('quantity * price')) / 100 * $invoice->vat_percentage;
+        }
+        $total_vat = 0;
+        foreach(Invoice::all() as $invoice){
+            $total_vat += $invoice->items()->sum(DB::raw('quantity * price')) / 100 * $invoice->vat_percentage;
+        }
         $dashboard_items = [
+            [
+                'title' => 'Total VAT of this month',
+                'count' => $total_vat_of_the_month,
+                'url' => null,
+            ],
+            [
+                'title' => 'Total VAT of this year',
+                'count' => $total_vat_of_the_year,
+                'url' => null,
+            ],
+            [
+                'title' => 'Total VAT',
+                'count' => $total_vat,
+                'url' => null,
+            ],
             [
                 'title' => 'Total Profit of this month',
                 'count' => Payment::whereMonth('created_at', date('m'))->get()->sum('amount') - Expense::whereMonth('created_at', date('m'))->get()->sum('amount') - EmployeeSalary::whereMonth('created_at', date('m'))->get()->sum('amount'),
