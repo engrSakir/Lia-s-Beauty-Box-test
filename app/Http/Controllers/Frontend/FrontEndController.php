@@ -202,6 +202,10 @@ class FrontEndController extends Controller
         }
     }
 
+    public function getContactForm(){
+        return view('frontend.contact');
+    }
+
     public function handleContactForm(Request $request)
     {
         $this->validate($request, ['name' => 'required', 'email' => 'required|email', 'phone' => 'required|numeric','message' => 'required']);
@@ -212,6 +216,6 @@ class FrontEndController extends Controller
                 ->subject('Contact Us Message');
         });
         toastr()->success('Thank you for your feedback');
-        return back();            
+        return back()->with('alert', 'Success!');;
     }
 }
