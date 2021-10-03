@@ -28,16 +28,10 @@
                         <h4 class="card-title m-t-10">{{ $user->name }}</h4>
                         <h6 class="card-subtitle">{{ $user->email }}</h6>
                         <div class="row text-center justify-content-md-center">
-                            <div class="col-md-6 col-lg-6">
+                            <div class="col-md-116 col-lg-116">
+                                <i class="fas fa-arrow-alt-circle-right"></i> Ref Link ({{ $user->referUsers->count() }}): &nbsp;
                                 <a href="javascript:void(0)" class="link">
-                                    <i class="fas fa-arrow-alt-circle-right"></i>
-                                    <font class="font-medium">Ref Code: &nbsp; {{ $user->referral_code }}</font>
-                                </a>
-                            </div>
-                            <div class="col-md-6 col-lg-6">
-                                <a href="javascript:void(0)" class="link">
-                                    <i class="icon-people"></i>
-                                    <font class="font-medium">Referance: &nbsp; {{ $user->referUsers->count() }}</font>
+                                    <font class="font-medium copy-btn"> {{ route('refRegister', $user->referral_code) }}</font>
                                 </a>
                             </div>
                         </div>
@@ -150,5 +144,20 @@
 @endpush
 
 @push('foot')
-
+<script>
+    $(".copy-btn").click(function() {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val($(this).text()).select();
+        document.execCommand("copy");
+        $temp.remove();
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Copy',
+            showConfirmButton: false,
+            timer: 500
+        })
+    });
+    </script>
 @endpush
