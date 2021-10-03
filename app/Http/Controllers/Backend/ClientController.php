@@ -51,7 +51,7 @@ class ClientController extends Controller
         $client->save();
         toastr()->success('Successfully Saved!');
         return back();
-        
+
     }
 
     /**
@@ -106,6 +106,10 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        $client->delete();
+        return [
+            'type' => 'success',
+            'message' => 'Successfully destroy',
+        ];
     }
 }

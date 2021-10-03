@@ -115,6 +115,10 @@ class GalleryController extends Controller
      */
     public function destroy(Gallery $gallery)
     {
-        //
+        $gallery->delete();
+        return [
+            'type' => 'success',
+            'message' => 'Successfully destroy',
+        ];
     }
 }

@@ -80,6 +80,10 @@ class PaymentController extends Controller
      */
     public function destroy(Payment $payment)
     {
-        //
+        $payment->delete();
+        return [
+            'type' => 'success',
+            'message' => 'Successfully destroy',
+        ];
     }
 }

@@ -233,7 +233,11 @@ class InvoiceController extends Controller
      */
     public function destroy(Invoice $invoice)
     {
-        //
+        $invoice->delete();
+        return [
+            'type' => 'success',
+            'message' => 'Successfully destroy',
+        ];
     }
 
     public function payment(Invoice $invoice)
