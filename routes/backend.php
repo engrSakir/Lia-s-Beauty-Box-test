@@ -19,9 +19,7 @@ use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\QuestionaireController;
 use App\Http\Controllers\Backend\UserCategoryController;
 use App\Http\Controllers\Backend\EmployeeSalaryController;
-
-
-
+use App\Http\Controllers\Backend\ReferralDiscountPercentageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,29 +30,32 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
-Route::get('account', [DashboardController::class, 'account'])->middleware(['auth'])->name('account');
+Route::get('account', [DashboardController::class, 'account'])->middleware(['auth', 'role:Admin'])->name('account');
 
 Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'], function () {
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('profile', [ProfileController::class, 'update']);
 
+    Route::group(['middleware' => ['role:Admin|Employee']], function () {
+        Route::get('payment/{invoice}', [InvoiceController::class, 'payment'])->name('invoice.payment');
+        Route::patch('payment/{invoice}', [InvoiceController::class, 'paymentStore']);
+        Route::get('payment-receipt/{payment}', [InvoiceController::class, 'paymentReceipt'])->name('paymentReceipt');
+        Route::resource('appointment', AppointmentController::class);
+        Route::resource('invoice', InvoiceController::class);
+        Route::resource('schedule', ScheduleController::class);
+        Route::resource('service', ServiceController::class);
+        Route::resource('serviceCategory', ServiceCategoryController::class);
+    });
+
     Route::group(['middleware' => ['role:Admin']], function () {
         Route::get('setting', [SettingController::class, 'index'])->name('setting');
         Route::post('setting', [SettingController::class, 'update']);
 
-        Route::get('payment/{invoice}', [InvoiceController::class, 'payment'])->name('invoice.payment');
-        Route::patch('payment/{invoice}', [InvoiceController::class, 'paymentStore']);
-        Route::get('payment-receipt/{payment}', [InvoiceController::class, 'paymentReceipt'])->name('paymentReceipt');
 
-        Route::resource('schedule', ScheduleController::class);
-        Route::resource('service', ServiceController::class);
-        Route::resource('serviceCategory', ServiceCategoryController::class);
         Route::resource('user', UserController::class);
         Route::resource('client', ClientController::class);
         Route::resource('gallery', GalleryController::class);
         Route::resource('imageCategory', ImageCategoryController::class);
-        Route::resource('appointment', AppointmentController::class);
-        Route::resource('invoice', InvoiceController::class);
         Route::resource('expense', ExpenseController::class);
         Route::resource('expenseCategory', ExpenseCategoryController::class);
         Route::resource('banner', BannerController::class);
@@ -62,5 +63,6 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'
         Route::resource('questionaire', QuestionaireController::class);
         Route::resource('userCategory', UserCategoryController::class);
         Route::resource('employeeSalary', EmployeeSalaryController::class);
+        Route::resource('referralDiscountPercentage', ReferralDiscountPercentageController::class);
     });
 });

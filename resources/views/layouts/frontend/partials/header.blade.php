@@ -60,7 +60,7 @@
                         <li class=""><a href="{{ url('/service') }}">Services</a></li>
                         <li class=""><a href="{{ url('/booking') }}">Booking</a></li>
                         <li class=""><a href="{{ url('/') }}">About</a></li>
-                        <li class=""><a href="{{ url('/') }}">Contact</a></li>
+                        <li class=""><a href="{{ url('/contact-us') }}">Contact</a></li>
                     </ul>
                 </div>
             </div>

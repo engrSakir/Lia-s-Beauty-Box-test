@@ -1,4 +1,5 @@
 @extends('layouts.frontend.app')
+@push('title') Home @endpush
 @section('content')
     <!-- SLIDER START -->
     <div id="rev_slider_1050_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="webproduct-light"
@@ -2035,7 +2036,7 @@
             </div>
         </div>-->
     </div>
-    
+
 
     <!-- OUR SPECIAL OFFER SECTION END  -->
     <div class="section-full bg-primary">
@@ -2279,7 +2280,7 @@
                         <span class="separator-right bg-primary"></span>
                     </div>
                 </div>
-               
+
             </div>
             <div class="section-content">
                 <div class="owl-carousel home-carousel-1">

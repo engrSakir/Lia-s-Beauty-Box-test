@@ -49,6 +49,15 @@
                 </div>
             </div>
         </div> --}}
+        <!-- VAT -->
+        <div class="col-md-6 col-lg-4 col-xlg-2">
+            <div class="card">
+                <div class="box bg-primary text-center">
+                    <h1 class="font-light text-white">{{ $total_vat }}</h1>
+                    <h6 class="text-white">Total VAT Amount</h6>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="col-lg-12">
@@ -63,6 +72,7 @@
                                     <th>Name</th>
                                     <th>Price</th>
                                     <th>Paid</th>
+                                    <th>Vat</th>
                                     {{-- <th>Due</th> --}}
                                     <th>Created At</th>
                                     <th>Action</th>
@@ -79,6 +89,9 @@
                                         </td>
                                         <td>{{ $invoice->payments->sum('amount') }}</td>
                                         {{-- <td>{{ inv_calculator($invoice)['due'] }}</td> --}}
+                                        <td>
+                                            {{ inv_calculator($invoice)['vat_amount'] ?? '#' }}
+                                        </td>
                                         <td>{{ $invoice->created_at->format('d/m/Y h:i A') }}</td>
                                         <td>
                                             <a href="{{ route('backend.invoice.show', $invoice) }}" target="_blank"

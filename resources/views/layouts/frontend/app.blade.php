@@ -43,8 +43,8 @@
 <!-- JAVASCRIPT  FILES ========================================= -->
 @include('layouts.frontend.partials.foot')
 
-<!-- STYLE SWITCHER  ======= -->
+{{-- <!-- STYLE SWITCHER  ======= -->
 @include('layouts.frontend.partials.style-switcher')
-<!-- STYLE SWITCHER END ==== -->
+<!-- STYLE SWITCHER END ==== --> --}}
 </body>
 </html>

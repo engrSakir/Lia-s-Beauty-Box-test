@@ -1,4 +1,5 @@
 @extends('layouts.frontend.app')
+@push('title') Service Details @endpush
 @section('content')
     <!-- INNER PAGE BANNER -->
     <div class="wt-bnr-inr overlay-wraper"

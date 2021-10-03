@@ -52,9 +52,9 @@
                                     <a  class="btn btn-warning btn-circle" href="{{ route('backend.user.edit', $user) }}">
                                         <i class="fa fa-pen" ></i>
                                     </a>
-                                    <a  class="btn btn-danger btn-circle delete-btn" href="{{ route('backend.user.show', $user) }}">
+                                    <button  class="btn btn-danger btn-circle delete-btn" value="{{ route('backend.user.show', $user) }}">
                                         <i class="fa fa-trash" ></i>
-                                    </a>
+                                    </button>
                                     </td>
                                 </tr>
                             @endforeach

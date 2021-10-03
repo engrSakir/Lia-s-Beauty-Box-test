@@ -100,7 +100,7 @@
                                                         </div>
                                                     </label>
                                                 @else
-                                                    <a href="{{ route('backend.invoice.show', $appointment->invoice) }}"
+                                                    <a href="{{ route('backend.invoice.show', $appointment->invoice ?? '') }}"
                                                         target="_blank"
                                                         class="btn btn-primary waves-effect btn-rounded waves-light"> <i
                                                             class="fas fa-print"></i> </a>

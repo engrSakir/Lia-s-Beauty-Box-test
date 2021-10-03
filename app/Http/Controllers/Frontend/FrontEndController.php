@@ -202,6 +202,10 @@ class FrontEndController extends Controller
         }
     }
 
+    public function getContactForm(){
+        return view('frontend.contact');
+    }
+
     public function handleContactForm(Request $request)
     {
         $this->validate($request, ['name' => 'required', 'email' => 'required|email', 'phone' => 'required|numeric','message' => 'required']);
@@ -212,6 +216,18 @@ class FrontEndController extends Controller
                 ->subject('Contact Us Message');
         });
         toastr()->success('Thank you for your feedback');
-        return back();            
+        return back()->with('alert', 'Success!');;
+    }
+
+    public function getRegisterFormWithRefCode($ref_code = null){
+        $invalid_ref_alert = null;
+        if(!$ref_code || !User::where('referral_code', $ref_code)->exists()){
+            $invalid_ref_alert = 'Invalid referral code';
+        }
+
+        return view('frontend.ref-register',compact('ref_code', 'invalid_ref_alert'));
+    }
+    public function registrationWithRefCode(Request $request){
+
     }
 }
