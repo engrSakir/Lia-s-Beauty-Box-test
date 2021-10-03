@@ -11,7 +11,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/frontend/images/favicon.png') }}" />
 
 <!-- PAGE TITLE HERE -->
-<title> @yield('title') - {{ config('app.name') }} </title>
+<title> @stack('title') - {{ config('app.name') }} </title>
 
 <!-- MOBILE SPECIFIC -->
 <meta name="viewport" content="width=device-width, initial-scale=1">

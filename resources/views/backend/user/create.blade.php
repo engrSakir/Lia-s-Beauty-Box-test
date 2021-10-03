@@ -62,7 +62,7 @@
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
-                                        <label class="form-label" for="user_phone">Phone <b class="text-danger">*</b></label>
+                                        <label class="form-label" for="user_phone">Phone </label>
                                         <input type="number" id="user_phone" name="user_phone"
                                             class="form-control form-control-danger" placeholder="Your Mobile Number"
                                             value="{{ old('user_phone') }}" required>
@@ -91,9 +91,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="col-md-12" for="user_category">User category <b class="text-danger">*</b></label>
+                                        <label class="col-md-12" for="user_category">User category</label>
                                         <div class="input-group">
-                                            <select name="user_category" id="user_category" class="form-control" required>
+                                            <select name="user_category" id="user_category" class="form-control">
                                                 <option value="" selected disabled>Select user category
                                                 </option>
                                                 @foreach ($userCategories as $userCategory)

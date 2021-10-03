@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
+use App\Models\ReferralDiscountPercentage;
 use App\Models\Schedule;
 use App\Models\ServiceCategory;
 use App\Models\User;
@@ -128,11 +129,15 @@ class AppointmentController extends Controller
     public function show(Appointment $appointment)
     {
         if (request()->ajax()) {
+            $discount_percentage = $appointment->customer->category->discount_percentage ?? 0;
+            if($appointment->customer->referBy){
+                $discount_percentage += ReferralDiscountPercentage::latest()->first()->amount ?? 0;
+            }
             return [
                 'appointment' => $appointment,
                 'service' => $appointment->service ?? null,
                 'vat_percentage' => $appointment->customer->category->vat_percentage ?? 0,
-                'discount_percentage' => $appointment->customer->category->discount_percentage ?? 0,
+                'discount_percentage' => $discount_percentage,
             ];
         }
     }
