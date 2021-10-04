@@ -43,7 +43,7 @@ class QuestionaireController extends Controller
         $request->validate([
             'question'         => 'required|string',
             'answer'         => 'nullable|string',
-            
+
         ]);
         $faq = new Questionaire();
         $faq->question = $request->question;
@@ -87,7 +87,7 @@ class QuestionaireController extends Controller
         $request->validate([
             'question'         => 'required|string',
             'answer'         => 'nullable|string',
-            
+
         ]);
         $questionaire->question = $request->question;
         $questionaire->answer = $request->answer;
@@ -104,6 +104,10 @@ class QuestionaireController extends Controller
      */
     public function destroy(Questionaire $questionaire)
     {
-        //
+        $questionaire->delete();
+        return [
+            'type' => 'success',
+            'message' => 'Successfully destroy',
+        ];
     }
 }

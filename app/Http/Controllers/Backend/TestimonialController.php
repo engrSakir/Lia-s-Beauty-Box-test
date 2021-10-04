@@ -44,7 +44,7 @@ class TestimonialController extends Controller
             'image'         => 'required|image',
             'message'         => 'nullable|string',
             'designation'         => 'nullable|string',
-            
+
 
         ]);
         $testimonial = new Testimonial();
@@ -95,7 +95,7 @@ class TestimonialController extends Controller
             'image'         => 'image',
             'message'         => 'nullable|string',
             'designation'         => 'nullable|string',
-            
+
 
         ]);
         $testimonial->name = $request->name;
@@ -117,6 +117,10 @@ class TestimonialController extends Controller
      */
     public function destroy(Testimonial $testimonial)
     {
-        //
+        $testimonial->delete();
+        return [
+            'type' => 'success',
+            'message' => 'Successfully destroy',
+        ];
     }
 }

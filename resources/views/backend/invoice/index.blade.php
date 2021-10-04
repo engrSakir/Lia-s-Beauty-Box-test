@@ -49,6 +49,7 @@
                 </div>
             </div>
         </div> --}}
+        @can('Total vat amount visibility permission')
         <!-- VAT -->
         <div class="col-md-6 col-lg-4 col-xlg-2">
             <div class="card">
@@ -58,7 +59,9 @@
                 </div>
             </div>
         </div>
+        @endcan
     </div>
+
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -72,7 +75,9 @@
                                     <th>Name</th>
                                     <th>Price</th>
                                     <th>Paid</th>
+                                    @can('Total vat amount visibility permission')
                                     <th>Vat</th>
+                                    @endcan
                                     {{-- <th>Due</th> --}}
                                     <th>Created At</th>
                                     <th>Action</th>
@@ -89,9 +94,11 @@
                                         </td>
                                         <td>{{ $invoice->payments->sum('amount') }}</td>
                                         {{-- <td>{{ inv_calculator($invoice)['due'] }}</td> --}}
+                                        @can('Total vat amount visibility permission')
                                         <td>
                                             {{ inv_calculator($invoice)['vat_amount'] ?? '#' }}
                                         </td>
+                                        @endcan
                                         <td>{{ $invoice->created_at->format('d/m/Y h:i A') }}</td>
                                         <td>
                                             <a href="{{ route('backend.invoice.show', $invoice) }}" target="_blank"

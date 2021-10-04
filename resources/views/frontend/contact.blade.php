@@ -41,7 +41,7 @@
                                     </div>
                                 @endif
                                 <h5 class="text-uppercase font-26 p-b20 font-weight-400">GET IN TOUCH</h5>
-                                <form class="cons-contact-form2" method="post" action="{{ route('contact-us') }}">
+                                <form class="cons-contact-form2" method="post" action="{{ url('/contact-us') }}">
                                     @csrf
 
                                     <div class="form-group">
@@ -100,5 +100,5 @@
             alert(msg);
         }
     </script>
-    </script>
+
 @endpush

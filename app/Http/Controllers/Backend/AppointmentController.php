@@ -90,6 +90,7 @@ class AppointmentController extends Controller
                 $appointment->appointment_data  = date('Y-m-d', strtotime($request->appointment_data));
                 $appointment->schedule_id       = $request->schedule;
                 $appointment->service_id        = $request->service;
+                $appointment->status            = 'Approved'; //Administritive auto approve
                 $appointment->save();
             } else {
                 return [
@@ -133,10 +134,15 @@ class AppointmentController extends Controller
             if($appointment->customer->referBy){
                 $discount_percentage += ReferralDiscountPercentage::latest()->first()->amount ?? 0;
             }
+            if(auth()->user()->hasPermissionTo('Invoice create with vat permission')){
+                $vat_percentage = $appointment->customer->category->vat_percentage ?? 0;
+            }else{
+                $vat_percentage = 0;
+            }
             return [
                 'appointment' => $appointment,
                 'service' => $appointment->service ?? null,
-                'vat_percentage' => $appointment->customer->category->vat_percentage ?? 0,
+                'vat_percentage' => $vat_percentage,
                 'discount_percentage' => $discount_percentage,
             ];
         }

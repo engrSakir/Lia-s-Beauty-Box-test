@@ -107,6 +107,10 @@ class UserCategoryController extends Controller
      */
     public function destroy(UserCategory $userCategory)
     {
-        //
+        $userCategory->delete();
+        return [
+            'type' => 'success',
+            'message' => 'Successfully destroy',
+        ];
     }
 }

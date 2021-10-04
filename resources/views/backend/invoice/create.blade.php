@@ -13,6 +13,8 @@
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                     <li class="breadcrumb-item active">Invoice Create Page</li>
                 </ol>
+                <a href="{{ route('backend.appointment.create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
+                    class="fa fa-plus-circle"></i> Create New Appointment</a>
 
             </div>
         </div>
@@ -132,7 +134,8 @@
                                                     readonly />
                                             </td>
                                         </tr>
-                                        <tr>
+
+                                        <tr @if(auth()->user()->hasPermissionTo('Invoice create with vat permission')) @else style="display:none"  @endif>
                                             <th class="text-center">Tax (%)</th>
                                             <td class="text-center">
                                                 <div class="input-group mb-2 mb-sm-0">
@@ -143,6 +146,7 @@
                                                     id="tax_amount" placeholder='0.00' class="form-control" readonly />
                                             </td>
                                         </tr>
+
                                         <tr>
                                             <th class="text-center">Grand Total</th>
                                             <td></td>
@@ -326,6 +330,7 @@
                     console.log(response);
                     $('#addr0').find('.service').val(response.appointment.service_id)
                     $('#addr0').find('.price').val(response.service.price)
+                    $('#addr0').find('.qty').val(1)
                     $('#tax').val(response.vat_percentage)
                     $('#discount').val(response.discount_percentage)
                     $('#advance_payment_amount').val(response.appointment.advance_amount)
