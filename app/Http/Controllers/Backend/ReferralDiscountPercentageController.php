@@ -89,6 +89,10 @@ class ReferralDiscountPercentageController extends Controller
      */
     public function destroy(ReferralDiscountPercentage $referralDiscountPercentage)
     {
-        //
+        $referralDiscountPercentage->delete();
+        return [
+            'type' => 'success',
+            'message' => 'Successfully destroy',
+        ];
     }
 }

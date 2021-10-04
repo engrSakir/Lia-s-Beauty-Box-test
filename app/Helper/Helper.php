@@ -102,18 +102,18 @@ if (!function_exists('random_code')) {
 
         $paid = $invoice->payments->sum('amount');
         $due = $price - $paid;
-
+        // dd('Price:'.$price.' Paid:'.$paid.' Due: '.round($due, 0));
         $data = [
-            'vat_percentage'    => $vat_percentage,
-            'vat_amount'        => $vat_amount,
-            'discount_percentage'    => $discount_percentage,
-            'discount_amount'        => $discount_amount,
-            'price' => $price,
-            'main_price' => $main_price,
-            'price_after_discount' => $price_after_discount,
-            'price_after_vat' => $price_after_vat,
-            'paid' => $paid,
-            'due' => $due,
+            'vat_percentage'    => round($vat_percentage),
+            'vat_amount'        => round($vat_amount),
+            'discount_percentage'    => round($discount_percentage),
+            'discount_amount'        => round($discount_amount),
+            'price' => round($price),
+            'main_price' => round($main_price),
+            'price_after_discount' => round($price_after_discount),
+            'price_after_vat' => round($price_after_vat),
+            'paid' => round($paid),
+            'due' => round($due),
         ];
         return $data;
     }

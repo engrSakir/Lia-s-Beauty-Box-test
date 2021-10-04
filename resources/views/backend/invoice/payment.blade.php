@@ -50,6 +50,17 @@
                 </div>
             </div>
         </div> --}}
+        @can('Total vat amount visibility permission')
+        <!-- VAT -->
+        <div class="col-md-6 col-lg-4 col-xlg-2">
+            <div class="card">
+                <div class="box bg-primary text-center">
+                    <h1 class="font-light text-white">{{ inv_calculator($invoice)['vat_amount'] ?? '#' }}</h1>
+                    <h6 class="text-white">Total VAT Amount</h6>
+                </div>
+            </div>
+        </div>
+        @endcan
     </div>
     <div class="row">
         <div class="col-lg-6">

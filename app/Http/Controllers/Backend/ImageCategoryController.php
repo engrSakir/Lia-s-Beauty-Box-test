@@ -42,12 +42,12 @@ class ImageCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category_name' => 'required|string', 
+            'category_name' => 'required|string',
         ]);
         $imageCategory = new ImageCategory();
-        $imageCategory->name = $request->category_name;                
+        $imageCategory->name = $request->category_name;
         $imageCategory->save();
-        toastr()->success('Successfully Saved!');   
+        toastr()->success('Successfully Saved!');
         return back();
     }
 
@@ -84,11 +84,11 @@ class ImageCategoryController extends Controller
     public function update(Request $request, ImageCategory $imageCategory)
     {
         $request->validate([
-            'category_name' => 'required|string', 
+            'category_name' => 'required|string',
         ]);
-        $imageCategory->name = $request->category_name;                
+        $imageCategory->name = $request->category_name;
         $imageCategory->save();
-        toastr()->success('Successfully Saved!');   
+        toastr()->success('Successfully Saved!');
         return back();
     }
 
@@ -100,6 +100,10 @@ class ImageCategoryController extends Controller
      */
     public function destroy(ImageCategory $imageCategory)
     {
-        //
+        $imageCategory->delete();
+        return [
+            'type' => 'success',
+            'message' => 'Successfully destroy',
+        ];
     }
 }

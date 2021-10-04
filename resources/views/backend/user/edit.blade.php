@@ -135,6 +135,29 @@
                                             placeholder="Password">
                                     </div>
                                 </div>
+                                @if($user->hasRole('Admin') || $user->hasRole('Employee'))
+                                <hr class="text-danger">
+                                <div class="row m-3">
+                                    <div class="form-check col">
+                                        <input class="form-check-input" type="checkbox" name="permissions[]" value="Invoice create with vat permission" id="invoice_create_with_vat_permission" @if($user->hasPermissionTo('Invoice create with vat permission')) checked @endif>
+                                        <label class="form-check-label" for="invoice_create_with_vat_permission">
+                                            Invoice create with vat permission
+                                        </label>
+                                    </div>
+                                    <div class="form-check col">
+                                        <input class="form-check-input" type="checkbox" name="permissions[]" value="Total vat amount visibility permission" id="total_vat_amount_visibility_permission" @if($user->hasPermissionTo('Total vat amount visibility permission')) checked @endif>
+                                        <label class="form-check-label" for="total_vat_amount_visibility_permission">
+                                            Total vat amount visibility permission
+                                        </label>
+                                    </div>
+                                    @error('permission')
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                                </div>
+                                @endif
+
                             </div>
                         </div>
                         <div class="form-actions">

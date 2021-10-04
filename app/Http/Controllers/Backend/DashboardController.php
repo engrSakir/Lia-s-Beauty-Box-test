@@ -12,6 +12,7 @@ use App\Models\Payment;
 use App\Models\Schedule;
 use App\Models\Service;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
@@ -21,55 +22,36 @@ class DashboardController extends Controller
     public function index()
     {
         if (auth()->user()->hasRole('Admin')) {
+            $total_sale_amount_of_this_month = 0;
+            foreach(Invoice::whereMonth('created_at', date('m'))->get() as $inv){
+                $total_sale_amount_of_this_month += inv_calculator($inv)['price'];
+            }
             $dashboard_items = [
                 [
-                    'title' => 'Total User',
-                    'count' => User::all()->count(),
+                    'title' => 'Total Invoice of '.Carbon::now()->format('F'),
+                    'count' => Invoice::whereMonth('created_at', date('m'))->count(),
                 ],
                 [
-                    'title' => 'Total Services',
-                    'count' => Service::all()->count(),
+                    'title' => 'Total Sale Amount of '.Carbon::now()->format('F'),
+                    'count' => $total_sale_amount_of_this_month,
                 ],
                 [
-                    'title' => 'Total Schedule',
-                    'count' => Schedule::all()->count(),
+                    'title' => 'Total Expense of '.Carbon::now()->format('F'),
+                    'count' => Expense::whereMonth('created_at', date('m'))->get()->sum('amount'),
                 ],
                 [
-                    'title' => 'Total Appointment',
-                    'count' => Appointment::all()->count(),
+                    'title' => 'Total User of '.Carbon::now()->format('F'),
+                    'count' => User::whereMonth('created_at', date('m'))->count(),
                 ],
                 [
-                    'title' => 'Total Pending Appointment',
-                    'count' => Appointment::where('status', 'Pending')->get()->count(),
+                    'title' => 'Total Appointment of '.Carbon::now()->format('F'),
+                    'count' => Appointment::whereMonth('created_at', date('m'))->count(),
                 ],
                 [
-                    'title' => 'Total Approved Appointment',
-                    'count' => Appointment::where('status', 'Approved')->get()->count(),
+                    'title' => 'Amount in Hand of '.Carbon::now()->format('F'),
+                    'count' => Payment::whereMonth('created_at', date('m'))->get()->sum('amount') - Expense::whereMonth('created_at', date('m'))->get()->sum('amount') - EmployeeSalary::whereMonth('created_at', date('m'))->get()->sum('amount'),
                 ],
-                [
-                    'title' => 'Total Done Appointment',
-                    'count' => Appointment::where('status', 'Done')->get()->count(),
-                ],
-                [
-                    'title' => 'Total Reject Appointment',
-                    'count' => Appointment::where('status', 'Reject')->get()->count(),
-                ],
-                [
-                    'title' => 'Total Invoice',
-                    'count' => Invoice::all()->count(),
-                ],
-                [
-                    'title' => 'Total Amout',
-                    'count' => InvoiceItem::sum(DB::raw('quantity * price')),
-                ],
-                [
-                    'title' => 'Total Paid Amout',
-                    'count' => Payment::all()->sum('amount'),
-                ],
-                [
-                    'title' => 'Total Due Amout',
-                    'count' => InvoiceItem::sum(DB::raw('quantity * price')) - Payment::all()->sum('amount'),
-                ],
+
             ];
 
             $user_chart = new LaravelChart([
@@ -131,32 +113,35 @@ class DashboardController extends Controller
     }
 
     public function account(){
-        $total_vat_of_the_month = 0;
-        foreach(Invoice::whereMonth('created_at', date('m'))->get() as $invoice){
-            $total_vat_of_the_month += $invoice->items()->sum(DB::raw('quantity * price')) / 100 * $invoice->vat_percentage;
+        if(auth()->user()->hasPermissionTo('Total vat amount visibility permission')){
+            $total_vat_of_the_month = 0;
+            foreach(Invoice::whereMonth('created_at', date('m'))->get() as $invoice){
+                $total_vat_of_the_month += $invoice->items()->sum(DB::raw('quantity * price')) / 100 * $invoice->vat_percentage;
+            }
+            $total_vat_of_the_year = 0;
+            foreach(Invoice::whereYear('created_at', date('Y'))->get() as $invoice){
+                $total_vat_of_the_year += $invoice->items()->sum(DB::raw('quantity * price')) / 100 * $invoice->vat_percentage;
+            }
+            $total_vat = 0;
+            foreach(Invoice::all() as $invoice){
+                $total_vat += $invoice->items()->sum(DB::raw('quantity * price')) / 100 * $invoice->vat_percentage;
+            }
         }
-        $total_vat_of_the_year = 0;
-        foreach(Invoice::whereYear('created_at', date('Y'))->get() as $invoice){
-            $total_vat_of_the_year += $invoice->items()->sum(DB::raw('quantity * price')) / 100 * $invoice->vat_percentage;
-        }
-        $total_vat = 0;
-        foreach(Invoice::all() as $invoice){
-            $total_vat += $invoice->items()->sum(DB::raw('quantity * price')) / 100 * $invoice->vat_percentage;
-        }
+
         $dashboard_items = [
             [
                 'title' => 'Total VAT of this month',
-                'count' => $total_vat_of_the_month,
+                'count' => $total_vat_of_the_month ?? 0,
                 'url' => null,
             ],
             [
                 'title' => 'Total VAT of this year',
-                'count' => $total_vat_of_the_year,
+                'count' => $total_vat_of_the_year ?? 0,
                 'url' => null,
             ],
             [
                 'title' => 'Total VAT',
-                'count' => $total_vat,
+                'count' => $total_vat ?? 0,
                 'url' => null,
             ],
             [

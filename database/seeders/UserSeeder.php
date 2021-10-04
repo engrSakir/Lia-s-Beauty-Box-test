@@ -21,6 +21,9 @@ class UserSeeder extends Seeder
         $user->password = bcrypt('password');
         $user->save();
         $user->assignRole('Admin');
+        $user->givePermissionTo('Invoice create with vat permission');
+        $user->givePermissionTo('Total vat amount visibility permission');
+
 
         //Employee
         $user = new User();

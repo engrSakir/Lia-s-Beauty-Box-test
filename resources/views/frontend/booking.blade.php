@@ -30,25 +30,7 @@
                 <div class="row">
                     <!-- SIDE BAR START -->
                     <div class="col-md-3">
-
                         <aside class="side-bar">
-
-                            <!-- 13. SEARCH -->
-                            <div class="widget bg-white ">
-                                <h4 class="widget-title">Search</h4>
-                                <div class="search-bx">
-                                    <form role="search" method="post">
-                                        <div class="input-group">
-                                            <input name="news-letter" type="text" class="form-control"
-                                                placeholder="Write your text">
-                                            <span class="input-group-btn">
-                                                <button type="submit" class="site-button"><i
-                                                        class="fa fa-search"></i></button>
-                                            </span>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
                             <!-- 2. RECENT POSTS -->
                             <div class="widget bg-white  recent-posts-entry">
                                 <h4 class="widget-title">Booking</h4>
