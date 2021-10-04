@@ -65,7 +65,7 @@
                                         <label class="form-label" for="user_phone">Phone </label>
                                         <input type="number" id="user_phone" name="user_phone"
                                             class="form-control form-control-danger" placeholder="Your Mobile Number"
-                                            value="{{ old('user_phone') }}" required>
+                                            value="{{ old('user_phone') }}">
                                         @error('user_phone')
                                             <div class="alert alert-danger" role="alert">
                                                 {{ $message }}
@@ -136,14 +136,6 @@
                                             placeholder="Password" required>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="confirm_password" class="form-label">Confirm Password <b class="text-danger">*</b></label>
-                                        <input type="password" class="form-control" id="confirm_password"
-                                            placeholder="Confirm Password" required autocomplete="new-password">
-                                    </div>
-                                    <span id='message'></span>
-                                </div>
                             </div>
                         </div>
                         <div class="form-actions">
@@ -165,12 +157,5 @@
 @endpush
 
 @push('foot')
-    <script>
-        $('#password, #confirm_password').on('keyup', function() {
-            if ($('#password').val() == $('#confirm_password').val()) {
-                $('#message').html('Matching').css('color', 'green');
-            } else
-                $('#message').html('Not Matching').css('color', 'red');
-        });
-    </script>
+
 @endpush
