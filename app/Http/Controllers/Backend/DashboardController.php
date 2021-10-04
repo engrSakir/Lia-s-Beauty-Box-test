@@ -12,6 +12,7 @@ use App\Models\Payment;
 use App\Models\Schedule;
 use App\Models\Service;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
@@ -21,55 +22,36 @@ class DashboardController extends Controller
     public function index()
     {
         if (auth()->user()->hasRole('Admin')) {
+            $total_sale_amount_of_this_month = 0;
+            foreach(Invoice::whereMonth('created_at', date('m'))->get() as $inv){
+                $total_sale_amount_of_this_month += inv_calculator($inv)['price'];
+            }
             $dashboard_items = [
                 [
-                    'title' => 'Total User',
-                    'count' => User::all()->count(),
+                    'title' => 'Total Invoice of '.Carbon::now()->format('F'),
+                    'count' => Invoice::whereMonth('created_at', date('m'))->count(),
                 ],
                 [
-                    'title' => 'Total Services',
-                    'count' => Service::all()->count(),
+                    'title' => 'Total Sale Amount of '.Carbon::now()->format('F'),
+                    'count' => $total_sale_amount_of_this_month,
                 ],
                 [
-                    'title' => 'Total Schedule',
-                    'count' => Schedule::all()->count(),
+                    'title' => 'Total Expense of '.Carbon::now()->format('F'),
+                    'count' => Expense::whereMonth('created_at', date('m'))->get()->sum('amount'),
                 ],
                 [
-                    'title' => 'Total Appointment',
-                    'count' => Appointment::all()->count(),
+                    'title' => 'Total User of '.Carbon::now()->format('F'),
+                    'count' => User::whereMonth('created_at', date('m'))->count(),
                 ],
                 [
-                    'title' => 'Total Pending Appointment',
-                    'count' => Appointment::where('status', 'Pending')->get()->count(),
+                    'title' => 'Total Appointment of '.Carbon::now()->format('F'),
+                    'count' => Appointment::whereMonth('created_at', date('m'))->count(),
                 ],
                 [
-                    'title' => 'Total Approved Appointment',
-                    'count' => Appointment::where('status', 'Approved')->get()->count(),
+                    'title' => 'Amount in Hand of '.Carbon::now()->format('F'),
+                    'count' => Payment::whereMonth('created_at', date('m'))->get()->sum('amount') - Expense::whereMonth('created_at', date('m'))->get()->sum('amount') - EmployeeSalary::whereMonth('created_at', date('m'))->get()->sum('amount'),
                 ],
-                [
-                    'title' => 'Total Done Appointment',
-                    'count' => Appointment::where('status', 'Done')->get()->count(),
-                ],
-                [
-                    'title' => 'Total Reject Appointment',
-                    'count' => Appointment::where('status', 'Reject')->get()->count(),
-                ],
-                [
-                    'title' => 'Total Invoice',
-                    'count' => Invoice::all()->count(),
-                ],
-                [
-                    'title' => 'Total Amout',
-                    'count' => InvoiceItem::sum(DB::raw('quantity * price')),
-                ],
-                [
-                    'title' => 'Total Paid Amout',
-                    'count' => Payment::all()->sum('amount'),
-                ],
-                [
-                    'title' => 'Total Due Amout',
-                    'count' => InvoiceItem::sum(DB::raw('quantity * price')) - Payment::all()->sum('amount'),
-                ],
+
             ];
 
             $user_chart = new LaravelChart([
