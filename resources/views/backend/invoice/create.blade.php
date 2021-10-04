@@ -328,6 +328,7 @@
                     console.log(response);
                     $('#addr0').find('.service').val(response.appointment.service_id)
                     $('#addr0').find('.price').val(response.service.price)
+                    $('#addr0').find('.qty').val(1)
                     $('#tax').val(response.vat_percentage)
                     $('#discount').val(response.discount_percentage)
                     $('#advance_payment_amount').val(response.appointment.advance_amount)
