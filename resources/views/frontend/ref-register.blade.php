@@ -36,40 +36,46 @@
                                         <h3><b>{{ $invalid_ref_alert }}</b></h3>
                                     </div>
                                 @else
-                                    @if ($errors->any())
-                                        <div class="alert alert-danger">
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
                                     <h5 class="text-uppercase font-26 p-b20 font-weight-400">GET IN TOUCH</h5>
                                     <form class="cons-contact Register-form2" method="post"
                                         action="{{ route('refRegister', $ref_code) }}">
                                         @csrf
-
+                                        @method('patch')
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                                <input name="name" type="text" required class="form-control"
-                                                    placeholder="Name">
+                                                <input name="name" value="{{ old('name') }}" type="text" required
+                                                    class="form-control" placeholder="Name">
                                             </div>
+                                            @error('name')
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                                <input name="email" type="email" class="form-control" required
-                                                    placeholder="Email">
+                                                <input name="email" type="email" value="{{ old('email') }}"
+                                                    class="form-control" required placeholder="Email">
                                             </div>
+                                            @error('email')
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-book"></i></span>
-                                                <input name="phone" type="text" class="form-control" required
-                                                    placeholder="Phone">
+                                                <input name="phone" type="text" value="{{ old('phone') }}"
+                                                    class="form-control" required placeholder="Phone">
                                             </div>
+                                            @error('phone')
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
@@ -77,6 +83,11 @@
                                                 <input name="password" type="password" class="form-control" required
                                                     placeholder="Password">
                                             </div>
+                                            @error('password')
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
@@ -84,6 +95,11 @@
                                                 <input name="password_confirmation" type="password" class="form-control"
                                                     required placeholder="Password confirmation">
                                             </div>
+                                            @error('password_confirmation')
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
 
                                         <button type="submit" class="site-button skew-icon-btn radius-sm">

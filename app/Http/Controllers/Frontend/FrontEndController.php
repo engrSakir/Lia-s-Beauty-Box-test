@@ -14,7 +14,10 @@ use App\Models\ServiceCategory;
 use App\Models\User;
 use App\Models\Banner;
 use App\Models\Testimonial;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Mail;
 
@@ -227,7 +230,31 @@ class FrontEndController extends Controller
 
         return view('frontend.ref-register',compact('ref_code', 'invalid_ref_alert'));
     }
-    public function registrationWithRefCode(Request $request){
+
+    public function registrationWithRefCode(Request $request, $ref_code){
+        $request->validate([
+            'name' => 'required|string|max:50',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'required|string|unique:users,phone|min:6|max:18',
+            'password' => 'required|confirmed|string|min:4|max:50',
+        ]);
+
+        if(!$ref_code || !User::where('referral_code', $ref_code)->exists()){
+            return redirect()->back()->with('error', 'Invalid referral code');
+        }
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => Hash::make($request->password),
+        ])->assignRole('Customer');
+
+        event(new Registered($user));
+
+        Auth::login($user);
+
+        return redirect(RouteServiceProvider::HOME);
 
     }
 }
