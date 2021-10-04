@@ -132,7 +132,8 @@
                                                     readonly />
                                             </td>
                                         </tr>
-                                        <tr>
+
+                                        <tr @if(auth()->user()->hasPermissionTo('Invoice create with vat permission')) @else style="display:none"  @endif>
                                             <th class="text-center">Tax (%)</th>
                                             <td class="text-center">
                                                 <div class="input-group mb-2 mb-sm-0">
@@ -143,6 +144,7 @@
                                                     id="tax_amount" placeholder='0.00' class="form-control" readonly />
                                             </td>
                                         </tr>
+
                                         <tr>
                                             <th class="text-center">Grand Total</th>
                                             <td></td>

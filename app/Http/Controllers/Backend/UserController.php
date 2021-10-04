@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserCategory;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -20,9 +21,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users= User::orderBy('id','DESC')->get();
+        $users = User::orderBy('id', 'DESC')->get();
         return view('backend.user.index', compact('users'));
-
     }
 
     /**
@@ -61,7 +61,7 @@ class UserController extends Controller
         $user->category_id = $request->user_category;
         $user->password = Hash::make($request->user_pass);
         if ($request->file('image')) {
-            $user->image = file_uploader('uploads/user-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($request->user_name, '-'));
+            $user->image = file_uploader('uploads/user-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') . '-' . Str::slug($request->user_name, '-'));
         }
         $user->save();
         $user->assignRole($request->user_role);
@@ -78,7 +78,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        if(request()->ajax()){
+        if (request()->ajax()) {
             return $user;
         }
     }
@@ -93,7 +93,7 @@ class UserController extends Controller
     {
         $userCategories = UserCategory::all();
         $roles = Role::all();
-        return view('backend.user.edit',compact('user', 'userCategories', 'roles'));
+        return view('backend.user.edit', compact('user', 'userCategories', 'roles'));
     }
 
     /**
@@ -105,10 +105,19 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        if (!auth()->user()->hasRole('Admin') && $user->hasRole('Admin')) {
+            toastr()->error('You can not edit your admin!');
+            return back();
+        }
+        if ($user->id == Auth::user()->id) {
+            toastr()->error('You can not edit your self!');
+            return back();
+        }
+
         $request->validate([
             'user_name'     => 'required|string',
-            'user_email'    => 'required|unique:users,email,'.$user->id,
-            'user_phone'    => 'nullable|string|max:11|unique:users,phone,'.$user->id,
+            'user_email'    => 'required|unique:users,email,' . $user->id,
+            'user_phone'    => 'nullable|string|max:11|unique:users,phone,' . $user->id,
             'user_category' => 'nullable|exists:user_categories,id',
             'user_role'     => 'required|exists:roles,name',
             'user_pass'     => 'nullable|min:4',
@@ -118,14 +127,20 @@ class UserController extends Controller
         $user->email = $request->user_email;
         $user->phone = $request->user_phone;
         $user->category_id = $request->user_category;
-        if($request->user_pass){
+        if ($request->user_pass) {
             $user->password = Hash::make($request->user_pass);
         }
         if ($request->file('image')) {
-            $user->image = file_uploader('uploads/user-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::slug($request->user_name, '-'));
+            $user->image = file_uploader('uploads/user-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') . '-' . Str::slug($request->user_name, '-'));
         }
         $user->save();
-        $user->assignRole($request->user_role);
+        try {
+            $user->assignRole($request->user_role);
+            $user->syncPermissions([$request->permissions]);
+        }catch (\Exception $exception){
+            toastr()->error($exception->getMessage(), 'Error!');
+            return back();
+        }
 
         toastr()->success('Successfully Updated!');
         return back();
@@ -139,6 +154,18 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if (!auth()->user()->hasRole('Admin') && $user->hasRole('Admin')) {
+            return [
+                'type' => 'error',
+                'message' => 'You can not delete your admin',
+            ];
+        }
+        if ($user->id == Auth::user()->id) {
+            return [
+                'type' => 'error',
+                'message' => 'You can not delete your self',
+            ];
+        }
         $user->delete();
         return [
             'type' => 'success',

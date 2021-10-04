@@ -131,32 +131,35 @@ class DashboardController extends Controller
     }
 
     public function account(){
-        $total_vat_of_the_month = 0;
-        foreach(Invoice::whereMonth('created_at', date('m'))->get() as $invoice){
-            $total_vat_of_the_month += $invoice->items()->sum(DB::raw('quantity * price')) / 100 * $invoice->vat_percentage;
+        if(auth()->user()->hasPermissionTo('Total vat amount visibility permission')){
+            $total_vat_of_the_month = 0;
+            foreach(Invoice::whereMonth('created_at', date('m'))->get() as $invoice){
+                $total_vat_of_the_month += $invoice->items()->sum(DB::raw('quantity * price')) / 100 * $invoice->vat_percentage;
+            }
+            $total_vat_of_the_year = 0;
+            foreach(Invoice::whereYear('created_at', date('Y'))->get() as $invoice){
+                $total_vat_of_the_year += $invoice->items()->sum(DB::raw('quantity * price')) / 100 * $invoice->vat_percentage;
+            }
+            $total_vat = 0;
+            foreach(Invoice::all() as $invoice){
+                $total_vat += $invoice->items()->sum(DB::raw('quantity * price')) / 100 * $invoice->vat_percentage;
+            }
         }
-        $total_vat_of_the_year = 0;
-        foreach(Invoice::whereYear('created_at', date('Y'))->get() as $invoice){
-            $total_vat_of_the_year += $invoice->items()->sum(DB::raw('quantity * price')) / 100 * $invoice->vat_percentage;
-        }
-        $total_vat = 0;
-        foreach(Invoice::all() as $invoice){
-            $total_vat += $invoice->items()->sum(DB::raw('quantity * price')) / 100 * $invoice->vat_percentage;
-        }
+
         $dashboard_items = [
             [
                 'title' => 'Total VAT of this month',
-                'count' => $total_vat_of_the_month,
+                'count' => $total_vat_of_the_month ?? 0,
                 'url' => null,
             ],
             [
                 'title' => 'Total VAT of this year',
-                'count' => $total_vat_of_the_year,
+                'count' => $total_vat_of_the_year ?? 0,
                 'url' => null,
             ],
             [
                 'title' => 'Total VAT',
-                'count' => $total_vat,
+                'count' => $total_vat ?? 0,
                 'url' => null,
             ],
             [
