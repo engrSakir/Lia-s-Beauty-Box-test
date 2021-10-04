@@ -90,6 +90,7 @@ class AppointmentController extends Controller
                 $appointment->appointment_data  = date('Y-m-d', strtotime($request->appointment_data));
                 $appointment->schedule_id       = $request->schedule;
                 $appointment->service_id        = $request->service;
+                $appointment->status            = 'Approved'; //Administritive auto approve
                 $appointment->save();
             } else {
                 return [
