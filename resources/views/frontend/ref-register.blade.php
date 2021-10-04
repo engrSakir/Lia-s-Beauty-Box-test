@@ -36,6 +36,13 @@
                                         <h3><b>{{ $invalid_ref_alert }}</b></h3>
                                     </div>
                                 @else
+                                    @if (\Session::has('error'))
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                <li>{!! \Session::get('error') !!}</li>
+                                            </ul>
+                                        </div>
+                                    @endif
                                     <h5 class="text-uppercase font-26 p-b20 font-weight-400">GET IN TOUCH</h5>
                                     <form class="cons-contact Register-form2" method="post"
                                         action="{{ route('refRegister', $ref_code) }}">
