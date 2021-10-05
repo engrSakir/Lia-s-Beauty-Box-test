@@ -22,7 +22,7 @@
         </div>
     </div>
     <!-- Sidebar navigation-->
-    <nav class="sidebar-nav">
+    <nav class="sidebar-nav scrolling-box">
         <ul id="sidebarnav">
             <li class="nav-small-cap">--- MENU ITEMS</li>
             @hasanyrole('Admin|Employee|Customer')
@@ -132,7 +132,7 @@
                         <a class="waves-effect waves-dark" href="{{ route('backend.referralDiscountPercentage.index') }}"
                             aria-expanded="false">
                             <i class="far fa-circle text-danger"></i>
-                            <span class="hide-menu">Referral Manage</span>
+                            <span class="hide-menu">Referral</span>
                         </a>
                     </li>
                     <li>
@@ -142,12 +142,15 @@
                             <span class="hide-menu">Setting</span>
                         </a>
                     </li>
-
-
                 </ul>
             </li>
             @endrole
         </ul>
+        <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
     </nav>
     <!-- End Sidebar navigation -->
 </div>
