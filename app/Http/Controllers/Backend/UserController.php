@@ -81,6 +81,7 @@ class UserController extends Controller
         if (request()->ajax()) {
             return $user;
         }
+        return view('backend.user.show', compact('user'));
     }
 
     /**

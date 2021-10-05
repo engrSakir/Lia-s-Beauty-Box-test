@@ -49,6 +49,7 @@
                                     <td>{{ $user->roles()->first()->name ?? '-' }}</td>
                                     <td>{{ $user->created_at->format('d/m/Y') }}</td>
                                     <td>
+                                        <a href="{{ route('backend.user.show', $user) }}" class="btn btn-info btn-circle"><i class="fa fa-eye"></i> </a>
                                     <a  class="btn btn-warning btn-circle" href="{{ route('backend.user.edit', $user) }}">
                                         <i class="fa fa-pen" ></i>
                                     </a>

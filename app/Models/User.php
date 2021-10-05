@@ -63,6 +63,11 @@ class User extends Authenticatable
         return $this->hasMany(Appointment::class, 'customer_id', 'id');
     }
 
+    public function salaries()
+    {
+        return $this->hasMany(EmployeeSalary::class, 'employee_id', 'id');
+    }
+
     public function invoices()
     {
         return $this->hasManyThrough(
