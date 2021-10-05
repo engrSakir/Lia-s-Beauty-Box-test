@@ -22,3 +22,9 @@
 @toastr_css
 <!--Page Lavel code -->
 @stack('head')
+<style>
+.scrolling-box {
+    max-height: calc(100vh - 9rem);
+    overflow-y: auto;
+}
+</style>
