@@ -239,7 +239,8 @@ class FrontEndController extends Controller
             'password' => 'required|confirmed|string|min:4|max:50',
         ]);
 
-        if(!$ref_code || !User::where('referral_code', $ref_code)->exists()){
+        $ref_user = User::where('referral_code', $ref_code)->first();
+        if(!$ref_code || !$ref_user){
             return redirect()->back()->with('error', 'Invalid referral code');
         }
 
@@ -248,6 +249,7 @@ class FrontEndController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
+            'refer_by_id' => $ref_user->id,
         ])->assignRole('Customer');
 
         event(new Registered($user));
