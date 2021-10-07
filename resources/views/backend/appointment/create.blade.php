@@ -209,10 +209,10 @@
                 },
                 success: function(response) {
                     //console.log(response);
-                    var starting_time = moment(Date("1/1/1900 " + response.schedule.starting_time)).format(
-                        'hh:mm:ss a');
-                    var ending_time = moment(Date("1/1/1900 " + response.schedule.ending_time)).format(
-                        'hh:mm:ss a');
+                    var strtime= (new Date("1/1/1900 "+response.schedule.starting_time).toLocaleString()).split(',');
+                      var starting_time =strtime[1];
+                        var endtime = (new Date("1/1/1900 " + response.schedule.ending_time).toLocaleString()).split(',');
+                        var ending_time=endtime[1];
                     $('#schedule_title').text(response.schedule.title);
                     $('#schedule_date').text($("#appointment_data").val());
                     $('#schedule_time').text(starting_time + ' To ' + ending_time);

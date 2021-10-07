@@ -57,6 +57,26 @@
                             </div>
                         </div>
                         {{-- End Appointment section --}}
+                        {{-- Start Payment Mthod  section --}}
+                        <div class="row clearfix">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <select name="payment_method" id="payment_method" class="form-control" required="">                                            
+                                            <option value="" selected disabled>Please choose a Payment Method</option>
+                                            @foreach ($paymentmethods as $paymentMethod)
+                                                <option value="{{ $paymentMethod->id }}">
+                                                    {{ $loop->iteration }})
+                                                    Name: {{ $paymentMethod->name ?? '#' }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- End Payment Mthod section --}}
+
                         {{-- Start Dynamic Service section --}}
                         <div class="row clearfix">
                             <div class="col-md-12">
@@ -134,6 +154,20 @@
                                                     readonly />
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <th class="text-center">Discount (Fixed)</th>
+                                            <td class="text-center">
+                                                <div class="input-group mb-2 mb-sm-0">
+                                                    <input type="number" class="form-control" id="fixed_discount"
+                                                        name="fixed_discount" placeholder="0">
+                                                </div>
+                                            </td>
+                                            <td class="text-center"><input type="number" name='fixed_discount_amount'
+                                                    id="fixed_discount_amount" placeholder='0.00' class="form-control"
+                                                    readonly />
+                                            </td>
+                                        </tr>
+
 
                                         <tr @if(auth()->user()->hasPermissionTo('Invoice create with vat permission')) @else style="display:none"  @endif>
                                             <th class="text-center">Tax (%)</th>
@@ -261,9 +295,14 @@
                 calc_total();
             });
             $('#discount').on('keyup change', function() {
+                $('#fixed_discount').prop('disabled',true);
+
                 calc_total();
             });
-
+            $('#fixed_discount').on('keyup change', function() {
+                $('#discount').prop('disabled',true);
+                calc_total();
+            });
             $('#new_payment_amount').on('keyup change', function() {
                 calc_total();
             });
@@ -293,8 +332,10 @@
             $('#sub_total').val(total.toFixed(2));
 
             discount_sum = total / 100 * $('#discount').val();
+            var fixed_discount=$('#fixed_discount').val();
             $('#discount_amount').val(discount_sum.toFixed(2));
-            $('#total_amount').val((total - discount_sum).toFixed(2));
+            $('#fixed_discount_amount').val(fixed_discount);
+            $('#total_amount').val((total - discount_sum - fixed_discount).toFixed(2));
 
             total_after_discount = $('#total_amount').val();
             tax_sum = total / 100 * $('#tax').val();
@@ -333,6 +374,7 @@
                     $('#addr0').find('.qty').val(1)
                     $('#tax').val(response.vat_percentage)
                     $('#discount').val(response.discount_percentage)
+                    $('#fixed_discount').val(response.fixed_amount)
                     $('#advance_payment_amount').val(response.appointment.advance_amount)
                     calc();
                     calc_total();
@@ -366,8 +408,10 @@
                     data: {
                         service_data_set: service_data_set,
                         appointment_id: document.getElementById('appointment').value,
+                        payment_method: document.getElementById('payment_method').value,
                         vat_percentage: document.getElementById('tax').value,
                         discount_percentage: document.getElementById('discount').value,
+                        fixed_discount: document.getElementById('fixed_discount').value,
                         advance_payment_amount: document.getElementById('advance_payment_amount').value,
                         // new_payment_amount: document.getElementById('new_payment_amount').value,
                         new_payment_amount: document.getElementById('due_after_advance_amount').value,

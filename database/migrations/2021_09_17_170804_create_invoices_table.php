@@ -20,6 +20,7 @@ class CreateInvoicesTable extends Migration
             $table->double('discount_percentage')->default(0);
             $table->double('fixed_amount')->default(0);
             $table->longText('note')->nullable();
+            $table->foreignId('paymentMethod_id');
             $table->timestamps();
         });
     }
