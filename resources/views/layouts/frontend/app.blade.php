@@ -39,6 +39,15 @@
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function() {
+    $(".nav li  [href]").each(function() {
+        if (this.href == window.location.href) {
+            $(this).closest("li").addClass("active");
+        }
+    });
+});
+</script>
 <!-- LOADING AREA  END ====== -->
 <!-- JAVASCRIPT  FILES ========================================= -->
 @include('layouts.frontend.partials.foot')
