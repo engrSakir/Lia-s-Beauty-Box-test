@@ -165,10 +165,10 @@
                     $('#schedule').html('')
                     $.each(response.schedules, function(schedule_index, schedule) {
                         var schedule_counter = 0;
-                        var starting_time = moment(Date("1/1/1900 " + schedule.starting_time)).format(
-                            'hh:mm:ss a');
-                        var ending_time = moment(Date("1/1/1900 " + schedule.ending_time)).format(
-                            'hh:mm:ss a');
+                        var strtime= (new Date("1/1/1900 "+schedule.starting_time).toLocaleString()).split(',');
+                      var starting_time =strtime[1];
+                        var endtime = (new Date("1/1/1900 " + schedule.ending_time).toLocaleString()).split(',');
+                        var ending_time=endtime[1];
                         var title = schedule.title;
                         var html = `<a href="javascript:void(0)"  onclick="bookingModal(` + schedule
                             .id + `)">
@@ -178,9 +178,7 @@
                                 </div>
                                 <div class="mail-contnet">
                                     <h5>` + title + `</h5>
-                                    <span class="mail-desc">Lorem Ipsum is simply dummy text of the printing and type
-                                        setting industry. Lorem
-                                        Ipsum has been.</span>
+                                    <span class="mail-desc"></span>
                                     <span class="time">` + starting_time + ` to ` +
                             ending_time + `</span>
                                 </div>

@@ -84,6 +84,34 @@
                     <li><a href="{{ route('backend.expenseCategory.index') }}">Expense Category</a></li>
                 </ul>
             </li>
+            <li>
+                <a class="waves-effect waves-dark" href="{{ route('backend.admin.index') }}"
+                    aria-expanded="false">
+                    <i class="far fa-circle text-danger"></i>
+                    <span class="hide-menu">Admin</span>
+                </a>
+            </li>
+            <li>
+                <a class="waves-effect waves-dark" href="{{ route('backend.employee.index') }}"
+                    aria-expanded="false">
+                    <i class="far fa-circle text-danger"></i>
+                    <span class="hide-menu">Employee</span>
+                </a>
+            </li>
+            <li>
+                <a class="waves-effect waves-dark" href="{{ route('backend.customer.index') }}"
+                    aria-expanded="false">
+                    <i class="far fa-circle text-danger"></i>
+                    <span class="hide-menu">Customer</span>
+                </a>
+            </li>
+            <li>
+                <a class="waves-effect waves-dark" href="{{ route('backend.paymentMethod.index') }}"
+                    aria-expanded="false">
+                    <i class="far fa-circle text-danger"></i>
+                    <span class="hide-menu">Payment Method</span>
+                </a>
+            </li>
             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i
                         class="far fa-circle text-danger"></i><span class="hide-menu">User</span></a>
                 <ul aria-expanded="false" class="collapse">

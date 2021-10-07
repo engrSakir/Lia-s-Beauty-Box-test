@@ -210,4 +210,22 @@ class DashboardController extends Controller
         ];
         return view('backend.dashboard.account-dashboard', compact('dashboard_items'));
     }
+
+    public function indexAdmin()
+    {
+        $admins = User::role('Admin')->get();
+        return view('backend.admin.index', compact('admins'));
+    }
+
+    public function indexEmployee()
+    {
+        $employees = User::role('Employee')->get();
+        return view('backend.employee.index', compact('employees'));
+    }
+
+    public function indexCustomer()
+    {
+        $customers = User::role('Customer')->get();
+        return view('backend.customer.index', compact('customers'));
+    }
 }
