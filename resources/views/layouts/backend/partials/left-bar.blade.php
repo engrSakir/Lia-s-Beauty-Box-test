@@ -48,13 +48,7 @@
                     <span class="hide-menu">Schedule</span>
                 </a>
             </li>
-            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i
-                        class="far fa-circle text-danger"></i><span class="hide-menu">Services</span></a>
-                <ul aria-expanded="false" class="collapse">
-                    <li><a href="{{ route('backend.service.index') }}">Service List </a></li>
-                    <li><a href="{{ route('backend.serviceCategory.index') }}">Service Category </a></li>
-                </ul>
-            </li>
+            
             <li>
                 <a class="waves-effect waves-dark" href="{{ route('backend.appointment.index') }}"
                     aria-expanded="false">
@@ -77,13 +71,7 @@
                     <span class="hide-menu">Salary</span>
                 </a>
             </li>
-            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i
-                        class="far fa-circle text-danger"></i><span class="hide-menu">Expense</span></a>
-                <ul aria-expanded="false" class="collapse">
-                    <li><a href="{{ route('backend.expense.index') }}">Expense List</a></li>
-                    <li><a href="{{ route('backend.expenseCategory.index') }}">Expense Category</a></li>
-                </ul>
-            </li>
+            
             <li>
                 <a class="waves-effect waves-dark" href="{{ route('backend.admin.index') }}"
                     aria-expanded="false">
@@ -112,8 +100,28 @@
                     <span class="hide-menu">Payment Method</span>
                 </a>
             </li>
+            @endrole
+            @hasanyrole('Admin|Employee')
+           
             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i
-                        class="far fa-circle text-danger"></i><span class="hide-menu">User</span></a>
+                        class="far fa-circle text-danger"></i><span class="hide-menu">Services</span></a>
+                <ul aria-expanded="false" class="collapse">
+                    <li><a href="{{ route('backend.service.index') }}">Service List </a></li>
+                    <li><a href="{{ route('backend.serviceCategory.index') }}">Service Category </a></li>
+                </ul>
+            </li>
+            
+            @endhasanyrole
+            @role('Admin')
+            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i
+                        class="far fa-circle text-danger"></i><span class="hide-menu">Expense</span></a>
+                <ul aria-expanded="false" class="collapse">
+                    <li><a href="{{ route('backend.expense.index') }}">Expense List</a></li>
+                    <li><a href="{{ route('backend.expenseCategory.index') }}">Expense Category</a></li>
+                </ul>
+            </li>
+            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i
+                        class="far fa-circle text-danger"></i><span class="hide-menu">All User</span></a>
                 <ul aria-expanded="false" class="collapse">
                     <li><a href="{{ route('backend.user.index') }}">User List</a></li>
                     <li><a href="{{ route('backend.userCategory.index') }}">User Category</a></li>

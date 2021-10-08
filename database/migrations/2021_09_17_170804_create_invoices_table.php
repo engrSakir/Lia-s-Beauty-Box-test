@@ -18,9 +18,9 @@ class CreateInvoicesTable extends Migration
             $table->foreignId('appointment_id');
             $table->double('vat_percentage')->default(0);
             $table->double('discount_percentage')->default(0);
-            $table->double('fixed_amount')->default(0);
+            $table->double('discount_fixed_amount')->default(0);
             $table->longText('note')->nullable();
-            $table->foreignId('paymentMethod_id');
+            $table->foreignId('payment_method_id');
             $table->timestamps();
         });
     }
