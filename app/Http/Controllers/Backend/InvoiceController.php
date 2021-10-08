@@ -84,8 +84,8 @@ class InvoiceController extends Controller
             $invoice->appointment_id = $appointment->id;
             $invoice->vat_percentage = $request->vat_percentage ?? 0;
             $invoice->discount_percentage = $request->discount_percentage ?? 0;
-            $invoice->fixed_amount = $request->fixed_discount ?? 0;
-            $invoice->paymentMethod_id = $request->payment_method;
+            $invoice->discount_fixed_amount = $request->fixed_discount ?? 0;
+            $invoice->payment_method_id = $request->payment_method;
             $invoice->note = $request->note;
             $invoice->save();
             //Invoice item save with this invoice ID
