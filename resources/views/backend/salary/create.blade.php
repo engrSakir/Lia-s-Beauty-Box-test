@@ -31,7 +31,7 @@
                     <div class="form-body">
                         <div class="card-body">
                             <div class="row pt-3">
-                                
+
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
@@ -45,6 +45,21 @@
                                     </div>
                                 </div>
                                 <!--/span-->
+                                @if($selected_employee)
+                                <div class="col-md-6">
+                                    <div class="form-group has-danger">
+                                        <label class="form-label" for="employee"><b class="text-danger">
+                                        Name: {{ $selected_employee->name }} <br> Email:  {{ $selected_employee->email }} <br> Phone: {{ $selected_employee->phone }}
+                                        </b></label>
+                                        <input type="hidden" id="employee" name="employee" class="form-control form-control-danger" placeholder="Employee" value="{{ $selected_employee->id }}" required>
+                                        @error('employee')
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                @else
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
                                     <label class="form-label">Employee <b class="text-danger">*</b></label>
@@ -61,6 +76,7 @@
                                         @enderror
                                     </div>
                                 </div>
+                                @endif
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-danger">
