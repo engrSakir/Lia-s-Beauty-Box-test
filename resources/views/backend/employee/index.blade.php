@@ -47,7 +47,7 @@
                                     <td>{{ $employee->category->name ?? '-' }}</td>
                                     <td>{{ $employee->created_at->format('d/m/Y') }}</td>
                                     <td>
-                                    <a href="{{ route('backend.employeeSalary.create') }}" class="btn btn-success btn-circle"><i class="fa fa-money-check-alt"></i> </a>
+                                    <a href="{{ route('backend.employeeSalary.create', 'employee='.$employee->id) }}" class="btn btn-success btn-circle"><i class="fa fa-money-check-alt"></i> </a>
                                         <a href="{{ route('backend.user.show', $employee) }}" class="btn btn-info btn-circle"><i class="fa fa-eye"></i> </a>
                                     <a  class="btn btn-warning btn-circle" href="{{ route('backend.user.edit', $employee) }}">
                                         <i class="fa fa-pen" ></i>
