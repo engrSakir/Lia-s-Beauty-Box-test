@@ -162,6 +162,14 @@ h3{
           </tr>
           <tr class="tabletitle">
             <td class="Rate">
+              <h3> Fixed Discount:</h3>
+            </td>
+            <td class="payment" style="text-align:right;">
+                 {{ inv_calculator($invoice)['fixed_discount'] }}
+            </td>
+          </tr>
+          <tr class="tabletitle">
+            <td class="Rate">
               <h3> Grand Total:</h3>
             </td>
             <td class="payment" style="text-align:right;">

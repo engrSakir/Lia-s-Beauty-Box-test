@@ -99,6 +99,7 @@ if (!function_exists('random_code')) {
         }
         $price +=$vat_amount;
         $price -=$discount_amount;
+        $price -=$invoice->fixed_amount;
 
         $paid = $invoice->payments->sum('amount');
         $due = $price - $paid;
@@ -114,6 +115,7 @@ if (!function_exists('random_code')) {
             'price_after_vat' => round($price_after_vat),
             'paid' => round($paid),
             'due' => round($due),
+            'fixed_discount' => round($invoice->fixed_amount),
         ];
         return $data;
     }
