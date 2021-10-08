@@ -62,7 +62,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <select name="payment_method" id="payment_method" class="form-control" required="">                                            
+                                        <select name="payment_method" id="payment_method" class="form-control" required="">
                                             <option value="" selected disabled>Please choose a Payment Method</option>
                                             @foreach ($paymentmethods as $paymentMethod)
                                                 <option value="{{ $paymentMethod->id }}">
@@ -170,7 +170,7 @@
 
 
                                         <tr @if(auth()->user()->hasPermissionTo('Invoice create with vat permission')) @else style="display:none"  @endif>
-                                            <th class="text-center">Tax (%)</th>
+                                            <th class="text-center">VAT (%)</th>
                                             <td class="text-center">
                                                 <div class="input-group mb-2 mb-sm-0">
                                                     <input type="number" class="form-control" id="tax" placeholder="0">
@@ -295,19 +295,16 @@
                 calc_total();
             });
             $('#discount').on('keyup change', function() {
-                $('#fixed_discount').prop('disabled',true);
-
+                // $('#fixed_discount').prop('disabled',true);
                 calc_total();
             });
             $('#fixed_discount').on('keyup change', function() {
-                $('#discount').prop('disabled',true);
+                // $('#discount').prop('disabled',true);
                 calc_total();
             });
             $('#new_payment_amount').on('keyup change', function() {
                 calc_total();
             });
-
-
         });
 
         function calc() {
@@ -317,7 +314,6 @@
                     var qty = $(this).find('.qty').val();
                     var price = $(this).find('.price').val();
                     $(this).find('.total').val(qty * price);
-
                     calc_total();
                 }
             });
@@ -332,7 +328,7 @@
             $('#sub_total').val(total.toFixed(2));
 
             discount_sum = total / 100 * $('#discount').val();
-            var fixed_discount=$('#fixed_discount').val();
+            fixed_discount=$('#fixed_discount').val();
             $('#discount_amount').val(discount_sum.toFixed(2));
             $('#fixed_discount_amount').val(fixed_discount);
             $('#total_amount').val((total - discount_sum - fixed_discount).toFixed(2));
@@ -368,13 +364,13 @@
                 type: 'GET',
                 url: "/backend/appointment/" + objButton.value, //show
                 success: function(response) {
-                    console.log(response);
+                    // console.log(response);
                     $('#addr0').find('.service').val(response.appointment.service_id)
                     $('#addr0').find('.price').val(response.service.price)
                     $('#addr0').find('.qty').val(1)
                     $('#tax').val(response.vat_percentage)
                     $('#discount').val(response.discount_percentage)
-                    $('#fixed_discount').val(response.fixed_amount)
+                    $('#fixed_discount').val(0)
                     $('#advance_payment_amount').val(response.appointment.advance_amount)
                     calc();
                     calc_total();
