@@ -7,6 +7,7 @@ use App\Models\Appointment;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
 use App\Models\Payment;
+use App\Models\PaymentMethod;
 use App\Models\ReferralDiscountPercentage;
 use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
@@ -43,7 +44,8 @@ class InvoiceController extends Controller
     {
         $appointments = Appointment::where('status', 'Approved')->get();
         $serviceCategories = ServiceCategory::all();
-        return view('backend.invoice.create', compact('appointments', 'serviceCategories'));
+        $paymentmethods = PaymentMethod::all();
+        return view('backend.invoice.create', compact('appointments', 'serviceCategories','paymentmethods'));
     }
 
     /**
@@ -59,9 +61,12 @@ class InvoiceController extends Controller
             'service_data_set'  => 'required',
             'vat_percentage'    => 'nullable|numeric|min:0|max:100',
             'discount_percentage' => 'nullable|numeric|min:0|max:100',
+            'fixed_discount' => 'nullable|numeric',
             // 'advance_payment_amount'=> 'nullable|numeric', // get from invoice
             'new_payment_amount' => 'nullable|numeric',
             'note'              => 'nullable|string',
+            'payment_method'  => 'required',
+
         ]);
         //Change appointment status
         $appointment = Appointment::find($request->appointment_id);
@@ -79,6 +84,8 @@ class InvoiceController extends Controller
             $invoice->appointment_id = $appointment->id;
             $invoice->vat_percentage = $request->vat_percentage ?? 0;
             $invoice->discount_percentage = $request->discount_percentage ?? 0;
+            $invoice->fixed_amount = $request->fixed_discount ?? 0;
+            $invoice->paymentMethod_id = $request->payment_method;
             $invoice->note = $request->note;
             $invoice->save();
             //Invoice item save with this invoice ID

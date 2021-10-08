@@ -20,6 +20,7 @@ use App\Http\Controllers\Backend\QuestionaireController;
 use App\Http\Controllers\Backend\UserCategoryController;
 use App\Http\Controllers\Backend\EmployeeSalaryController;
 use App\Http\Controllers\Backend\ReferralDiscountPercentageController;
+use App\Http\Controllers\Backend\PaymentMethodController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,7 +51,9 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'
     Route::group(['middleware' => ['role:Admin']], function () {
         Route::get('setting', [SettingController::class, 'index'])->name('setting');
         Route::post('setting', [SettingController::class, 'update']);
-
+        Route::get('admin', [DashboardController::class, 'indexAdmin'])->name('admin.index');
+        Route::get('employee', [DashboardController::class, 'indexEmployee'])->name('employee.index');
+        Route::get('customer', [DashboardController::class, 'indexCustomer'])->name('customer.index');
 
         Route::resource('user', UserController::class);
         Route::resource('client', ClientController::class);
@@ -64,5 +67,7 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'
         Route::resource('userCategory', UserCategoryController::class);
         Route::resource('employeeSalary', EmployeeSalaryController::class);
         Route::resource('referralDiscountPercentage', ReferralDiscountPercentageController::class);
+        Route::resource('paymentMethod', PaymentMethodController::class);
+
     });
 });
