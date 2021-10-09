@@ -45,7 +45,7 @@ class InvoiceController extends Controller
         $appointments = Appointment::where('status', 'Approved')->get();
         $serviceCategories = ServiceCategory::all();
         $paymentmethods = PaymentMethod::all();
-        return view('backend.invoice.create', compact('appointments', 'serviceCategories','paymentmethods'));
+        return view('backend.invoice.create', compact('appointments', 'serviceCategories', 'paymentmethods'));
     }
 
     /**
@@ -100,7 +100,7 @@ class InvoiceController extends Controller
                 }
                 $payment = new Payment();
                 $payment->invoice_id = $invoice->id;
-                $payment->amount = $request->new_payment_amount + $appointment->advance_amount ?? 0;
+                $payment->amount = round($request->new_payment_amount + $appointment->advance_amount);
                 $payment->save();
                 return [
                     'type' => 'success',
@@ -131,7 +131,7 @@ class InvoiceController extends Controller
     {
         // $pdf = PDF::loadView('backend.invoice.invoice-pdf', compact('invoice'));
         $pdf = PDF::loadView('backend.invoice.pos-invoice-pdf', compact('invoice'));
-        return $pdf->stream('Invoice-'.config('app.name').'.pdf');
+        return $pdf->stream('Invoice-' . config('app.name') . '.pdf');
     }
 
     /**
@@ -145,7 +145,7 @@ class InvoiceController extends Controller
         $appointments = Appointment::all();
         $serviceCategories = ServiceCategory::all();
         $paymentmethods = PaymentMethod::all();
-        return view('backend.invoice.edit', compact('appointments', 'serviceCategories','paymentmethods', 'invoice'));
+        return view('backend.invoice.edit', compact('appointments', 'serviceCategories', 'paymentmethods', 'invoice'));
     }
 
     /**
@@ -157,7 +157,64 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, Invoice $invoice)
     {
-        //
+        $request->validate([
+            'appointment_id'    => 'required|exists:appointments,id',
+            'service_data_set'  => 'required',
+            'vat_percentage'    => 'nullable|numeric|min:0|max:100',
+            'discount_percentage' => 'nullable|numeric|min:0|max:100',
+            'fixed_discount' => 'nullable|numeric',
+            // 'advance_payment_amount'=> 'nullable|numeric', // get from invoice
+            'new_payment_amount' => 'nullable|numeric',
+            'note'              => 'nullable|string',
+            'payment_method'  => 'required',
+
+        ]);
+        //Change appointment status
+        $appointment = Appointment::find($request->appointment_id);
+        if ($invoice->appointment_id != $request->appointment_id) {
+            $appointment->status = 'Done';
+            $appointment->save();
+        }
+        //Create invoice
+        $invoice->appointment_id = $appointment->id;
+        $invoice->vat_percentage = $request->vat_percentage ?? 0;
+        $invoice->discount_percentage = $request->discount_percentage ?? 0;
+        $invoice->fixed_discount = $request->fixed_discount ?? 0;
+        $invoice->payment_method_id = $request->payment_method;
+        $invoice->note = $request->note;
+        $invoice->save();
+        //Invoice item save with this invoice ID
+        $invoice->items()->delete(); // First delete all items of this invoice
+        try {
+            foreach ($request->service_data_set as $service_data) {
+                $invoiceItem = new InvoiceItem();
+                $invoiceItem->invoice_id   = $invoice->id;
+                $invoiceItem->service_id   = $service_data['service'];
+                $invoiceItem->quantity  = $service_data['quantity'];
+                $invoiceItem->price     = $service_data['price'];
+                $invoiceItem->save();
+            }
+            $invoice->payments()->delete(); // First delete all payments of this invoice
+            $payment = new Payment();
+            $payment->invoice_id = $invoice->id;
+            $payment->amount = round($request->new_payment_amount + $appointment->advance_amount);
+            $payment->save();
+            return [
+                'type' => 'success',
+                'message' => 'Successfully Created',
+                'invoice_url' => route('backend.invoice.show', $invoice),
+                'btn_url' => route('backend.invoice.payment', $invoice),
+            ];
+        } catch (\Exception $e) {
+            // Appointment status back and invoice delete
+            $invoice->delete();
+            $appointment->status = 'Approved';
+            $appointment->save();
+            return [
+                'type' => 'error',
+                'message' => $e->getMessage(),
+            ];
+        }
     }
 
     /**

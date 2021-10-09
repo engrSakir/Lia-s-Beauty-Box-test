@@ -423,8 +423,8 @@
             });
             // console.log(service_data_set)
             $.ajax({
-                    method: "POST",
-                    url: "{{ route('backend.invoice.store') }}",
+                    method: "PATCH",
+                    url: "/backend/invoice/"+{{ $invoice->id }},
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
