@@ -28,21 +28,27 @@
                 <div class="card-body">
 
                     <div class="row button-group">
-                        <div class="col-lg-1 col-md-2">
+                        <div class="col">
                             <button type="button" disabled
                                 class="btn waves-effect waves-light btn-block btn-info counter_display">0</button>
                         </div>
-                        <div class="col-lg-2 col-md-4">
+                        <div class="col">
                             <button type="button" class="btn waves-effect waves-light btn-block btn-info select-all">All
                                 Select</button>
                         </div>
-                        <div class="col-lg-2 col-md-4">
+                        <div class="col">
                             <button type="button"
                                 class="btn waves-effect waves-light btn-block btn-success un-select-all">All
                                 Unselect</button>
                         </div>
 
-
+                        @foreach ($customer_categories as $customer_category)
+                            <div class="col">
+                                <button type="button"
+                                    class="btn waves-effect waves-light btn-block btn-primary category_change_btn"
+                                    value="{{ $customer_category->id }}">{{ $customer_category->name }}</button>
+                            </div>
+                        @endforeach
                     </div>
                     <table class="table color-bordered-table primary-bordered-table">
                         <thead>
@@ -114,6 +120,59 @@
 
             $('.un-select-all').click(function(event) {
                 $('.counter_display').html($("[name='customer']:checked").length)
+            });
+
+            $('.category_change_btn').click(function() {
+                category_id = $(this).val();
+                var users = []
+                $("[name='customer']:checked").each(function() {
+                    users.push($(this).val())
+                });
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Category will be updated of selected customer!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, change it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            method: "POST",
+                            url: "{{ route('backend.ajax.changeUserCategory') }}",
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            data: {
+                                users: users,
+                                category: category_id
+                            },
+                            dataType: 'JSON',
+                            beforeSend: function() {
+
+                            },
+                            complete: function() {
+
+                            },
+                            success: function(data) {
+                                Swal.fire(
+                                    'Hey !',
+                                    data.message,
+                                    data.type
+                                )
+                                if(data.type){
+                                    location.reload()
+                                }
+                            },
+                            error: function(error) {
+                                validation_error(error);
+                            },
+                        });
+
+                    }
+                })
+
             });
         });
     </script>

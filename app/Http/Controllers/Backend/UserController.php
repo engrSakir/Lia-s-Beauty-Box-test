@@ -173,4 +173,25 @@ class UserController extends Controller
             'message' => 'Successfully destroy',
         ];
     }
+
+    public function changeUsercategory(Request $request){
+        $request->validate([
+            'category' => 'required|exists:user_categories,id',
+            'users' => 'required'
+        ]);
+        try{
+            User::whereIn('id', $request->users)->update([
+                'category_id' =>  $request->category
+            ]);
+        }catch(\Exception $exception){
+            return [
+                'type' => 'error',
+                'message' => $exception->getMessage(),
+            ];
+        }
+        return [
+            'type' => 'success',
+            'message' => 'Successfully status changed',
+        ];
+    }
 }

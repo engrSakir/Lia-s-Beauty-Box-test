@@ -12,6 +12,7 @@ use App\Models\Payment;
 use App\Models\Schedule;
 use App\Models\Service;
 use App\Models\User;
+use App\Models\UserCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -226,6 +227,7 @@ class DashboardController extends Controller
     public function indexCustomer()
     {
         $customers = User::role('Customer')->get();
-        return view('backend.customer.index', compact('customers'));
+        $customer_categories = UserCategory::all();
+        return view('backend.customer.index', compact('customers', 'customer_categories'));
     }
 }

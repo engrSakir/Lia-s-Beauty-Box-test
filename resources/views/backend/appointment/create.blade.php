@@ -274,7 +274,6 @@
 
         //Auto Search
         $(".customer_information").autocomplete({
-
             source: function(request, response) {
                 // console.log(request.term);
                 request_for = this.element.attr('name');

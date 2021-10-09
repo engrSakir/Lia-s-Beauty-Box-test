@@ -48,7 +48,7 @@
                     <span class="hide-menu">Schedule</span>
                 </a>
             </li>
-            
+
             <li>
                 <a class="waves-effect waves-dark" href="{{ route('backend.appointment.index') }}"
                     aria-expanded="false">
@@ -65,18 +65,17 @@
             @endhasanyrole
             @role('Admin')
             <li>
-                <a class="waves-effect waves-dark" href="{{ route('backend.employeeSalary.index') }}"
+                <a class="waves-effect waves-dark" href="{{ route('backend.customer.index') }}"
                     aria-expanded="false">
                     <i class="far fa-circle text-danger"></i>
-                    <span class="hide-menu">Salary</span>
+                    <span class="hide-menu">Customer</span>
                 </a>
             </li>
-            
             <li>
-                <a class="waves-effect waves-dark" href="{{ route('backend.admin.index') }}"
+                <a class="waves-effect waves-dark" href="{{ route('backend.userCategory.index') }}"
                     aria-expanded="false">
                     <i class="far fa-circle text-danger"></i>
-                    <span class="hide-menu">Admin</span>
+                    <span class="hide-menu">Privilege</span>
                 </a>
             </li>
             <li>
@@ -87,22 +86,15 @@
                 </a>
             </li>
             <li>
-                <a class="waves-effect waves-dark" href="{{ route('backend.customer.index') }}"
+                <a class="waves-effect waves-dark" href="{{ route('backend.admin.index') }}"
                     aria-expanded="false">
                     <i class="far fa-circle text-danger"></i>
-                    <span class="hide-menu">Customer</span>
-                </a>
-            </li>
-            <li>
-                <a class="waves-effect waves-dark" href="{{ route('backend.paymentMethod.index') }}"
-                    aria-expanded="false">
-                    <i class="far fa-circle text-danger"></i>
-                    <span class="hide-menu">Payment Method</span>
+                    <span class="hide-menu">Admin</span>
                 </a>
             </li>
             @endrole
             @hasanyrole('Admin|Employee')
-           
+
             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i
                         class="far fa-circle text-danger"></i><span class="hide-menu">Services</span></a>
                 <ul aria-expanded="false" class="collapse">
@@ -110,7 +102,7 @@
                     <li><a href="{{ route('backend.serviceCategory.index') }}">Service Category </a></li>
                 </ul>
             </li>
-            
+
             @endhasanyrole
             @role('Admin')
             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i
@@ -123,13 +115,27 @@
             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i
                         class="far fa-circle text-danger"></i><span class="hide-menu">All User</span></a>
                 <ul aria-expanded="false" class="collapse">
-                    <li><a href="{{ route('backend.user.index') }}">User List</a></li>
-                    <li><a href="{{ route('backend.userCategory.index') }}">User Category</a></li>
+                    <li><a href="{{ route('backend.user.index') }}">All User List</a></li>
+                    <li><a href="{{ route('backend.userCategory.index') }}">Customer privilege</a></li>
                 </ul>
             </li>
             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i
                         class="far fa-circle text-danger"></i><span class="hide-menu">More</span></a>
                 <ul aria-expanded="false" class="collapse">
+                    <li>
+                        <a class="waves-effect waves-dark" href="{{ route('backend.employeeSalary.index') }}"
+                            aria-expanded="false">
+                            <i class="far fa-circle text-danger"></i>
+                            <span class="hide-menu">Salary</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="waves-effect waves-dark" href="{{ route('backend.paymentMethod.index') }}"
+                            aria-expanded="false">
+                            <i class="far fa-circle text-danger"></i>
+                            <span class="hide-menu">Payment Method</span>
+                        </a>
+                    </li>
                     <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                             <i class="far fa-circle text-danger"></i><span class="hide-menu"> Gallery </span></a>
                         <ul aria-expanded="false" class="collapse">
