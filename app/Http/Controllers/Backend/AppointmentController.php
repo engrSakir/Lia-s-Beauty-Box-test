@@ -83,7 +83,7 @@ class AppointmentController extends Controller
 
         try {
             $schedule = \App\Models\Schedule::find($request->schedule) ?? null;
-            $max_participent_in_this_day = Appointment::where('appointment_data', date('Y-m-d', strtotime(request()->appointment_data)))->where('schedule_id',  $request->schedule)->where('status','!=', 'Reject')->count();
+            $max_participent_in_this_day = Appointment::where('appointment_data', date('Y-m-d', strtotime(request()->appointment_data)))->where('schedule_id',  $request->schedule)->where('status', '!=', 'Reject')->count();
             if ($max_participent_in_this_day < $schedule->maximum_participant) {
                 $appointment = new Appointment();
                 $appointment->customer_id       = $user->id;
@@ -131,12 +131,12 @@ class AppointmentController extends Controller
     {
         if (request()->ajax()) {
             $discount_percentage = $appointment->customer->category->discount_percentage ?? 0;
-            if($appointment->customer->referBy){
+            if ($appointment->customer->referBy) {
                 $discount_percentage += ReferralDiscountPercentage::latest()->first()->amount ?? 0;
             }
-            if(auth()->user()->hasPermissionTo('Invoice create with vat permission')){
+            if (auth()->user()->hasPermissionTo('Invoice create with vat permission')) {
                 $vat_percentage = $appointment->customer->category->vat_percentage ?? 0;
-            }else{
+            } else {
                 $vat_percentage = 0;
             }
             return [
@@ -316,11 +316,22 @@ class AppointmentController extends Controller
         ];
     }
 
-    public function customerInfo(){
-        if(request()->request_for == 'email'){
-            return User::where('email', 'LIKE', '%' . request()->data . '%')
-            ->get();
+    public function customerInfo()
+    {
+        if (request()->request_for == 'email') {
+            return User::where('email', 'LIKE', '%' . request()->query_data . '%')
+                ->select('name', 'email', 'phone')
+                ->get();
         }
-        return request()->input();
+        if (request()->request_for == 'name') {
+            return User::where('name', 'LIKE', '%' . request()->query_data . '%')
+                ->select('name', 'email', 'phone')
+                ->get();
+        }
+        if (request()->request_for == 'phone') {
+            return User::where('phone', 'LIKE', '%' . request()->query_data . '%')
+                ->select('name', 'email', 'phone')
+                ->get();
+        }
     }
 }

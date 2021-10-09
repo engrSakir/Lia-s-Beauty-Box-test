@@ -137,13 +137,22 @@
             border-radius: 12px;
         }
 
+        .ui-front {
+            z-index: 9999999 !important;
+        }
+
     </style>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 @endpush
 
 @push('foot')
     <script src="{{ asset('assets/frontend/calender/calendar.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script> --}}
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
     <script type="text/javascript">
         function selectDate(date) {
             $('.calendar-wrapper').updateCalendarOptions({
@@ -262,33 +271,39 @@
                 },
             });
         });
-    </script>
 
-    <script>
-         //Auto Search
+        //Auto Search
         $(".customer_information").autocomplete({
+
             source: function(request, response) {
                 // console.log(request.term);
-                var data = request.term;
-                var request_for = 'email';
+                request_for = this.element.attr('name');
+                var query_data = request.term;
                 $.ajax({
                     method: 'GET',
                     url: "{{ route('backend.ajax.customerInfo') }}",
                     data: {
                         'request_for': request_for,
-                        'data': data
+                        'query_data': query_data
                     },
                     success: function(data) {
                         console.log(data)
                         var array = $.map(data, function(obj) {
-                            // if (obj.sender_phone) {
-                            //     s_phone = ' #' + obj.sender_phone;
-                            // } else {
-                            //     s_phone = " ";
-                            // }
+                            if(request_for == 'name'){
+                                pointed_value = obj.name;
+                            }
+                            if(request_for == 'email'){
+                                pointed_value = obj.email;
+                            }
+                            if(request_for == 'phone'){
+                                pointed_value = obj.phone;
+                            }
                             return {
-                                value: obj.name, //Fillable in input field
-                                label: obj.name + obj.email, //Show as label of input field
+                                value: pointed_value, //Fillable in input field
+                                label: 'Name:'+obj.name +' Email:'+ obj.email +' Phone:'+ obj
+                                    .phone, //Show as label of input field
+                                name: obj.name,
+                                email: obj.email,
                                 phone: obj.phone,
                             }
                         })
@@ -298,8 +313,9 @@
             },
             minLength: 1,
             select: function(event, ui) {
-                //console.log(ui.item);
-                $('#sender-phone').val(ui.item.phone);
+                $('[name=name]').val(ui.item.name);
+                $('[name=email]').val(ui.item.email);
+                $('[name=phone]').val(ui.item.phone);
             }
         });
     </script>
