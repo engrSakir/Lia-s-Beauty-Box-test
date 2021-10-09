@@ -54,6 +54,7 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'
         Route::get('admin', [DashboardController::class, 'indexAdmin'])->name('admin.index');
         Route::get('employee', [DashboardController::class, 'indexEmployee'])->name('employee.index');
         Route::get('customer', [DashboardController::class, 'indexCustomer'])->name('customer.index');
+        Route::get('/appointment-data/customer-information', [AppointmentController::class, 'customerInfo'])->name('ajax.customerInfo');
 
         Route::resource('user', UserController::class);
         Route::resource('client', ClientController::class);

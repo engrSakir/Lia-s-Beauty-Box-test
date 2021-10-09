@@ -14,7 +14,7 @@
                     <li class="breadcrumb-item active">Appointment Create Page</li>
                 </ol>
                 <a href="{{ route('backend.invoice.create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
-                    class="fa fa-plus-circle"></i>Direct Invoice</a>
+                        class="fa fa-plus-circle"></i>Direct Invoice</a>
             </div>
         </div>
     </div>
@@ -69,8 +69,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input name="name" type="text" required="" class="form-control"
-                                                placeholder="Name">
+                                            <input name="name" type="text" required=""
+                                                class="form-control customer_information" placeholder="Name">
                                         </div>
                                     </div>
                                 </div>
@@ -78,8 +78,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input name="phone" type="text" required="" class="form-control"
-                                                placeholder="Phone">
+                                            <input name="phone" type="text" required=""
+                                                class="form-control customer_information" placeholder="Phone">
                                         </div>
                                     </div>
                                 </div>
@@ -87,8 +87,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input name="email" type="email" class="form-control" required=""
-                                                placeholder="Email">
+                                            <input name="email" type="email" class="form-control customer_information"
+                                                required="" placeholder="Email">
                                         </div>
                                     </div>
                                 </div>
@@ -143,7 +143,7 @@
 @push('foot')
     <script src="{{ asset('assets/frontend/calender/calendar.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript">
         function selectDate(date) {
             $('.calendar-wrapper').updateCalendarOptions({
@@ -165,10 +165,12 @@
                     $('#schedule').html('')
                     $.each(response.schedules, function(schedule_index, schedule) {
                         var schedule_counter = 0;
-                        var strtime= (new Date("1/1/1900 "+schedule.starting_time).toLocaleString()).split(',');
-                      var starting_time =strtime[1];
-                        var endtime = (new Date("1/1/1900 " + schedule.ending_time).toLocaleString()).split(',');
-                        var ending_time=endtime[1];
+                        var strtime = (new Date("1/1/1900 " + schedule.starting_time).toLocaleString())
+                            .split(',');
+                        var starting_time = strtime[1];
+                        var endtime = (new Date("1/1/1900 " + schedule.ending_time).toLocaleString())
+                            .split(',');
+                        var ending_time = endtime[1];
                         var title = schedule.title;
                         var html = `<a href="javascript:void(0)"  onclick="bookingModal(` + schedule
                             .id + `)">
@@ -209,10 +211,12 @@
                 },
                 success: function(response) {
                     //console.log(response);
-                    var strtime= (new Date("1/1/1900 "+response.schedule.starting_time).toLocaleString()).split(',');
-                      var starting_time =strtime[1];
-                        var endtime = (new Date("1/1/1900 " + response.schedule.ending_time).toLocaleString()).split(',');
-                        var ending_time=endtime[1];
+                    var strtime = (new Date("1/1/1900 " + response.schedule.starting_time).toLocaleString())
+                        .split(',');
+                    var starting_time = strtime[1];
+                    var endtime = (new Date("1/1/1900 " + response.schedule.ending_time).toLocaleString())
+                        .split(',');
+                    var ending_time = endtime[1];
                     $('#schedule_title').text(response.schedule.title);
                     $('#schedule_date').text($("#appointment_data").val());
                     $('#schedule_time').text(starting_time + ' To ' + ending_time);
@@ -257,6 +261,46 @@
                     validation_error(error);
                 },
             });
+        });
+    </script>
+
+    <script>
+         //Auto Search
+        $(".customer_information").autocomplete({
+            source: function(request, response) {
+                // console.log(request.term);
+                var data = request.term;
+                var request_for = 'email';
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('backend.ajax.customerInfo') }}",
+                    data: {
+                        'request_for': request_for,
+                        'data': data
+                    },
+                    success: function(data) {
+                        console.log(data)
+                        var array = $.map(data, function(obj) {
+                            // if (obj.sender_phone) {
+                            //     s_phone = ' #' + obj.sender_phone;
+                            // } else {
+                            //     s_phone = " ";
+                            // }
+                            return {
+                                value: obj.name, //Fillable in input field
+                                label: obj.name + obj.email, //Show as label of input field
+                                phone: obj.phone,
+                            }
+                        })
+                        response($.ui.autocomplete.filter(array, request.term));
+                    },
+                });
+            },
+            minLength: 1,
+            select: function(event, ui) {
+                //console.log(ui.item);
+                $('#sender-phone').val(ui.item.phone);
+            }
         });
     </script>
 @endpush

@@ -315,4 +315,12 @@ class AppointmentController extends Controller
             'message' => 'Successfully destroy',
         ];
     }
+
+    public function customerInfo(){
+        if(request()->request_for == 'email'){
+            return User::where('email', 'LIKE', '%' . request()->data . '%')
+            ->get();
+        }
+        return request()->input();
+    }
 }
