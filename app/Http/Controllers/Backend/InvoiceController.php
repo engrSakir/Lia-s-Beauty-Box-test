@@ -84,7 +84,7 @@ class InvoiceController extends Controller
             $invoice->appointment_id = $appointment->id;
             $invoice->vat_percentage = $request->vat_percentage ?? 0;
             $invoice->discount_percentage = $request->discount_percentage ?? 0;
-            $invoice->discount_fixed_amount = $request->fixed_discount ?? 0;
+            $invoice->fixed_discount = $request->fixed_discount ?? 0;
             $invoice->payment_method_id = $request->payment_method;
             $invoice->note = $request->note;
             $invoice->save();
@@ -142,7 +142,10 @@ class InvoiceController extends Controller
      */
     public function edit(Invoice $invoice)
     {
-        //
+        $appointments = Appointment::all();
+        $serviceCategories = ServiceCategory::all();
+        $paymentmethods = PaymentMethod::all();
+        return view('backend.invoice.edit', compact('appointments', 'serviceCategories','paymentmethods', 'invoice'));
     }
 
     /**

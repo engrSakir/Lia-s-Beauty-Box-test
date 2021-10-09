@@ -104,6 +104,9 @@
                                             <a href="{{ route('backend.invoice.show', $invoice) }}" target="_blank"
                                                 class="btn btn-primary waves-effect btn-rounded waves-light"> <i
                                                     class="fas fa-print"></i> </a>
+                                            <a href="{{ route('backend.invoice.edit', $invoice) }}"
+                                                class="btn btn-secondary waves-effect btn-rounded waves-light"> <i
+                                                    class="fas fa-pen"></i> </a>
                                             <a href="{{ route('backend.invoice.payment', $invoice) }}"
                                                 class="btn btn-info waves-effect btn-rounded waves-light"> <i
                                                     class="fas fa-credit-card"></i> </a>
