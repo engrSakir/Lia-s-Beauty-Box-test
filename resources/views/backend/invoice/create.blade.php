@@ -14,7 +14,7 @@
                     <li class="breadcrumb-item active">Invoice Create Page</li>
                 </ol>
                 <a href="{{ route('backend.appointment.create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
-                    class="fa fa-plus-circle"></i> Create New Appointment</a>
+                        class="fa fa-plus-circle"></i> Create New Appointment</a>
 
             </div>
         </div>
@@ -36,8 +36,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <select name="appointment" id="appointment" class="form-control" required=""
-                                            onchange="changeAppointment(this)">
+                                        <select name="appointment" id="appointment" class="form-control style-select"
+                                            required="" onchange="changeAppointment(this)">
                                             <option value="" selected disabled>Please chose a approved appointment</option>
                                             @foreach ($appointments as $appointment)
                                                 <option value="{{ $appointment->id }}">
@@ -62,7 +62,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <select name="payment_method" id="payment_method" class="form-control" required="">
+                                        <select name="payment_method" id="payment_method" class="form-control"
+                                            required="">
                                             <option value="" selected disabled>Please choose a Payment Method</option>
                                             @foreach ($paymentmethods as $paymentMethod)
                                                 <option value="{{ $paymentMethod->id }}">
@@ -100,7 +101,8 @@
                                                     @foreach ($serviceCategories as $serviceCategory)
                                                         <optgroup label="{{ $serviceCategory->name }}">
                                                             @foreach ($serviceCategory->services as $service)
-                                                                <option value="{{ $service->id }}">{{ $service->name }}
+                                                                <option value="{{ $service->id }}">
+                                                                    {{ $service->name }}
                                                                 </option>
                                                             @endforeach
                                                         </optgroup>
@@ -169,7 +171,7 @@
                                         </tr>
 
 
-                                        <tr @if(auth()->user()->hasPermissionTo('Invoice create with vat permission')) @else style="display:none"  @endif>
+                                        <tr @if (auth()->user()->hasPermissionTo('Invoice create with vat permission')) @else style="display:none"  @endif>
                                             <th class="text-center">VAT (%)</th>
                                             <td class="text-center">
                                                 <div class="input-group mb-2 mb-sm-0">
@@ -259,6 +261,19 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
+    <style>
+        .style-select {
+            background: linear-gradient(to top, #ffffff 0%, #99ff66 100%);
+            margin: 10px;
+            width: 100%;
+            height: 60px;
+            border: 5px solid #99ff66;
+            border-radius: 14px;
+            font-size: 25px;
+            overflow: hidden;
+        }
+
+    </style>
 @endpush
 
 @push('foot')
@@ -328,7 +343,7 @@
             $('#sub_total').val(total.toFixed(2));
 
             discount_sum = total / 100 * $('#discount').val();
-            fixed_discount=$('#fixed_discount').val();
+            fixed_discount = $('#fixed_discount').val();
             $('#discount_amount').val(discount_sum.toFixed(2));
             $('#fixed_discount_amount').val(fixed_discount);
             $('#total_amount').val((total - discount_sum - fixed_discount).toFixed(2));
@@ -396,57 +411,57 @@
             });
             // console.log(service_data_set)
             $.ajax({
-                    method: "POST",
-                    url: "{{ route('backend.invoice.store') }}",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    data: {
-                        service_data_set: service_data_set,
-                        appointment_id: document.getElementById('appointment').value,
-                        payment_method: document.getElementById('payment_method').value,
-                        vat_percentage: document.getElementById('tax').value,
-                        discount_percentage: document.getElementById('discount').value,
-                        fixed_discount: document.getElementById('fixed_discount').value,
-                        advance_payment_amount: document.getElementById('advance_payment_amount').value,
-                        // new_payment_amount: document.getElementById('new_payment_amount').value,
-                        new_payment_amount: document.getElementById('due_after_advance_amount').value,
-                    },
-                    dataType: 'JSON',
-                    beforeSend: function() {
+                method: "POST",
+                url: "{{ route('backend.invoice.store') }}",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    service_data_set: service_data_set,
+                    appointment_id: document.getElementById('appointment').value,
+                    payment_method: document.getElementById('payment_method').value,
+                    vat_percentage: document.getElementById('tax').value,
+                    discount_percentage: document.getElementById('discount').value,
+                    fixed_discount: document.getElementById('fixed_discount').value,
+                    advance_payment_amount: document.getElementById('advance_payment_amount').value,
+                    // new_payment_amount: document.getElementById('new_payment_amount').value,
+                    new_payment_amount: document.getElementById('due_after_advance_amount').value,
+                },
+                dataType: 'JSON',
+                beforeSend: function() {
 
-                    },
-                    complete: function() {
+                },
+                complete: function() {
 
-                    },
-                    success: function(data) {
-                        console.log(data)
-                        if (data.type == 'success') {
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'success',
-                                title: 'Your invoice has been saved',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                            $('#modal').modal('show');
-                            $('#modal-body').html(`<iframe src="` + data.invoice_url +
-                                `" width="100%" height="400"></iframe>`);
+                },
+                success: function(data) {
+                    console.log(data)
+                    if (data.type == 'success') {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your invoice has been saved',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        $('#modal').modal('show');
+                        $('#modal-body').html(`<iframe src="` + data.invoice_url +
+                            `" width="100%" height="400"></iframe>`);
 
-                            $(".mdal_close_a").attr("href", data.btn_url)
-                        } else {
-                            Swal.fire({
-                                icon: data.type,
-                                title: 'Oops...',
-                                text: data.message,
-                                footer: 'We are sorry for unable.'
-                            })
-                        }
-                    },
-                    error: function(error) {
-                        validation_error(error);
-                    },
-                });
+                        $(".mdal_close_a").attr("href", data.btn_url)
+                    } else {
+                        Swal.fire({
+                            icon: data.type,
+                            title: 'Oops...',
+                            text: data.message,
+                            footer: 'We are sorry for unable.'
+                        })
+                    }
+                },
+                error: function(error) {
+                    validation_error(error);
+                },
+            });
 
         }
     </script>
