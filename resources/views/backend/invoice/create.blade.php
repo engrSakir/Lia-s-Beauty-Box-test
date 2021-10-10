@@ -26,9 +26,9 @@
 
         <div class="col-lg-12">
             <div class="card">
-                <div class="card-header bg-info">
+                <!--<div class="card-header bg-info">
                     <h4 class="mb-0 text-white">Invice Create</h4>
-                </div>
+                </div>-->
                 <div class="card-body">
                     <div class="container">
                         {{-- Start Appointment section --}}
@@ -56,29 +56,7 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- End Appointment section --}}
-                        {{-- Start Payment Mthod  section --}}
-                        <div class="row clearfix">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <select name="payment_method" id="payment_method" class="form-control"
-                                            required="">
-                                            <option value="" selected disabled>Please choose a Payment Method</option>
-                                            @foreach ($paymentmethods as $paymentMethod)
-                                                <option value="{{ $paymentMethod->id }}">
-                                                    {{ $loop->iteration }})
-                                                    Name: {{ $paymentMethod->name ?? '#' }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- End Payment Mthod section --}}
-
-                        {{-- Start Dynamic Service section --}}
+                    {{-- Start Dynamic Service section --}}
                         <div class="row clearfix">
                             <div class="col-md-12">
                                 <table class="table table-bordered table-hover" id="tab_logic">
@@ -218,14 +196,35 @@
                             </div>
                         </div>
                         {{-- End Sumation section --}}
+                        {{-- End Appointment section --}}
+                        {{-- Start Payment Mthod  section --}}
+                        <div class="row clearfix">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <select name="payment_method" id="payment_method" class="form-control"
+                                            required="">
+                                            <option value="" selected disabled>Please choose a Payment Method</option>
+                                            @foreach ($paymentmethods as $paymentMethod)
+                                                <option value="{{ $paymentMethod->id }}">
+                                                    {{ $paymentMethod->name ?? '#' }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- End Payment Mthod section --}}
                         {{-- Start Submit Btn section --}}
                         <div class="row clearfix">
-                            <div class="col-md-12 d-flex justify-content-between">
-                                <button type="button" class="btn btn-lg btn-success waves-effect waves-light"
+                            <div class="col-md-12 d-flex justify-content-between">                                
+                                <button id="" class="btn btn-lg btn-danger btn-default"
+                                    onClick="window.location.reload();">Refresh Page</button>
+
+                                    <button type="button" class="btn btn-lg btn-success waves-effect waves-light pull-right"
                                     id="invoice_save_btn" onclick="invoiceSaveFunction(this)">Save Invoice</button>
 
-                                <button id="" class="btn btn-lg btn-danger btn-default pull-right"
-                                    onClick="window.location.reload();">Refresh Page</button>
                             </div>
                         </div>
                         {{-- End Submit Btn section --}}
