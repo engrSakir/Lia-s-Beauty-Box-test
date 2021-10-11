@@ -110,6 +110,9 @@
                                             <a href="{{ route('backend.invoice.payment', $invoice) }}"
                                                 class="btn btn-info waves-effect btn-rounded waves-light"> <i
                                                     class="fas fa-credit-card"></i> </a>
+                                                    <a href="{{ route('backend.invoice.view', $invoice) }}"
+                                                class="btn btn-info waves-effect btn-rounded waves-light"> <i
+                                                    class="fas fa-credit-card"></i> </a>
                                         </td>
                                     </tr>
                                 @endforeach
