@@ -35,6 +35,32 @@
             display: flex;
             justify-content: space-around;
         }
+        .primary-bordered-table{
+            width: 100%;
+        }
+        .first{
+            border:1px solid #2196F3;
+ 
+        }
+        .first th{
+            background-color:#E7F3FE;
+            color:#000000;
+            font-weight:bold;
+        }
+        .first td{
+            border:1px solid #E7F3FE;
+        }
+        .second{
+            border:1px solid #04AA6D;
+        }
+        .second th{
+            background-color:#DDFFDD;
+            color:#000000;
+            font-weight:bold;
+        }
+        .second td{
+            border:1px solid #DDFFDD;
+        }
 
     </style>
 </head>
@@ -51,7 +77,67 @@
         </div>
     @endforeach
     <hr>
-
+    <h3>Invoice</h3>
+    <table class="table color-bordered-table primary-bordered-table first">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>INV</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Paid</th>
+                                    @can('Total vat amount visibility permission')
+                                    <th>Vat</th>
+                                    @endcan
+                                    {{-- <th>Due</th> --}}
+                                    <th>Created At</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($invoices as $invoice)
+                                    <tr>
+                                        <td scope="row">{{ $loop->iteration }}</td>
+                                        <td>{{ '#1010' }}</td>
+                                        <td>{{ $invoice->appointment->customer->name ?? '#' }}</td>
+                                        <td>
+                                            {{ inv_calculator($invoice)['price'] ?? '#' }}
+                                        </td>
+                                        <td>{{ $invoice->payments->sum('amount') }}</td>
+                                        {{-- <td>{{ inv_calculator($invoice)['due'] }}</td> --}}
+                                        @can('Total vat amount visibility permission')
+                                        <td>
+                                            {{ inv_calculator($invoice)['vat_amount'] ?? '#' }}
+                                        </td>
+                                        @endcan
+                                        <td>{{ $invoice->created_at->format('d/m/Y h:i A') }}</td>
+                                      
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <hr>
+                        <h3>Expense</h3>
+                        <table class="table color-bordered-table primary-bordered-table second">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Created At</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($expenses as $expense)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $expense->amount }}</td>
+                                    <td>{{ $expense->category->name ?? '#' }}</td>
+                                    <td>{{ $expense->created_at->format('d/m/Y') }}</td>
+                                    
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
 
 </body>
 

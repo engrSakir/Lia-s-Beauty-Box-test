@@ -260,6 +260,7 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     
+    
     <!------ Include the above in your HEAD tag ---------->
     <style>
         .style-select {
@@ -277,9 +278,13 @@
 @endpush
 
 @push('foot')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
-           
+            $('.service').select2({
+    maximumInputLength: 20 // only allow terms up to 20 characters long
+});
             $('#modal').modal({
                 backdrop: 'static',
                 keyboard: false
