@@ -60,7 +60,8 @@ class AppointmentController extends Controller
             $request->validate(
                 [
                     'name'      => 'required|string',
-                    'email'     => 'required|unique:users,email',
+                    // 'email'     => 'required|unique:users,email',
+                    'email'     => 'nullable|email',
                     'phone'     => 'required|unique:users,phone',
                     'appointment_data' => 'required|string', // get from hidden
                     'schedule'  => 'required|exists:schedules,id', // get from hidden
