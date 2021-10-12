@@ -4,7 +4,7 @@
     <style>
         @page {
             background-color: #ffffff;
-            sheet-size: 70mm 120mm;
+            sheet-size: 70mm 160mm;
             /* size: auto; */
             /* background-color: azure; */
             vertical-align: top;
@@ -133,7 +133,8 @@
 </html>
 <br>
 <div style="width: 100%; text-align:center;">
-    <p style="font-size: 18px; margin:0px 0px 5px 0px;">
+    <img src="{{ asset(get_static_option('logo') ?? 'assets/frontend/images/logo.png') }}" width="216" height="37" alt=""> <br>
+    <p style="font-size: 18px; margin:20px 0px 5px 0px;">
        <b> Lia's Beauty Box</b>
     </p>
     <p style="font-size: 12px; margin:0px 5px 5px 5px;;  text-align: center; text-justify: inter-word;">
@@ -171,7 +172,7 @@
                         <h3>SL</h3>
                     </td>
                     <td class="Rate" style="width: 58%; text-align:left;">
-                        <h3>Item</h3>
+                        <h3>Service</h3>
                     </td>
                     <td class="Rate" style="width: 12%; text-align:center;">
                         <h3>Price</h3>
@@ -192,31 +193,28 @@
                         <td style="text-align:right;"> {{ $item->price * $item->quantity }}</td>
                     </tr>
                 @endforeach
+            </table>
+            <table>
                 <tr class="tabletitle">
-                    <td class="Rate">
+                    <td class="Rate" style="width: 50%; text-align:left;">
                         <h3>Total</h3>
                     </td>
-                    {{-- <td></td>
-                    <td></td>
-                    <td></td> --}}
-                    <td class="payment" style="text-align:right;">
-                        @if (inv_calculator($invoice)['discount_amount'] > 0)
-                            <del><small>
-                                    {{ inv_calculator($invoice)['main_price'] }}</small></del><sup>{{ inv_calculator($invoice)['discount_percentage'] }}%OFF</sup>
-                            {{ inv_calculator($invoice)['price_after_discount'] }}
-                        @else
-                            {{ inv_calculator($invoice)['main_price'] }}
-                        @endif
+                    <td class="payment" style="width: 50%; text-align:right;">
+                        {{ inv_calculator($invoice)['main_price'] }}
                     </td>
                 </tr>
-
+                <tr class="tabletitle">
+                    <td class="Rate">
+                        <h3>Discount ({{ inv_calculator($invoice)['discount_percentage'] }}%)</h3>
+                    </td>
+                    <td class="payment" style="text-align:right;">
+                       {{ inv_calculator($invoice)['discount_amount'] }}
+                    </td>
+                </tr>
                 <tr class="tabletitle">
                     <td class="Rate">
                         <h3>Vat ({{ inv_calculator($invoice)['vat_percentage'] }}%)</h3>
                     </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
                     <td class="payment" style="text-align:right;">
                         {{ inv_calculator($invoice)['vat_amount'] }}
                     </td>
@@ -225,9 +223,6 @@
                     <td class="Rate">
                         <h3> Fixed Discount:</h3>
                     </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
                     <td class="payment" style="text-align:right;">
                         {{ inv_calculator($invoice)['fixed_discount'] }}
                     </td>
@@ -236,9 +231,6 @@
                     <td class="Rate">
                         <h3> Grand Total:</h3>
                     </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
                     <td class="payment" style="text-align:right;">
                         {{ inv_calculator($invoice)['price'] }}
                     </td>
@@ -247,19 +239,23 @@
                     <td class="Rate">
                         <h3> Paid:</h3>
                     </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
                     <td class="payment" style="text-align:right;">
                         {{ inv_calculator($invoice)['paid'] }}
                     </td>
                 </tr>
-
+                <tr class="tabletitle">
+                    <td class="Rate">
+                        <h3> Payment method</h3>
+                    </td>
+                    <td class="payment" style="text-align:right;">
+                        {{$invoice->paymentMethod->name ?? '' }}
+                    </td>
+                </tr>
             </table>
             <table cellpadding="0" cellspacing="0" style="margin-top: 60px;">
                 <tr>
                     <th>
-                        Developed By <a href="https://www.iciclecorporation.com/" target="_blank">Icicle Corporation</a>
+                        Developed By <br> <a href="https://www.iciclecorporation.com/" target="_blank">iciclecorporation.com</a>
                     </th>
                 </tr>
             </table>

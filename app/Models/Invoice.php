@@ -31,6 +31,11 @@ class Invoice extends Model
         return $this->hasMany(Payment::class, 'invoice_id', 'id');
     }
 
+    public function paymentMethod()
+    {
+        return $this->belongsTo(PaymentMethod::class, 'payment_method_id', 'id');
+    }
+
      // Auto delete depend data
     public static function boot() {
         parent::boot();
