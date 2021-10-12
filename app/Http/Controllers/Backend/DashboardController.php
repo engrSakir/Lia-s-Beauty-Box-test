@@ -18,6 +18,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
+use PDF;
 
 class DashboardController extends Controller
 {
@@ -249,16 +250,47 @@ class DashboardController extends Controller
         ]);
         $start = new Carbon($request->starting_date);
         $end = new Carbon($request->ending_date);
-        $expense = Expense::whereBetween('created_at',[$start,$end])->get()->sum('amount');
-        $income = Payment::whereBetween('created_at',[$start,$end])->get()->sum('amount');
-        $user = User::whereBetween('created_at',[$start,$end])->count();
-        $appointment = Appointment::whereBetween('created_at',[$start,$end])->count();
-        $salary = EmployeeSalary::whereBetween('created_at',[$start,$end])->get()->sum('amount');
-        $invoice = Invoice::whereBetween('created_at',[$start,$end])->count();
-        $services = Service::orderBy('id','DESC')->get();
-        $expenses = Expense::orderBy('id','DESC')->get();
-        $employees = User::role('Employee')->get();
-        $customers = User::role('Customer')->get();
-        return view('backend.report.view', compact('start','end','expense','income','user','invoice','appointment','salary','services','expenses','employees','customers'));
+
+        $invoices = Invoice::whereBetween('created_at',[$start,$end])->get();
+        $expenses = Expense::whereBetween('created_at',[$start,$end])->get();
+        $salaryes = EmployeeSalary::whereBetween('created_at',[$start,$end]);
+
+        $total_sale_amount_of_this_month = 0;
+        foreach($invoices as $inv){
+            $total_sale_amount_of_this_month += inv_calculator($inv)['price'];
+        }
+        $count_items = [
+            [
+                'title' => 'Total Invoice : ',
+                'count' => Invoice::whereBetween('created_at',[$start,$end])->count(),
+            ],
+            [
+                'title' => 'Total Sale Amount : ',
+                'count' => $total_sale_amount_of_this_month,
+            ],
+            [
+                'title' => 'Total Expense : ',
+                'count' => Expense::whereBetween('created_at',[$start,$end])->get()->sum('amount'),
+            ],
+            [
+                'title' => 'Total User : ',
+                'count' => User::whereBetween('created_at',[$start,$end])->count(),
+            ],
+            [
+                'title' => 'Total Appointment : ',
+                'count' => Appointment::whereBetween('created_at',[$start,$end])->count(),
+            ],
+            [
+                'title' => 'Amount in Hand : ',
+                'count' => Payment::whereBetween('created_at',[$start,$end])->get()->sum('amount') - Expense::whereBetween('created_at',[$start,$end])->get()->sum('amount') - EmployeeSalary::whereBetween('created_at',[$start,$end])->get()->sum('amount'),
+            ],
+        ];
+
+
+
+        $pdf = PDF::loadView('backend.report.pdf-report', compact('start', 'end', 'count_items', 'invoices', 'expenses', 'salaryes'));
+        return $pdf->stream('Report-' . config('app.name') . '.pdf');
+
+        // return view('backend.report.view', compact('start','end','expense','income','user','invoice','appointment','salary','services','expenses','employees','customers'));
     }
 }

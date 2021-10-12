@@ -31,7 +31,7 @@ class InvoiceController extends Controller
         foreach (Invoice::all() as $invoice) {
             $total_vat += $invoice->items()->sum(DB::raw('quantity * price')) / 100 * $invoice->vat_percentage;
         }
-        $invoices = Invoice::orderBy('id', 'desc')->paginate(20);
+        $invoices = Invoice::orderBy('id', 'desc')->paginate(500);
         return view('backend.invoice.index', compact('invoices', 'total_paid', 'total_due', 'total_vat'));
     }
 
