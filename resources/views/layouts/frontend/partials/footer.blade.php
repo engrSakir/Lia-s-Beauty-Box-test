@@ -10,7 +10,7 @@
                         <div class="col-md-8 col-sm-8">
                             <div class="call-to-action-left p-tb20 p-r50">
                                 <h4 class="text-uppercase m-b10">We are ready to build your dream tell us more about your project</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse viverra mauris eget tortor.</p>
+                               <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse viverra mauris eget tortor.</p>-->
                             </div>
                         </div>
 

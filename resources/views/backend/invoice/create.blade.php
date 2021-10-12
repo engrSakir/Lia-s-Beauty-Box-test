@@ -87,8 +87,8 @@
                                                     @endforeach
                                                 </select>
                                             </td>
-                                            <td><input type="number" name='qty[]' placeholder='Enter Qty'
-                                                    class="form-control qty" step="0" min="0" /></td>
+                                            <td><input type="number" id="qty0" name='qty[]' placeholder='Enter Qty'
+                                                    class="form-control qty" step="0" min="0" value="" /></td>
                                             <td><input type="number" name='price[]' placeholder='Enter Unit Price'
                                                     class="form-control price" step="0.00" min="0" /></td>
                                             <td><input type="number" name='total[]' placeholder='0.00'
@@ -259,6 +259,7 @@
     {{-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> --}}
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    
     <!------ Include the above in your HEAD tag ---------->
     <style>
         .style-select {
@@ -278,6 +279,7 @@
 @push('foot')
     <script>
         $(document).ready(function() {
+           
             $('#modal').modal({
                 backdrop: 'static',
                 keyboard: false
@@ -291,6 +293,7 @@
             $("#add_row").click(function() {
                 b = i - 1;
                 $('#addr' + i).html($('#addr' + b).html()).find('td:first-child').html(i + 1);
+                $('#addr' + i).find($('.qty')).val('1');
                 $('#tab_logic').append('<tr id="addr' + (i + 1) + '"></tr>');
                 i++;
             });
