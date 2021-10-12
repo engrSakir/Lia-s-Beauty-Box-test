@@ -55,6 +55,15 @@
                             <div class="widget bg-white  recent-posts-entry">
                                 <h4 class="widget-title">Booking</h4>
                                 <div class="section-content">
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-xs-100pc p-tb20 ">
+                            <div class="row" id="schedule">
+                                {{-- Schedules show using jQuery --}}
+                                <div class="alert alert-success text-center m-3"
+                                    style="border: 2px solid red; padding: 10px; border-radius: 50px 20px;" role="alert">
+                                    <h3>Please pick a date from calendar</h3>
+                                </div>
+                            </div>
+                        </div>
                                     <div class="wt-tabs tabs-default border">
                                         <ul class="nav nav-tabs">
                                             <li class="active"><a data-toggle="tab"
@@ -71,15 +80,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 col-sm-12 col-xs-12 col-xs-100pc p-tb20 ">
-                            <div class="row" id="schedule">
-                                {{-- Schedules show using jQuery --}}
-                                <div class="alert alert-success text-center m-3"
-                                    style="border: 2px solid red; padding: 10px; border-radius: 50px 20px;" role="alert">
-                                    <h3>Please pick a date from calendar</h3>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
