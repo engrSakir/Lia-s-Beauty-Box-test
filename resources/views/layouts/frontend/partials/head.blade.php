@@ -60,6 +60,13 @@
 
 <!--====== AJAX ======-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+@media only screen and (max-width: 768px) {
+    .topemail{
+   display:none;
+ }
+}
+</style>
 @toastr_css
 <!--Page Lavel code -->
 @stack('head')

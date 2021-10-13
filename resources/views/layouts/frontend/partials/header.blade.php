@@ -4,9 +4,9 @@
         <div class="container">
             <div class="row">
                 <div class="wt-topbar-left clearfix">
-                    <ul class="list-unstyled e-p-bx pull-right">
-                        <li><i class="fa fa-envelope"></i>{{ get_static_option('email') }}</li>
-                        <li><i class="fa fa-phone"></i>{{ get_static_option('mobile') }}</li>
+                    <ul class="list-unstyled e-p-bx">
+                        <li><a href="mailto:{{ get_static_option('email') }}"><i class="fa fa-envelope"></i></a><span class="topemail">{{ get_static_option('email') }}</span></li>
+                        <li><i class="fa fa-phone"></i><span class="topphone">{{ get_static_option('mobile') }}</span></li>
                     </ul>
                 </div>
                 <div class="wt-topbar-right clearfix">
