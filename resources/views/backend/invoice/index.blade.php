@@ -71,8 +71,9 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>INV</th>
+                                    <th>ID</th>
                                     <th>Name</th>
+                                    <th>Service</th>
                                     <th>Price</th>
                                     <th>Paid</th>
                                     @can('Total vat amount visibility permission')
@@ -87,8 +88,9 @@
                                 @foreach ($invoices as $invoice)
                                     <tr>
                                         <td scope="row">{{ $loop->iteration }}</td>
-                                        <td>{{ '#1010' }}</td>
+                                        <td>{{ $invoice->id }}</td>
                                         <td>{{ $invoice->appointment->customer->name ?? '#' }}</td>
+                                        <td>{{ $invoice->appointment->service->name ?? '#' }}</td>
                                         <td>
                                             {{ inv_calculator($invoice)['price'] ?? '#' }}
                                         </td>

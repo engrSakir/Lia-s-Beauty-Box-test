@@ -88,7 +88,23 @@
                                     <div class="form-group">
                                         <div class="input-group">
                                             <input name="email" type="email" class="form-control customer_information"
-                                                required="" placeholder="Email">
+                                                 placeholder="Email">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input name="transaction_id" type="text" class="form-control"
+                                                placeholder="Transaction ID">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input name="advance_amount" type="number" class="form-control" 
+                                                placeholder="Minimum Advance {{ get_static_option('advance_amount') }} Taka">
                                         </div>
                                     </div>
                                 </div>
@@ -249,6 +265,9 @@
                     email: $("#appointment_form [name='email']").val(),
                     phone: $("#appointment_form [name='phone']").val(),
                     service: $("#appointment_form [name='service']").val(),
+                    transaction_id: $("#appointment_form [name='transaction_id']").val(),
+                    advance_amount: $("#appointment_form [name='advance_amount']").val(),
+
                 },
                 dataType: 'JSON',
                 beforeSend: function() {

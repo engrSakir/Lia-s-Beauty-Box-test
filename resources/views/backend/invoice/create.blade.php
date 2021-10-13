@@ -282,9 +282,7 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('.service').select2({
-    maximumInputLength: 20 // only allow terms up to 20 characters long
-});
+           
             $('#modal').modal({
                 backdrop: 'static',
                 keyboard: false
@@ -299,6 +297,10 @@
                 b = i - 1;
                 $('#addr' + i).html($('#addr' + b).html()).find('td:first-child').html(i + 1);
                 $('#addr' + i).find($('.qty')).val('1');
+                $('#addr' + i).find($('.service')) .select2({
+                    maximumInputLength: 20 // only allow terms up to 20 characters long
+                });
+
                 $('#tab_logic').append('<tr id="addr' + (i + 1) + '"></tr>');
                 i++;
             });

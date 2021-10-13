@@ -253,7 +253,7 @@ class DashboardController extends Controller
 
         $invoices = Invoice::whereBetween('created_at',[$start,$end])->get();
         $expenses = Expense::whereBetween('created_at',[$start,$end])->get();
-        $salaryes = EmployeeSalary::whereBetween('created_at',[$start,$end]);
+        $salaryes = EmployeeSalary::whereBetween('created_at',[$start,$end])->get();
 
         $total_sale_amount_of_this_month = 0;
         foreach($invoices as $inv){

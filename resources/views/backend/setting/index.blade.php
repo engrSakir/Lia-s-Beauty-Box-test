@@ -281,6 +281,7 @@
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
+                                <div class="form-group">
                                 <label for="address">Message</label>
                                             <textarea class="form-control" name="advance_message">{{ get_static_option('advance_message') }}</textarea>
                                             @error('advance_message')
@@ -295,6 +296,82 @@
                             </div>
                             <!--/row-->
                         </div>
+                        <h4>Bridal Offer Section</h4>
+                        <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                    <label for="address">Title</label>
+                                         <input type="text" name="offer_title" value="{{ get_static_option('offer_title') }}" id="offer_title" class="form-control">
+                                            @error('offer_title')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                    </div>
+                                </div>
+                               
+                                <!--/span-->
+                                <div class="col-md-6">
+                                <div class="form-group">
+
+                                <label for="address">SubTitle</label>
+                                         <input type="text" name="offer_subtitle" value="{{ get_static_option('offer_subtitle') }}" id="offer_subtitle" class="form-control">
+                                            @error('offer_subtitle')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+
+
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                    <label for="address">Description</label>
+                                            <textarea class="form-control" name="offer_details">{{ get_static_option('offer_details') }}</textarea>
+                                            @error('offer_details')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                    </div>
+                                </div>
+                               
+                                <!--/span-->
+                                <div class="col-md-6">
+                                <div class="form-group">
+
+                                <label for="address">Link</label>
+                                         <input type="text" name="offer_link" value="{{ get_static_option('offer_link') }}" id="offer_link" class="form-control">
+                                            @error('offer_link')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+
+
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <div class="col-md-6">
+                                    <div class="form-group">
+                                    <label for="banner_image">Backgorund image</label>
+                                            <input type="file" name="offer_image" value="{{ get_static_option('offer_image') }}" id="offer_image" class="form-control">
+                                            <div class="image">
+                                                <img src="{{ asset(get_static_option('offer_image')) }}" width="100" class="img-circle elevation-2">
+                                            </div>
+                                            @error('offer_image')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                    </div>
+                                </div>
+                            </div>
                         <div class="form-actions">
                             <div class="card-body">
                                 <button type="submit" name="submit" class="btn btn-success text-white"> <i class="fa fa-check"></i> Save</button>

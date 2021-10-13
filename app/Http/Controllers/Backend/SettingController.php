@@ -36,6 +36,12 @@ class SettingController extends Controller
             'about' => 'nullable|string',
             'advance_amount' => 'nullable|numeric',
             'advance_message' => 'nullable|string',
+            'offer_title' => 'nullable|string',
+            'offer_subtitle' => 'nullable|string',
+            'offer_link' => 'nullable|string',
+            'offer_details' => 'nullable|string',
+            'offer_image' => 'nullable|image',
+
 
         ]);
 
@@ -65,8 +71,17 @@ class SettingController extends Controller
         update_static_option('advance_amount', $request->advance_amount);
         update_static_option('advance_message', $request->advance_message);
 
+        update_static_option('offer_title', $request->offer_title);
+        update_static_option('offer_subtitle', $request->offer_subtitle);
+        update_static_option('offer_details', $request->offer_details);
+        update_static_option('offer_link', $request->offer_link);
+
        if($request->hasFile('logo')){
         update_static_option('logo',file_uploader('uploads/logo/', $request->logo, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::random(8)));
+        
+      }
+      if($request->hasFile('offer_image')){
+        update_static_option('offer_image',file_uploader('uploads/offer_image/', $request->offer_image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::random(8)));
         
       }
       return back()->with('success','Successfully updated');

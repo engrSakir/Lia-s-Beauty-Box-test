@@ -45,7 +45,7 @@ class AppointmentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'email'     => 'required',
+            'email'     => 'nullable|email',
         ]);
 
         $user = User::where('email', $request->email)->first();
@@ -60,12 +60,13 @@ class AppointmentController extends Controller
             $request->validate(
                 [
                     'name'      => 'required|string',
-                    // 'email'     => 'required|unique:users,email',
                     'email'     => 'nullable|email',
                     'phone'     => 'required|unique:users,phone',
                     'appointment_data' => 'required|string', // get from hidden
                     'schedule'  => 'required|exists:schedules,id', // get from hidden
-                    'service'   => 'required|exists:services,id'
+                    'service'   => 'required|exists:services,id',
+                    'transaction_id'  => 'nullable', // get from hidden
+                    'advance_amount'   => 'nullable|numeric'
                 ],
                 [
                     'email.unique' => 'This email already used. Please use another email.',
@@ -91,6 +92,8 @@ class AppointmentController extends Controller
                 $appointment->appointment_data  = date('Y-m-d', strtotime($request->appointment_data));
                 $appointment->schedule_id       = $request->schedule;
                 $appointment->service_id        = $request->service;
+                $appointment->transaction_id    = $request->transaction_id;
+                $appointment->advance_amount    = $request->advance_amount;
                 $appointment->status            = 'Approved'; //Administritive auto approve
                 $appointment->save();
             } else {
@@ -104,7 +107,7 @@ class AppointmentController extends Controller
                 return [
                     'type' => 'error',
                     'message' => 'Something went wrong.',
-                    // 'message' => $exception->getMessage(),
+                     'message' => $exception->getMessage(),
                 ];
             }
             toastr()->error('Something went wrong!');
@@ -229,7 +232,7 @@ class AppointmentController extends Controller
         } else {
             //Full update
             $request->validate([
-                'email'     => 'required',
+                'email'     => 'nullable',
             ]);
 
             $user = User::where('email', $request->email)->first();
@@ -245,7 +248,8 @@ class AppointmentController extends Controller
                 $request->validate(
                     [
                         'name'      => 'required|string',
-                        'email'     => 'required|unique:users,email',
+                        //'email'     => 'required|unique:users,email',
+                        'email'     => 'nullable|email',
                         'phone'     => 'required|unique:users,phone',
                         // 'appointment_data' => 'required|string', // get from hidden
                         'schedule'  => 'required|exists:schedules,id', // get from hidden

@@ -82,7 +82,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>INV</th>
+                                    <th>ID</th>
                                     <th>Name</th>
                                     <th>Price</th>
                                     <th>Paid</th>
@@ -97,7 +97,7 @@
                                 @foreach ($invoices as $invoice)
                                     <tr>
                                         <td scope="row">{{ $loop->iteration }}</td>
-                                        <td>{{ '#1010' }}</td>
+                                        <td>{{ $invoice->id }}</td>
                                         <td>{{ $invoice->appointment->customer->name ?? '#' }}</td>
                                         <td>
                                             {{ inv_calculator($invoice)['price'] ?? '#' }}
@@ -134,6 +134,38 @@
                                     <td>{{ $expense->category->name ?? '#' }}</td>
                                     <td>{{ $expense->created_at->format('d/m/Y') }}</td>
                                     
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <hr>
+                    <h3>Salary</h3>
+                    <table class="table color-bordered-table primary-bordered-table first">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Employee Name</th>
+                                <th scope="col">Salary</th>
+                                <th scope="col">Salary Date</th>
+                                <th scope="col">Created At</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($salaryes as $salary)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $salary->employee->name  }}</td>
+                                    <td>BDT {{ $salary->amount }}</td>
+                                    <td>{{ date('d/m/Y', strtotime($salary->salary_date)) }}</td>
+                                    <td>{{ $salary->created_at->format('d/m/Y') }}</td>
+                                    <td>
+                                        <a href="{{ route('backend.employeeSalary.show', $salary) }}" class="btn btn-info btn-circle"><i class="fa fa-eye"></i> </a>
+                                        <a href="{{ route('backend.employeeSalary.edit', $salary) }}" class="btn btn-warning btn-circle"><i class="fa fa-pen"></i> </a>
+                                        <button value="{{ route('backend.employeeSalary.destroy', $salary) }}"
+                                            class="btn btn-danger btn-circle delete-btn"><i class="fa fa-trash"></i>
+                                        </button>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

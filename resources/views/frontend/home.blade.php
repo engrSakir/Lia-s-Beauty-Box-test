@@ -9,14 +9,16 @@
             data-version="5.4.1">
             <ul>
                 <!-- SLIDE  -->
+                @foreach ($banners as $banner)
+                <a href="{{ $banner->link }}">
                 <li data-index="rs-2938" data-transition="slideleft" data-slotamount="default" data-hideafterloop="0"
                     data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="default"
-                    data-thumb="images/main-slider/slider2/slide1.jpg" data-rotate="0" data-fsslotamount="7"
+                    data-thumb="{{ asset($banner->image ?? 'uploads/images/no_image.png') }}" data-rotate="0" data-fsslotamount="7"
                     data-saveperformance="off" data-title="" data-param1="Additional Text" data-param2="" data-param3=""
                     data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9=""
                     data-param10="" data-description="">
                     <!-- MAIN IMAGE -->
-                    <img src="/assets/frontend/images/main-slider/slider2/slide1.jpg" alt="" data-bgposition="center center"
+                    <img src="{{ asset($banner->image ?? 'uploads/images/no_image.png') }}" alt="" data-bgposition="center center"
                         data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
                     <!-- LAYERS -->
 
@@ -32,7 +34,7 @@
                         data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 11;
                                     white-space: nowrap;
                                     text-transform:uppercase;">
-                        <div class="text-secondry"> Best Place <span class="text-primary"> For you</span></div>
+                        <div class="text-secondry"> {{ $banner->secondary_text }} </div>
                     </div>
 
                     <!-- LAYER NR. 2 -->
@@ -49,7 +51,7 @@
                                    font-weight: 700;
                                     ">
                         <div class="text-secondry">
-                            <span class="text-primary">Harbal</span> Treatment
+                             {{ $banner->primary_text }}
                         </div>
                     </div>
 
@@ -64,227 +66,19 @@
                         data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
                         data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
                         style="z-index: 13; white-space: normal;">
-                        <div class="text-secondry"> Welcome to beauty lab, where you can relax and enjoy life. A little
-                            peace in a crazy world goes a long way.</div>
+                        <div class="text-secondry"> {{ $banner->short_description }}</div>
                     </div>
 
-                    <!-- LAYER NR. 4 -->
-                    <div class="tp-caption tp-resizeme" id="slide-2938-layer-04" data-x="['left','left','left','left']"
-                        data-hoffset="['30','30','20','20']" data-y="['middle','middle','top','top']"
-                        data-voffset="['180','180','480','400']" data-width="none" data-height="none"
-                        data-whitespace="nowrap" data-type="button"
-                        data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-2939","delay":""}]'
-                        data-responsive_offset="on" data-responsive="on" data-frames='[
-                                    {"from":"y:100px(R);opacity:0;","speed":2000,"to":"o:1;","delay":2000,"ease":"Power4.easeOut"},
-                                    {"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}
-                                    ]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
-                        data-paddingright="[40,40,40,40]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
-                        style="z-index:13; text-transform:uppercase; font-weight:700;">
-                        <a href="javascript:;" class="site-button radius-sm button-lg">See all Services</a>
-                    </div>
-                    <!-- LAYER NR. 5 -->
+                   
 
-                    <div class="tp-caption tp-resizeme" id="slide-2938-layer-05" data-x="['left','left','left','left']"
-                        data-hoffset="['240','240','200','200']" data-y="['middle','middle','top','top']"
-                        data-voffset="['180','180','480','400']" data-width="none" data-height="none"
-                        data-whitespace="nowrap" data-type="button"
-                        data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-2939","delay":""}]'
-                        data-responsive_offset="on" data-responsive="on" data-frames='[
-                                    {"from":"y:100px(R);opacity:0;","speed":2000,"to":"o:1;","delay":2000,"ease":"Power4.easeOut"},
-                                    {"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}
-                                    ]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
-                        data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[40,40,40,40]"
-                        style="z-index:13; text-transform:uppercase; font-weight:700;">
-                        <a href="javascript:;" class="site-button-secondry radius-sm button-lg">More detail</a>
-                    </div>
-
+                    
                 </li>
-                <!-- SLIDE  -->
-                <li data-index="rs-2939" data-transition="slideleft" data-slotamount="default" data-hideafterloop="0"
-                    data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="default"
-                    data-thumb="images/main-slider/slider2/slide2.jpg" data-rotate="0" data-saveperformance="off"
-                    data-title="" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6=""
-                    data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
-                    <!-- MAIN IMAGE -->
-                    <img src="/assets/frontend/images/main-slider/slider2/slide2.jpg" alt="" data-bgposition="center center"
-                        data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
-                    <!-- LAYERS -->
-
-
-                    <!-- LAYER NR. 1 -->
-                    <div class="tp-caption WebProduct-Title   tp-resizeme" id="slide-2939-layer-01"
-                        data-x="['left','left','left','left']" data-hoffset="['30','30','20','20']"
-                        data-y="['middle','middle','top','top']" data-voffset="['-80','-80','200','130']"
-                        data-fontsize="['57','55','55','45']" data-lineheight="['65','65','65','65']" data-width="none"
-                        data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on"
-                        data-frames='[{"from":"x:-50px;opacity:0;","speed":1000,"to":"o:1;","delay":1000,"ease":"Power2.easeOut"},{"delay":"wait","speed":1500,"to":"opacity:0;","ease":"Power4.easeIn"}]'
-                        data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
-                        data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 11;
-                                    white-space: nowrap;
-                                    text-transform:uppercase;">
-                        <div class="text-secondry"> Best Place <span class="text-primary"> For You</span></div>
-                    </div>
-
-                    <!-- LAYER NR. 2 -->
-                    <div class="tp-caption WebProduct-SubTitle   tp-resizeme" id="slide-2939-layer-02"
-                        data-x="['left','left','left','left']" data-hoffset="['30','30','20','20']"
-                        data-y="['middle','middle','top','top']" data-voffset="['0','0','280','180']"
-                        data-fontsize="['55','55','55','45']" data-lineheight="['75','75','75','75']" data-width="none"
-                        data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on"
-                        data-frames='[{"from":"x:-50px;opacity:0;","speed":1000,"to":"o:1;","delay":1250,"ease":"Power2.easeOut"},{"delay":"wait","speed":1500,"to":"opacity:0;","ease":"Power4.easeIn"}]'
-                        data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
-                        data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 12;
-                                    white-space: nowrap;
-                                    text-transform:uppercase;
-                                   font-weight: 700;
-                                    ">
-                        <div class="text-secondry">
-                            <span class="text-primary">Beauty & </span> Relaxation
-                        </div>
-                    </div>
-
-                    <!-- LAYER NR. 3 -->
-                    <div class="tp-caption WebProduct-Content   tp-resizeme" id="slide-2939-layer-03"
-                        data-x="['left','left','left','left']" data-hoffset="['30','30','20','20']"
-                        data-y="['middle','middle','top','top']" data-voffset="['80','80','380','250']"
-                        data-fontsize="['21','21','24','18']" data-lineheight="['28','28','32','26']"
-                        data-width="['700','700','700','300']" data-height="['none','none','76','68']"
-                        data-whitespace="normal" data-type="text" data-responsive_offset="on"
-                        data-frames='[{"from":"x:-50px;opacity:0;","speed":1000,"to":"o:1;","delay":1500,"ease":"Power2.easeOut"},{"delay":"wait","speed":1500,"to":"opacity:0;","ease":"Power4.easeIn"}]'
-                        data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
-                        data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
-                        style="z-index: 13; white-space: normal;">
-                        <div class="text-secondry"> Welcome to beauty lab, where you can relax and enjoy life. A little
-                            peace in a crazy world goes a long way.</div>
-                    </div>
-
-                    <!-- LAYER NR. 4 -->
-                    <div class="tp-caption tp-resizeme" id="slide-2939-layer-04" data-x="['left','left','left','left']"
-                        data-hoffset="['30','30','20','20']" data-y="['middle','middle','top','top']"
-                        data-voffset="['180','180','480','400']" data-width="none" data-height="none"
-                        data-whitespace="nowrap" data-type="button"
-                        data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-2939","delay":""}]'
-                        data-responsive_offset="on" data-responsive="on" data-frames='[
-                                    {"from":"y:100px(R);opacity:0;","speed":2000,"to":"o:1;","delay":2000,"ease":"Power4.easeOut"},
-                                    {"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}
-                                    ]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
-                        data-paddingright="[40,40,40,40]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
-                        style="z-index:13; text-transform:uppercase; font-weight:700;">
-                        <a href="javascript:;" class="site-button radius-sm button-lg">See all Services</a>
-                    </div>
-                    <!-- LAYER NR. 5 -->
-
-                    <div class="tp-caption tp-resizeme" id="slide-2939-layer-05" data-x="['left','left','left','left']"
-                        data-hoffset="['240','240','200','200']" data-y="['middle','middle','top','top']"
-                        data-voffset="['180','180','480','400']" data-width="none" data-height="none"
-                        data-whitespace="nowrap" data-type="button"
-                        data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-2939","delay":""}]'
-                        data-responsive_offset="on" data-responsive="on" data-frames='[
-                                    {"from":"y:100px(R);opacity:0;","speed":2000,"to":"o:1;","delay":2000,"ease":"Power4.easeOut"},
-                                    {"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}
-                                    ]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
-                        data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[40,40,40,40]"
-                        style="z-index:13; text-transform:uppercase; font-weight:700;">
-                        <a href="javascript:;" class="site-button-secondry radius-sm button-lg">More detail</a>
-                    </div>
-
-                </li>
-                <!-- SLIDE  -->
-                <li data-index="rs-2940" data-transition="slideleft" data-slotamount="default" data-hideafterloop="0"
-                    data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="default"
-                    data-thumb="images/main-slider/slider2/slide3.jpg" data-rotate="0" data-fsslotamount="7"
-                    data-saveperformance="off" data-title="" data-param1="Additional Text" data-param2="" data-param3=""
-                    data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9=""
-                    data-param10="" data-description="">
-                    <!-- MAIN IMAGE -->
-                    <img src="/assets/frontend/images/main-slider/slider2/slide3.jpg" alt="" data-bgposition="center center"
-                        data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
-                    <!-- LAYERS -->
-
-
-                    <!-- LAYER NR. 1 -->
-                    <div class="tp-caption WebProduct-Title   tp-resizeme" id="slide-2940-layer-01"
-                        data-x="['left','left','left','left']" data-hoffset="['30','30','20','20']"
-                        data-y="['middle','middle','top','top']" data-voffset="['-80','-80','200','130']"
-                        data-fontsize="['57','55','55','45']" data-lineheight="['65','65','65','65']" data-width="none"
-                        data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on"
-                        data-frames='[{"from":"x:-50px;opacity:0;","speed":1000,"to":"o:1;","delay":1000,"ease":"Power2.easeOut"},{"delay":"wait","speed":1500,"to":"opacity:0;","ease":"Power4.easeIn"}]'
-                        data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
-                        data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 11;
-                                    white-space: nowrap;
-                                    text-transform:uppercase;">
-                        <div class="text-secondry"> Beauty <span class="text-primary"> Means</span></div>
-                    </div>
-
-                    <!-- LAYER NR. 2 -->
-                    <div class="tp-caption WebProduct-SubTitle   tp-resizeme" id="slide-2940-layer-02"
-                        data-x="['left','left','left','left']" data-hoffset="['30','30','20','20']"
-                        data-y="['middle','middle','top','top']" data-voffset="['0','0','280','180']"
-                        data-fontsize="['55','55','55','45']" data-lineheight="['75','75','75','75']" data-width="none"
-                        data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on"
-                        data-frames='[{"from":"x:-50px;opacity:0;","speed":1000,"to":"o:1;","delay":1250,"ease":"Power2.easeOut"},{"delay":"wait","speed":1500,"to":"opacity:0;","ease":"Power4.easeIn"}]'
-                        data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
-                        data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 12;
-                                    white-space: nowrap;
-                                    text-transform:uppercase;
-                                   font-weight: 700;
-                                    ">
-                        <div class="text-secondry">
-                            <span class="text-primary">Healthy</span> You
-                        </div>
-                    </div>
-
-                    <!-- LAYER NR. 3 -->
-                    <div class="tp-caption WebProduct-Content   tp-resizeme" id="slide-2940-layer-03"
-                        data-x="['left','left','left','left']" data-hoffset="['30','30','20','20']"
-                        data-y="['middle','middle','top','top']" data-voffset="['80','80','380','250']"
-                        data-fontsize="['21','21','24','18']" data-lineheight="['28','28','32','26']"
-                        data-width="['700','700','700','300']" data-height="['none','none','76','68']"
-                        data-whitespace="normal" data-type="text" data-responsive_offset="on"
-                        data-frames='[{"from":"x:-50px;opacity:0;","speed":1000,"to":"o:1;","delay":1500,"ease":"Power2.easeOut"},{"delay":"wait","speed":1500,"to":"opacity:0;","ease":"Power4.easeIn"}]'
-                        data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
-                        data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
-                        style="z-index: 13; white-space: normal;">
-                        <div class="text-secondry"> Welcome to beauty lab, where you can relax and enjoy life. A little
-                            peace in a crazy world goes a long way.</div>
-                    </div>
-
-                    <!-- LAYER NR. 4 -->
-                    <div class="tp-caption tp-resizeme" id="slide-2940-layer-04" data-x="['left','left','left','left']"
-                        data-hoffset="['30','30','20','20']" data-y="['middle','middle','top','top']"
-                        data-voffset="['180','180','480','400']" data-width="none" data-height="none"
-                        data-whitespace="nowrap" data-type="button"
-                        data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-2939","delay":""}]'
-                        data-responsive_offset="on" data-responsive="on" data-frames='[
-                                    {"from":"y:100px(R);opacity:0;","speed":2000,"to":"o:1;","delay":2000,"ease":"Power4.easeOut"},
-                                    {"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}
-                                    ]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
-                        data-paddingright="[40,40,40,40]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
-                        style="z-index:13; text-transform:uppercase; font-weight:700;">
-                        <a href="javascript:;" class="site-button radius-sm button-lg">See all Services</a>
-                    </div>
-                    <!-- LAYER NR. 5 -->
-
-                    <div class="tp-caption tp-resizeme" id="slide-2940-layer-05" data-x="['left','left','left','left']"
-                        data-hoffset="['240','240','200','200']" data-y="['middle','middle','top','top']"
-                        data-voffset="['180','180','480','400']" data-width="none" data-height="none"
-                        data-whitespace="nowrap" data-type="button"
-                        data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-2939","delay":""}]'
-                        data-responsive_offset="on" data-responsive="on" data-frames='[
-                                    {"from":"y:100px(R);opacity:0;","speed":2000,"to":"o:1;","delay":2000,"ease":"Power4.easeOut"},
-                                    {"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}
-                                    ]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
-                        data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[40,40,40,40]"
-                        style="z-index:13; text-transform:uppercase; font-weight:700;">
-                        <a href="javascript:;" class="site-button-secondry radius-sm button-lg">More detail</a>
-                    </div>
-
-                </li>
+                </a>
+                @endforeach
             </ul>
 
         </div>
     </div>
-    <!-- SLIDER END -->
 
     <!-- WELCOME SECTION START -->
     <div class="section-full p-tb100 bg-bottom-center bg-full-width bg-no-repeat"
@@ -1919,12 +1713,11 @@
     <!-- PRICING SECTION END  -->
 
     <!-- COMPANY STATUS SECTION START -->
-    <div class="section-full overlay-wraper bg-center bg-cover p-tb80 bg-primary"
+    <!--<div class="section-full overlay-wraper bg-center bg-cover p-tb80 bg-primary"
         style="background-image:url(assets/frontend/images/background/bg-9.jpg);">
         <div class="overlay-main bg-primary opacity-09"></div>
         <div class="container summary-counter">
             <div class="row">
-                <!-- COLUMNS 1 -->
                 <div class="col-md-3 col-sm-6 col-xs-6 col-xs-100pc">
                     <div class="wt-icon-box-wraper left p-a10 text-white">
                         <span class="icon-md">
@@ -1936,7 +1729,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- COLUMNS 2 -->
                 <div class="col-md-3 col-sm-6 col-xs-6 col-xs-100pc">
                     <div class="wt-icon-box-wraper left p-a10 text-white">
                         <span class="icon-md">
@@ -1948,7 +1740,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- COLUMNS 3 -->
                 <div class="col-md-3 col-sm-6 col-xs-6 col-xs-100pc">
                     <div class="wt-icon-box-wraper left p-a10 text-white">
                         <span class="icon-md">
@@ -1960,7 +1751,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- COLUMNS 4 -->
                 <div class="col-md-3 col-sm-6 col-xs-6 col-xs-100pc">
                     <div class="wt-icon-box-wraper left p-a10 text-white">
                         <span class="icon-md">
@@ -1975,7 +1765,7 @@
 
             </div>
         </div>
-    </div>
+    </div>-->
     <!-- COMPANY STATUS SECTION END -->
 
     <!-- OUR EXPERTS SECTION START  -->
@@ -2041,17 +1831,17 @@
     <!-- OUR SPECIAL OFFER SECTION END  -->
     <div class="section-full bg-primary">
         <div class="container-fluid bg-top-right bg-no-repeat bg-full-height special-offer-block no-col-gap"
-            style="background-image:url(assets/frontend/images/special-offer.jpg);">
+            style="background-image: url({{ asset(get_static_option('offer_image')) }});">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="section-content special-offer-outer bg-primary radius  p-tb60">
                         <div class="special-offer radius p-tb60">
                             <div class="wt-left-part special-offer-in">
                                 <div class="wt-box p-r100 text-white">
-                                    <h1>Our Bridal Offer</h1>
-                                    <h2 class="text-uppercase">You Owe Yourself This Moment</h2>
-                                    <p>Bridal Campaign with In-House Makeup Artist. Feel special on the most important day of your life.</p>
-                                    <a class="site-button text-uppercase radius-sm font-weight-700 button-lg">view
+                                    <h1>{{ get_static_option('offer_title') }}</h1>
+                                    <h2 class="text-uppercase">{{ get_static_option('offer_subtitle') }}</h2>
+                                    <p>{{ get_static_option('offer_details') }}</p>
+                                    <a href="{{ get_static_option('offer_link') }}" class="site-button text-uppercase radius-sm font-weight-700 button-lg">view
                                         packages</a>
                                 </div>
                             </div>
@@ -2094,7 +1884,7 @@
                 <ul class="masonry-filter link-style  text-uppercase center-block m-t0">
                     <li class="active"><a data-filter="*" href="#">All</a></li>
                     @foreach ($imageCategories as $imageCategory)
-                        <li><a data-filter=".cat-filter-1" href="#">{{ $imageCategory->name }}</a></li>
+                        <li><a data-filter=".cat-filter-{{ $imageCategory->id }}" href="#">{{ $imageCategory->name }}</a></li>
                     @endforeach
                 </ul>
             </div>
@@ -2107,7 +1897,7 @@
                 <div class="row">
                     @foreach ($galleries as $gallery)
 
-                        <div class="masonry-item cat-filter-1 col-lg-3 col-md-4 col-sm-6">
+                        <div class="masonry-item cat-filter-{{ $gallery->category->id }} col-lg-3 col-md-4 col-sm-6">
                             <div class="flip-container">
                                 <div class="wt-box">
                                     <div class="wt-thum-bx">
