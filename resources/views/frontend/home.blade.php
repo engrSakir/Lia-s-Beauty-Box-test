@@ -32,7 +32,7 @@
                         data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 11;
                                 white-space: nowrap;
                                 text-transform:uppercase;">
-                        <div class="text-secondry"> Best Place <span class="text-primary"> For you</span></div>
+                        <div class="text-secondry"> {{ $banner->secondary_text }}</div>
                     </div>
 
                     <!-- LAYER NR. 2 -->
@@ -49,7 +49,7 @@
                                font-weight: 700;
                                 ">
                         <div class="text-secondry">
-                            <span class="text-primary">Harbal</span> Treatment
+                        {{ $banner->primary_text }}
                         </div>
                     </div>
 
@@ -64,12 +64,11 @@
                         data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
                         data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
                         style="z-index: 13; white-space: normal;">
-                        <div class="text-secondry"> Welcome to beauty lab, where you can relax and enjoy life. A little
-                            peace in a crazy world goes a long way.</div>
+                        <div class="text-secondry">{{ $banner->short_description }}</div>
                     </div>
 
                     <!-- LAYER NR. 4 -->
-                    <div class="tp-caption tp-resizeme" id="slide-2938-layer-04" data-x="['left','left','left','left']"
+                   <div class="tp-caption tp-resizeme" id="slide-2938-layer-04" data-x="['left','left','left','left']"
                         data-hoffset="['30','30','20','20']" data-y="['middle','middle','top','top']"
                         data-voffset="['180','180','480','400']" data-width="none" data-height="none"
                         data-whitespace="nowrap" data-type="button"
@@ -80,11 +79,11 @@
                                 ]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
                         data-paddingright="[40,40,40,40]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
                         style="z-index:13; text-transform:uppercase; font-weight:700;">
-                        <a href="javascript:;" class="site-button radius-sm button-lg">See all Services</a>
+                        <a href="{{ $banner->link }}" class="site-button radius-sm button-lg">View More</a>
                     </div>
                     <!-- LAYER NR. 5 -->
 
-                    <div class="tp-caption tp-resizeme" id="slide-2938-layer-05" data-x="['left','left','left','left']"
+                    <!--<div class="tp-caption tp-resizeme" id="slide-2938-layer-05" data-x="['left','left','left','left']"
                         data-hoffset="['240','240','200','200']" data-y="['middle','middle','top','top']"
                         data-voffset="['180','180','480','400']" data-width="none" data-height="none"
                         data-whitespace="nowrap" data-type="button"
@@ -96,9 +95,10 @@
                         data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[40,40,40,40]"
                         style="z-index:13; text-transform:uppercase; font-weight:700;">
                         <a href="javascript:;" class="site-button-secondry radius-sm button-lg">More detail</a>
-                    </div>
+                    </div>-->
 
                 </li>
+            
                 @endforeach
             </ul>
 
