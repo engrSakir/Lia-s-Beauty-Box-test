@@ -259,4 +259,9 @@ class FrontEndController extends Controller
         return redirect(RouteServiceProvider::HOME);
 
     }
+
+    public function about()
+    {
+        return view('frontend.about');
+    }
 }
