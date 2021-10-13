@@ -1,24 +1,22 @@
 @extends('layouts.frontend.app')
 @push('title') Home @endpush
 @section('content')
-    <!-- SLIDER START -->
     <div id="rev_slider_1050_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="webproduct-light"
         data-source="gallery" style="background-color:transparent;padding:0px;">
         <!-- START REVOLUTION SLIDER 5.4.1 fullscreen mode -->
         <div id="rev_slider_1050_1" class="slider-dots rev_slider fullscreenbanner" style="display:none;"
             data-version="5.4.1">
             <ul>
-                <!-- SLIDE  -->
                 @foreach ($banners as $banner)
-                <a href="{{ $banner->link }}">
-                <li data-index="rs-2938" data-transition="slideleft" data-slotamount="default" data-hideafterloop="0"
+                <!-- SLIDE  -->
+                <li data-index="rs-293{{ $loop->iteration + 7 }}" data-transition="slideleft" data-slotamount="default" data-hideafterloop="0"
                     data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="default"
-                    data-thumb="{{ asset($banner->image ?? 'uploads/images/no_image.png') }}" data-rotate="0" data-fsslotamount="7"
+                    data-thumb="images/main-slider/slider2/slide1.jpg" data-rotate="0" data-fsslotamount="7"
                     data-saveperformance="off" data-title="" data-param1="Additional Text" data-param2="" data-param3=""
                     data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9=""
                     data-param10="" data-description="">
                     <!-- MAIN IMAGE -->
-                    <img src="{{ asset($banner->image ?? 'uploads/images/no_image.png') }}" alt="" data-bgposition="center center"
+                    <img src="/assets/frontend/images/main-slider/slider2/slide1.jpg" alt="" data-bgposition="center center"
                         data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
                     <!-- LAYERS -->
 
@@ -32,9 +30,9 @@
                         data-frames='[{"from":"x:-50px;opacity:0;","speed":1000,"to":"o:1;","delay":1000,"ease":"Power2.easeOut"},{"delay":"wait","speed":1500,"to":"opacity:0;","ease":"Power4.easeIn"}]'
                         data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
                         data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 11;
-                                    white-space: nowrap;
-                                    text-transform:uppercase;">
-                        <div class="text-secondry"> {{ $banner->secondary_text }} </div>
+                                white-space: nowrap;
+                                text-transform:uppercase;">
+                        <div class="text-secondry"> Best Place <span class="text-primary"> For you</span></div>
                     </div>
 
                     <!-- LAYER NR. 2 -->
@@ -46,12 +44,12 @@
                         data-frames='[{"from":"x:-50px;opacity:0;","speed":1000,"to":"o:1;","delay":1250,"ease":"Power2.easeOut"},{"delay":"wait","speed":1500,"to":"opacity:0;","ease":"Power4.easeIn"}]'
                         data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
                         data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 12;
-                                    white-space: nowrap;
-                                    text-transform:uppercase;
-                                   font-weight: 700;
-                                    ">
+                                white-space: nowrap;
+                                text-transform:uppercase;
+                               font-weight: 700;
+                                ">
                         <div class="text-secondry">
-                             {{ $banner->primary_text }}
+                            <span class="text-primary">Harbal</span> Treatment
                         </div>
                     </div>
 
@@ -66,19 +64,47 @@
                         data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
                         data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
                         style="z-index: 13; white-space: normal;">
-                        <div class="text-secondry"> {{ $banner->short_description }}</div>
+                        <div class="text-secondry"> Welcome to beauty lab, where you can relax and enjoy life. A little
+                            peace in a crazy world goes a long way.</div>
                     </div>
 
-                   
+                    <!-- LAYER NR. 4 -->
+                    <div class="tp-caption tp-resizeme" id="slide-2938-layer-04" data-x="['left','left','left','left']"
+                        data-hoffset="['30','30','20','20']" data-y="['middle','middle','top','top']"
+                        data-voffset="['180','180','480','400']" data-width="none" data-height="none"
+                        data-whitespace="nowrap" data-type="button"
+                        data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-2939","delay":""}]'
+                        data-responsive_offset="on" data-responsive="on" data-frames='[
+                                {"from":"y:100px(R);opacity:0;","speed":2000,"to":"o:1;","delay":2000,"ease":"Power4.easeOut"},
+                                {"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}
+                                ]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
+                        data-paddingright="[40,40,40,40]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
+                        style="z-index:13; text-transform:uppercase; font-weight:700;">
+                        <a href="javascript:;" class="site-button radius-sm button-lg">See all Services</a>
+                    </div>
+                    <!-- LAYER NR. 5 -->
 
-                    
+                    <div class="tp-caption tp-resizeme" id="slide-2938-layer-05" data-x="['left','left','left','left']"
+                        data-hoffset="['240','240','200','200']" data-y="['middle','middle','top','top']"
+                        data-voffset="['180','180','480','400']" data-width="none" data-height="none"
+                        data-whitespace="nowrap" data-type="button"
+                        data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-2939","delay":""}]'
+                        data-responsive_offset="on" data-responsive="on" data-frames='[
+                                {"from":"y:100px(R);opacity:0;","speed":2000,"to":"o:1;","delay":2000,"ease":"Power4.easeOut"},
+                                {"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}
+                                ]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
+                        data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[40,40,40,40]"
+                        style="z-index:13; text-transform:uppercase; font-weight:700;">
+                        <a href="javascript:;" class="site-button-secondry radius-sm button-lg">More detail</a>
+                    </div>
+
                 </li>
-                </a>
                 @endforeach
             </ul>
 
         </div>
     </div>
+    <!-- SLIDER END -->
 
     <!-- WELCOME SECTION START -->
     <div class="section-full p-tb100 bg-bottom-center bg-full-width bg-no-repeat"
@@ -95,9 +121,9 @@
                 </div>
 
                 <!--<p class="font-16"><strong>
-                Hello,I am a international certified makeup artist.I do bridal makeover.I use all the highend product
-                    </strong>
-                </p>-->
+                        Hello,I am a international certified makeup artist.I do bridal makeover.I use all the highend product
+                            </strong>
+                        </p>-->
 
             </div>
             <div class="section-content text-center about-spa">
@@ -159,58 +185,58 @@
 
     <!-- OUR SERVICES SECTION START  -->
     <!--<div class="section-full bg-gray p-t80 p-b120 bg-repeat"
-        style="background-image:url({{ asset('assets/frontend/images/background/bg-6.jpg') }});">
-        <div class="container-fluid">
-          <div class="section-head text-center">
-                <h1><span class="text-primary">Services </span> For You</h1>
-                <div class="wt-separator-outer ">
-                    <div class="wt-separator style-icon">
-                        <i class="fa fa-leaf text-black"></i>
-                        <span class="separator-left bg-primary"></span>
-                        <span class="separator-right bg-primary"></span>
-                    </div>
-                </div>
-                <p></p>
-            </div>
-            <div class="section-content   our-services-index">
-                <div class="owl-carousel home-carousel-2">
-                    @foreach ($services as $service)
-                    <div class="item">
-                        <div class="wt-box p-t50">
-                            <div class="wt-media text-primary m-b20 radius-bx circle-effect-1 wt-img-overlay11">
-
-                                <img style="display: block;
-                                max-width:300px;
-                                max-height:300px;" src="{{ asset($service->image ?? 'uploads/images/no_image.png') }}" class="radius-bx " alt="">
-                                <div class="text-center p-a30 wt-img-overlay11-content text-white">
-                                    <div class="overlay-11-detail">
-                                        <div class="overlay-11-info">
-                                            <p class="m-b0">
-                                                {!! $service->description !!}
-                                            </p>
-                                            <h4 class="m-b0"><a href="{{ route('serviceDetails', $service->slug) }}">Book Now</a></h4>
-                                        </div>
-                                    </div>
-                                    <div class="bg-primary bg-color radius-bx opacity-08"></div>
-                                </div>
-
-                                <div class="price-tag">
-                                    <div class="price-circle bg-white text-center text-primary radius-bx">
-                                        <span class="font-18">*</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="wt-info p-t30 text-center">
-                                <h2>{{ $service->name }}</h2>
+                style="background-image:url({{ asset('assets/frontend/images/background/bg-6.jpg') }});">
+                <div class="container-fluid">
+                  <div class="section-head text-center">
+                        <h1><span class="text-primary">Services </span> For You</h1>
+                        <div class="wt-separator-outer ">
+                            <div class="wt-separator style-icon">
+                                <i class="fa fa-leaf text-black"></i>
+                                <span class="separator-left bg-primary"></span>
+                                <span class="separator-right bg-primary"></span>
                             </div>
                         </div>
+                        <p></p>
                     </div>
-                    @endforeach
-                </div>
-            </div>
+                    <div class="section-content   our-services-index">
+                        <div class="owl-carousel home-carousel-2">
+                            @foreach ($services as $service)
+                            <div class="item">
+                                <div class="wt-box p-t50">
+                                    <div class="wt-media text-primary m-b20 radius-bx circle-effect-1 wt-img-overlay11">
 
-        </div>
-    </div>-->
+                                        <img style="display: block;
+                                        max-width:300px;
+                                        max-height:300px;" src="{{ asset($service->image ?? 'uploads/images/no_image.png') }}" class="radius-bx " alt="">
+                                        <div class="text-center p-a30 wt-img-overlay11-content text-white">
+                                            <div class="overlay-11-detail">
+                                                <div class="overlay-11-info">
+                                                    <p class="m-b0">
+                                                        {!! $service->description !!}
+                                                    </p>
+                                                    <h4 class="m-b0"><a href="{{ route('serviceDetails', $service->slug) }}">Book Now</a></h4>
+                                                </div>
+                                            </div>
+                                            <div class="bg-primary bg-color radius-bx opacity-08"></div>
+                                        </div>
+
+                                        <div class="price-tag">
+                                            <div class="price-circle bg-white text-center text-primary radius-bx">
+                                                <span class="font-18">*</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wt-info p-t30 text-center">
+                                        <h2>{{ $service->name }}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                </div>
+            </div>-->
     <!-- OUR SERVICES SECTION END  -->
 
     <!-- PRICING SECTION START  -->
@@ -262,7 +288,8 @@
                                                                         href="javascript:void(0);">{{ $service->name }}</a>
                                                                 </h4>
                                                                 <p>{!! $service->description !!}</p>
-                                                                <a href="{{ route('serviceDetails', $service->slug) }}" class="site-button ">Book
+                                                                <a href="{{ route('serviceDetails', $service->slug) }}"
+                                                                    class="site-button ">Book
                                                                     Now <i class="fa fa-angle-double-right"></i></a>
                                                             </div>
                                                         </div>
@@ -1714,117 +1741,117 @@
 
     <!-- COMPANY STATUS SECTION START -->
     <!--<div class="section-full overlay-wraper bg-center bg-cover p-tb80 bg-primary"
-        style="background-image:url(assets/frontend/images/background/bg-9.jpg);">
-        <div class="overlay-main bg-primary opacity-09"></div>
-        <div class="container summary-counter">
-            <div class="row">
-                <div class="col-md-3 col-sm-6 col-xs-6 col-xs-100pc">
-                    <div class="wt-icon-box-wraper left p-a10 text-white">
-                        <span class="icon-md">
-                            <span class="flaticon-happy"></span>
-                        </span>
-                        <div class="icon-content">
-                            <div><span class="counter"> 458 </span><b>+</b></div>
-                            <span class="text-uppercase">Happy Clients</span>
+                style="background-image:url(assets/frontend/images/background/bg-9.jpg);">
+                <div class="overlay-main bg-primary opacity-09"></div>
+                <div class="container summary-counter">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-6 col-xs-100pc">
+                            <div class="wt-icon-box-wraper left p-a10 text-white">
+                                <span class="icon-md">
+                                    <span class="flaticon-happy"></span>
+                                </span>
+                                <div class="icon-content">
+                                    <div><span class="counter"> 458 </span><b>+</b></div>
+                                    <span class="text-uppercase">Happy Clients</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-6 col-xs-100pc">
-                    <div class="wt-icon-box-wraper left p-a10 text-white">
-                        <span class="icon-md">
-                            <span class="flaticon-trophy"></span>
-                        </span>
-                        <div class="icon-content">
-                            <div><span class="counter"> 698 </span><b>+</b></div>
-                            <span class="text-uppercase">Win Awards</span>
+                        <div class="col-md-3 col-sm-6 col-xs-6 col-xs-100pc">
+                            <div class="wt-icon-box-wraper left p-a10 text-white">
+                                <span class="icon-md">
+                                    <span class="flaticon-trophy"></span>
+                                </span>
+                                <div class="icon-content">
+                                    <div><span class="counter"> 698 </span><b>+</b></div>
+                                    <span class="text-uppercase">Win Awards</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-6 col-xs-100pc">
-                    <div class="wt-icon-box-wraper left p-a10 text-white">
-                        <span class="icon-md">
-                            <span class="flaticon-female-hairs"></span>
-                        </span>
-                        <div class="icon-content">
-                            <div><span class="counter"> 894 </span><b>+</b></div>
-                            <span class="text-uppercase">Our Trainer</span>
+                        <div class="col-md-3 col-sm-6 col-xs-6 col-xs-100pc">
+                            <div class="wt-icon-box-wraper left p-a10 text-white">
+                                <span class="icon-md">
+                                    <span class="flaticon-female-hairs"></span>
+                                </span>
+                                <div class="icon-content">
+                                    <div><span class="counter"> 894 </span><b>+</b></div>
+                                    <span class="text-uppercase">Our Trainer</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-6 col-xs-100pc">
-                    <div class="wt-icon-box-wraper left p-a10 text-white">
-                        <span class="icon-md">
-                            <span class="flaticon-spray-bottle"></span>
-                        </span>
-                        <div class="icon-content">
-                            <div><span class="counter"> 758 </span><b>+</b></div>
-                            <span class="text-uppercase">Treatments</span>
+                        <div class="col-md-3 col-sm-6 col-xs-6 col-xs-100pc">
+                            <div class="wt-icon-box-wraper left p-a10 text-white">
+                                <span class="icon-md">
+                                    <span class="flaticon-spray-bottle"></span>
+                                </span>
+                                <div class="icon-content">
+                                    <div><span class="counter"> 758 </span><b>+</b></div>
+                                    <span class="text-uppercase">Treatments</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-            </div>
-        </div>
-    </div>-->
+                    </div>
+                </div>
+            </div>-->
     <!-- COMPANY STATUS SECTION END -->
 
     <!-- OUR EXPERTS SECTION START  -->
     <div class="section-full bg-white p-tb80">
         <!--<div class="container">
-            <div class="section-head text-center">
-                <h1><span class="text-primary">Our</span> Experts</h1>
-                <div class="wt-separator-outer ">
-                    <div class="wt-separator style-icon">
-                        <i class="fa fa-leaf text-black"></i>
-                        <span class="separator-left bg-primary"></span>
-                        <span class="separator-right bg-primary"></span>
-                    </div>
-                </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus
-                    sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                    himenaeos.</p>
-            </div>
-            <div class="section-content">
-                <div class="row">
-
-                    <div class="col-md-4 col-sm-4 p-tb15">
-                        <div class="wt-box">
-                            <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
-                                <img src="/assets/frontend/images/our-experts/ex1.jpg" class="radius-bx" alt="">
-                            </div>
-                            <div class="wt-info p-t30 text-center">
-                                <h2>Camila</h2>
-                                <p>Founder, Beauty Spa</p>
+                    <div class="section-head text-center">
+                        <h1><span class="text-primary">Our</span> Experts</h1>
+                        <div class="wt-separator-outer ">
+                            <div class="wt-separator style-icon">
+                                <i class="fa fa-leaf text-black"></i>
+                                <span class="separator-left bg-primary"></span>
+                                <span class="separator-right bg-primary"></span>
                             </div>
                         </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus
+                            sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+                            himenaeos.</p>
                     </div>
-                    <div class="col-md-4 col-sm-4 p-tb15">
-                        <div class="wt-box">
-                            <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
-                                <img src="/assets/frontend/images/our-experts/ex2.jpg" class="radius-bx" alt="">
+                    <div class="section-content">
+                        <div class="row">
+
+                            <div class="col-md-4 col-sm-4 p-tb15">
+                                <div class="wt-box">
+                                    <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
+                                        <img src="/assets/frontend/images/our-experts/ex1.jpg" class="radius-bx" alt="">
+                                    </div>
+                                    <div class="wt-info p-t30 text-center">
+                                        <h2>Camila</h2>
+                                        <p>Founder, Beauty Spa</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="wt-info p-t30 text-center">
-                                <h2>Milagros</h2>
-                                <p>Founder, Beauty Spa</p>
+                            <div class="col-md-4 col-sm-4 p-tb15">
+                                <div class="wt-box">
+                                    <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
+                                        <img src="/assets/frontend/images/our-experts/ex2.jpg" class="radius-bx" alt="">
+                                    </div>
+                                    <div class="wt-info p-t30 text-center">
+                                        <h2>Milagros</h2>
+                                        <p>Founder, Beauty Spa</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4 p-tb15">
-                        <div class="wt-box">
-                            <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
-                                <img src="/assets/frontend/images/our-experts/ex3.jpg" class="radius-bx" alt="">
+                            <div class="col-md-4 col-sm-4 p-tb15">
+                                <div class="wt-box">
+                                    <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
+                                        <img src="/assets/frontend/images/our-experts/ex3.jpg" class="radius-bx" alt="">
+                                    </div>
+                                    <div class="wt-info p-t30 text-center">
+                                        <h2>Agustina.</h2>
+                                        <p>Founder, Beauty Spa</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="wt-info p-t30 text-center">
-                                <h2>Agustina.</h2>
-                                <p>Founder, Beauty Spa</p>
-                            </div>
-                        </div>
-                    </div>
 
 
-                </div>
-            </div>
-        </div>-->
+                        </div>
+                    </div>
+                </div>-->
     </div>
 
 
@@ -1841,7 +1868,8 @@
                                     <h1>{{ get_static_option('offer_title') }}</h1>
                                     <h2 class="text-uppercase">{{ get_static_option('offer_subtitle') }}</h2>
                                     <p>{{ get_static_option('offer_details') }}</p>
-                                    <a href="{{ get_static_option('offer_link') }}" class="site-button text-uppercase radius-sm font-weight-700 button-lg">view
+                                    <a href="{{ get_static_option('offer_link') }}"
+                                        class="site-button text-uppercase radius-sm font-weight-700 button-lg">view
                                         packages</a>
                                 </div>
                             </div>
@@ -1873,9 +1901,9 @@
                         <span class="separator-right bg-primary"></span>
                     </div>
                 </div>
-               <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus
-                    sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                    himenaeos.</p>-->
+                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus
+                            sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+                            himenaeos.</p>-->
             </div>
             <!-- TITLE END-->
 
@@ -1884,7 +1912,8 @@
                 <ul class="masonry-filter link-style  text-uppercase center-block m-t0">
                     <li class="active"><a data-filter="*" href="#">All</a></li>
                     @foreach ($imageCategories as $imageCategory)
-                        <li><a data-filter=".cat-filter-{{ $imageCategory->id }}" href="#">{{ $imageCategory->name }}</a></li>
+                        <li><a data-filter=".cat-filter-{{ $imageCategory->id }}"
+                                href="#">{{ $imageCategory->name }}</a></li>
                     @endforeach
                 </ul>
             </div>
@@ -1931,176 +1960,176 @@
 
     <!-- OUR PRICING TABLE SECTION START  -->
     <!--<div class="section-full bg-gray bg-repeat p-tb80"
-        style="background-image:url(assets/frontend/images/background/bg-6.jpg);">
-        <div class="container">
+                style="background-image:url(assets/frontend/images/background/bg-6.jpg);">
+                <div class="container">
 
-            <div class="section-head text-center">
-                <h1><span class="text-primary">Our</span> Pricing</h1>
-                <div class="wt-separator-outer ">
-                    <div class="wt-separator style-icon">
-                        <i class="fa fa-leaf text-black"></i>
-                        <span class="separator-left bg-primary"></span>
-                        <span class="separator-right bg-primary"></span>
+                    <div class="section-head text-center">
+                        <h1><span class="text-primary">Our</span> Pricing</h1>
+                        <div class="wt-separator-outer ">
+                            <div class="wt-separator style-icon">
+                                <i class="fa fa-leaf text-black"></i>
+                                <span class="separator-left bg-primary"></span>
+                                <span class="separator-right bg-primary"></span>
+                            </div>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus
+                            sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+                            himenaeos.</p>
                     </div>
-                </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus
-                    sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                    himenaeos.</p>
-            </div>
 
-            <div class="section-content">
-                <div class="pricingtable-row">
-                    <div class="row">
+                    <div class="section-content">
+                        <div class="pricingtable-row">
+                            <div class="row">
 
-                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 m-b40">
-                            <div class="pricingtable-wrapper pricing-table-style-4">
-                                <div class="pricingtable-inner bg-white radius">
+                                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 m-b40">
+                                    <div class="pricingtable-wrapper pricing-table-style-4">
+                                        <div class="pricingtable-inner bg-white radius">
 
-                                    <div class="overlay-wraper pricingtable-inner-overlay bg-no-repeat bg-cover"
-                                        style="background-image:url(assets/frontend/images/our-work/pic1.jpg);">
-                                        <div class="pricingtable-title">
-                                            <h3>Basic Plan</h3>
+                                            <div class="overlay-wraper pricingtable-inner-overlay bg-no-repeat bg-cover"
+                                                style="background-image:url(assets/frontend/images/our-work/pic1.jpg);">
+                                                <div class="pricingtable-title">
+                                                    <h3>Basic Plan</h3>
+                                                </div>
+                                                <div class="pricingtable-price">
+                                                    <span class="pricingtable-bx">$29</span>
+                                                    <span class="pricingtable-type">M</span>
+                                                </div>
+                                                <div class="overlay-main bg-black opacity-07"></div>
+                                            </div>
+
+
+                                            <ul class="pricingtable-features">
+                                                <li><i class="fa fa-check"></i> Phone & Email Support </li>
+                                                <li><i class="fa fa-times"></i> 3 Social Account </li>
+                                                <li><i class="fa fa-check"></i> Branded Reports </li>
+                                                <li><i class="fa fa-check"></i> Unlock rewards</li>
+                                                <li><i class="fa fa-times"></i> Support Forum</li>
+                                            </ul>
+
+                                            <div class="pricingtable-footer">
+                                                <a href="javascript:void(0);"
+                                                    class="site-button text-uppercase radius-sm">Purchase</a>
+                                            </div>
+
                                         </div>
-                                        <div class="pricingtable-price">
-                                            <span class="pricingtable-bx">$29</span>
-                                            <span class="pricingtable-type">M</span>
-                                        </div>
-                                        <div class="overlay-main bg-black opacity-07"></div>
+
                                     </div>
-
-
-                                    <ul class="pricingtable-features">
-                                        <li><i class="fa fa-check"></i> Phone & Email Support </li>
-                                        <li><i class="fa fa-times"></i> 3 Social Account </li>
-                                        <li><i class="fa fa-check"></i> Branded Reports </li>
-                                        <li><i class="fa fa-check"></i> Unlock rewards</li>
-                                        <li><i class="fa fa-times"></i> Support Forum</li>
-                                    </ul>
-
-                                    <div class="pricingtable-footer">
-                                        <a href="javascript:void(0);"
-                                            class="site-button text-uppercase radius-sm">Purchase</a>
-                                    </div>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
-
-        </div>
-    </div>
-     -->
+             -->
 
     <!-- OUR PROJECTS SECTION START  -->
-   <!-- <div class="section-full bg-white p-tb80">
-        <div class="container">
-            <div class="section-head text-center">
-                <h1><span class="text-primary">Our</span> Products</h1>
-                <div class="wt-separator-outer ">
-                    <div class="wt-separator style-icon">
-                        <i class="fa fa-leaf text-black"></i>
-                        <span class="separator-left bg-primary"></span>
-                        <span class="separator-right bg-primary"></span>
+    <!-- <div class="section-full bg-white p-tb80">
+                <div class="container">
+                    <div class="section-head text-center">
+                        <h1><span class="text-primary">Our</span> Products</h1>
+                        <div class="wt-separator-outer ">
+                            <div class="wt-separator style-icon">
+                                <i class="fa fa-leaf text-black"></i>
+                                <span class="separator-left bg-primary"></span>
+                                <span class="separator-right bg-primary"></span>
+                            </div>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus
+                            sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+                            himenaeos.</p>
+                    </div>
+                    <div class="section-content">
+                        <div class="row">
+
+                            <div class="col-md-4 col-sm-4 p-tb15">
+                                <div class="wt-box">
+                                    <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
+                                        <img src="/assets/frontend/images/products/pic-8.jpg" class="radius-bx" alt="">
+                                    </div>
+                                    <div class="wt-info p-t30 text-center">
+                                        <h2>Massage Soap</h2>
+                                        <p class="text-primary">$199.99</p>
+                                        <a class="site-button text-uppercase radius-sm font-weight-700 button-lg">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 p-tb15">
+                                <div class="wt-box">
+                                    <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
+                                        <img src="/assets/frontend/images/products/pic-2.jpg" class="radius-bx" alt="">
+                                    </div>
+                                    <div class="wt-info p-t30 text-center">
+                                        <h2>Flower</h2>
+                                        <p class="text-primary">$159.99</p>
+                                        <a class="site-button text-uppercase radius-sm font-weight-700 button-lg">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 p-tb15">
+                                <div class="wt-box">
+                                    <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
+                                        <img src="/assets/frontend/images/products/pic-9.jpg" class="radius-bx" alt="">
+                                    </div>
+                                    <div class="wt-info p-t30 text-center">
+                                        <h2>Massage Oil.</h2>
+                                        <p class="text-primary">$109.99</p>
+                                        <a class="site-button text-uppercase radius-sm font-weight-700 button-lg">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
                     </div>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus
-                    sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                    himenaeos.</p>
             </div>
-            <div class="section-content">
-                <div class="row">
-
-                    <div class="col-md-4 col-sm-4 p-tb15">
-                        <div class="wt-box">
-                            <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
-                                <img src="/assets/frontend/images/products/pic-8.jpg" class="radius-bx" alt="">
-                            </div>
-                            <div class="wt-info p-t30 text-center">
-                                <h2>Massage Soap</h2>
-                                <p class="text-primary">$199.99</p>
-                                <a class="site-button text-uppercase radius-sm font-weight-700 button-lg">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4 p-tb15">
-                        <div class="wt-box">
-                            <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
-                                <img src="/assets/frontend/images/products/pic-2.jpg" class="radius-bx" alt="">
-                            </div>
-                            <div class="wt-info p-t30 text-center">
-                                <h2>Flower</h2>
-                                <p class="text-primary">$159.99</p>
-                                <a class="site-button text-uppercase radius-sm font-weight-700 button-lg">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4 p-tb15">
-                        <div class="wt-box">
-                            <div class="wt-media text-primary m-b20 radius-bx circle-effect-1">
-                                <img src="/assets/frontend/images/products/pic-9.jpg" class="radius-bx" alt="">
-                            </div>
-                            <div class="wt-info p-t30 text-center">
-                                <h2>Massage Oil.</h2>
-                                <p class="text-primary">$109.99</p>
-                                <a class="site-button text-uppercase radius-sm font-weight-700 button-lg">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>
-      -->
+              -->
 
     <!-- OUR TESTIMONIAL SECTION START  -->
     <!--<div class="section-full bg-gray bg-repeat p-t80 p-b120"
-        style="background-image:url(assets/frontend/images/background/bg-6.jpg);">
-        <div class="container">
-            <div class="section-head text-center">
-                <h1><span class="text-primary">What</span> People Say</h1>
-                <div class="wt-separator-outer ">
-                    <div class="wt-separator style-icon">
-                        <i class="fa fa-leaf text-black"></i>
-                        <span class="separator-left bg-primary"></span>
-                        <span class="separator-right bg-primary"></span>
-                    </div>
-                </div>
-
-            </div>
-            <div class="section-content">
-                <div class="owl-carousel home-carousel-1">
-                @foreach ($testimonials as $testimonial)
-                    <div class="item">
-                        <div class="testimonial-5 bg-white radius-sm">
-                            <div class="testimonial-pic-block radius-bx">
-                                <div class="testimonial-pic radius">
-                                    <img src="{{ asset($testimonial->image ?? 'uploads/images/no_image.png') }}" width="132" height="132"
-                                        alt="">
-                                </div>
-                            </div>
-                            <div class="testimonial-text clearfix">
-                                <div class="testimonial-paragraph">
-                                    <span class="fa fa-quote-left text-primary"></span>
-                                    <p>{{ $testimonial->message }}
-                                    </p>
-                                </div>
-                                <div class="testimonial-detail clearfix">
-                                    <strong class="testimonial-name">{{ $testimonial->name }}</strong>
-                                    <span class="testimonial-position text-primary p-t10">{{ $testimonial->designation }}</span>
-                                </div>
+                style="background-image:url(assets/frontend/images/background/bg-6.jpg);">
+                <div class="container">
+                    <div class="section-head text-center">
+                        <h1><span class="text-primary">What</span> People Say</h1>
+                        <div class="wt-separator-outer ">
+                            <div class="wt-separator style-icon">
+                                <i class="fa fa-leaf text-black"></i>
+                                <span class="separator-left bg-primary"></span>
+                                <span class="separator-right bg-primary"></span>
                             </div>
                         </div>
+
                     </div>
-                   @endforeach
+                    <div class="section-content">
+                        <div class="owl-carousel home-carousel-1">
+                        @foreach ($testimonials as $testimonial)
+                            <div class="item">
+                                <div class="testimonial-5 bg-white radius-sm">
+                                    <div class="testimonial-pic-block radius-bx">
+                                        <div class="testimonial-pic radius">
+                                            <img src="{{ asset($testimonial->image ?? 'uploads/images/no_image.png') }}" width="132" height="132"
+                                                alt="">
+                                        </div>
+                                    </div>
+                                    <div class="testimonial-text clearfix">
+                                        <div class="testimonial-paragraph">
+                                            <span class="fa fa-quote-left text-primary"></span>
+                                            <p>{{ $testimonial->message }}
+                                            </p>
+                                        </div>
+                                        <div class="testimonial-detail clearfix">
+                                            <strong class="testimonial-name">{{ $testimonial->name }}</strong>
+                                            <span class="testimonial-position text-primary p-t10">{{ $testimonial->designation }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           @endforeach
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>-->
+            </div>-->
     <!-- OUR TESTIMONIAL SECTION END  -->
 
     <!-- CONTACT US SECTION END  -->
@@ -2117,8 +2146,8 @@
                         <span class="separator-right bg-primary"></span>
                     </div>
                 </div>
-               <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s.</p>-->
+                <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                            industry's standard dummy text ever since the 1500s.</p>-->
             </div>
             <!-- TITLE END -->
 
@@ -2159,16 +2188,16 @@
                             </div>
 
                             <!--<div class="Opening-hours text-white">
-                                <h3 class="wt-title text-uppercase m-t0">Opening Hours</h3>
-                                <ul class="list-unstyled">
-                                    <li>{{ get_static_option('line1') }} <span
-                                            class="pull-right">{{ get_static_option('time1') }}</span></li>
-                                    <li>{{ get_static_option('line2') }} <span
-                                            class="pull-right">{{ get_static_option('time2') }}</span></li>
-                                    <li>{{ get_static_option('line3') }} <span
-                                            class="pull-right">{{ get_static_option('time3') }}</span></li>
-                                </ul>
-                            </div>-->
+                                        <h3 class="wt-title text-uppercase m-t0">Opening Hours</h3>
+                                        <ul class="list-unstyled">
+                                            <li>{{ get_static_option('line1') }} <span
+                                                    class="pull-right">{{ get_static_option('time1') }}</span></li>
+                                            <li>{{ get_static_option('line2') }} <span
+                                                    class="pull-right">{{ get_static_option('time2') }}</span></li>
+                                            <li>{{ get_static_option('line3') }} <span
+                                                    class="pull-right">{{ get_static_option('time3') }}</span></li>
+                                        </ul>
+                                    </div>-->
 
                         </div>
                     </div>
@@ -2177,14 +2206,13 @@
                     <div class="section-content bg-gray">
                         <div class="contact-home-right p-a30">
                             <h5 class="text-uppercase font-26 p-b20 font-weight-400">GET IN TOUCH</h5>
-                            <form class="cons-contact-form2" method="post" action="{{ url('contact-us')}}">
-                            @csrf
+                            <form class="cons-contact-form2" method="post" action="{{ url('contact-us') }}">
+                                @csrf
 
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                        <input name="name" type="text" required class="form-control"
-                                            placeholder="Name">
+                                        <input name="name" type="text" required class="form-control" placeholder="Name">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -2204,8 +2232,8 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon v-align-t"><i class="fa fa-pencil"></i></span>
-                                        <textarea name="message" class="form-control" rows="4"
-                                            placeholder="Message" required></textarea>
+                                        <textarea name="message" class="form-control" rows="4" placeholder="Message"
+                                            required></textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class="site-button skew-icon-btn radius-sm">
@@ -2224,38 +2252,38 @@
 
     <!-- OUR CLIENT SLIDER START -->
     <!--<div class="section-full p-t80 p-b50 bg-repeat"
-        style="background-image:url(assets/frontend/images/background/bg-6.jpg);">
-        <div class="container">
+                style="background-image:url(assets/frontend/images/background/bg-6.jpg);">
+                <div class="container">
 
-            <div class="section-head text-center">
-                <h1><span class="text-primary"> Our</span> Client</h1>
-                <div class="wt-separator-outer ">
-                    <div class="wt-separator style-icon">
-                        <i class="fa fa-leaf text-black"></i>
-                        <span class="separator-left bg-primary"></span>
-                        <span class="separator-right bg-primary"></span>
-                    </div>
-                </div>
-               
-            </div>
-           
-            <div class="section-content">
-                <div class="owl-carousel client-logo-carousel">
-                    @foreach ($clients as $client)
-                        <div class="item">
-                            <div class="ow-client-logo">
-                                <div class="client-logo wt-img-effect on-color">
-                                    <a href="javascript:;"><img
-                                            src="{{ asset($client->logo ?? 'uploads/images/no_image.png') }}" alt=""></a>
-                                </div>
+                    <div class="section-head text-center">
+                        <h1><span class="text-primary"> Our</span> Client</h1>
+                        <div class="wt-separator-outer ">
+                            <div class="wt-separator style-icon">
+                                <i class="fa fa-leaf text-black"></i>
+                                <span class="separator-left bg-primary"></span>
+                                <span class="separator-right bg-primary"></span>
                             </div>
                         </div>
-                    @endforeach
 
+                    </div>
+
+                    <div class="section-content">
+                        <div class="owl-carousel client-logo-carousel">
+                            @foreach ($clients as $client)
+                                <div class="item">
+                                    <div class="ow-client-logo">
+                                        <div class="client-logo wt-img-effect on-color">
+                                            <a href="javascript:;"><img
+                                                    src="{{ asset($client->logo ?? 'uploads/images/no_image.png') }}" alt=""></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>-->
+            </div>-->
     <!-- OUR CLIENT SLIDER END -->
 @endsection
 
