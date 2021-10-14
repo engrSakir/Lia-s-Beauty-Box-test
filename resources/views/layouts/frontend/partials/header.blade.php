@@ -1,24 +1,26 @@
+
 <header class="site-header header-style-1 ">
 
     <div class="top-bar">
-        <div class="container">
+        <div class="container show_on_desktop_only">
             <div class="row">
-                <div class="wt-topbar-left clearfix">
+                <div class="wt-topbar-left clearfix ">
                     <ul class="list-unstyled e-p-bx">
-                        <li><a href="mailto:{{ get_static_option('email') }}"><i class="fa fa-envelope"></i></a><span class="topemail">{{ get_static_option('email') }}</span></li>
-                        <li><i class="fa fa-phone"></i><span class="topphone">{{ get_static_option('mobile') }}</span></li>
+                        <li><a href="mailto:{{ get_static_option('email') }}"><i class="fa fa-envelope"></i></a><span
+                                class="topemail">{{ get_static_option('email') }}</span></li>
+                        <li><i class="fa fa-phone"></i><span
+                                class="topphone">{{ get_static_option('mobile') }}</span></li>
                     </ul>
                 </div>
                 <div class="wt-topbar-right clearfix">
                     <ul class="social-bx list-inline pull-right">
                         <li><a href="{{ get_static_option('facebook') }}" class="fa fa-facebook"></a></li>
                         <li><a href="{{ get_static_option('youtube') }}" class="fa fa-youtube"></a></li>
-                       <!-- <li><a href="{{ get_static_option('twitter') }}" class="fa fa-twitter"></a></li>
+                        <!-- <li><a href="{{ get_static_option('twitter') }}" class="fa fa-twitter"></a></li>
                         <li><a href="{{ get_static_option('linkedin') }}" class="fa fa-linkedin"></a></li>
-                        <li><a href="{{ get_static_option('rss') }}" class="fa fa-rss"></a></li>                        
+                        <li><a href="{{ get_static_option('rss') }}" class="fa fa-rss"></a></li>
                         <li><a href="{{ get_static_option('instagram') }}" class="fa fa-instagram"></a></li>-->
                     </ul>
-
                 </div>
             </div>
         </div>
@@ -32,7 +34,8 @@
             <div class="container">
                 <div class="logo-header">
                     <a href="{{ url('/') }}">
-                        <img src="{{ asset(get_static_option('logo') ?? 'assets/frontend/images/logo.png') }}" width="216" height="37" alt="" />
+                        <img src="{{ asset(get_static_option('logo') ?? 'assets/frontend/images/logo.png') }}"
+                            width="216" height="37" alt="" />
                     </a>
                 </div>
                 <!-- NAV Toggle Button -->
@@ -47,8 +50,9 @@
                     <span class="close"></span>
                     <form role="search" id="searchform" action="#" method="get" class="radius-xl">
                         <div class="input-group">
-                            <input value="" name="q" type="search" placeholder="Type to search"/>
-                            <span class="input-group-btn"><button type="button" class="search-btn"><i class="fa fa-search"></i></button></span>
+                            <input value="" name="q" type="search" placeholder="Type to search" />
+                            <span class="input-group-btn"><button type="button" class="search-btn"><i
+                                        class="fa fa-search"></i></button></span>
                         </div>
                     </form>
                 </div>

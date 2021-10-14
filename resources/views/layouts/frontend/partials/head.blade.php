@@ -70,3 +70,12 @@
 @toastr_css
 <!--Page Lavel code -->
 @stack('head')
+<style>
+    @media screen and (min-width: 0px) and (max-width: 997px) {
+        .show_on_desktop_only {
+            display: none;
+        }
+
+        /* hide it elsewhere */
+    }
+</style>
