@@ -1,7 +1,7 @@
 
 <header class="site-header header-style-1 ">
 
-    <div class="top-bar">
+   <!-- <div class="top-bar">
         <div class="container show_on_desktop_only">
             <div class="row">
                 <div class="wt-topbar-left clearfix ">
@@ -16,15 +16,12 @@
                     <ul class="social-bx list-inline pull-right">
                         <li><a href="{{ get_static_option('facebook') }}" class="fa fa-facebook"></a></li>
                         <li><a href="{{ get_static_option('youtube') }}" class="fa fa-youtube"></a></li>
-                        <!-- <li><a href="{{ get_static_option('twitter') }}" class="fa fa-twitter"></a></li>
-                        <li><a href="{{ get_static_option('linkedin') }}" class="fa fa-linkedin"></a></li>
-                        <li><a href="{{ get_static_option('rss') }}" class="fa fa-rss"></a></li>
-                        <li><a href="{{ get_static_option('instagram') }}" class="fa fa-instagram"></a></li>-->
+                        
                     </ul>
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
     <!-- Search Link -->
 
     <!-- Search Form -->

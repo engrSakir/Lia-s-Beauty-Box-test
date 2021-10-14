@@ -48,7 +48,7 @@ class AppointmentController extends Controller
             'email'     => 'nullable|email',
         ]);
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('phone', $request->phone)->first();
 
         if ($user) {
             $request->validate([
@@ -235,7 +235,7 @@ class AppointmentController extends Controller
                 'email'     => 'nullable',
             ]);
 
-            $user = User::where('email', $request->email)->first();
+            $user = User::where('phone', $request->phone)->first();
 
             if ($user) {
                 $request->validate([
