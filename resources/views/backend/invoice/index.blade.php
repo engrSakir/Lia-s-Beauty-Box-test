@@ -112,6 +112,9 @@
                                             <a href="{{ route('backend.invoice.payment', $invoice) }}"
                                                 class="btn btn-info waves-effect btn-rounded waves-light"> <i
                                                     class="fas fa-credit-card"></i> </a>
+                                                    <button value="{{ route('backend.invoice.destroy', $invoice) }}"
+                                                class="btn btn-danger btn-circle delete-btn"><i class="fa fa-trash"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                 @endforeach
