@@ -75,6 +75,10 @@
         .show_on_desktop_only {
             display: none;
         }
+        .logo-header{
+            width:200px;
+            height:70px;
+        }
 
         /* hide it elsewhere */
     }
