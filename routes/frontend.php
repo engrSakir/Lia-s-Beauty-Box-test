@@ -19,5 +19,7 @@ Route::post('/contact-us', [FrontEndController::class, 'handleContactForm']);
 Route::get('/register/{referral_code}', [FrontEndController::class, 'getRegisterFormWithRefCode'])->name('refRegister');
 Route::patch('/register/{referral_code}', [FrontEndController::class, 'registrationWithRefCode'])->middleware(['guest']);
 Route::get('/about', [FrontEndController::class, 'about'])->name('about');
+Route::get('/gallery', [FrontEndController::class, 'gallery'])->name('gallery');
+
 
 

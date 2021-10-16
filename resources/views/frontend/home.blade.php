@@ -99,96 +99,7 @@
 
                     </li>
                     <!-- SLIDE  -->
-                    <li data-index="rs-293{{ $loop->iteration + 7 }}" data-transition="slideleft"
-                        data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default"
-                        data-easeout="default" data-masterspeed="default" data-thumb="{{ asset($banner->image) }}"
-                        data-rotate="0" data-fsslotamount="7" data-saveperformance="off" data-title=""
-                        data-param1="Additional Text" data-param2="" data-param3="" data-param4="" data-param5=""
-                        data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
-                        <!-- MAIN IMAGE -->
-                        <img src="{{ asset($banner->image) }}" alt="" data-bgposition="center center" data-bgfit="cover"
-                            data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
-                        <!-- LAYERS -->
-
-
-                        <!-- LAYER NR. 1 -->
-                        <div class="tp-caption WebProduct-Title   tp-resizeme" id="slide-2938-layer-01"
-                            data-x="['left','left','left','left']" data-hoffset="['30','30','20','20']"
-                            data-y="['middle','middle','top','top']" data-voffset="['-80','-80','200','130']"
-                            data-fontsize="['57','55','55','45']" data-lineheight="['65','65','65','65']" data-width="none"
-                            data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on"
-                            data-frames='[{"from":"x:-50px;opacity:0;","speed":1000,"to":"o:1;","delay":1000,"ease":"Power2.easeOut"},{"delay":"wait","speed":1500,"to":"opacity:0;","ease":"Power4.easeIn"}]'
-                            data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
-                            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 11;
-                                        white-space: nowrap;
-                                        text-transform:uppercase;">
-                            <div class="text-secondry"> Best Place <span class="text-primary"> For you</span></div>
-                        </div>
-
-                        <!-- LAYER NR. 2 -->
-                        <div class="tp-caption WebProduct-SubTitle   tp-resizeme" id="slide-2938-layer-02"
-                            data-x="['left','left','left','left']" data-hoffset="['30','30','20','20']"
-                            data-y="['middle','middle','top','top']" data-voffset="['0','0','280','180']"
-                            data-fontsize="['55','55','55','45']" data-lineheight="['75','75','75','75']" data-width="none"
-                            data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on"
-                            data-frames='[{"from":"x:-50px;opacity:0;","speed":1000,"to":"o:1;","delay":1250,"ease":"Power2.easeOut"},{"delay":"wait","speed":1500,"to":"opacity:0;","ease":"Power4.easeIn"}]'
-                            data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
-                            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 12;
-                                        white-space: nowrap;
-                                        text-transform:uppercase;
-                                       font-weight: 700;
-                                        ">
-                            <div class="text-secondry">
-                                <span class="text-primary">Harbal</span> Treatment
-                            </div>
-                        </div>
-
-                        <!-- LAYER NR. 3 -->
-                        <div class="tp-caption WebProduct-Content   tp-resizeme" id="slide-2938-layer-03"
-                            data-x="['left','left','left','left']" data-hoffset="['30','30','20','20']"
-                            data-y="['middle','middle','top','top']" data-voffset="['80','80','380','250']"
-                            data-fontsize="['21','21','24','18']" data-lineheight="['28','28','32','26']"
-                            data-width="['700','700','700','300']" data-height="['none','none','76','68']"
-                            data-whitespace="normal" data-type="text" data-responsive_offset="on"
-                            data-frames='[{"from":"x:-50px;opacity:0;","speed":1000,"to":"o:1;","delay":1500,"ease":"Power2.easeOut"},{"delay":"wait","speed":1500,"to":"opacity:0;","ease":"Power4.easeIn"}]'
-                            data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
-                            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
-                            style="z-index: 13; white-space: normal;">
-                            <div class="text-secondry"> Welcome to beauty lab, where you can relax and enjoy life. A little
-                                peace in a crazy world goes a long way.</div>
-                        </div>
-
-                        <!-- LAYER NR. 4 -->
-                        <div class="tp-caption tp-resizeme" id="slide-2938-layer-04" data-x="['left','left','left','left']"
-                            data-hoffset="['30','30','20','20']" data-y="['middle','middle','top','top']"
-                            data-voffset="['180','180','480','400']" data-width="none" data-height="none"
-                            data-whitespace="nowrap" data-type="button"
-                            data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-2939","delay":""}]'
-                            data-responsive_offset="on" data-responsive="on" data-frames='[
-                                        {"from":"y:100px(R);opacity:0;","speed":2000,"to":"o:1;","delay":2000,"ease":"Power4.easeOut"},
-                                        {"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}
-                                        ]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
-                            data-paddingright="[40,40,40,40]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
-                            style="z-index:13; text-transform:uppercase; font-weight:700;">
-                            <a href="javascript:;" class="site-button radius-sm button-lg">See all Services</a>
-                        </div>
-                        <!-- LAYER NR. 5 -->
-
-                        <div class="tp-caption tp-resizeme" id="slide-2938-layer-05" data-x="['left','left','left','left']"
-                            data-hoffset="['240','240','200','200']" data-y="['middle','middle','top','top']"
-                            data-voffset="['180','180','480','400']" data-width="none" data-height="none"
-                            data-whitespace="nowrap" data-type="button"
-                            data-actions='[{"event":"click","action":"jumptoslide","slide":"rs-2939","delay":""}]'
-                            data-responsive_offset="on" data-responsive="on" data-frames='[
-                                        {"from":"y:100px(R);opacity:0;","speed":2000,"to":"o:1;","delay":2000,"ease":"Power4.easeOut"},
-                                        {"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}
-                                        ]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
-                            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[40,40,40,40]"
-                            style="z-index:13; text-transform:uppercase; font-weight:700;">
-                            <a href="javascript:;" class="site-button-secondry radius-sm button-lg">More detail</a>
-                        </div>
-
-                    </li>
+              
                 @endforeach
             </ul>
 
@@ -200,18 +111,9 @@
     <div class="section-full p-tb100 bg-bottom-center bg-full-width bg-no-repeat"
         style="background-image:url(assets/frontend/images/background/bg-1.png);">
         <div class="container ">
-            <div class="section-head text-center">
-                <h1><span class="text-primary"> Welcome to </span> Lia's Beauty Box</h1>
-                <div class="wt-separator-outer ">
-                    <div class="wt-separator style-icon">
-                        <i class="fa fa-leaf text-black"></i>
-                        <span class="separator-left bg-primary"></span>
-                        <span class="separator-right bg-primary"></span>
-                    </div>
-                </div>
-            </div>
+            
             <div class="section-content text-center about-spa">
-                <div class="row">
+               <!-- <div class="row">
                     <div class="m-b30">
                         <div class="section-head">
                             <h3 class="text-uppercase">Brand Video</h3>
@@ -226,7 +128,7 @@
                         <div class="embed-responsive embed-responsive-16by9"><iframe width="560" height="315"
                                 src="https://www.youtube.com/embed/iwGH5S70CmE"></iframe></div>
                     </div>
-                </div>
+                </div>-->
                 <div class="row">
                     <div class="col-md-4 col-sm-4 m-b30">
                         <div class="wt-icon-box-wraper p-a30 center">
@@ -262,6 +164,8 @@
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
     </div>
@@ -335,7 +239,7 @@
     </div>
     <!-- Service SECTION END  -->
     <!-- OUR SPECIAL OFFER SECTION END  -->
-    <div class="section-full bg-primary">
+   <!-- <div class="section-full bg-primary">
         <div class="container-fluid bg-top-right bg-no-repeat bg-full-height special-offer-block no-col-gap"
             style="background-image: url('{{ asset(get_static_option('offer_image')) }}');">
             <div class="row">
@@ -362,74 +266,32 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
     <!-- OUR SPECIAL OFFER SECTION END  -->
 
     <!-- OUR GALLERY SECTION END  -->
-    <div class="section-full p-t80">
-        <div class="container">
-            <!-- TITLE START-->
-            <div class="section-head text-center">
-                <h1><span class="text-primary">Our</span> Gallery</h1>
-                <div class="wt-separator-outer ">
-                    <div class="wt-separator style-icon">
-                        <i class="fa fa-leaf text-black"></i>
-                        <span class="separator-left bg-primary"></span>
-                        <span class="separator-right bg-primary"></span>
-                    </div>
-                </div>
-                <!-- TITLE END-->
-
-                <!-- PAGINATION START -->
-                <div class="filter-wrap p-a15 our-gallery  m-tb30">
-                    <ul class="masonry-filter link-style  text-uppercase center-block m-t0">
-                        <li class="active"><a data-filter="*" href="#">All</a></li>
-                        @foreach ($imageCategories as $imageCategory)
-                            <li><a data-filter=".cat-filter-{{ $imageCategory->id }}"
-                                    href="#">{{ $imageCategory->name }}</a></li>
-                        @endforeach
-                    </ul>
-                </div>
-                <!-- PAGINATION END -->
-
-            </div>
-            <!-- GALLERY CONTENT START -->
-            <div class="portfolio-wrap mfp-gallery no-col-gap clearfix">
-                <div class="container-fluid">
-                    <div class="row">
-                        @foreach ($galleries as $gallery)
-
-                            <div
-                                class="masonry-item cat-filter-{{ $gallery->category->id }} col-lg-3 col-md-4 col-sm-6">
-                                <div class="flip-container">
-                                    <div class="wt-box">
-                                        <div class="wt-thum-bx">
-                                            <img id="image_display" width="150"
-                                                src="{{ asset($gallery->image ?? 'uploads/images/no_image.png') }}"
-                                                class="image-display" alt="User image" />
-                                        </div>
-                                        <div class="wt-info bg-white text-center bdr-5 bdr-primary">
-                                            <div class="wt-info-media-zoom">
-                                                <a href="{{ asset($gallery->image ?? 'uploads/images/no_image.png') }}"
-                                                    class="mfp-link">
-                                                    <i class="fa fa-arrows-alt font-24 p-a10"></i>
-                                                </a>
-                                            </div>
-                                            <div class="wt-info-text p-a30">
-                                                <h3>{{ $gallery->category->name }}</h3>
-                                                <p>{{ $gallery->short_description }}</p>
-                                            </div>
-                                        </div>
-                                    </div>
+    <div class="section-content text-center about-spa">
+                <div class="row">
+                    <div class="m-b30">
+                        <div class="section-head">
+                            <h3 class="text-uppercase">Brand Video</h3>
+                            <div class="wt-separator-outer">
+                                <div class="wt-separator style-icon">
+                                    <i class="fa fa-leaf text-black"></i>
+                                    <span class="separator-left bg-primary"></span>
+                                    <span class="separator-right bg-primary"></span>
                                 </div>
                             </div>
-                        @endforeach
+                        </div>
+                        <div class="embed-responsive embed-responsive-16by9"><iframe width="560" height="315"
+                                src="https://www.youtube.com/embed/iwGH5S70CmE"></iframe></div>
                     </div>
                 </div>
-            </div>
-            <!-- GALLERY CONTENT END -->
 
+                
+            </div>
         </div>
+    </div>
         <!-- OUR GALLERY CONTENT END  -->
 
         <!-- CONTACT US SECTION END  -->

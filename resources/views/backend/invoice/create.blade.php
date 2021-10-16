@@ -282,9 +282,9 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('.service').select2({
+          /*  $('.service').select2({
                     maximumInputLength: 20 // only allow terms up to 20 characters long
-                });
+                });*/
            
             $('#modal').modal({
                 backdrop: 'static',

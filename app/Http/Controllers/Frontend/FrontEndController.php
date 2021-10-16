@@ -264,4 +264,11 @@ class FrontEndController extends Controller
     {
         return view('frontend.about');
     }
+
+    public function gallery()
+    {
+        $galleries = Gallery::all();
+        $imageCategories = ImageCategory::all();
+        return view('frontend.gallery', compact('galleries','imageCategories'));
+    }
 }

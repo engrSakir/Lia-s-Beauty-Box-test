@@ -26,13 +26,13 @@
 
     <!-- Search Form -->
 
-    <div class="sticky-header main-bar-wraper">
+    <div class="sticky-header main-bar-wraper" style="margin-top:-10px">
         <div class="main-bar bg-white">
             <div class="container">
                 <div class="logo-header">
                     <a href="{{ url('/') }}">
                         <img src="{{ asset(get_static_option('logo') ?? 'assets/frontend/images/logo.png') }}"
-                            width="216" height="37" alt="" />
+                            width="316" height="57" alt="" />
                     </a>
                 </div>
                 <!-- NAV Toggle Button -->
@@ -61,6 +61,7 @@
                         <li class=""><a href="{{ url('/service') }}">Services</a></li>
                         <li class=""><a href="{{ url('/booking') }}">Booking</a></li>
                         <li class=""><a href="{{ url('/about') }}">About</a></li>
+                        <li class=""><a href="{{ url('/gallery') }}">Gallery</a></li>
                         <li class=""><a href="{{ url('/contact-us') }}">Contact</a></li>
                     </ul>
                 </div>
