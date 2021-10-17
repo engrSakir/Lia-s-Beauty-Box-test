@@ -41,6 +41,7 @@ class SettingController extends Controller
             'offer_link' => 'nullable|string',
             'offer_details' => 'nullable|string',
             'offer_image' => 'nullable|image',
+            'brand_link' => 'nullable|string',
 
 
         ]);
@@ -75,6 +76,8 @@ class SettingController extends Controller
         update_static_option('offer_subtitle', $request->offer_subtitle);
         update_static_option('offer_details', $request->offer_details);
         update_static_option('offer_link', $request->offer_link);
+        update_static_option('brand_link', $request->brand_link);
+
 
        if($request->hasFile('logo')){
         update_static_option('logo',file_uploader('uploads/logo/', $request->logo, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::random(8)));

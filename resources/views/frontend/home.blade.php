@@ -284,7 +284,7 @@
                             </div>
                         </div>
                         <div class="embed-responsive embed-responsive-16by9"><iframe width="560" height="315"
-                                src="https://www.youtube.com/embed/iwGH5S70CmE"></iframe></div>
+                                src="{{ get_static_option('brand_link') }}"></iframe></div>
                     </div>
                 </div>
 

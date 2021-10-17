@@ -372,6 +372,20 @@
                                     </div>
                                 </div>
                             </div>
+                            <h4>Brand Video Link</h4>
+                            <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                        <label for="address">Link</label>
+                                            <input type="text" name="brand_link" value="{{ get_static_option('brand_link') }}" id="brand_link" class="form-control">
+                                                @error('brand_link')
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                        </div>
+                                    </div>
+                                </div>
                         <div class="form-actions">
                             <div class="card-body">
                                 <button type="submit" name="submit" class="btn btn-success text-white"> <i class="fa fa-check"></i> Save</button>
