@@ -237,7 +237,23 @@
                 </tr>
                 <tr class="tabletitle">
                     <td class="Rate">
-                        <h3> Paid:</h3>
+                        <h3>Advance Paid:</h3>
+                    </td>
+                    <td class="payment" style="text-align:right;">
+                        {{ inv_calculator($invoice)['advance'] }}
+                    </td>
+                </tr>
+                <tr class="tabletitle">
+                    <td class="Rate">
+                        <h3>Current Paid:</h3>
+                    </td>
+                    <td class="payment" style="text-align:right;">
+                        {{ inv_calculator($invoice)['current_paid'] }}
+                    </td>
+                </tr>
+                <tr class="tabletitle">
+                    <td class="Rate">
+                        <h3>Total Paid:</h3>
                     </td>
                     <td class="payment" style="text-align:right;">
                         {{ inv_calculator($invoice)['paid'] }}

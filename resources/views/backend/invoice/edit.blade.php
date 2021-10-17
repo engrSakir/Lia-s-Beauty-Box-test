@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title') Invoice  @endsection
+@section('title') Invoice @endsection
 
 @section('bread-crumb')
     <div class="row page-titles">
@@ -14,7 +14,7 @@
                     <li class="breadcrumb-item active">Invoice Edit Page</li>
                 </ol>
                 <a href="{{ route('backend.appointment.create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
-                    class="fa fa-plus-circle"></i> Edit New Appointment</a>
+                        class="fa fa-plus-circle"></i> Edit New Appointment</a>
 
             </div>
         </div>
@@ -36,11 +36,11 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <select name="appointment" id="appointment" class="form-control" required=""
+                                        <select name="appointment" id="appointment" class="form-control style-select" required=""
                                             onchange="changeAppointment(this)">
                                             <option value="" selected disabled>Please chose a approved appointment</option>
                                             @foreach ($appointments as $appointment)
-                                                <option value="{{ $appointment->id }}"  @if($invoice->appointment_id == $appointment->id) selected @endif>
+                                                <option value="{{ $appointment->id }}" @if ($invoice->appointment_id == $appointment->id) selected @endif>
                                                     {{ $loop->iteration }})
                                                     Name: {{ $appointment->customer->name ?? '#' }}
                                                     {{ date('h:i A', strtotime($appointment->schedule->starting_time)) ?? '#' }}
@@ -57,26 +57,6 @@
                             </div>
                         </div>
                         {{-- End Appointment section --}}
-                        {{-- Start Payment Mthod  section --}}
-                        <div class="row clearfix">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <select name="payment_method" id="payment_method" class="form-control" required="">
-                                            <option value="" selected disabled>Please choose a Payment Method</option>
-                                            @foreach ($paymentmethods as $paymentMethod)
-                                                <option value="{{ $paymentMethod->id }}"  @if($invoice->payment_method_id == $paymentMethod->id) selected @endif>
-                                                    {{ $loop->iteration }})
-                                                    Name: {{ $paymentMethod->name ?? '#' }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- End Payment Mthod section --}}
-
                         {{-- Start Dynamic Service section --}}
                         <div class="row clearfix">
                             <div class="col-md-12">
@@ -92,31 +72,35 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($invoice->items as $inv_item)
-                                        <tr id='addr{{ $loop->iteration - 1 }}'>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>
-                                                <select name='services[]' class="form-control service"
-                                                    onchange="service_selector(this)" required="">
-                                                    <option value="" selected disabled>Please chose a service</option>
-                                                    @foreach ($serviceCategories as $serviceCategory)
-                                                        <optgroup label="{{ $serviceCategory->name }}">
-                                                            @foreach ($serviceCategory->services as $service)
-                                                                <option value="{{ $service->id }}" @if($inv_item->service_id == $service->id) selected @endif>{{ $service->name }}
-                                                                </option>
-                                                            @endforeach
-                                                        </optgroup>
-                                                    @endforeach
-                                                </select>
-                                            </td>
-                                            <td><input type="number" name='qty[]' placeholder='Enter Qty'
-                                                    class="form-control qty" step="0" min="0" value="{{ $inv_item->quantity }}" /></td>
-                                            <td><input type="number" name='price[]' placeholder='Enter Unit Price'
-                                                    class="form-control price" step="0.00" min="0" value="{{ $inv_item->price }}" /></td>
-                                            <td><input type="number" name='total[]' placeholder='0.00'
-                                                    class="form-control total" readonly value="{{ $inv_item->quantity * $inv_item->price }}" /></td>
-                                        </tr>
+                                            <tr id='addr{{ $loop->iteration - 1 }}'>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>
+                                                    <select name='services[]' class="form-control service"
+                                                        onchange="service_selector(this)" required="">
+                                                        <option value="" selected disabled>Please chose a service</option>
+                                                        @foreach ($serviceCategories as $serviceCategory)
+                                                            <optgroup label="{{ $serviceCategory->name }}">
+                                                                @foreach ($serviceCategory->services as $service)
+                                                                    <option value="{{ $service->id }}"
+                                                                        @if ($inv_item->service_id == $service->id) selected @endif>{{ $service->name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </optgroup>
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+                                                <td><input type="number" name='qty[]' placeholder='Enter Qty'
+                                                        class="form-control qty" step="0" min="0"
+                                                        value="{{ $inv_item->quantity }}" /></td>
+                                                <td><input type="number" name='price[]' placeholder='Enter Unit Price'
+                                                        class="form-control price" step="0.00" min="0"
+                                                        value="{{ $inv_item->price }}" /></td>
+                                                <td><input type="number" name='total[]' placeholder='0.00'
+                                                        class="form-control total" readonly
+                                                        value="{{ $inv_item->quantity * $inv_item->price }}" /></td>
+                                            </tr>
                                         @endforeach
-                                        <tr id='addr{{ $invoice->items->count()  }}'>
+                                        <tr id='addr{{ $invoice->items->count() }}'>
                                             <td>{{ $invoice->items->count() + 1 }}</td>
                                             <td>
                                                 <select name='services[]' class="form-control service"
@@ -125,7 +109,8 @@
                                                     @foreach ($serviceCategories as $serviceCategory)
                                                         <optgroup label="{{ $serviceCategory->name }}">
                                                             @foreach ($serviceCategory->services as $service)
-                                                                <option value="{{ $service->id }}">{{ $service->name }}
+                                                                <option value="{{ $service->id }}">
+                                                                    {{ $service->name }}
                                                                 </option>
                                                             @endforeach
                                                         </optgroup>
@@ -171,7 +156,8 @@
                                             <td class="text-center">
                                                 <div class="input-group mb-2 mb-sm-0">
                                                     <input type="number" class="form-control" id="discount"
-                                                        name="discount" placeholder="0" value="{{ $invoice->discount_percentage }}">
+                                                        name="discount" placeholder="0"
+                                                        value="{{ $invoice->discount_percentage }}">
                                                 </div>
                                             </td>
                                             <td class="text-center"><input type="number" name='discount_amount'
@@ -184,7 +170,8 @@
                                             <td class="text-center">
                                                 <div class="input-group mb-2 mb-sm-0">
                                                     <input type="number" class="form-control" id="fixed_discount"
-                                                        name="fixed_discount" placeholder="0" value="{{ $invoice->fixed_discount }}">
+                                                        name="fixed_discount" placeholder="0"
+                                                        value="{{ $invoice->fixed_discount }}">
                                                 </div>
                                             </td>
                                             <td class="text-center"><input type="number" name='fixed_discount_amount'
@@ -193,11 +180,12 @@
                                             </td>
                                         </tr>
 
-                                        <tr @if(auth()->user()->hasPermissionTo('Invoice create with vat permission')) @else style="display:none"  @endif>
+                                        <tr @if (auth()->user()->hasPermissionTo('Invoice create with vat permission')) @else style="display:none"  @endif>
                                             <th class="text-center">VAT (%)</th>
                                             <td class="text-center">
                                                 <div class="input-group mb-2 mb-sm-0">
-                                                    <input type="number" class="form-control" id="tax" placeholder="0" value="{{ $invoice->vat_percentage }}">
+                                                    <input type="number" class="form-control" id="tax" placeholder="0"
+                                                        value="{{ $invoice->vat_percentage }}">
                                                 </div>
                                             </td>
                                             <td class="text-center"><input type="number" name='tax_amount'
@@ -216,7 +204,7 @@
                                         <tr>
                                             <th class="text-center">Advance Payment</th>
                                             <td class="text-center"><input type="number" name='advance_payment_amount'
-                                                    id="advance_payment_amount" placeholder='0.00' class="form-control"
+                                                    id="advance_payment_amount" placeholder='0.00' class="form-control" value="{{ $invoice->appointment->advance_amount ?? 0 }}"
                                                     readonly />
                                             </td>
                                             <td class="text-center"><input type="number" name='due_after_advance_amount'
@@ -240,17 +228,35 @@
                             </div>
                         </div>
                         {{-- End Sumation section --}}
+                        {{-- Start Payment Mthod  section --}}
+                        <div class="row clearfix">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <select name="payment_method" id="payment_method" class="form-control"
+                                            required="">
+                                            <option value="" selected disabled>Please choose a Payment Method</option>
+                                            @foreach ($paymentmethods as $paymentMethod)
+                                                <option value="{{ $paymentMethod->id }}">
+                                                    {{ $paymentMethod->name ?? '#' }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- End Payment Mthod section --}}
                         {{-- Start Submit Btn section --}}
                         <div class="row clearfix">
                             <div class="col-md-12 d-flex justify-content-between">
+                                <button id="" class="btn btn-lg btn-danger btn-default pull-right"
+                                    onClick="window.location.reload();">Refresh Page</button>
+                                <button id="" class="btn btn-lg btn-info btn-default pull-right"
+                                    onClick="calc();">Calculate</button>
                                 <button type="button" class="btn btn-lg btn-success waves-effect waves-light"
                                     id="invoice_save_btn" onclick="invoiceSaveFunction(this)">Save Invoice</button>
 
-                                <button id="" class="btn btn-lg btn-danger btn-default pull-right"
-                                    onClick="window.location.reload();">Refresh Page</button>
-
-                                <button id="" class="btn btn-lg btn-info btn-default pull-right"
-                                    onClick="calc();">Calculate</button>
                             </div>
                         </div>
                         {{-- End Submit Btn section --}}
@@ -286,6 +292,20 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
+
+    <style>
+        .style-select {
+            background: linear-gradient(to top, #ffffff 0%, #99ff66 100%);
+            margin: 10px;
+            width: 100%;
+            height: 60px;
+            border: 5px solid #99ff66;
+            border-radius: 14px;
+            font-size: 25px;
+            overflow: hidden;
+        }
+
+    </style>
 @endpush
 
 @push('foot')
@@ -355,7 +375,7 @@
             $('#sub_total').val(total.toFixed(2));
 
             discount_sum = total / 100 * $('#discount').val();
-            fixed_discount=$('#fixed_discount').val();
+            fixed_discount = $('#fixed_discount').val();
             $('#discount_amount').val(discount_sum.toFixed(2));
             $('#fixed_discount_amount').val(fixed_discount);
             $('#total_amount').val((total - discount_sum - fixed_discount).toFixed(2));
@@ -423,57 +443,57 @@
             });
             // console.log(service_data_set)
             $.ajax({
-                    method: "PATCH",
-                    url: "/backend/invoice/"+{{ $invoice->id }},
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    data: {
-                        service_data_set: service_data_set,
-                        appointment_id: document.getElementById('appointment').value,
-                        payment_method: document.getElementById('payment_method').value,
-                        vat_percentage: document.getElementById('tax').value,
-                        discount_percentage: document.getElementById('discount').value,
-                        fixed_discount: document.getElementById('fixed_discount').value,
-                        advance_payment_amount: document.getElementById('advance_payment_amount').value,
-                        // new_payment_amount: document.getElementById('new_payment_amount').value,
-                        new_payment_amount: document.getElementById('due_after_advance_amount').value,
-                    },
-                    dataType: 'JSON',
-                    beforeSend: function() {
+                method: "PATCH",
+                url: "/backend/invoice/" + {{ $invoice->id }},
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    service_data_set: service_data_set,
+                    appointment_id: document.getElementById('appointment').value,
+                    payment_method: document.getElementById('payment_method').value,
+                    vat_percentage: document.getElementById('tax').value,
+                    discount_percentage: document.getElementById('discount').value,
+                    fixed_discount: document.getElementById('fixed_discount').value,
+                    advance_payment_amount: document.getElementById('advance_payment_amount').value,
+                    // new_payment_amount: document.getElementById('new_payment_amount').value,
+                    new_payment_amount: document.getElementById('due_after_advance_amount').value,
+                },
+                dataType: 'JSON',
+                beforeSend: function() {
 
-                    },
-                    complete: function() {
+                },
+                complete: function() {
 
-                    },
-                    success: function(data) {
-                        console.log(data)
-                        if (data.type == 'success') {
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'success',
-                                title: 'Your invoice has been saved',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                            $('#modal').modal('show');
-                            $('#modal-body').html(`<iframe src="` + data.invoice_url +
-                                `" width="100%" height="400"></iframe>`);
+                },
+                success: function(data) {
+                    console.log(data)
+                    if (data.type == 'success') {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your invoice has been saved',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        $('#modal').modal('show');
+                        $('#modal-body').html(`<iframe src="` + data.invoice_url +
+                            `" width="100%" height="400"></iframe>`);
 
-                            $(".mdal_close_a").attr("href", data.btn_url)
-                        } else {
-                            Swal.fire({
-                                icon: data.type,
-                                title: 'Oops...',
-                                text: data.message,
-                                footer: 'We are sorry for unable.'
-                            })
-                        }
-                    },
-                    error: function(error) {
-                        validation_error(error);
-                    },
-                });
+                        $(".mdal_close_a").attr("href", data.btn_url)
+                    } else {
+                        Swal.fire({
+                            icon: data.type,
+                            title: 'Oops...',
+                            text: data.message,
+                            footer: 'We are sorry for unable.'
+                        })
+                    }
+                },
+                error: function(error) {
+                    validation_error(error);
+                },
+            });
 
         }
     </script>

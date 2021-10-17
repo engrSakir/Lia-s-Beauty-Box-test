@@ -103,6 +103,7 @@ if (!function_exists('random_code')) {
 
         $paid = $invoice->payments->sum('amount');
         $due = $price - $paid;
+        $advance_amount = $invoice->appointment->advance_amount ?? 0;
         // dd('Price:'.$price.' Paid:'.$paid.' Due: '.round($due, 0));
         $data = [
             'vat_percentage'    => round($vat_percentage),
@@ -116,6 +117,8 @@ if (!function_exists('random_code')) {
             'paid' => round($paid),
             'due' => round($due),
             'fixed_discount' => round($invoice->fixed_discount),
+            'advance' => round($advance_amount),
+            'current_paid' => round($paid - $advance_amount),
         ];
         return $data;
     }

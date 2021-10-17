@@ -45,16 +45,25 @@ class AppointmentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'phone'     => 'nullable|string',
             'email'     => 'nullable|email',
+            'name'     => 'required|string',
+            'service'           => 'required|exists:services,id',
         ]);
 
-        $user = User::where('phone', $request->phone)->first();
+        if($request->email){
+            $user = User::where('email', $request->email)->first();
+        }else if($request->phone){
+            $user = User::where('phone', $request->phone)->first();
+        }else{
+            $user = User::where('name', $request->name)->first();
+        }
+
 
         if ($user) {
             $request->validate([
                 'appointment_data'  => 'required|string', // get from hidden
                 'schedule'          => 'required|exists:schedules,id', // get from hidden
-                'service'           => 'required|exists:services,id',
             ]);
         } else {
             $request->validate(
@@ -93,7 +102,7 @@ class AppointmentController extends Controller
                 $appointment->schedule_id       = $request->schedule;
                 $appointment->service_id        = $request->service;
                 $appointment->transaction_id    = $request->transaction_id;
-                $appointment->advance_amount    = $request->advance_amount;
+                $appointment->advance_amount    = $request->advance_amount ?? 0;
                 $appointment->status            = 'Approved'; //Administritive auto approve
                 $appointment->save();
             } else {
@@ -232,17 +241,25 @@ class AppointmentController extends Controller
         } else {
             //Full update
             $request->validate([
-                'email'     => 'nullable',
+                'phone'     => 'nullable|string',
+                'email'     => 'nullable|email',
+                'name'     => 'required|string',
+                'service'           => 'required|exists:services,id',
             ]);
 
-            $user = User::where('phone', $request->phone)->first();
+            if($request->email){
+                $user = User::where('email', $request->email)->first();
+            }else if($request->phone){
+                $user = User::where('phone', $request->phone)->first();
+            }else{
+                $user = User::where('name', $request->name)->first();
+            }
 
             if ($user) {
                 $request->validate([
                     // 'appointment_datE'  => 'required|string', // get from hidden
                     'schedule'          => 'required|exists:schedules,id', // get from hidden
                     'service'           => 'required|exists:services,id',
-                    'message'           => 'nullable|string',
                 ]);
             } else {
                 $request->validate(
@@ -279,7 +296,7 @@ class AppointmentController extends Controller
                 $appointment->schedule_id       = $request->schedule;
                 $appointment->service_id        = $request->service;
                 $appointment->transaction_id        = $request->transaction_id;
-                $appointment->advance_amount           = $request->advance_amount;
+                $appointment->advance_amount           = $request->advance_amount ?? 0;
                 $appointment->message           = $request->message;
                 $appointment->booked_by_admin   = true;
                 $appointment->save();
