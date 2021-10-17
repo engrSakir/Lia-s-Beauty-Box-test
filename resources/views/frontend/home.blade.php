@@ -1,5 +1,5 @@
 @extends('layouts.frontend.app')
-@push('title') Home @endpush
+@push('title') Beauty Salon @endpush
 @section('content')
     <div id="rev_slider_1050_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="webproduct-light"
         data-source="gallery" style="background-color:transparent;padding:10px;">

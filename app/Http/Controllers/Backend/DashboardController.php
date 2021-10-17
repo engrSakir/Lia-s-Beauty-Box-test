@@ -29,10 +29,15 @@ class DashboardController extends Controller
             foreach(Invoice::whereMonth('created_at', date('m'))->get() as $inv){
                 $total_sale_amount_of_this_month += inv_calculator($inv)['price'];
             }
+            $total_vat_of_the_month = 0;
+            foreach(Invoice::whereMonth('created_at', date('m'))->get() as $invoice){
+                $total_vat_of_the_month += $invoice->items()->sum(DB::raw('quantity * price')) / 100 * $invoice->vat_percentage;
+            }
+
             $dashboard_items = [
                 [
-                    'title' => 'Total Invoice of '.Carbon::now()->format('F'),
-                    'count' => Invoice::whereMonth('created_at', date('m'))->count(),
+                    'title' => 'Total Customer of '.Carbon::now()->format('F'),
+                    'count' => User::role('Customer')->whereMonth('created_at', date('m'))->count(),
                 ],
                 [
                     'title' => 'Total Sale Amount of '.Carbon::now()->format('F'),
@@ -42,13 +47,14 @@ class DashboardController extends Controller
                     'title' => 'Total Expense of '.Carbon::now()->format('F'),
                     'count' => Expense::whereMonth('created_at', date('m'))->get()->sum('amount'),
                 ],
-                [
-                    'title' => 'Total User of '.Carbon::now()->format('F'),
-                    'count' => User::whereMonth('created_at', date('m'))->count(),
-                ],
+               
                 [
                     'title' => 'Total Appointment of '.Carbon::now()->format('F'),
                     'count' => Appointment::whereMonth('created_at', date('m'))->count(),
+                ],
+                [
+                    'title' => 'Total VAT of '.Carbon::now()->format('F'),
+                    'count' => $total_vat_of_the_month ?? 0,
                 ],
                 [
                     'title' => 'Amount in Hand of '.Carbon::now()->format('F'),
@@ -273,13 +279,14 @@ class DashboardController extends Controller
                 'count' => Expense::whereBetween('created_at',[$start,$end])->get()->sum('amount'),
             ],
             [
-                'title' => 'Total User : ',
-                'count' => User::whereBetween('created_at',[$start,$end])->count(),
-            ],
-            [
                 'title' => 'Total Appointment : ',
                 'count' => Appointment::whereBetween('created_at',[$start,$end])->count(),
             ],
+            [
+                'title' => 'Total Salary : ',
+                'count' => EmployeeSalary::whereBetween('created_at',[$start,$end])->get()->sum('amount'),
+            ],
+           
             [
                 'title' => 'Amount in Hand : ',
                 'count' => Payment::whereBetween('created_at',[$start,$end])->get()->sum('amount') - Expense::whereBetween('created_at',[$start,$end])->get()->sum('amount') - EmployeeSalary::whereBetween('created_at',[$start,$end])->get()->sum('amount'),

@@ -2,14 +2,14 @@
 @push('title') Gallery @endpush
 @section('content')
     <!-- INNER PAGE BANNER -->
-    <div class="wt-bnr-inr overlay-wraper" style="background-image:url(assets/frontend/images/banner/product-banner.jpg);">
+  <!--  <div class="wt-bnr-inr overlay-wraper" style="background-image:url(assets/frontend/images/banner/product-banner.jpg);">
         <div class="overlay-main bg-black opacity-07"></div>
         <div class="container">
             <div class="wt-bnr-inr-entry">
                 <h1 class="text-white">Gallery</h1>
             </div>
         </div>
-    </div>
+    </div>-->
     <!-- INNER PAGE BANNER END -->
 
     <!-- BREADCRUMB ROW -->
@@ -29,7 +29,7 @@
             <div class="section-content">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="text-uppercase">Gallery</h2>
+                        <h4 class="text-uppercase">Gallery</h4>
                         <div class="wt-separator-outer m-b10">
                             <div class="wt-separator style-icon">
                                 <i class="fa fa-leaf text-black"></i>

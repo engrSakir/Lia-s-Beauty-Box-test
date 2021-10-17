@@ -2,14 +2,14 @@
 @push('title') Booking @endpush
 @section('content')
     <!-- INNER PAGE BANNER -->
-    <div class="wt-bnr-inr overlay-wraper" style="background-image:url(assets/frontend/images/banner/product-banner.jpg);">
+   <!-- <div class="wt-bnr-inr overlay-wraper" style="background-image:url(assets/frontend/images/banner/product-banner.jpg);">
         <div class="overlay-main bg-black opacity-07"></div>
         <div class="container">
             <div class="wt-bnr-inr-entry">
                 <h1 class="text-white">Booking</h1>
             </div>
         </div>
-    </div>
+    </div>-->
     <!-- INNER PAGE BANNER END -->
 
     <!-- BREADCRUMB ROW -->
@@ -17,7 +17,7 @@
         <div class="container">
             <ul class="wt-breadcrumb breadcrumb-style-2">
                 <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home</a></li>
-                <li>Product</li>
+                <li>Booking</li>
             </ul>
         </div>
     </div>

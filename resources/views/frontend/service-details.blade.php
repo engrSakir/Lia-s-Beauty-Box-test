@@ -222,10 +222,10 @@
                     $.each(response.schedules, function(schedule_index, schedule) {
                         var schedule_counter = 0;
                         $('#schedule_id').val(schedule.id);
-                        var starting_time = moment(Date("1/1/1900 " + schedule.starting_time)).format(
-                            'hh:mm:ss a');
-                        var ending_time = moment(Date("1/1/1900 " + schedule.ending_time)).format(
-                            'hh:mm:ss a');
+                        var strtime= (new Date("1/1/1900 "+schedule.starting_time).toLocaleString()).split(',');
+                      var starting_time =strtime[1];
+                        var endtime = (new Date("1/1/1900 " + schedule.ending_time).toLocaleString()).split(',');
+                        var ending_time=endtime[1];
                         var title = schedule.title;
                         var maximum_participant = schedule.maximum_participant;
                         var html = `<div class="widget bg-white recent-posts-entry schedule-box btn waves-effect waves-light btn-outline-primary"
@@ -279,10 +279,10 @@
                 success: function(response) {
                     console.log(response);
                     if (response.booking_count < response.schedule.maximum_participant) {
-                        var starting_time = moment(Date("1/1/1900 " + response.schedule.starting_time)).format(
-                            'hh:mm:ss a');
-                        var ending_time = moment(Date("1/1/1900 " + response.schedule.ending_time)).format(
-                            'hh:mm:ss a');
+                        var strtime= (new Date("1/1/1900 "+response.schedule.starting_time).toLocaleString()).split(',');
+                      var starting_time =strtime[1];
+                        var endtime = (new Date("1/1/1900 " + response.schedule.ending_time).toLocaleString()).split(',');
+                        var ending_time=endtime[1];
                         $('#schedule_title').text(response.schedule.title);
                         $('#schedule_date').text($("#appointment_data").val());
                         $('#schedule_time').text(starting_time + ' To ' + ending_time);

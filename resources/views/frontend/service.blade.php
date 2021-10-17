@@ -6,7 +6,7 @@
         <div class="overlay-main bg-black opacity-07"></div>
         <div class="container">
             <div class="wt-bnr-inr-entry">
-                <h1 class="text-white">Booking</h1>
+                <h1 class="text-white">Services</h1>
             </div>
         </div>
     </div>
@@ -17,7 +17,7 @@
         <div class="container">
             <ul class="wt-breadcrumb breadcrumb-style-2">
                 <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home</a></li>
-                <li>Product</li>
+                <li>Service</li>
             </ul>
         </div>
     </div>
@@ -215,10 +215,10 @@
                     $('#schedule').html('')
                     $.each(response.schedules, function(schedule_index, schedule) {
                         var schedule_counter = 0;
-                        var starting_time = moment(Date("1/1/1900 " + schedule.starting_time)).format(
-                            'hh:mm:ss a');
-                        var ending_time = moment(Date("1/1/1900 " + schedule.ending_time)).format(
-                            'hh:mm:ss a');
+                        var strtime= (new Date("1/1/1900 "+schedule.starting_time).toLocaleString()).split(',');
+                      var starting_time =strtime[1];
+                        var endtime = (new Date("1/1/1900 " + schedule.ending_time).toLocaleString()).split(',');
+                        var ending_time=endtime[1];
                         var title = schedule.title;
                         var html = `<div class="widget bg-white recent-posts-entry schedule-box btn waves-effect waves-light btn-outline-primary"
                         onclick="bookingModal(` + schedule.id + `)">
@@ -268,8 +268,10 @@
                 },
                 success: function(response) {
                     //console.log(response);
-                    var starting_time = moment(Date("1/1/1900 " + response.starting_time)).format('hh:mm:ss a');
-                    var ending_time = moment(Date("1/1/1900 " + response.ending_time)).format('hh:mm:ss a');
+                    var strtime= (new Date("1/1/1900 "+response.schedule.starting_time).toLocaleString()).split(',');
+                      var starting_time =strtime[1];
+                        var endtime = (new Date("1/1/1900 " + response.schedule.ending_time).toLocaleString()).split(',');
+                        var ending_time=endtime[1];
                     $('#schedule_title').text(response.title);
                     $('#schedule_date').text($("#appointment_data").val());
                     $('#schedule_time').text(starting_time + ' To ' + ending_time);
