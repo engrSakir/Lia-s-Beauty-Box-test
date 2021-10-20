@@ -41,6 +41,8 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'
         Route::get('payment/{invoice}', [InvoiceController::class, 'payment'])->name('invoice.payment');
         Route::patch('payment/{invoice}', [InvoiceController::class, 'paymentStore']);
         Route::get('payment-receipt/{payment}', [InvoiceController::class, 'paymentReceipt'])->name('paymentReceipt');
+        Route::get('/ajax/get-items-by-category/{category}', [InvoiceController::class, 'getItemsBycategory'])->middleware(['auth'])->name('getItemsBycategory');
+
 
         Route::resource('appointment', AppointmentController::class);
         Route::resource('invoice', InvoiceController::class);

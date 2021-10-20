@@ -15,7 +15,6 @@
                 </ol>
                 <a href="{{ route('backend.appointment.create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
                         class="fa fa-plus-circle"></i> Edit New Appointment</a>
-
             </div>
         </div>
     </div>
@@ -184,7 +183,7 @@
                                             <th class="text-center">VAT (%)</th>
                                             <td class="text-center">
                                                 <div class="input-group mb-2 mb-sm-0">
-                                                    <input type="number" class="form-control" id="tax" placeholder="0"
+                                                    <input type="number" class="form-control" id="tax" value="0" placeholder="0"
                                                         value="{{ $invoice->vat_percentage }}">
                                                 </div>
                                             </td>
@@ -193,7 +192,7 @@
                                             </td>
                                         </tr>
 
-                                        <tr>
+                                        <tr style="display:none">
                                             <th class="text-center">Grand Total</th>
                                             <td></td>
                                             <td class="text-center"><input type="number" name='total_amount'
@@ -415,7 +414,8 @@
                     $('#addr0').find('.service').val(response.appointment.service_id)
                     $('#addr0').find('.price').val(response.service.price)
                     $('#addr0').find('.qty').val(1)
-                    $('#tax').val(response.vat_percentage)
+                    // $('#tax').val(response.vat_percentage)
+                    $('#tax').val(0)
                     $('#discount').val(response.discount_percentage)
                     $('#fixed_discount').val(0)
                     $('#advance_payment_amount').val(response.appointment.advance_amount)

@@ -171,39 +171,57 @@
                     <td class="item" style="width: 2%">
                         <h3>SL</h3>
                     </td>
-                    <td class="Rate" style="width: 58%; text-align:left;">
+                    <td class="Rate" style="width: 40%; text-align:left;">
                         <h3>Service</h3>
                     </td>
-                    <td class="Rate" style="width: 12%; text-align:center;">
+                    <td class="Rate" style="width: 15%; text-align:center;">
                         <h3>Price</h3>
                     </td>
-                    <td class="Rate" style="width: 10%; text-align:center;">
-                        <h3>QTY</h3>
+                    <td class="Rate" style="width: 15%; text-align:center;">
+                        <h3>VAT</h3>
                     </td>
-                    <td class="Rate" style="width: 18%; text-align:right;">
+                    <td class="Rate" style="width: 18%; text-align:center;">
                         <h3>Total</h3>
                     </td>
+                    <td class="Rate" style="width: 10%; text-align:right;">
+                        <h3>QTY</h3>
+                    </td>
                 </tr>
+                @php $total_vat = 0; $total_price = 0; $total_price_include_vat = 0;  @endphp
                 @foreach ($invoice->items as $item)
+                @php
+                $total_price += round((100 * $item->price)/(100+$invoice->vat_percentage), 2) * $item->quantity;
+                $total_vat += round($item->price - ((100 * $item->price)/(100+$invoice->vat_percentage)), 2) * $item->quantity;
+                $total_price_include_vat += round($item->price * $item->quantity, 2);
+                @endphp
                     <tr class="item @if ($loop->last) last @endif">
                         <td style="text-align:left;">{{$loop->iteration }}</td>
                         <td style="text-align:left;">{{ $item->service->name }}</td>
-                        <td style="text-align:center;"> {{ $item->price }} </td>
-                        <td style="text-align:center;">{{ $item->quantity }}</td>
-                        <td style="text-align:right;"> {{ $item->price * $item->quantity }}</td>
+                        <td style="text-align:center;"> {{ round((100 * $item->price)/(100+$invoice->vat_percentage), 2) }} </td>
+                        <td style="text-align:center;"> {{ round($item->price - ((100 * $item->price)/(100+$invoice->vat_percentage)), 2) }} </td>
+                        <td style="text-align:center;"> {{ $item->price }}</td>
+                        <td style="text-align:right;">{{ $item->quantity }}</td>
                     </tr>
                 @endforeach
+                <tr class="item last tabletitle">
+                    <td style="text-align:left;"></td>
+                    <td style="text-align:left;">Total</td>
+                    <td style="text-align:center;"> {{ $total_price }} </td>
+                    <td style="text-align:center;"> {{ $total_vat }} </td>
+                    <td style="text-align:center;"> {{ $total_price_include_vat }}</td>
+                    <td style="text-align:right;"></td>
+                </tr>
             </table>
             <table>
-                <tr class="tabletitle">
+                <tr class="">
                     <td class="Rate" style="width: 50%; text-align:left;">
-                        <h3>Total</h3>
+                        <h3>Total price</h3>
                     </td>
                     <td class="payment" style="width: 50%; text-align:right;">
-                        {{ inv_calculator($invoice)['main_price'] }}
+                        {{ $total_price }}
                     </td>
                 </tr>
-                <tr class="tabletitle">
+                <tr class="">
                     <td class="Rate">
                         <h3>Discount ({{ inv_calculator($invoice)['discount_percentage'] }}%)</h3>
                     </td>
@@ -211,15 +229,7 @@
                        {{ inv_calculator($invoice)['discount_amount'] }}
                     </td>
                 </tr>
-                <tr class="tabletitle">
-                    <td class="Rate">
-                        <h3>Vat ({{ inv_calculator($invoice)['vat_percentage'] }}%)</h3>
-                    </td>
-                    <td class="payment" style="text-align:right;">
-                        {{ inv_calculator($invoice)['vat_amount'] }}
-                    </td>
-                </tr>
-                <tr class="tabletitle">
+                <tr class="">
                     <td class="Rate">
                         <h3> Fixed Discount:</h3>
                     </td>
@@ -227,15 +237,33 @@
                         {{ inv_calculator($invoice)['fixed_discount'] }}
                     </td>
                 </tr>
-                <tr class="tabletitle">
+                <tr class="">
                     <td class="Rate">
-                        <h3> Grand Total:</h3>
+                        <h3> Price after discount:</h3>
                     </td>
                     <td class="payment" style="text-align:right;">
-                        {{ inv_calculator($invoice)['price'] }}
+                        {{ inv_calculator($invoice)['price_after_discount'] }}
                     </td>
                 </tr>
-                <tr class="tabletitle">
+
+                <tr class="">
+                    <td class="Rate">
+                        <h3> Total vat:</h3>
+                    </td>
+                    <td class="payment" style="text-align:right;">
+                        {{ $total_vat }}
+                    </td>
+                </tr>
+
+                <tr class="">
+                    <td class="Rate">
+                        <h3>Have to pay:</h3>
+                    </td>
+                    <td class="payment" style="text-align:right;">
+                        {{ inv_calculator($invoice)['price_after_discount'] + $total_vat }}
+                    </td>
+                </tr>
+                <tr class="">
                     <td class="Rate">
                         <h3>Advance Paid:</h3>
                     </td>
@@ -243,7 +271,7 @@
                         {{ inv_calculator($invoice)['advance'] }}
                     </td>
                 </tr>
-                <tr class="tabletitle">
+                <tr class="">
                     <td class="Rate">
                         <h3>Current Paid:</h3>
                     </td>
@@ -251,15 +279,7 @@
                         {{ inv_calculator($invoice)['current_paid'] }}
                     </td>
                 </tr>
-                <tr class="tabletitle">
-                    <td class="Rate">
-                        <h3>Total Paid:</h3>
-                    </td>
-                    <td class="payment" style="text-align:right;">
-                        {{ inv_calculator($invoice)['paid'] }}
-                    </td>
-                </tr>
-                <tr class="tabletitle">
+                <tr class="">
                     <td class="Rate">
                         <h3> Payment method</h3>
                     </td>

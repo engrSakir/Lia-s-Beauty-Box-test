@@ -149,11 +149,11 @@
                                         </tr>
 
 
-                                        <tr @if (auth()->user()->hasPermissionTo('Invoice create with vat permission')) @else style="display:none"  @endif>
+                                        <tr style="display:none" @if (auth()->user()->hasPermissionTo('Invoice create with vat permission')) @else style="display:none"  @endif>
                                             <th class="text-center">VAT (%)</th>
                                             <td class="text-center">
                                                 <div class="input-group mb-2 mb-sm-0">
-                                                    <input type="number" class="form-control" id="tax" placeholder="0">
+                                                    <input type="number" class="form-control" id="tax" value="0" placeholder="0">
                                                 </div>
                                             </td>
                                             <td class="text-center"><input type="number" name='tax_amount'
@@ -161,7 +161,7 @@
                                             </td>
                                         </tr>
 
-                                        <tr>
+                                        <tr style="display:none">
                                             <th class="text-center">Grand Total</th>
                                             <td></td>
                                             <td class="text-center"><input type="number" name='total_amount'
@@ -218,13 +218,11 @@
                         {{-- End Payment Mthod section --}}
                         {{-- Start Submit Btn section --}}
                         <div class="row clearfix">
-                            <div class="col-md-12 d-flex justify-content-between">                                
+                            <div class="col-md-12 d-flex justify-content-between">
                                 <button id="" class="btn btn-lg btn-danger btn-default"
                                     onClick="window.location.reload();">Refresh Page</button>
-
                                     <button type="button" class="btn btn-lg btn-success waves-effect waves-light pull-right"
                                     id="invoice_save_btn" onclick="invoiceSaveFunction(this)">Save Invoice</button>
-
                             </div>
                         </div>
                         {{-- End Submit Btn section --}}
@@ -259,8 +257,8 @@
     {{-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> --}}
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    
-    
+
+
     <!------ Include the above in your HEAD tag ---------->
     <style>
         .style-select {
@@ -285,7 +283,7 @@
           /*  $('.service').select2({
                     maximumInputLength: 20 // only allow terms up to 20 characters long
                 });*/
-           
+
             $('#modal').modal({
                 backdrop: 'static',
                 keyboard: false
@@ -391,7 +389,8 @@
                     $('#addr0').find('.service').val(response.appointment.service_id)
                     $('#addr0').find('.price').val(response.service.price)
                     $('#addr0').find('.qty').val(1)
-                    $('#tax').val(response.vat_percentage)
+                    // $('#tax').val(response.vat_percentage)
+                    $('#tax').val(0)
                     $('#discount').val(response.discount_percentage)
                     $('#fixed_discount').val(0)
                     $('#advance_payment_amount').val(response.appointment.advance_amount)
@@ -433,7 +432,7 @@
                     fixed_discount: document.getElementById('fixed_discount').value,
                     advance_payment_amount: document.getElementById('advance_payment_amount').value,
                     // new_payment_amount: document.getElementById('new_payment_amount').value,
-                    new_payment_amount: document.getElementById('due_after_advance_amount').value,
+                    new_payment_amount: document.getElementById('total_amount').value,
                 },
                 dataType: 'JSON',
                 beforeSend: function() {
