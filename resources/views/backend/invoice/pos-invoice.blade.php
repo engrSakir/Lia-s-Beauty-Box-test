@@ -225,7 +225,7 @@
                 </tr>
                 <tr class="">
                     <td class="Rate">
-                        <h3>Discount ({{ inv_calculator($invoice)['discount_percentage'] }}%)</h3>
+                        <h3>Discount ({{ $invoice->discount_percentage }}%)</h3>
                     </td>
                     <td class="payment" style="text-align:right;">
                        {{  round(($invoice->discount_percentage / 100) * $total_price, 2) }}
@@ -247,13 +247,20 @@
                         {{ $total_price - $invoice->fixed_discount - round(($invoice->discount_percentage / 100) * $total_price, 2) }}
                     </td>
                 </tr>
-
                 <tr class="">
                     <td class="Rate">
                         <h3> Total vat:</h3>
                     </td>
                     <td class="payment" style="text-align:right;">
                         {{ $total_vat }}
+                    </td>
+                </tr>
+                <tr class="">
+                    <td class="Rate">
+                        <h3> Payble amount:</h3>
+                    </td>
+                    <td class="payment" style="text-align:right;">
+                        {{ $total_price + $total_vat - $invoice->fixed_discount - round(($invoice->discount_percentage / 100) * $total_price, 2) }}
                     </td>
                 </tr>
                 <tr class="">

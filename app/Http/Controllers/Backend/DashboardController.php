@@ -27,7 +27,7 @@ class DashboardController extends Controller
         if (auth()->user()->hasRole('Admin')) {
             $total_sale_amount_of_this_month = 0;
             foreach(Invoice::whereMonth('created_at', date('m'))->get() as $inv){
-                $total_sale_amount_of_this_month += inv_calculator($inv)['price'];
+                $total_sale_amount_of_this_month += $inv->payments()->sum('amount');
             }
             $total_vat_of_the_month = 0;
             foreach(Invoice::whereMonth('created_at', date('m'))->get() as $invoice){
@@ -47,7 +47,7 @@ class DashboardController extends Controller
                     'title' => 'Total Expense of '.Carbon::now()->format('F'),
                     'count' => Expense::whereMonth('created_at', date('m'))->get()->sum('amount'),
                 ],
-               
+
                 [
                     'title' => 'Total Appointment of '.Carbon::now()->format('F'),
                     'count' => Appointment::whereMonth('created_at', date('m'))->count(),
@@ -263,7 +263,7 @@ class DashboardController extends Controller
 
         $total_sale_amount_of_this_month = 0;
         foreach($invoices as $inv){
-            $total_sale_amount_of_this_month += inv_calculator($inv)['price'];
+            $total_sale_amount_of_this_month += $inv->payments()->sum('amount');
         }
         $count_items = [
             [
@@ -286,7 +286,7 @@ class DashboardController extends Controller
                 'title' => 'Total Salary : ',
                 'count' => EmployeeSalary::whereBetween('created_at',[$start,$end])->get()->sum('amount'),
             ],
-           
+
             [
                 'title' => 'Amount in Hand : ',
                 'count' => Payment::whereBetween('created_at',[$start,$end])->get()->sum('amount') - Expense::whereBetween('created_at',[$start,$end])->get()->sum('amount') - EmployeeSalary::whereBetween('created_at',[$start,$end])->get()->sum('amount'),

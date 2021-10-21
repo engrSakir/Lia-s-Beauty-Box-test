@@ -44,4 +44,31 @@ class Invoice extends Model
              $invoice->payments()->delete();
         });
     }
+
+    public function price()
+    {
+        $total_price = 0;
+        $total_vat = 0;
+        $total_price_include_vat = 0;
+        foreach($this->items as $item){
+            $total_price += $item->price * $item->quantity;
+            $total_vat += round( ($this->vat_percentage / 100) * $item->price, 2) * $item->quantity;
+            $total_price_include_vat += round(($item->price + (($this->vat_percentage / 100) * $item->price)) * $item->quantity, 2);
+        }
+        return $total_price + $total_vat - $this->fixed_discount - round(($this->discount_percentage / 100) * $total_price, 2);
+    }
+
+    public function vat()
+    {
+        $total_vat = 0;
+        foreach($this->items as $item){
+            $total_vat += round( ($this->vat_percentage / 100) * $item->price, 2) * $item->quantity;
+        }
+        return $total_vat;
+    }
+
+    public function due()
+    {
+        return $this->price() - $this->payments()->sum('amount');
+    }
 }

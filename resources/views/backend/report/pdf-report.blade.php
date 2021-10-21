@@ -40,7 +40,7 @@
         }
         .first{
             border:1px solid #2196F3;
- 
+
         }
         .first th{
             background-color:#E7F3FE;
@@ -100,17 +100,17 @@
                                         <td>{{ $invoice->id }}</td>
                                         <td>{{ $invoice->appointment->customer->name ?? '#' }}</td>
                                         <td>
-                                            {{ inv_calculator($invoice)['price'] ?? '#' }}
+                                            {{ $invoice->price() }}
                                         </td>
                                         <td>{{ $invoice->payments->sum('amount') }}</td>
-                                        {{-- <td>{{ inv_calculator($invoice)['due'] }}</td> --}}
+                                        {{-- <td>{{ $invoice->due() }}</td> --}}
                                         @can('Total vat amount visibility permission')
                                         <td>
-                                            {{ inv_calculator($invoice)['vat_amount'] ?? '#' }}
+                                            {{ $invoice->vat() }}
                                         </td>
                                         @endcan
                                         <td>{{ $invoice->created_at->format('d/m/Y h:i A') }}</td>
-                                      
+
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -133,7 +133,7 @@
                                     <td>{{ $expense->amount }}</td>
                                     <td>{{ $expense->category->name ?? '#' }}</td>
                                     <td>{{ $expense->created_at->format('d/m/Y') }}</td>
-                                    
+
                                 </tr>
                             @endforeach
                         </tbody>

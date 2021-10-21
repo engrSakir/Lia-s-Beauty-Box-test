@@ -91,24 +91,23 @@
                                         <td scope="row">{{ $loop->iteration }}</td>
                                         <td>{{ $invoice->id }}</td>
                                         <td>{{ $invoice->appointment->customer->name ?? '#' }}</td>
-                                        <td>{{ $invoice->appointment->customer->phone ?? '#' }}</td>                                      
+                                        <td>{{ $invoice->appointment->customer->phone ?? '#' }}</td>
                                         <td>
                                         @foreach($invoice->items as $itm)
-                                        @php 
+                                        @php
                                         $servicename=App\Models\Service::where('id',$itm->service_id)->first();
 
-                                        @endphp    
+                                        @endphp
                                         {{ $servicename->name.',' ?? '#' }}
                                         @endforeach
                                         </td>
                                         <td>
-                                            {{ inv_calculator($invoice)['price'] ?? '#' }}
+                                            {{ $invoice->price() }}
                                         </td>
                                         <td>{{ $invoice->payments->sum('amount') }}</td>
-                                        {{-- <td>{{ inv_calculator($invoice)['due'] }}</td> --}}
                                         @can('Total vat amount visibility permission')
                                         <td>
-                                            {{ inv_calculator($invoice)['vat_amount'] ?? '#' }}
+                                            {{ $invoice->vat() }}
                                         </td>
                                         @endcan
                                         <td>{{ $invoice->created_at->format('d/m/Y h:i A') }}</td>
