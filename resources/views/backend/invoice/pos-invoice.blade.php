@@ -4,7 +4,7 @@
     <style>
         @page {
             background-color: #ffffff;
-            sheet-size: 70mm 160mm;
+            sheet-size: 70mm 180mm;
             /* size: auto; */
             /* background-color: azure; */
             vertical-align: top;
@@ -190,15 +190,17 @@
                 @php $total_vat = 0; $total_price = 0; $total_price_include_vat = 0;  @endphp
                 @foreach ($invoice->items as $item)
                 @php
-                $total_price += round((100 * $item->price)/(100+$invoice->vat_percentage), 2) * $item->quantity;
-                $total_vat += round($item->price - ((100 * $item->price)/(100+$invoice->vat_percentage)), 2) * $item->quantity;
-                $total_price_include_vat += round($item->price * $item->quantity, 2);
+                $total_price += $item->price * $item->quantity;
+                $total_vat += round( ($invoice->vat_percentage / 100) * $item->price, 2) * $item->quantity;
+                $total_price_include_vat += round(($item->price + (($invoice->vat_percentage / 100) * $item->price)) * $item->quantity, 2);
+                // $total_dicount_percentage +=
+                // $total_dicount
                 @endphp
                     <tr class="item @if ($loop->last) last @endif">
                         <td style="text-align:left;">{{$loop->iteration }}</td>
                         <td style="text-align:left;">{{ $item->service->name }}</td>
-                        <td style="text-align:center;"> {{ round((100 * $item->price)/(100+$invoice->vat_percentage), 2) }} </td>
-                        <td style="text-align:center;"> {{ round($item->price - ((100 * $item->price)/(100+$invoice->vat_percentage)), 2) }} </td>
+                        <td style="text-align:center;"> {{ $item->price }} </td>
+                        <td style="text-align:center;"> {{ round(($invoice->vat_percentage / 100) * $item->price, 2) }} </td>
                         <td style="text-align:center;"> {{ $item->price }}</td>
                         <td style="text-align:right;">{{ $item->quantity }}</td>
                     </tr>
@@ -226,7 +228,7 @@
                         <h3>Discount ({{ inv_calculator($invoice)['discount_percentage'] }}%)</h3>
                     </td>
                     <td class="payment" style="text-align:right;">
-                       {{ inv_calculator($invoice)['discount_amount'] }}
+                       {{  round(($invoice->discount_percentage / 100) * $total_price, 2) }}
                     </td>
                 </tr>
                 <tr class="">
@@ -234,7 +236,7 @@
                         <h3> Fixed Discount:</h3>
                     </td>
                     <td class="payment" style="text-align:right;">
-                        {{ inv_calculator($invoice)['fixed_discount'] }}
+                        {{ $invoice->fixed_discount }}
                     </td>
                 </tr>
                 <tr class="">
@@ -242,7 +244,7 @@
                         <h3> Price after discount:</h3>
                     </td>
                     <td class="payment" style="text-align:right;">
-                        {{ inv_calculator($invoice)['price_after_discount'] }}
+                        {{ $total_price - $invoice->fixed_discount - round(($invoice->discount_percentage / 100) * $total_price, 2) }}
                     </td>
                 </tr>
 
@@ -254,29 +256,20 @@
                         {{ $total_vat }}
                     </td>
                 </tr>
-
-                <tr class="">
-                    <td class="Rate">
-                        <h3>Have to pay:</h3>
-                    </td>
-                    <td class="payment" style="text-align:right;">
-                        {{ inv_calculator($invoice)['price_after_discount'] + $total_vat }}
-                    </td>
-                </tr>
                 <tr class="">
                     <td class="Rate">
                         <h3>Advance Paid:</h3>
                     </td>
                     <td class="payment" style="text-align:right;">
-                        {{ inv_calculator($invoice)['advance'] }}
+                        {{ $invoice->appointment->advance_amount ?? 0 }}
                     </td>
                 </tr>
                 <tr class="">
                     <td class="Rate">
-                        <h3>Current Paid:</h3>
+                        <h3>Recent pay:</h3>
                     </td>
                     <td class="payment" style="text-align:right;">
-                        {{ inv_calculator($invoice)['current_paid'] }}
+                        {{ $total_price - $invoice->fixed_discount - round(($invoice->discount_percentage / 100) * $total_price, 2) + $total_vat - $invoice->appointment->advance_amount ?? 0 }}
                     </td>
                 </tr>
                 <tr class="">

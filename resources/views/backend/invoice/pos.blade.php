@@ -6,8 +6,10 @@
     <base href="{{ url('/') }}">
     <meta charset="utf-8" />
     <title>POS</title>
-    <meta name="description" content="Updates and statistics" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="description" content="{{ config('app.name') }}">
+    <meta name="author" content="{{ config('app.name') }}">
     <!--begin::Fonts-->
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" /> -->
     <!--end::Fonts-->
@@ -18,9 +20,14 @@
 
     <link href="pos-assets/api/pace/pace-theme-flat-top.css" rel="stylesheet" type="text/css" />
     <link href="pos-assets/api/mcustomscrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+
+
     <style>
         .productCard {
-            padding: 5px;
+            padding: 10px;
             margin: 2px;
             text-align: center;
             background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
@@ -37,12 +44,12 @@
             color: white;
         }
 
-        .style-select {
-            background: linear-gradient(to top, #ffffff 0%, #99ff66 100%);
+        .select2 {
+            background: linear-gradient(to top, #33ccff 0%, #ff99cc 100%);
             margin: 5px;
             width: 100%;
             height: 40px;
-            border: 5px solid #99ff66;
+            border: 5px solid #dee0dc;
             border-radius: 14px;
             font-size: 16px;
             overflow: hidden;
@@ -190,7 +197,7 @@
                             <div class="dropdown-menu dropdown-menu-right" style="min-width: 150px;">
 
 
-                                <a href="#" class="dropdown-item">
+                                <a href="javascript:void(0)" class="dropdown-item logout-btn">
                                     <span class="svg-icon svg-icon-xl svg-icon-primary mr-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -219,7 +226,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between colorfull-select">
                                 <div class="selectmain col-12">
-                                    <select class="style-select" id="item_category">
+                                    <select class="style-select select2" id="item_category">
                                         <option value="" selected disabled>Select Category</option>
                                         <option value="All">All Category</option>
                                         @foreach ($itemCategories as $itemCategory)
@@ -233,7 +240,7 @@
                         <div class="product-items">
                             <div class="row" id="item_area">
                                 @foreach ($items as $item)
-                                    <div class="col-xl-4 col-lg-2 col-md-3 col-sm-4 col-6 item_card"
+                                    <div class="col-6 item_card"
                                         id="item_id_{{ $item->id }}">
                                         <input type="hidden" class="item_id" value="{{ $item->id }}">
                                         <input type="hidden" class="item_name" value="{{ $item->name }}">
@@ -258,7 +265,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-12">
                                     <fieldset class="form-group mb-0 d-flex barcodeselection">
-                                        <select name="appointment" id="appointment" class="style-select">
+                                        <select name="appointment" id="appointment" class="style-select select2">
                                             <option value="" selected disabled>Please chose a approved appointment
                                             </option>
                                             @foreach ($appointments as $appointment)
@@ -297,7 +304,7 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="card-body">
+                        {{-- <div class="card-body">
                             <div class="form-group row mb-0">
                                 <div class="col-md-12 btn-submit d-flex justify-content-end">
                                     <button type="submit" class="btn btn-danger mr-2 confirm-delete" title="Delete">
@@ -314,7 +321,7 @@
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
 
                     </div>
@@ -323,27 +330,8 @@
                 <div class="col-xl-3 col-lg-4 col-md-4">
                     <div class="card card-custom gutter-b bg-white border-0">
                         <div class="card-body">
-                            <div class="shop-profile">
-                                <div class="media">
-                                    <div
-                                        class="bg-primary w-100px h-100px d-flex justify-content-center align-items-center">
-                                        <h2 class="mb-0 white">K</h2>
-                                    </div>
-                                    <div class="media-body ml-3">
-                                        <h3 class="title font-weight-bold">The Kundol Shop</h3>
-                                        <p class="phoonenumber">
-                                            02199+(070)234-4569
-                                        </p>
-                                        <p class="adddress">
-                                            Russel st 50,Bostron,MA
-                                        </p>
-                                        <p class="countryname">USA</p>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="resulttable-pos">
                                 <table class="table right-table" id="counter_table">
-
                                     <tbody>
                                         <tr class="d-flex align-items-center justify-content-between">
                                             <th class="border-0 font-size-h5 mb-0 font-size-bold text-dark">
@@ -397,6 +385,20 @@
                                             <td class="border-0 justify-content-end d-flex text-dark font-size-base"
                                                 id="total_vat">00</td>
                                         </tr>
+                                        <tr class="d-flex align-items-center justify-content-between">
+                                            <th class="border-0 font-size-h5 mb-0 font-size-bold text-dark">
+                                                Advance Payment
+                                            </th>
+                                            <td class="border-0 justify-content-end d-flex text-dark font-size-base"
+                                                id="advance_payment_amount">00</td>
+                                        </tr>
+                                        <tr class="d-flex align-items-center justify-content-between item-price">
+                                            <th class="border-0 font-size-h5 mb-0 font-size-bold text-primary">
+                                                HAVE TO PAY
+                                            </th>
+                                            <td class="border-0 justify-content-end d-flex text-primary font-size-base"
+                                                id="have_to_pay">00</td>
+                                        </tr>
                                         <tr class="d-flex align-items-center justify-content-between item-price">
                                             <th class="border-0 font-size-h5 mb-0 font-size-bold text-primary">
                                                 TOTAL INCLUDE VAT
@@ -410,19 +412,30 @@
                             </div>
                             <div class="d-flex justify-content-end align-items-center flex-column buttons-cash">
                                 <div>
-                                    <a href="javascript:void(0)" class="btn btn-primary white mb-2" id="save_invoice">
+                                    <select name="payment_method" id="payment_method" class="form-control select2"
+                                        required="">
+                                        <option value="" selected disabled>Please choose a Payment Method</option>
+                                        @foreach ($paymentmethods as $paymentMethod)
+                                            <option value="{{ $paymentMethod->id }}">
+                                                {{ $paymentMethod->name ?? '#' }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div>
+                                    <a href="javascript:void(0)" class="btn btn-primary white mb-2 mt-2"
+                                        id="save_invoice">
                                         <i class="fas fa-money-bill-wave mr-2"></i>
                                         SAVE INVOICE
                                     </a>
-
                                 </div>
-                                <div>
+                                {{-- <div>
                                     <a href="#" class="btn btn-outline-secondary ">
                                         <i class="fas fa-credit-card mr-2"></i>
                                         Pay With Card
                                     </a>
 
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -880,8 +893,20 @@
     <script src="pos-assets/js/plugin.bundle.min.js"></script>
     <script src="pos-assets/js/bootstrap.bundle.min.js"></script>
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!--Custom JavaScript helper -->
+    <script src="{{ asset('assets/js/helper.js') }}"></script>
     {{-- <script src="pos-assets/js/script.bundle.js"></script> --}}
     <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+
+
+
         $("#item_category").change(function() {
             var category = this.value;
             // alert(category);
@@ -895,7 +920,7 @@
                     $.each(data, function(key, value) {
                         console.log(value)
                         new_html +=
-                            `<div class="col-xl-4 col-lg-2 col-md-3 col-sm-4 col-6 item_card" id="item_id_` +
+                            `<div class="col-6 item_card" id="item_id_` +
                             value.id + `">
                         <input type="hidden" class="item_id" value="` + value.id +
                             `"><input type="hidden" class="item_name" value="` + value.name +
@@ -935,7 +960,7 @@
                             <td class="selected_item_total_price">000</td>
                             <td>
                             <div class="card-toolbar text-right">
-                            <a href="javascript:void(0)" class="item_remover" title="Delete"><i class="fas fa-trash-alt"></i></a>
+                            <a href="javascript:void(0)" class="item_remover" title="Delete"><i class="fas fa-trash-alt text-danger"></i></a>
                             </div>
                             </td>
                             </tr>`;
@@ -955,8 +980,8 @@
 
         $('#counter_table').on('keyup change', function() {
             discount_calculate();
-            console.log('%'+$('#discount_percentage').val());
-            console.log('F'+$('#discount_fixed_amount').val());
+            // console.log('%'+$('#discount_percentage').val());
+            // console.log('F'+$('#discount_fixed_amount').val());
         });
 
         function inner_calculation() {
@@ -977,12 +1002,14 @@
 
         function discount_calculate() {
             let price = $('#total_price').text();
-            let discount_percentage = $('#discount_percentage').val();
-            let discount_fixed_amount = $('#discount_fixed_amount').val();
+            let discount_percentage = parseFloat($('#discount_percentage').val());
+            let discount_fixed_amount = parseFloat($('#discount_fixed_amount').val());
             discount_amount = ((price / 100) * discount_percentage) + discount_fixed_amount;
             price_after_discount = price - discount_amount;
             $('#price_after_discount').text((price_after_discount).toFixed(2));
             let vat = parseFloat($('#total_vat').text());
+            let advance_payment_amount =  parseFloat($('#advance_payment_amount').text());
+            $('#have_to_pay').text((price_after_discount + vat - advance_payment_amount).toFixed(2));
             $('#total_price_include_vat').text((price_after_discount + vat).toFixed(2));
         }
 
@@ -1001,6 +1028,8 @@
                         console.log(response);
                         $('#item_id_' + response.appointment.service_id).trigger('click');
                         $('#discount_percentage').val(response.discount_percentage);
+                        $('#discount_fixed_amount').val(0);
+                        $('#advance_payment_amount').text(response.appointment.advance_amount);
                         discount_calculate();
                         // $('#addr0').find('.service').val(response.appointment.service_id)
                         // $('#addr0').find('.price').val(response.service.price)
@@ -1037,14 +1066,14 @@
                     },
                     data: {
                         service_data_set: service_data_set,
-                        appointment_id: document.getElementById('appointment').value,
-                        payment_method: document.getElementById('payment_method').value,
-                        vat_percentage: document.getElementById('tax').value,
-                        discount_percentage: document.getElementById('discount').value,
-                        fixed_discount: document.getElementById('fixed_discount').value,
-                        advance_payment_amount: document.getElementById('advance_payment_amount').value,
+                        appointment_id: $('#appointment').val(),
+                        payment_method: $('#payment_method').val(),
+                        vat_percentage: 15,
+                        discount_percentage: $('#discount_percentage').val(),
+                        fixed_discount: $('#discount_fixed_amount').val(),
+                        advance_payment_amount: parseFloat($('#advance_payment_amount').text()),
                         // new_payment_amount: document.getElementById('new_payment_amount').value,
-                        new_payment_amount: document.getElementById('total_amount').value,
+                        new_payment_amount: parseFloat($('#have_to_pay').text()),
                     },
                     dataType: 'JSON',
                     beforeSend: function() {
