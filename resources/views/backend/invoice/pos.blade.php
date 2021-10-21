@@ -888,7 +888,23 @@
             </div>
         </div>
     </div>
-
+    <!-- Inv show Modal -->
+    <div class="modal fade" id="modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">Invoice</h5>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <a href="javascript:void(0)" class="btn btn-primary mdal_close_a" id="modal_close_btn">Close</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="pos-assets/js/plugin.bundle.min.js"></script>
     <script src="pos-assets/js/bootstrap.bundle.min.js"></script>
@@ -904,8 +920,6 @@
         $(document).ready(function() {
             $('.select2').select2();
         });
-
-
 
         $("#item_category").change(function() {
             var category = this.value;
