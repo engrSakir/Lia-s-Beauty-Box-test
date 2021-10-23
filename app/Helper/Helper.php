@@ -115,6 +115,14 @@ if (!function_exists('random_code')) {
         return  $total_vat_of_the_month;
     }
 
+    function total_vat_of_the_year(){
+        $total_vat_of_the_year = 0;
+        foreach(Invoice::whereYear('created_at', date('Y'))->get() as $invoice){
+            $total_vat_of_the_year += $invoice->vat();
+        }
+        return  $total_vat_of_the_year;
+    }
+
     function total_vat(){
         $total_vat = 0;
         foreach(Invoice::all() as $invoice){
