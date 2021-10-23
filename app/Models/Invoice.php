@@ -56,7 +56,7 @@ class Invoice extends Model
     {
         $total_vat = 0;
         foreach($this->items as $item){
-            $total_vat += round( ($this->vat_percentage / 100) * $item->price, 2) * $item->quantity;
+            $total_vat += round(($this->vat_percentage / 100) * $item->price, 2) * $item->quantity;
         }
         return $total_vat;
     }

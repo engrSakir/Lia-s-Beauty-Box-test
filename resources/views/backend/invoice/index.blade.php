@@ -111,7 +111,7 @@
                                             <a href="{{ route('backend.invoice.show', $invoice) }}" target="_blank"
                                                 class="btn btn-primary waves-effect btn-rounded waves-light"> <i
                                                     class="fas fa-print"></i> </a>
-                                            <a href="{{ route('backend.invoice.edit', $invoice) }}"
+                                            <a target="_blank" href="{{ route('backend.invoice.edit', $invoice) }}"
                                                 class="btn btn-secondary waves-effect btn-rounded waves-light"> <i
                                                     class="fas fa-pen"></i> </a>
                                                     <button value="{{ route('backend.invoice.destroy', $invoice) }}"

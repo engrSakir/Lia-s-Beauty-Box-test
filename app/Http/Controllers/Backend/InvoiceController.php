@@ -138,9 +138,12 @@ class InvoiceController extends Controller
     public function edit(Invoice $invoice)
     {
         $appointments = Appointment::all();
-        $serviceCategories = ServiceCategory::all();
+        // $serviceCategories = ServiceCategory::all();
+        $itemCategories = ServiceCategory::all();
         $paymentmethods = PaymentMethod::all();
-        return view('backend.invoice.edit', compact('appointments', 'serviceCategories', 'paymentmethods', 'invoice'));
+        $items = Service::all();
+        // return view('backend.invoice.edit', compact('appointments', 'serviceCategories', 'paymentmethods', 'invoice'));
+        return view('backend.invoice.pos-edit', compact('appointments', 'itemCategories', 'paymentmethods', 'invoice', 'items'));
     }
 
     /**
@@ -170,7 +173,7 @@ class InvoiceController extends Controller
             $appointment->status = 'Done';
             $appointment->save();
         }
-        //Create invoice
+        //Update invoice
         $invoice->appointment_id = $appointment->id;
         // $invoice->vat_percentage = $request->vat_percentage ?? 0;
         $invoice->vat_percentage = 15;
