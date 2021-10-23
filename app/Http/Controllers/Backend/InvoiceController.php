@@ -39,12 +39,10 @@ class InvoiceController extends Controller
     public function create()
     {
         $appointments = Appointment::where('status', 'Approved')->get();
-        // $serviceCategories = ServiceCategory::all();
         $itemCategories = ServiceCategory::all();
         $items = Service::all();
         $paymentmethods = PaymentMethod::all();
-        // return view('backend.invoice.create', compact('appointments', 'serviceCategories', 'paymentmethods'));
-        return view('backend.invoice.pos', compact('appointments', 'itemCategories', 'items', 'paymentmethods'));
+        return view('backend.invoice.create', compact('appointments', 'itemCategories', 'items', 'paymentmethods'));
     }
 
     /**
@@ -70,7 +68,6 @@ class InvoiceController extends Controller
         //Change appointment status
         $appointment = Appointment::find($request->appointment_id);
         if ($appointment->status != 'Approved') {
-            // return back();
             return [
                 'type' => 'error',
                 'message' => 'This appointment is not approved. (' . $appointment->id . ')',
@@ -81,7 +78,6 @@ class InvoiceController extends Controller
             //Create invoice
             $invoice = new Invoice();
             $invoice->appointment_id = $appointment->id;
-            // $invoice->vat_percentage = $request->vat_percentage ?? 0;
             $invoice->vat_percentage = 15; //Always 15% as discouse in meeting
             $invoice->discount_percentage = $request->discount_percentage ?? 0;
             $invoice->fixed_discount = $request->fixed_discount ?? 0;
@@ -124,8 +120,7 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        // $pdf = PDF::loadView('backend.invoice.invoice-pdf', compact('invoice'));
-        $pdf = PDF::loadView('backend.invoice.pos-invoice', compact('invoice'));
+        $pdf = PDF::loadView('backend.invoice.pos-pdf', compact('invoice'));
         return $pdf->stream('Invoice-' . config('app.name') . '.pdf');
     }
 
@@ -138,12 +133,10 @@ class InvoiceController extends Controller
     public function edit(Invoice $invoice)
     {
         $appointments = Appointment::all();
-        // $serviceCategories = ServiceCategory::all();
         $itemCategories = ServiceCategory::all();
         $paymentmethods = PaymentMethod::all();
         $items = Service::all();
-        // return view('backend.invoice.edit', compact('appointments', 'serviceCategories', 'paymentmethods', 'invoice'));
-        return view('backend.invoice.pos-edit', compact('appointments', 'itemCategories', 'paymentmethods', 'invoice', 'items'));
+        return view('backend.invoice.edit', compact('appointments', 'itemCategories', 'paymentmethods', 'invoice', 'items'));
     }
 
     /**
@@ -175,7 +168,6 @@ class InvoiceController extends Controller
         }
         //Update invoice
         $invoice->appointment_id = $appointment->id;
-        // $invoice->vat_percentage = $request->vat_percentage ?? 0;
         $invoice->vat_percentage = 15;
         $invoice->discount_percentage = $request->discount_percentage ?? 0;
         $invoice->fixed_discount = $request->fixed_discount ?? 0;
