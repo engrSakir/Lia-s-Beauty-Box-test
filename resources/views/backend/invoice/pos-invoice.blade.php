@@ -201,7 +201,7 @@
                         <td style="text-align:left;">{{ $item->service->name }}</td>
                         <td style="text-align:center;"> {{ $item->price }} </td>
                         <td style="text-align:center;"> {{ round(($invoice->vat_percentage / 100) * $item->price, 2) }} </td>
-                        <td style="text-align:center;"> {{ $item->price }}</td>
+                        <td style="text-align:center;"> {{ $item->price + round(($invoice->vat_percentage / 100) * $item->price, 2) }}</td>
                         <td style="text-align:right;">{{ $item->quantity }}</td>
                     </tr>
                 @endforeach

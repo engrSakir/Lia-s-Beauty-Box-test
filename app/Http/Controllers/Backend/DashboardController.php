@@ -9,7 +9,6 @@ use App\Models\Expense;
 use App\Models\ExpenseCategory;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
-use App\Models\Payment;
 use App\Models\Schedule;
 use App\Models\Service;
 use App\Models\User;
@@ -25,15 +24,6 @@ class DashboardController extends Controller
     public function index()
     {
         if (auth()->user()->hasRole('Admin')) {
-            $total_sale_amount_of_this_month = 0;
-            foreach(Invoice::whereMonth('created_at', date('m'))->get() as $inv){
-                $total_sale_amount_of_this_month += $inv->payments()->sum('amount');
-            }
-            $total_vat_of_the_month = 0;
-            foreach(Invoice::whereMonth('created_at', date('m'))->get() as $invoice){
-                $total_vat_of_the_month += $invoice->items()->sum(DB::raw('quantity * price')) / 100 * $invoice->vat_percentage;
-            }
-
             $dashboard_items = [
                 [
                     'title' => 'Total Customer of '.Carbon::now()->format('F'),
@@ -41,7 +31,7 @@ class DashboardController extends Controller
                 ],
                 [
                     'title' => 'Total Sale Amount of '.Carbon::now()->format('F'),
-                    'count' => $total_sale_amount_of_this_month,
+                    'count' => total_sale_amount_of_this_month() ?? 0,
                 ],
                 [
                     'title' => 'Total Expense of '.Carbon::now()->format('F'),
@@ -54,11 +44,11 @@ class DashboardController extends Controller
                 ],
                 [
                     'title' => 'Total VAT of '.Carbon::now()->format('F'),
-                    'count' => $total_vat_of_the_month ?? 0,
+                    'count' => total_vat_of_the_month() ?? 0,
                 ],
                 [
-                    'title' => 'Amount in Hand of '.Carbon::now()->format('F'),
-                    'count' => Payment::whereMonth('created_at', date('m'))->get()->sum('amount') - Expense::whereMonth('created_at', date('m'))->get()->sum('amount') - EmployeeSalary::whereMonth('created_at', date('m'))->get()->sum('amount'),
+                    'title' => 'Total Amount in Hand',
+                    'count' => total_sale_amount() - Expense::all()->sum('amount') - EmployeeSalary::all()->sum('amount') + Appointment::where('status', 'Approved')->sum('advance_amount'),
                 ],
 
             ];
@@ -155,22 +145,22 @@ class DashboardController extends Controller
             ],
             [
                 'title' => 'Total Profit of this month',
-                'count' => Payment::whereMonth('created_at', date('m'))->get()->sum('amount') - Expense::whereMonth('created_at', date('m'))->get()->sum('amount') - EmployeeSalary::whereMonth('created_at', date('m'))->get()->sum('amount'),
+                'count' => total_sale_amount_of_this_month() - Expense::whereMonth('created_at', date('m'))->get()->sum('amount') - EmployeeSalary::whereMonth('created_at', date('m'))->get()->sum('amount'),
                 'url' => null,
             ],
             [
                 'title' => 'Total Profit of this year',
-                'count' => Payment::whereYear('created_at', date('Y'))->get()->sum('amount') - Expense::whereYear('created_at', date('Y'))->get()->sum('amount') - EmployeeSalary::whereYear('created_at', date('Y'))->get()->sum('amount'),
+                'count' => total_sale_amount_of_this_year() - Expense::whereYear('created_at', date('Y'))->get()->sum('amount') - EmployeeSalary::whereYear('created_at', date('Y'))->get()->sum('amount'),
                 'url' => null,
             ],
             [
                 'title' => 'Total Profit',
-                'count' => Payment::sum('amount') - Expense::sum('amount') - EmployeeSalary::sum('amount'),
+                'count' => total_sale_amount() - Expense::sum('amount') - EmployeeSalary::sum('amount'),
                 'url' => null,
             ],
             [
                 'title' => 'Total Income of this month',
-                'count' => Payment::whereMonth('created_at', date('m'))->get()->sum('amount'),
+                'count' => total_sale_amount_of_this_month(),
                 'url' => null,
             ],
             [
@@ -185,7 +175,7 @@ class DashboardController extends Controller
             ],
             [
                 'title' => 'Total Income of this year',
-                'count' => Payment::whereYear('created_at', date('Y'))->get()->sum('amount'),
+                'count' => total_sale_amount_of_this_year(),
                 'url' => null,
             ],
             [
@@ -200,7 +190,7 @@ class DashboardController extends Controller
             ],
             [
                 'title' => 'Total Income',
-                'count' => Payment::sum('amount'),
+                'count' => total_sale_amount(),
                 'url' => null,
             ],
             [
@@ -263,7 +253,7 @@ class DashboardController extends Controller
 
         $total_sale_amount_of_this_month = 0;
         foreach($invoices as $inv){
-            $total_sale_amount_of_this_month += $inv->payments()->sum('amount');
+            $total_sale_amount_of_this_month += $inv->price();
         }
         $count_items = [
             [
@@ -289,7 +279,7 @@ class DashboardController extends Controller
 
             [
                 'title' => 'Amount in Hand : ',
-                'count' => Payment::whereBetween('created_at',[$start,$end])->get()->sum('amount') - Expense::whereBetween('created_at',[$start,$end])->get()->sum('amount') - EmployeeSalary::whereBetween('created_at',[$start,$end])->get()->sum('amount'),
+                'count' => total_sale_amount_between($start,$end) - Expense::whereBetween('created_at',[$start,$end])->get()->sum('amount') - EmployeeSalary::whereBetween('created_at',[$start,$end])->get()->sum('amount'),
             ],
         ];
 

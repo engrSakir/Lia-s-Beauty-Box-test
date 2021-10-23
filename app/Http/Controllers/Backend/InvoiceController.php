@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
-use App\Models\Payment;
 use App\Models\PaymentMethod;
 use App\Models\ReferralDiscountPercentage;
 use App\Models\Service;
@@ -26,14 +25,10 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $total_paid = Payment::all()->sum('amount');
-        $total_due = InvoiceItem::sum(DB::raw('quantity * price')) - Payment::all()->sum('amount');
-        $total_vat = 0;
-        foreach (Invoice::all() as $invoice) {
-            $total_vat += $invoice->items()->sum(DB::raw('quantity * price')) / 100 * $invoice->vat_percentage;
-        }
+        $total_paid = total_sale_amount();
+        $total_vat = total_vat();
         $invoices = Invoice::orderBy('id', 'desc')->paginate(500);
-        return view('backend.invoice.index', compact('invoices', 'total_paid', 'total_due', 'total_vat'));
+        return view('backend.invoice.index', compact('invoices', 'total_paid', 'total_vat'));
     }
 
     /**
@@ -103,15 +98,10 @@ class InvoiceController extends Controller
                     $invoiceItem->price     = $service_data['price'];
                     $invoiceItem->save();
                 }
-                $payment = new Payment();
-                $payment->invoice_id = $invoice->id;
-                $payment->amount = round($request->new_payment_amount + $appointment->advance_amount);
-                $payment->save();
                 return [
                     'type' => 'success',
                     'message' => 'Successfully Created',
                     'invoice_url' => route('backend.invoice.show', $invoice),
-                    'btn_url' => route('backend.invoice.payment', $invoice),
                 ];
             } catch (\Exception $e) {
                 // Appointment status back and invoice delete
@@ -200,16 +190,10 @@ class InvoiceController extends Controller
                 $invoiceItem->price     = $service_data['price'];
                 $invoiceItem->save();
             }
-            $invoice->payments()->delete(); // First delete all payments of this invoice
-            $payment = new Payment();
-            $payment->invoice_id = $invoice->id;
-            $payment->amount = round($request->new_payment_amount + $appointment->advance_amount);
-            $payment->save();
             return [
                 'type' => 'success',
                 'message' => 'Successfully Created',
                 'invoice_url' => route('backend.invoice.show', $invoice),
-                'btn_url' => route('backend.invoice.payment', $invoice),
             ];
         } catch (\Exception $e) {
             // Appointment status back and invoice delete
@@ -236,32 +220,6 @@ class InvoiceController extends Controller
             'type' => 'success',
             'message' => 'Successfully destroy',
         ];
-    }
-
-    public function payment(Invoice $invoice)
-    {
-        return view('backend.invoice.payment', compact('invoice'));
-    }
-
-    public function paymentStore(Request $request, Invoice $invoice)
-    {
-        $request->validate([
-            'payment_amount'    => 'required|numeric|min:1',
-        ]);
-
-        $payment = new Payment();
-        $payment->invoice_id = $invoice->id;
-        $payment->amount = $request->payment_amount;
-        $payment->save();
-
-        toastr()->success('successfully payment done!');
-        return back();
-    }
-
-    public function paymentReceipt(Payment $payment)
-    {
-        $pdf = PDF::loadView('backend.invoice.receipt-pdf', compact('payment'));
-        return $pdf->stream('Payment Receipt-' . config('app.name') . '.pdf');
     }
 
     public function getItemsBycategory($category = null)

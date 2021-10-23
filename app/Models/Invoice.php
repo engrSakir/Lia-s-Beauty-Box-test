@@ -26,11 +26,6 @@ class Invoice extends Model
         return $this->hasMany(InvoiceItem::class, 'invoice_id', 'id');
     }
 
-    public function payments()
-    {
-        return $this->hasMany(Payment::class, 'invoice_id', 'id');
-    }
-
     public function paymentMethod()
     {
         return $this->belongsTo(PaymentMethod::class, 'payment_method_id', 'id');
@@ -41,7 +36,6 @@ class Invoice extends Model
         parent::boot();
         static::deleting(function($invoice) {
              $invoice->items()->delete();
-             $invoice->payments()->delete();
         });
     }
 
@@ -65,10 +59,5 @@ class Invoice extends Model
             $total_vat += round( ($this->vat_percentage / 100) * $item->price, 2) * $item->quantity;
         }
         return $total_vat;
-    }
-
-    public function due()
-    {
-        return $this->price() - $this->payments()->sum('amount');
     }
 }

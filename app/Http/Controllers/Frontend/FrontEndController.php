@@ -13,6 +13,7 @@ use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\User;
 use App\Models\Banner;
+use App\Models\Invoice;
 use App\Models\Testimonial;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -26,6 +27,7 @@ class FrontEndController extends Controller
 
     public function home()
     {
+        dd(Invoice::all()->sum('price()'));
         $clients = Client::all();
         $galleries = Gallery::all();
         $imageCategories = ImageCategory::all();

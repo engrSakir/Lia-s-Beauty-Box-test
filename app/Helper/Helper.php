@@ -74,4 +74,54 @@ if (!function_exists('random_code')) {
 
         }
     }
+
+    function total_sale_amount_of_this_month(){
+        $total_sale_amount_of_this_month = 0;
+        foreach(Invoice::whereMonth('created_at', date('m'))->get() as $inv){
+            $total_sale_amount_of_this_month += $inv->price();
+        }
+        return $total_sale_amount_of_this_month;
+    }
+
+    function total_sale_amount_of_this_year(){
+        $total_sale_amount_of_this_year = 0;
+        foreach(Invoice::whereYear('created_at', date('Y'))->get() as $inv){
+            $total_sale_amount_of_this_year += $inv->price();
+        }
+        return $total_sale_amount_of_this_year;
+    }
+
+    function total_sale_amount_between($start_date,$end_date){
+        $total_sale_amount_of_this_between = 0;
+        foreach(Invoice::whereBetween('created_at',[$start_date,$end_date])->get()->get() as $inv){
+            $total_sale_amount_of_this_between += $inv->price();
+        }
+        return $total_sale_amount_of_this_between;
+    }
+
+    function total_sale_amount(){
+        $total_sale_amount = 0;
+        foreach(Invoice::all() as $inv){
+            $total_sale_amount += $inv->price();
+        }
+        return $total_sale_amount;
+    }
+
+    function total_vat_of_the_month(){
+        $total_vat_of_the_month = 0;
+        foreach(Invoice::whereMonth('created_at', date('m'))->get() as $invoice){
+            $total_vat_of_the_month += $invoice->vat();
+        }
+        return  $total_vat_of_the_month;
+    }
+
+    function total_vat(){
+        $total_vat = 0;
+        foreach(Invoice::all() as $invoice){
+            $total_vat += $invoice->vat();
+        }
+        return  $total_vat;
+    }
+
+
 }

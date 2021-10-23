@@ -102,8 +102,7 @@
                                         <td>
                                             {{ $invoice->price() }}
                                         </td>
-                                        <td>{{ $invoice->payments->sum('amount') }}</td>
-                                        {{-- <td>{{ $invoice->due() }}</td> --}}
+                                        <td>{{ $invoice->price() }}</td>
                                         @can('Total vat amount visibility permission')
                                         <td>
                                             {{ $invoice->vat() }}

@@ -22,7 +22,7 @@
 
 @section('content')
     <div class="row">
-        
+
         <!-- Invoice -->
         <div class="col-md-6 col-lg-4 col-xlg-2">
             <div class="card">
@@ -77,7 +77,7 @@
                                     <th>Phone</th>
                                     <th>Services</th>
                                     <th>Price</th>
-                                    <th>Paid</th>
+
                                     @can('Total vat amount visibility permission')
                                     <th>Vat</th>
                                     @endcan
@@ -94,18 +94,13 @@
                                         <td>{{ $invoice->appointment->customer->name ?? '#' }}</td>
                                         <td>{{ $invoice->appointment->customer->phone ?? '#' }}</td>
                                         <td>
-                                        @foreach($invoice->items as $itm)
-                                        @php
-                                        $servicename=App\Models\Service::where('id',$itm->service_id)->first();
-
-                                        @endphp
-                                        {{ $servicename->name.',' ?? '#' }}
+                                        @foreach($invoice->items as $item)
+                                        {{ $item->service->name ?? '#' }},
                                         @endforeach
                                         </td>
                                         <td>
                                             {{ $invoice->price() }}
                                         </td>
-                                        <td>{{ $invoice->payments->sum('amount') }}</td>
                                         @can('Total vat amount visibility permission')
                                         <td>
                                             {{ $invoice->vat() }}
@@ -119,9 +114,6 @@
                                             <a href="{{ route('backend.invoice.edit', $invoice) }}"
                                                 class="btn btn-secondary waves-effect btn-rounded waves-light"> <i
                                                     class="fas fa-pen"></i> </a>
-                                            <a href="{{ route('backend.invoice.payment', $invoice) }}"
-                                                class="btn btn-info waves-effect btn-rounded waves-light"> <i
-                                                    class="fas fa-credit-card"></i> </a>
                                                     <button value="{{ route('backend.invoice.destroy', $invoice) }}"
                                                 class="btn btn-danger btn-circle delete-btn"><i class="fa fa-trash"></i>
                                             </button>
