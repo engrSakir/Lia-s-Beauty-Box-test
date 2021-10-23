@@ -35,7 +35,7 @@ class DashboardController extends Controller
                 ],
                 [
                     'title' => 'Total Expense of '.Carbon::now()->format('F'),
-                    'count' => Expense::whereMonth('created_at', date('m'))->get()->sum('amount'),
+                    'count' => Expense::whereMonth('created_at', date('m'))->get()->sum('amount') +  EmployeeSalary::whereMonth('created_at', date('m'))->get()->sum('amount'),
                 ],
 
                 [

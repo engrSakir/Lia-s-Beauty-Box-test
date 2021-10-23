@@ -76,29 +76,17 @@
                     <div class="greeting-text">
                         <h3 class="card-label mb-0 font-weight-bold text-primary">POS
                         </h3>
+                       <a href="{{ route('dashboard') }}">
                         <h3 class="card-label mb-0 ">
                             {{ config('app.name') }}
                         </h3>
+                       </a>
                     </div>
 
                 </div>
-                <div class="col-xl-4 col-lg-5 col-md-6  clock-main">
-                    <div class="clock">
-                        <div class="datetime-content">
-                            <ul>
-                                <li id="hours"></li>
-                                <li id="point1">:</li>
-                                <li id="min"></li>
-                                <li id="point">:</li>
-                                <li id="sec"></li>
-                            </ul>
-                        </div>
-                        <div class="datetime-content">
-                            <div id="Date" class=""></div>
-                        </div>
-
-                    </div>
-
+                <div class="col-xl-4 col-lg-5 col-md-6  clock-main text-center">
+                   <b>  Developed by
+                   <a href="https://www.iciclecorporation.com/" target="_blank"><b>Icicle Corporation</b></a></b>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-12 order-lg-last order-second">
                     <div class="topbar justify-content-end">

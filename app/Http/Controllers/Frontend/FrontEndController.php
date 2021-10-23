@@ -27,7 +27,6 @@ class FrontEndController extends Controller
 
     public function home()
     {
-        dd(Invoice::all()->sum('price()'));
         $clients = Client::all();
         $galleries = Gallery::all();
         $imageCategories = ImageCategory::all();
