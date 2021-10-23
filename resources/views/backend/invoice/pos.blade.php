@@ -21,7 +21,7 @@
     <link href="pos-assets/api/pace/pace-theme-flat-top.css" rel="stylesheet" type="text/css" />
     <link href="pos-assets/api/mcustomscrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    {{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> --}}
 
 
 
@@ -30,14 +30,14 @@
             padding: 10px;
             margin: 2px;
             text-align: center;
-            background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+            background: linear-gradient(to bottom, #cca356 0%, #ff99cc 100%);
             border-radius: 15px;
             cursor: pointer;
 
         }
 
         .productCard:hover {
-            background: linear-gradient(to top, #33ccff 0%, #ff99cc 100%);
+            background: linear-gradient(to top, #cca356 0%, #ff99cc 100%);
         }
 
         .productContent a {
@@ -45,9 +45,9 @@
         }
 
         .select2 {
-            background: linear-gradient(to top, #33ccff 0%, #ff99cc 100%);
+            background: linear-gradient(to top, #cca356 0%, #ff99cc 100%);
             margin: 5px;
-            width: 100%;
+            width: 90%;
             height: 40px;
             border: 5px solid #dee0dc;
             border-radius: 14px;
@@ -105,7 +105,7 @@
                         <div class="topbar-item folder-data">
                             <div class="btn btn-icon  w-auto h-auto btn-clean d-flex align-items-center py-0 mr-3"
                                 data-toggle="modal" data-target="#folderpop">
-                                <span class="badge badge-pill badge-primary">5</span>
+                                {{-- <span class="badge badge-pill badge-primary">5</span> --}}
                                 <span class="symbol symbol-35  symbol-light-success">
                                     <span class="symbol-label bg-warning font-size-h5 ">
                                         <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" fill="#ffff"
@@ -372,138 +372,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-
-
-    <div class="modal fade text-left" id="choosecustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel13"
-        style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg " role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="myModalLabel13">Add Customer</h3>
-                    <button type="button"
-                        class="close rounded-pill btn btn-sm btn-icon btn-light btn-hover-primary m-0"
-                        data-dismiss="modal" aria-label="Close">
-                        <svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z">
-                            </path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group row">
-                            <div class="col-md-6">
-                                <label class="text-body">Customer Group</label>
-                                <fieldset class="form-group mb-3">
-                                    <select
-                                        class="js-example-basic-single js-states form-control bg-transparent p-0 border-0"
-                                        name="state">
-                                        <option value="AL">General</option>
-
-                                        <option value="WY">Partial</option>
-                                    </select>
-                                </fieldset>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="text-body">Customer Name</label>
-                                <fieldset class="form-group mb-3">
-                                    <input type="text" name="text" class="form-control"
-                                        placeholder="Enter Customer Name">
-                                </fieldset>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-6">
-                                <label class="text-body">Company Name</label>
-                                <fieldset class="form-group mb-3">
-                                    <input type="text" name="text" class="form-control"
-                                        placeholder="Enter Company Name">
-                                </fieldset>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="text-body">Tax Number</label>
-                                <fieldset class="form-group mb-3">
-                                    <input type="text" name="text" class="form-control" placeholder="Enter Tax">
-                                </fieldset>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-6">
-                                <label class="text-body">Email</label>
-                                <fieldset class="form-group mb-3">
-                                    <input type="email" name="text" class="form-control" placeholder="Enter Mail">
-                                </fieldset>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="text-body">Phone Number</label>
-                                <fieldset class="form-group mb-3">
-                                    <input type="email" name="text" class="form-control"
-                                        placeholder="Enter Phone Number">
-                                </fieldset>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-6">
-                                <label class="text-body">Country</label>
-                                <fieldset class="form-group mb-3">
-                                    <select
-                                        class="js-example-basic-single js-states form-control bg-transparent p-0 border-0"
-                                        name="state">
-                                        <option value="AL">USA</option>
-
-                                        <option value="WY">UK</option>
-                                    </select>
-                                </fieldset>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="text-body">State</label>
-                                <fieldset class="form-group mb-3">
-                                    <input type="text" name="text" class="form-control" placeholder="Enter State">
-                                </fieldset>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-6">
-                                <label class="text-body">City</label>
-                                <fieldset class="form-group mb-3">
-                                    <select
-                                        class="js-example-basic-single js-states form-control bg-transparent p-0 border-0"
-                                        name="state">
-                                        <option value="AL">Dubai</option>
-
-                                        <option value="WY">Bahreen</option>
-                                    </select>
-                                </fieldset>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="text-body">Postal Code</label>
-                                <fieldset class="form-group mb-3">
-                                    <input type="text" name="text" class="form-control"
-                                        placeholder="Enter Postal Code">
-                                </fieldset>
-                            </div>
-                        </div>
-                        <div class="form-group row ">
-                            <div class="col-md-6">
-                                <label class="text-body">Address</label>
-                                <fieldset class="form-group mb-3">
-                                    <input type="text" name="text" class="form-control " placeholder="Enter Address">
-                                </fieldset>
-                            </div>
-                        </div>
-                        <div class="form-group row justify-content-end mb-0">
-                            <div class="col-md-6  text-right">
-                                <a href="#" class="btn btn-primary">Add Customer</a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            {{-- <x-appointment-booking-component/> --}}
         </div>
     </div>
     <div class="modal fade text-left" id="folderpop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel14"
@@ -525,294 +394,16 @@
                 </div>
                 <div class="modal-body pos-ordermain">
                     <div class="row">
-                        <div class="col-lg-4">
-                            <div class="pos-order">
-                                <h3 class="pos-order-title">Order 1</h3>
-                                <div class="orderdetail-pos">
-                                    <p>
-                                        <strong>Customer Name</strong>
-                                        Sophia Hale
-                                    </p>
-                                    <p>
-                                        <strong>Address</strong>
-                                        9825 Johnsaon Dr.Columbo,MD21044
-                                    </p>
-                                    <p>
-                                        <strong>Payment Status</strong>
-                                        Pending
-                                    </p>
-                                    <p>
-                                        <strong>Total Items</strong>
-                                        10
-                                    </p>
-                                    <p>
-                                        <strong>Amount to Pay</strong>
-                                        $722
-                                    </p>
-                                </div>
-                                <div class="d-flex justify-content-end">
-                                    <a href="#" class="confirm-delete ml-3" title="Delete"><i
-                                            class="fas fa-edit"></i></a>
-                                    <a href="#" class="confirm-delete ml-3" title="Delete"><i
-                                            class="fas fa-trash-alt"></i></a>
-                                </div>
-                            </div>
+                        <div class="col-12">
+                            {{-- Modal cntent --}}
+                            <x-appointment-booking-component/>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="pos-order">
-                                <h3 class="pos-order-title">Order 1</h3>
-                                <div class="orderdetail-pos">
-                                    <p>
-                                        <strong>Customer Name</strong>
-                                        Sophia Hale
-                                    </p>
-                                    <p>
-                                        <strong>Address</strong>
-                                        9825 Johnsaon Dr.Columbo,MD21044
-                                    </p>
-                                    <p>
-                                        <strong>Payment Status</strong>
-                                        Pending
-                                    </p>
-                                    <p>
-                                        <strong>Total Items</strong>
-                                        10
-                                    </p>
-                                    <p>
-                                        <strong>Amount to Pay</strong>
-                                        $722
-                                    </p>
-                                </div>
-                                <div class="d-flex justify-content-end">
-                                    <a href="#" class="confirm-delete ml-3" title="Delete"><i
-                                            class="fas fa-edit"></i></a>
-                                    <a href="#" class="confirm-delete ml-3" title="Delete"><i
-                                            class="fas fa-trash-alt"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="pos-order">
-                                <h3 class="pos-order-title">Order 1</h3>
-                                <div class="orderdetail-pos">
-                                    <p>
-                                        <strong>Customer Name</strong>
-                                        Sophia Hale
-                                    </p>
-                                    <p>
-                                        <strong>Address</strong>
-                                        9825 Johnsaon Dr.Columbo,MD21044
-                                    </p>
-                                    <p>
-                                        <strong>Payment Status</strong>
-                                        Pending
-                                    </p>
-                                    <p>
-                                        <strong>Total Items</strong>
-                                        10
-                                    </p>
-                                    <p>
-                                        <strong>Amount to Pay</strong>
-                                        $722
-                                    </p>
-                                </div>
-                                <div class="d-flex justify-content-end">
-                                    <a href="#" class="confirm-delete ml-3" title="Delete"><i
-                                            class="fas fa-edit"></i></a>
-                                    <a href="#" class="confirm-delete ml-3" title="Delete"><i
-                                            class="fas fa-trash-alt"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="pos-order">
-                                <h3 class="pos-order-title">Order 1</h3>
-                                <div class="orderdetail-pos">
-                                    <p>
-                                        <strong>Customer Name</strong>
-                                        Sophia Hale
-                                    </p>
-                                    <p>
-                                        <strong>Address</strong>
-                                        9825 Johnsaon Dr.Columbo,MD21044
-                                    </p>
-                                    <p>
-                                        <strong>Payment Status</strong>
-                                        Pending
-                                    </p>
-                                    <p>
-                                        <strong>Total Items</strong>
-                                        10
-                                    </p>
-                                    <p>
-                                        <strong>Amount to Pay</strong>
-                                        $722
-                                    </p>
-                                </div>
-                                <div class="d-flex justify-content-end">
-                                    <a href="#" class="confirm-delete ml-3" title="Delete"><i
-                                            class="fas fa-edit"></i></a>
-                                    <a href="#" class="confirm-delete ml-3" title="Delete"><i
-                                            class="fas fa-trash-alt"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="pos-order">
-                                <h3 class="pos-order-title">Order 1</h3>
-                                <div class="orderdetail-pos">
-                                    <p>
-                                        <strong>Customer Name</strong>
-                                        Sophia Hale
-                                    </p>
-                                    <p>
-                                        <strong>Address</strong>
-                                        9825 Johnsaon Dr.Columbo,MD21044
-                                    </p>
-                                    <p>
-                                        <strong>Payment Status</strong>
-                                        Pending
-                                    </p>
-                                    <p>
-                                        <strong>Total Items</strong>
-                                        10
-                                    </p>
-                                    <p>
-                                        <strong>Amount to Pay</strong>
-                                        $722
-                                    </p>
-                                </div>
-                                <div class="d-flex justify-content-end">
-                                    <a href="#" class="confirm-delete ml-3" title="Delete"><i
-                                            class="fas fa-edit"></i></a>
-                                    <a href="#" class="confirm-delete ml-3" title="Delete"><i
-                                            class="fas fa-trash-alt"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="pos-order">
-                                <h3 class="pos-order-title">Order 1</h3>
-                                <div class="orderdetail-pos">
-                                    <p>
-                                        <strong>Customer Name</strong>
-                                        Sophia Hale
-                                    </p>
-                                    <p>
-                                        <strong>Address</strong>
-                                        9825 Johnsaon Dr.Columbo,MD21044
-                                    </p>
-                                    <p>
-                                        <strong>Payment Status</strong>
-                                        Pending
-                                    </p>
-                                    <p>
-                                        <strong>Total Items</strong>
-                                        10
-                                    </p>
-                                    <p>
-                                        <strong>Amount to Pay</strong>
-                                        $722
-                                    </p>
-                                </div>
-                                <div class="d-flex justify-content-end">
-                                    <a href="#" class="confirm-delete ml-3" title="Delete"><i
-                                            class="fas fa-edit"></i></a>
-                                    <a href="#" class="confirm-delete ml-3" title="Delete"><i
-                                            class="fas fa-trash-alt"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="pos-order">
-                                <h3 class="pos-order-title">Order 1</h3>
-                                <div class="orderdetail-pos">
-                                    <p>
-                                        <strong>Customer Name</strong>
-                                        Sophia Hale
-                                    </p>
-                                    <p>
-                                        <strong>Address</strong>
-                                        9825 Johnsaon Dr.Columbo,MD21044
-                                    </p>
-                                    <p>
-                                        <strong>Payment Status</strong>
-                                        Pending
-                                    </p>
-                                    <p>
-                                        <strong>Total Items</strong>
-                                        10
-                                    </p>
-                                    <p>
-                                        <strong>Amount to Pay</strong>
-                                        $722
-                                    </p>
-                                </div>
-                                <div class="d-flex justify-content-end">
-                                    <a href="#" class="confirm-delete ml-3" title="Delete"><i
-                                            class="fas fa-edit"></i></a>
-                                    <a href="#" class="confirm-delete ml-3" title="Delete"><i
-                                            class="fas fa-trash-alt"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
                 <div class="modal-footer border-0">
                     <div class="row">
                         <div class="col-12">
-                            <a href="#" class="btn btn-primary">Submit</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="kt_color_panel" class="offcanvas offcanvas-right kt-color-panel p-5">
-        <div class="offcanvas-header d-flex align-items-center justify-content-between pb-3">
-            <h4 class="font-size-h4 font-weight-bold m-0">Theme Config
-            </h4>
-            <a href="#" class="btn btn-sm btn-icon btn-light btn-hover-primary" id="kt_color_panel_close">
-                <svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                </svg>
-            </a>
-        </div>
-        <hr>
-        <div class="offcanvas-content">
-            <!-- Theme options starts -->
-            <div id="customizer-theme-layout" class="customizer-theme-layout">
-
-                <h5 class="mt-1">Theme Layout</h5>
-                <div class="theme-layout">
-                    <div class="d-flex justify-content-start">
-                        <div class="my-3">
-                            <div class="btn-group btn-group-toggle">
-                                <label class="btn btn-primary p-2 active">
-                                    <input type="radio" name="layoutOptions" value="false" id="radio-light" checked="">
-                                    Light
-                                </label>
-                                <label class="btn btn-primary p-2">
-                                    <input type="radio" name="layoutOptions" value="false" id="radio-dark"> Dark
-                                </label>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-                <hr>
-                <h5 class="mt-1">RTL Layout</h5>
-                <div class="rtl-layout">
-                    <div class="d-flex justify-content-start">
-                        <div class="my-3 btn-rtl">
-                            <div class="toggle">
-                                <span class="circle"></span>
-                            </div>
+                            {{-- <a href="#" class="btn btn-primary">Submit</a> --}}
                         </div>
                     </div>
                 </div>
@@ -837,8 +428,8 @@
         </div>
     </div>
 
-    <script src="pos-assets/js/plugin.bundle.min.js"></script>
-    <script src="pos-assets/js/bootstrap.bundle.min.js"></script>
+    {{-- <script src="{{ asset('pos-assets/js/plugin.bundle.min.js') }}"></script> --}}
+    <script src="{{ asset('pos-assets/js/bootstrap.bundle.min.js') }}"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -991,6 +582,11 @@
             }
         });
 
+
+        $('.mdal_close_a').click(function() {
+            $('#modal').modal('hide');
+            location.reload();
+        });
         $('#save_invoice').click(function() {
             var services = document.getElementsByName('services[]');
             const service_data_set = [];
@@ -1041,7 +637,7 @@
                             $('#modal-body').html(`<iframe src="` + data.invoice_url +
                                 `" width="100%" height="400"></iframe>`);
 
-                            $(".mdal_close_a").attr("href", data.btn_url)
+                            // $(".mdal_close_a").attr("href", data.btn_url)
                         } else {
                             Swal.fire({
                                 icon: data.type,

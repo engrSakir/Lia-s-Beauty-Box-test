@@ -22,6 +22,7 @@
 
 @section('content')
     <div class="row">
+        
         <!-- Invoice -->
         <div class="col-md-6 col-lg-4 col-xlg-2">
             <div class="card">
