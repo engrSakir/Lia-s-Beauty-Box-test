@@ -23,48 +23,39 @@
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                <table class="table color-bordered-table primary-bordered-table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Product</th>
-                                <th scope="col">Image</th>
-\                                <th scope="col">Quantity</th>
-                                <th scope="col">Created At</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($products as $product)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $product->name }}</td>
-                                    <td><img id="image_display" width="150" src="{{ asset($product->image ?? 'uploads/images/no_image.png') }}" class="image-display" alt="User image"/>
-                                    </td>
-                                    <td>{{ $product->quantity }}</td>
-                                    <td>{{ $product->created_at->format('d/m/Y') }}</td>
-                                    <td>
-                                        <a href="{{ route('backend.product.show', $product) }}" class="btn btn-info btn-circle"><i class="fa fa-eye"></i> </a>
-                                    <a  class="btn btn-warning btn-circle" href="{{ route('backend.product.edit', $product) }}">
-                                        <i class="fa fa-pen" ></i>
-                                    </a>
-                                    <button  class="btn btn-danger btn-circle delete-btn" value="{{ route('backend.product.show', $product) }}">
-                                        <i class="fa fa-trash" ></i>
-                                    </button>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+<div class="row el-element-overlay">
+@foreach($products as $product)
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1">
+                    <img src="{{ asset($product->image ?? 'uploads/images/no_image.png') }}" alt="user">
+                    <div class="el-overlay scrl-up">
+                        <ul class="el-info">
+                            <li>
+                                <a class="btn default btn-outline image-popup-vertical-fit" href="{{ asset($product->image ?? 'uploads/images/no_image.png') }}">
+                                    <i class="icon-magnifier"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="btn default btn-outline" href="javascript:void(0);">
+                                    <i class="icon-link"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+                <div class="el-card-content">
+                    <h4 class="box-title">{{ $product->name }}</h4>
+                    <small>Quantity: {{ $product->quantity }}</small>
+                    <br> </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="booking_modal" aria-hidden="true" aria-labelledby="booking_modal" tabindex="-1">
+   @endforeach
+
+</div>
+<div class="modal fade" id="booking_modal" aria-hidden="true" aria-labelledby="booking_modal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header  bg-info text-white">
@@ -169,6 +160,8 @@
 });
 
     </script>
+
+<link href="{{ asset('assets/backend/dist/css/pages/user-card.css') }}" rel="stylesheet">
 @endpush
 
 @push('foot')
