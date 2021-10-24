@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -36,7 +38,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'  => 'required|string',
+            'quantity'         => 'required',
+            'image'         => 'nullable|image',
+        ]);
+        $product = new Product();
+        $product->name = $request->name;
+        $product->quantity = $request->quantity;
+        if ($request->file('image')) {
+            $product->image = file_uploader('uploads/product-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::random(8));
+        }
+        $product->save();
+        toastr()->success('Successfully Saved!');
+        return back();
     }
 
     /**
