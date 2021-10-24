@@ -21,6 +21,7 @@ use App\Http\Controllers\Backend\UserCategoryController;
 use App\Http\Controllers\Backend\EmployeeSalaryController;
 use App\Http\Controllers\Backend\ReferralDiscountPercentageController;
 use App\Http\Controllers\Backend\PaymentMethodController;
+use App\Http\Controllers\Backend\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,6 +44,7 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'
 
         Route::resource('appointment', AppointmentController::class);
         Route::resource('invoice', InvoiceController::class);
+        Route::resource('product', ProductController::class);
         Route::resource('schedule', ScheduleController::class);
         Route::resource('service', ServiceController::class);
         Route::resource('serviceCategory', ServiceCategoryController::class);

@@ -59,6 +59,13 @@
             @endhasanyrole
             @role('Admin')
             <li>
+                <a class="waves-effect waves-dark" href="{{ route('backend.product.index') }}"
+                    aria-expanded="false">
+                    <i class="far fa-circle text-danger"></i>
+                    <span class="hide-menu">Product</span>
+                </a>
+            </li>
+            <li>
                 <a class="waves-effect waves-dark" href="{{ route('backend.expense.index') }}"
                     aria-expanded="false">
                     <i class="far fa-circle text-danger"></i>
