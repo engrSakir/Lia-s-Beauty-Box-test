@@ -92,7 +92,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="input-group">
-                                        <input type="file" name="image" accept="image/*" class="form-control image-chose-btn image-importer" id="imgInp" required>
+                                        <input type="file" name="image" accept="image/*" class="form-control image-chose-btn" id="imgInp" required>
                                         @error('image')
                                         <div class="alert alert-danger" role="alert">
                                             {{ $message }}
@@ -179,23 +179,20 @@
 
                 },
                 complete: function() {
-
+                    $('#product_form').trigger("reset");
+                    
+                    $(".el-element-overlay").load(" .el-element-overlay");
                 },
                 success: function(data) {
                     console.log(data)
-                    $('#product_form').trigger("reset");
-                    Swal.fire({
-                        icon: data.type,
-                        title: data.message,
-                    });
-                    $('#booking_modal').modal('hide');
-                },
-                error: function(error) {
-                   // validation_error(error);
-                   $('#product_form').trigger("reset");
-                   $(".el-element-overlay").load(" .el-element-overlay");
+                   
 
                 },
+                error: function(error) {
+                    //validation_error(error);
+
+                },
+                
             });
         });
 
