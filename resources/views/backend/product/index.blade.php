@@ -47,8 +47,20 @@
                 </div>
                 <div class="el-card-content">
                     <h4 class="box-title">{{ $product->name }}</h4>
-                    <small>Quantity: {{ $product->quantity }}</small>
-                    <br> </div>
+                    <small>Quantity: {{ $product->quantity }}</small><br>
+                    <small>Created At: {{ $product->created_at->format('d/m/Y') }}</small>
+                    <br> 
+                    <a  class="btn btn-warning btn-circle" href="{{ route('backend.product.edit', $product) }}">
+                                        <i class="fa fa-pen" ></i>
+                                    </a>
+                                    
+                                    <button class="btn btn-danger btn-circle delete-btn" type="button" onclick="deleteProduct({{ $product->id }})"><i class="fas fa-trash"></i></button>
+                            <form id="delete-form-{{ $product->id }}" action="{{ route('backend.product.destroy', $product) }}" method="post" style="display: none;">
+                              @csrf
+                              @method('DELETE')
+                            </form>
+                    </div>
+                    
             </div>
         </div>
     </div>
@@ -119,6 +131,33 @@
 
 @push('head')
 <script>
+    $(function () {
+      $("#datatable").DataTable();
+    });
+
+    function deleteProduct(id){
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.value) {
+          event.preventDefault();
+          $('#delete-form-'+id).submit();
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+        }
+      })
+    }
+  </script>
+<script>
     $(document).ready(function(){
         $('#product_btn').click(function() {
             $('#booking_modal').modal('show');
@@ -152,7 +191,10 @@
                     $('#booking_modal').modal('hide');
                 },
                 error: function(error) {
-                    validation_error(error);
+                   // validation_error(error);
+                   $('#product_form').trigger("reset");
+                   $(".el-element-overlay").load(" .el-element-overlay");
+
                 },
             });
         });

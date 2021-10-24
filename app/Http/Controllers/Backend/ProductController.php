@@ -73,7 +73,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('backend.product.edit', compact('product'));
     }
 
     /**
@@ -85,7 +85,19 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'name'  => 'required|string',
+            'quantity'         => 'required',
+            'image'         => 'nullable|image',
+        ]);
+        $product->name = $request->name;
+        $product->quantity = $request->quantity;
+        if ($request->file('image')) {
+            $product->image = file_uploader('uploads/product-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') .'-'. Str::random(8));
+        }
+        $product->save();
+        toastr()->success('Successfully Updated!');
+        return back();
     }
 
     /**
@@ -96,6 +108,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        toastr()->success('Successfully Deleted!');
+        return back();
     }
 }
