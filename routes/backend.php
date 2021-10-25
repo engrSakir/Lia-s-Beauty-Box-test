@@ -60,6 +60,8 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'
         Route::post('/change-user-category', [UserController::class, 'changeUsercategory'])->name('ajax.changeUserCategory');
         Route::get('/report', [DashboardController::class, 'indexReport'])->name('report.index');
         Route::post('/report', [DashboardController::class, 'storeReport'])->name('report.store');
+        Route::get('/advancePayment', [AppointmentController::class, 'advancePayment'])->name('advancePayment.index');
+
 
 
         Route::resource('user', UserController::class);

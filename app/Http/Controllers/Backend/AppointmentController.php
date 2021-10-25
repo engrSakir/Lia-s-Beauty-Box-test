@@ -356,4 +356,9 @@ class AppointmentController extends Controller
                 ->get();
         }
     }
+    public function advancePayment()
+    {
+        $appointments = Appointment::where('status','Approved')->orderBy('id', 'desc')->paginate(20);
+        return view('backend.appointment.advance', compact('appointments'));
+    }
 }

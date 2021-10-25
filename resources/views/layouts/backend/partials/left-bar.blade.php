@@ -55,6 +55,13 @@
                     <span class="hide-menu">Appointment</span>
                 </a>
             </li>
+            <li>
+                <a class="waves-effect waves-dark" href="{{ route('backend.advancePayment.index') }}"
+                    aria-expanded="false">
+                    <i class="far fa-circle text-danger"></i>
+                    <span class="hide-menu">Advance Payment</span>
+                </a>
+            </li>
             <hr>
             @endhasanyrole
             @role('Admin')
