@@ -95,6 +95,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="input-group">
+                                        <input type="text"  name="address" class="form-control customer_information" placeholder="Address" >
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
                                             <input name="transaction_id" type="text" class="form-control"
                                                 placeholder="Transaction ID">
                                         </div>
@@ -264,6 +272,7 @@
                     name: $("#appointment_form [name='name']").val(),
                     email: $("#appointment_form [name='email']").val(),
                     phone: $("#appointment_form [name='phone']").val(),
+                    address: $("#appointment_form [name='address']").val(),
                     service: $("#appointment_form [name='service']").val(),
                     transaction_id: $("#appointment_form [name='transaction_id']").val(),
                     advance_amount: $("#appointment_form [name='advance_amount']").val(),
@@ -316,13 +325,17 @@
                             if(request_for == 'phone'){
                                 pointed_value = obj.phone;
                             }
+                            if(request_for == 'address'){
+                                pointed_value = obj.address;
+                            }
                             return {
                                 value: pointed_value, //Fillable in input field
                                 label: 'Name:'+obj.name +' Email:'+ obj.email +' Phone:'+ obj
-                                    .phone, //Show as label of input field
-                                name: obj.name,
+                                    .phone + 'Address:' + obj.address, //Show as label of input field
+                                name: obj.name, 
                                 email: obj.email,
                                 phone: obj.phone,
+                                address: obj.address,
                             }
                         })
                         response($.ui.autocomplete.filter(array, request.term));
@@ -334,6 +347,8 @@
                 $('[name=name]').val(ui.item.name);
                 $('[name=email]').val(ui.item.email);
                 $('[name=phone]').val(ui.item.phone);
+                $('[name=address]').val(ui.item.address);
+
             }
         });
     </script>

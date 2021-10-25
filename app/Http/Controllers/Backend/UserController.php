@@ -51,6 +51,7 @@ class UserController extends Controller
             'user_phone'    => 'nullable|string|max:11|unique:users,phone',
             'user_category' => 'nullable|exists:user_categories,id',
             'user_role'     => 'required|exists:roles,name',
+            'user_address'     => 'nullable',
             'user_pass'     => 'required|min:4',
         ]);
 
@@ -58,6 +59,7 @@ class UserController extends Controller
         $user->name = $request->user_name;
         $user->email = $request->user_email;
         $user->phone = $request->user_phone;
+        $user->address = $request->user_address;
         $user->category_id = $request->user_category;
         $user->password = Hash::make($request->user_pass);
         if ($request->file('image')) {
@@ -122,11 +124,14 @@ class UserController extends Controller
             'user_category' => 'nullable|exists:user_categories,id',
             'user_role'     => 'required|exists:roles,name',
             'user_pass'     => 'nullable|min:4',
+            'user_address'     => 'nullable',
+
         ]);
 
         $user->name = $request->user_name;
         $user->email = $request->user_email;
         $user->phone = $request->user_phone;
+        $user->address = $request->user_address;
         $user->category_id = $request->user_category;
         if ($request->user_pass) {
             $user->password = Hash::make($request->user_pass);

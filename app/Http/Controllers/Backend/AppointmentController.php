@@ -47,6 +47,7 @@ class AppointmentController extends Controller
         $request->validate([
             'phone'     => 'nullable|string',
             'email'     => 'nullable|email',
+            'address'     => 'nullable',
             'name'     => 'required|string',
             'service'           => 'required|exists:services,id',
         ]);
@@ -71,6 +72,7 @@ class AppointmentController extends Controller
                     'name'      => 'required|string',
                     'email'     => 'nullable|email',
                     'phone'     => 'required|unique:users,phone',
+                    'address'     => 'nullable',
                     'appointment_data' => 'required|string', // get from hidden
                     'schedule'  => 'required|exists:schedules,id', // get from hidden
                     'service'   => 'required|exists:services,id',
@@ -87,6 +89,7 @@ class AppointmentController extends Controller
             $user->name         = $request->name;
             $user->email        = $request->email;
             $user->phone        = $request->phone;
+            $user->address        = $request->address;
             $user->password     = bcrypt($password);
             $user->save();
             $user->assignRole('Customer');
@@ -268,7 +271,7 @@ class AppointmentController extends Controller
                         //'email'     => 'required|unique:users,email',
                         'email'     => 'nullable|email',
                         'phone'     => 'required|unique:users,phone',
-                        // 'appointment_data' => 'required|string', // get from hidden
+                        'address' => 'nullable', // get from hidden
                         'schedule'  => 'required|exists:schedules,id', // get from hidden
                         'service'   => 'required|exists:services,id',
                         'message'   => 'nullable|string',
@@ -285,6 +288,7 @@ class AppointmentController extends Controller
                 $user->name         = $request->name;
                 $user->email        = $request->email;
                 $user->phone        = $request->phone;
+                $user->address        = $request->address;
                 $user->password     = bcrypt($password);
                 $user->save();
                 $user->assignRole('Customer');
@@ -342,17 +346,22 @@ class AppointmentController extends Controller
     {
         if (request()->request_for == 'email') {
             return User::where('email', 'LIKE', '%' . request()->query_data . '%')
-                ->select('name', 'email', 'phone')
+                ->select('name', 'email', 'phone','address')
                 ->get();
         }
         if (request()->request_for == 'name') {
             return User::where('name', 'LIKE', '%' . request()->query_data . '%')
-                ->select('name', 'email', 'phone')
+                ->select('name', 'email', 'phone', 'address')
                 ->get();
         }
         if (request()->request_for == 'phone') {
             return User::where('phone', 'LIKE', '%' . request()->query_data . '%')
-                ->select('name', 'email', 'phone')
+                ->select('name', 'email', 'phone', 'address')
+                ->get();
+        }
+        if (request()->request_for == 'address') {
+            return User::where('address', 'LIKE', '%' . request()->query_data . '%')
+                ->select('name', 'email', 'phone', 'address')
                 ->get();
         }
     }

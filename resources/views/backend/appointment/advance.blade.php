@@ -37,7 +37,6 @@
                                     <th>Advance Amount</th>
                                     <th>Service</th>
                                     <th>Date Time</th>
-                                    <th>Day And Time</th>
                                     <th>Request At</th>
                                     <th>Action</th>
                                 </tr>
@@ -51,14 +50,7 @@
                                         <td>{{ $appointment->transaction_id ?? '#' }}</td>
                                         <td>{{ $appointment->advance_amount ?? '#' }}</td>
                                         <td>{{ $appointment->service->name ?? '#' }}</td>
-                                        <td>{{ $appointment->appointment_data }}</td>
-                                        <td>
-                                            {{ date('h:i A', strtotime($appointment->schedule->starting_time)) ?? '#' }}
-                                            to
-                                            {{ date('h:i A', strtotime($appointment->schedule->ending_time)) ?? '#' }} of
-                                            {{ $appointment->schedule->schedule_day ?? '#' }}
-                                        </td>
-                                        
+                                        <td>{{ $appointment->appointment_data }}</td>                                        
                                         <td>{{ $appointment->created_at->format('d/m/Y h:i A') }}</td>
                                         <td>
                                         <a href="{{ route('backend.invoice.show', $appointment->invoice ?? '') }}"
