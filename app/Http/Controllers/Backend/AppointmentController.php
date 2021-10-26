@@ -238,6 +238,21 @@ class AppointmentController extends Controller
             }
             $appointment->status = $request->status;
             $appointment->save();
+            if($appointment->customer->email && $appointment->status == 'Approved'){
+                try{
+                    $pdf = PDF::loadView('backend.invoice.advance-inv-pdf', compact('appointment')); 
+                    Mail::send('emails.feedback', function($message) use ($pdf){
+                            $message->from('info@example.com');
+                            $message->to('moumitasub@gmail.com');
+                            $message->subject('Thank you message');
+                            //Attach PDF doc
+                            $message->attachData($pdf->output(),'receipt.pdf');
+                        });
+
+                }catch(\Exception $exception){
+
+                }
+            }
             if (request()->ajax()) {
                 return response()->json([
                     'type' => 'success',
