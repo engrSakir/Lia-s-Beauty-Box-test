@@ -10,6 +10,7 @@ use App\Models\ServiceCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use PDF;
 
 class AppointmentController extends Controller
 {
@@ -60,6 +61,7 @@ class AppointmentController extends Controller
             $user = User::where('name', $request->name)->first();
         }
 
+        $password = null;
 
         if ($user) {
             $request->validate([
@@ -86,12 +88,15 @@ class AppointmentController extends Controller
             );
             $password = Str::random(8);
             $user = new User();
-            $user->name         = $request->name;
-            $user->email        = $request->email;
-            $user->phone        = $request->phone;
-            $user->address        = $request->address;
             $user->password     = bcrypt($password);
-            $user->save();
+        }
+        //New save or auto update
+        $user->name         = $request->name;
+        $user->email        = $request->email;
+        $user->phone        = $request->phone;
+        $user->address      = $request->address;
+        $user->save();
+        if($password){
             $user->assignRole('Customer');
         }
 
@@ -365,9 +370,16 @@ class AppointmentController extends Controller
                 ->get();
         }
     }
+
     public function advancePayment()
     {
-        $appointments = Appointment::where('status','Approved')->orderBy('id', 'desc')->paginate(20);
+        $appointments = Appointment::where('status','Approved')->orderBy('id', 'desc')->paginate(500);
         return view('backend.appointment.advance', compact('appointments'));
+    }
+
+    public function advancePaymentShow(Appointment $appointment)
+    {
+        $pdf = PDF::loadView('backend.invoice.advance-inv-pdf', compact('appointment'));
+        return $pdf->stream('Advance-' . config('app.name') . '.pdf');
     }
 }

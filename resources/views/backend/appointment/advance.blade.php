@@ -35,9 +35,7 @@
                                     <th>Phone Number</th>
                                     <th>Transaction ID</th>
                                     <th>Advance Amount</th>
-                                    <th>Service</th>
-                                    <th>Date Time</th>
-                                    <th>Request At</th>
+
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -49,19 +47,11 @@
                                         <td>{{ $appointment->customer->phone ?? '#' }}</td>
                                         <td>{{ $appointment->transaction_id ?? '#' }}</td>
                                         <td>{{ $appointment->advance_amount ?? '#' }}</td>
-                                        <td>{{ $appointment->service->name ?? '#' }}</td>
-                                        <td>{{ $appointment->appointment_data }}</td>                                        
-                                        <td>{{ $appointment->created_at->format('d/m/Y h:i A') }}</td>
                                         <td>
-                                        <a href="{{ route('backend.invoice.show', $appointment->invoice ?? '') }}"
+                                        <a href="{{ route('backend.advancePayment.show', $appointment) }}"
                                                         target="_blank"
                                                         class="btn btn-primary waves-effect btn-rounded waves-light"> <i
                                                             class="fas fa-print"></i> </a>
-                                            <a href="{{ route('backend.appointment.edit', $appointment) }}"
-                                                class="btn btn-warning btn-circle"><i class="fa fa-pen"></i> </a>
-                                            <button value="{{ route('backend.appointment.destroy', $appointment) }}"
-                                                class="btn btn-danger btn-circle delete-btn"><i class="fa fa-trash"></i>
-                                            </button>
                                         </td>
                                     </tr>
                                 @endforeach

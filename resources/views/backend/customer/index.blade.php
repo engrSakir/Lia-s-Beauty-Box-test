@@ -57,6 +57,7 @@
                                 <th scope="col">CustomerName</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Phone</th>
+                                <th scope="col">Address</th>
                                 <th scope="col">Category</th>
                                 <th scope="col">Created At</th>
                                 <th scope="col">Action</th>
@@ -79,6 +80,7 @@
                                     <td>{{ $customer->name }}</td>
                                     <td>{{ $customer->email }}</td>
                                     <td>{{ $customer->phone }}</td>
+                                    <td>{{ $customer->address }}</td>
                                     <td>{{ $customer->category->name ?? '-' }}</td>
                                     <td>{{ $customer->created_at->format('d/m/Y') }}</td>
                                     <td>
