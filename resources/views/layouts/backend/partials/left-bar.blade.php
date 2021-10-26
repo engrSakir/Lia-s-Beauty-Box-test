@@ -59,7 +59,7 @@
                 <a class="waves-effect waves-dark" href="{{ route('backend.advancePayment.index') }}"
                     aria-expanded="false">
                     <i class="far fa-circle text-danger"></i>
-                    <span class="hide-menu">Advance Payment</span>
+                    <span class="hide-menu">Advance INV</span>
                 </a>
             </li>
             <hr>

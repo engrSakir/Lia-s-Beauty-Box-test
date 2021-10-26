@@ -1,4 +1,3 @@
-
 <style>
     .schedule-box:hover {
         cursor: pointer;
@@ -7,10 +6,14 @@
         border-radius: 12px;
     }
 
-    .header {all:unset;}
+    .header {
+        all: unset;
+    }
+
     ul.ui-autocomplete {
-    z-index: 1100;
-}
+        z-index: 1100;
+    }
+
 </style>
 <link rel="stylesheet" href="{{ asset('assets/frontend/calender/style.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/frontend/calender/theme.css') }}">
@@ -83,7 +86,15 @@
                                     <div class="form-group">
                                         <div class="input-group">
                                             <input name="email" type="email" class="form-control customer_information"
-                                                 placeholder="Email">
+                                                placeholder="Email">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                        <input type="text"  name="address" class="form-control customer_information" placeholder="Address" >
+
                                         </div>
                                     </div>
                                 </div>
@@ -99,7 +110,7 @@
                                     <div class="form-group">
                                         <div class="input-group">
                                             <input name="advance_amount" type="number" class="form-control"
-                                                placeholder="Minimum Advance {{ get_static_option('advance_amount') }} Taka">
+                                                placeholder="Advance amount">
                                         </div>
                                     </div>
                                 </div>
@@ -123,7 +134,8 @@
                                 <div class="col-md-12 text-right">
                                     <button name="submit" type="button"
                                         class="btn waves-effect waves-light btn-outline-success"
-                                        id="appointment_submit_btn">Submit <i class="fa fa-angle-double-right"></i></button>
+                                        id="appointment_submit_btn">Submit <i
+                                            class="fa fa-angle-double-right"></i></button>
                                     <button name="Resat" type="reset"
                                         class="btn waves-effect waves-light btn-outline-info">Reset <i
                                             class="fa fa-angle-double-right"></i></button>
@@ -178,7 +190,9 @@
                         .split(',');
                     var ending_time = endtime[1];
                     var title = schedule.title;
-                    var html = `<a href="javascript:void(0)" class="col-12"  onclick="bookingModal(` + schedule
+                    var html =
+                        `<a href="javascript:void(0)" class="col-12"  onclick="bookingModal(` +
+                        schedule
                         .id + `)">
                             <div class="user-img" style="float: left;">
                                 <img width="40" src="/assets/frontend/images/booking.png" alt="user" class="img-circle">
@@ -245,6 +259,7 @@
                 name: $("#appointment_form [name='name']").val(),
                 email: $("#appointment_form [name='email']").val(),
                 phone: $("#appointment_form [name='phone']").val(),
+                address: $("#appointment_form [name='address']").val(),
                 service: $("#appointment_form [name='service']").val(),
                 transaction_id: $("#appointment_form [name='transaction_id']").val(),
                 advance_amount: $("#appointment_form [name='advance_amount']").val(),
@@ -289,22 +304,27 @@
                 success: function(data) {
                     console.log(data)
                     var array = $.map(data, function(obj) {
-                        if(request_for == 'name'){
+                        if (request_for == 'name') {
                             pointed_value = obj.name;
                         }
-                        if(request_for == 'email'){
+                        if (request_for == 'email') {
                             pointed_value = obj.email;
                         }
-                        if(request_for == 'phone'){
+                        if (request_for == 'phone') {
                             pointed_value = obj.phone;
+                        }
+                        if (request_for == 'address') {
+                            pointed_value = obj.address;
                         }
                         return {
                             value: pointed_value, //Fillable in input field
-                            label: 'Name:'+obj.name +' Email:'+ obj.email +' Phone:'+ obj
-                                .phone, //Show as label of input field
+                            label: 'Name:' + obj.name + ' Email:' + obj.email +
+                                ' Phone:' + obj
+                                .phone + 'Address:' + obj.address, //Show as label of input field
                             name: obj.name,
                             email: obj.email,
                             phone: obj.phone,
+                            address: obj.address,
                         }
                     })
                     response($.ui.autocomplete.filter(array, request.term));
@@ -316,6 +336,7 @@
             $('[name=name]').val(ui.item.name);
             $('[name=email]').val(ui.item.email);
             $('[name=phone]').val(ui.item.phone);
+            $('[name=address]').val(ui.item.address);
         }
     });
 </script>

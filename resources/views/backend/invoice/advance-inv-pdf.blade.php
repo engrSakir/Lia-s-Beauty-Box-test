@@ -4,7 +4,7 @@
     <style>
         @page {
             background-color: #ffffff;
-            sheet-size: 70mm 180mm;
+            sheet-size: 70mm 130mm;
             /* size: auto; */
             /* background-color: azure; */
             vertical-align: top;
@@ -189,7 +189,7 @@
                         <h3>Advance amount</h3>
                     </td>
                     <td class="payment" style="text-align:right;">
-                        {{ $appointment->service->advance_amount ?? '#' }}
+                        {{ $appointment->advance_amount ?? '#' }}
                     </td>
                 </tr>
 

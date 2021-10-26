@@ -111,12 +111,12 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input name="advance_amount" type="number" class="form-control" 
-                                                placeholder="Minimum Advance {{ get_static_option('advance_amount') }} Taka">
+                                            <input name="advance_amount" type="number" class="form-control"
+                                                placeholder="Advance amount">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="input-group">
                                             <select name="service" class="form-control" required="">
@@ -332,7 +332,7 @@
                                 value: pointed_value, //Fillable in input field
                                 label: 'Name:'+obj.name +' Email:'+ obj.email +' Phone:'+ obj
                                     .phone + 'Address:' + obj.address, //Show as label of input field
-                                name: obj.name, 
+                                name: obj.name,
                                 email: obj.email,
                                 phone: obj.phone,
                                 address: obj.address,
