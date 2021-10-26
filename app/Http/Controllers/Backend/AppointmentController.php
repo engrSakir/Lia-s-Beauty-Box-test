@@ -12,7 +12,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use PDF;
-use Illuminate\Support\Facades\Mail;
 
 class AppointmentController extends Controller
 {
@@ -243,8 +242,8 @@ class AppointmentController extends Controller
             if($appointment->customer->email && $appointment->status == 'Approved'){
                 try{
                     $data = [
-                        'from'         => 'info@example.com',
-                        'admin'         => 'admin@yahoo.com',
+                        'from'         => 'mail@liav2.iciclecorp.space',
+                        'admin'         => 'mail@liav2.iciclecorp.space',
                         'customer'      => $appointment->customer->email,
                         'pdf'           => PDF::loadView('backend.invoice.advance-inv-pdf', compact('appointment')),
                     ];
