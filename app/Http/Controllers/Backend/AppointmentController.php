@@ -10,6 +10,7 @@ use App\Models\ServiceCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
 use PDF;
 
 class AppointmentController extends Controller
