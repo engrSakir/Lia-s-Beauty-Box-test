@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use PDF;
+use Illuminate\Support\Facades\Mail;
 
 class AppointmentController extends Controller
 {
@@ -241,17 +242,28 @@ class AppointmentController extends Controller
             $appointment->save();
             if($appointment->customer->email && $appointment->status == 'Approved'){
                 try{
-                    $pdf = PDF::loadView('backend.invoice.advance-inv-pdf', compact('appointment')); 
-                    Mail::send('emails.feedback', function($message) use ($pdf){
-                            $message->from('info@example.com');
-                            $message->to('moumitasub@gmail.com');
-                            $message->subject('Thank you message');
-                            //Attach PDF doc
-                            $message->attachData($pdf->output(),'receipt.pdf');
+                    $data = [
+                        'from'         => 'info@example.com',
+                        'admin'         => 'admin@yahoo.com',
+                        'customer'      => $appointment->customer->email,
+                        'pdf'           => PDF::loadView('backend.invoice.advance-inv-pdf', compact('appointment')),
+                    ];
+
+                    Mail::send('emails.adance_payment', ['data' => $data],
+                        function ($message) use ($data)
+                        {
+                            $message
+                                ->from($data['from'])
+                                ->to($data['admin'])->subject('Hello admin ....')
+                                ->to($data['customer'])->subject('Hello customer ...')
+                                ->attachData($data['pdf'],'receipt.pdf');
                         });
 
                 }catch(\Exception $exception){
-
+                    return response()->json([
+                        'type' => 'warning',
+                        'message' => 'Email problem ' . $exception->getMessage()
+                    ]);
                 }
             }
             if (request()->ajax()) {
