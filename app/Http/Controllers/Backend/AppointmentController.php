@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendEmailJob;
 use App\Models\Appointment;
 use App\Models\ReferralDiscountPercentage;
 use App\Models\Schedule;
@@ -54,11 +55,11 @@ class AppointmentController extends Controller
             'service'           => 'required|exists:services,id',
         ]);
 
-        if($request->email){
+        if ($request->email) {
             $user = User::where('email', $request->email)->first();
-        }else if($request->phone){
+        } else if ($request->phone) {
             $user = User::where('phone', $request->phone)->first();
-        }else{
+        } else {
             $user = User::where('name', $request->name)->first();
         }
 
@@ -97,7 +98,7 @@ class AppointmentController extends Controller
         $user->phone        = $request->phone;
         $user->address      = $request->address;
         $user->save();
-        if($password){
+        if ($password) {
             $user->assignRole('Customer');
         }
 
@@ -125,7 +126,7 @@ class AppointmentController extends Controller
                 return [
                     'type' => 'error',
                     'message' => 'Something went wrong.',
-                     'message' => $exception->getMessage(),
+                    'message' => $exception->getMessage(),
                 ];
             }
             toastr()->error('Something went wrong!');
@@ -239,26 +240,26 @@ class AppointmentController extends Controller
             }
             $appointment->status = $request->status;
             $appointment->save();
-            if($appointment->customer->email && $appointment->status == 'Approved'){
-                try{
+            if ($appointment->customer->email && $appointment->status == 'Approved') {
+                try {
                     $data = [
-                        'from'         => 'mail@liav2.iciclecorp.space',
-                        'admin'         => 'mail@liav2.iciclecorp.space',
-                        'customer'      => $appointment->customer->email,
-                        'pdf'           => PDF::loadView('backend.invoice.advance-inv-pdf', compact('appointment')),
+                        'from'    => 'from@email.com',
+                        'to'      => $appointment->customer->email,
+                        'subject' => 'Booking Approved',
+                        'pdf'     => PDF::loadView('backend.invoice.advance-inv-pdf', compact('appointment')),
                     ];
-
-                    Mail::send('emails.adance_payment', ['data' => $data],
-                        function ($message) use ($data)
-                        {
+                    Mail::send(
+                        'emails.adance_payment',
+                        ['data' => $data],
+                        function ($message) use ($data) {
                             $message
                                 ->from($data['from'])
-                                ->to($data['admin'])->subject('Hello admin ....')
-                                ->to($data['customer'])->subject('Hello customer ...')
-                                ->attachData($data['pdf'],'receipt.pdf');
-                        });
-
-                }catch(\Exception $exception){
+                                ->to($data['to'])
+                                ->subject($data['subject'])
+                                ->attachData($data['pdf']->output(), 'invoice.pdf');
+                        }
+                    );
+                } catch (\Exception $exception) {
                     return response()->json([
                         'type' => 'warning',
                         'message' => 'Email problem ' . $exception->getMessage()
@@ -282,11 +283,11 @@ class AppointmentController extends Controller
                 'service'           => 'required|exists:services,id',
             ]);
 
-            if($request->email){
+            if ($request->email) {
                 $user = User::where('email', $request->email)->first();
-            }else if($request->phone){
+            } else if ($request->phone) {
                 $user = User::where('phone', $request->phone)->first();
-            }else{
+            } else {
                 $user = User::where('name', $request->name)->first();
             }
 
@@ -378,7 +379,7 @@ class AppointmentController extends Controller
     {
         if (request()->request_for == 'email') {
             return User::where('email', 'LIKE', '%' . request()->query_data . '%')
-                ->select('name', 'email', 'phone','address')
+                ->select('name', 'email', 'phone', 'address')
                 ->get();
         }
         if (request()->request_for == 'name') {
@@ -400,7 +401,7 @@ class AppointmentController extends Controller
 
     public function advancePayment()
     {
-        $appointments = Appointment::where('status','Approved')->orderBy('id', 'desc')->paginate(500);
+        $appointments = Appointment::where('status', 'Approved')->orderBy('id', 'desc')->paginate(500);
         return view('backend.appointment.advance', compact('appointments'));
     }
 
