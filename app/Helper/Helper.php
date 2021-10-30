@@ -93,7 +93,7 @@ if (!function_exists('random_code')) {
 
     function total_sale_amount_between($start_date,$end_date){
         $total_sale_amount_of_this_between = 0;
-        foreach(Invoice::whereBetween('created_at',[$start_date,$end_date])->get()->get() as $inv){
+        foreach(Invoice::whereBetween('created_at',[$start_date,$end_date])->get() as $inv){
             $total_sale_amount_of_this_between += $inv->price();
         }
         return $total_sale_amount_of_this_between;
