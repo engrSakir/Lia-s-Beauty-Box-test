@@ -192,6 +192,15 @@
                         {{ $appointment->advance_amount ?? '#' }}
                     </td>
                 </tr>
+                <tr class="">
+                    <td class="Rate">
+                        <h3>Due amount</h3>
+                    </td>
+                    <td class="payment" style="text-align:right;">
+                        {{ $appointment->service->price - $appointment->advance_amount ?? '#' }}
+                    </td>
+                </tr>
+
 
             </table>
             <table cellpadding="0" cellspacing="0" style="margin-top: 60px;">
