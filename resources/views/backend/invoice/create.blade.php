@@ -76,17 +76,17 @@
                     <div class="greeting-text">
                         <h3 class="card-label mb-0 font-weight-bold text-primary">POS
                         </h3>
-                       <a href="{{ route('dashboard') }}">
-                        <h3 class="card-label mb-0 ">
-                            {{ config('app.name') }}
-                        </h3>
-                       </a>
+                        <a href="{{ route('dashboard') }}">
+                            <h3 class="card-label mb-0 ">
+                                {{ config('app.name') }}
+                            </h3>
+                        </a>
                     </div>
 
                 </div>
                 <div class="col-xl-4 col-lg-5 col-md-6  clock-main text-center">
-                   <b>  Developed by
-                   <a href="https://www.iciclecorporation.com/" target="_blank"><b>Icicle Corporation</b></a></b>
+                    <b> Developed by
+                        <a href="https://www.iciclecorporation.com/" target="_blank"><b>Icicle Corporation</b></a></b>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-12 order-lg-last order-second">
                     <div class="topbar justify-content-end">
@@ -170,8 +170,7 @@
                         <div class="product-items">
                             <div class="row" id="item_area">
                                 @foreach ($items as $item)
-                                    <div class="col-6 item_card"
-                                        id="item_id_{{ $item->id }}">
+                                    <div class="col-6 item_card" id="item_id_{{ $item->id }}">
                                         <input type="hidden" class="item_id" value="{{ $item->id }}">
                                         <input type="hidden" class="item_name" value="{{ $item->name }}">
                                         <input type="hidden" class="item_price" value="{{ $item->price }}">
@@ -237,7 +236,8 @@
                         <div class="card-body">
                             <div class="form-group row mb-0">
                                 <div class="col-md-12 btn-submit d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-danger mr-2 confirm-delete" onClick="window.location.reload();">
+                                    <button type="submit" class="btn btn-danger mr-2 confirm-delete"
+                                        onClick="window.location.reload();">
                                         <i class="fas fa-trash-alt mr-2"></i>
                                         Refresh Everything
                                     </button>
@@ -384,7 +384,7 @@
                     <div class="row">
                         <div class="col-12">
                             {{-- Modal cntent --}}
-                            <x-appointment-booking-component/>
+                            <x-appointment-booking-component />
                         </div>
                     </div>
                 </div>
@@ -463,12 +463,14 @@
             var item_price = ((100 * $(this).find('.item_price').val()) / 115).toFixed(2);
             var item_vat = ($(this).find('.item_price').val() - (100 * $(this).find('.item_price').val()) / 115)
                 .toFixed(2);
+            let qunatity = $("#selected_item_qty_for_" + item_id).val();
+            if (qunatity == null) {
+                qunatity = 1;
+            }
             // alert(item_name);
             if ($("#selected_item_for_" + item_id).length > 0) {
                 // update price with incease quantity
-                $("#selected_item_qty_for_" + item_id).val(parseInt($("#selected_item_qty_for_" + item_id).val()) +
-                    1);
-                inner_calculation();
+                $("#selected_item_qty_for_" + item_id).val(parseInt(qunatity) + 1);
             } else {
                 //jQuery append row in table
                 table_tr = `<tr id="selected_item_for_` + item_id + `">
@@ -480,8 +482,10 @@
                             <td id="selected_item_vat_for_` + item_id + `" class="selected_item_vat">` +
                     item_vat + `</td>
                             <td id="selected_item_price_for_` + item_id + `" class="selected_item_price">` +
-                    item_price + `</td>
-                            <td class="selected_item_total_price">000</td>
+                    item_price +
+                    `</td>
+                            <td><input type="number" class="form-control border-dark w-100px selected_item_total_price" id="selected_item_total_price_for_` +
+                    item_id + `"/></td>
                             <td>
                             <div class="card-toolbar text-right">
                             <a href="javascript:void(0)" class="item_remover" title="Delete"><i class="fas fa-trash-alt text-danger"></i></a>
@@ -489,8 +493,9 @@
                             </td>
                             </tr>`;
                 $('#orderTable  > tbody').append(table_tr);
-                inner_calculation();
+
             }
+            inner_calculation();
         });
 
         $('#orderTable').on('click', '.item_remover', function() {
@@ -499,13 +504,32 @@
         });
 
         $('#orderTable').on('keyup change', function() {
-            inner_calculation();
+            // inner_calculation();
         });
 
         $('#counter_table').on('keyup change', function() {
             discount_calculate();
-            // console.log('%'+$('#discount_percentage').val());
-            // console.log('F'+$('#discount_fixed_amount').val());
+        });
+
+
+        $('#orderTable').on('keyup change', '.selected_item_total_price', function() {
+            let total_price = 0;
+            let total_vat = 0;
+            $('#orderTable tbody tr').each(function(i, element) {
+                let sub_total_price = parseFloat($(this).find('.selected_item_total_price').val());
+                let qty = parseInt($(this).find('.selected_item_qty').val());
+                let price_with_vat_for_one = sub_total_price/qty;
+                let price_for_one = ((100 * price_with_vat_for_one) / 115).toFixed(2);
+                let vat_for_one = (price_with_vat_for_one - (100 * price_with_vat_for_one) / 115).toFixed(2);
+                $(this).find('.selected_item_price').text(price_for_one);
+                $(this).find('.selected_item_vat').text(vat_for_one);
+
+                // total_price += qty * price;
+                // total_vat += qty * vat;
+            });
+            $('#total_price').text((total_price).toFixed(2));
+            $('#total_vat').text((total_vat).toFixed(2));
+            discount_calculate();
         });
 
         function inner_calculation() {
@@ -515,7 +539,7 @@
                 var qty = parseInt($(this).find('.selected_item_qty').val());
                 var price = parseFloat($(this).find('.selected_item_price').text());
                 var vat = parseFloat($(this).find('.selected_item_vat').text());
-                $(this).find('.selected_item_total_price').text((qty * (price + vat)).toFixed(2));
+                $(this).find('.selected_item_total_price').val((qty * (price + vat)).toFixed(2));
                 total_price += qty * price;
                 total_vat += qty * vat;
             });
@@ -532,7 +556,7 @@
             price_after_discount = price - discount_amount;
             $('#price_after_discount').text((price_after_discount).toFixed(2));
             let vat = parseFloat($('#total_vat').text());
-            let advance_payment_amount =  parseFloat($('#advance_payment_amount').text());
+            let advance_payment_amount = parseFloat($('#advance_payment_amount').text());
             $('#have_to_pay').text((price_after_discount + vat - advance_payment_amount).toFixed(2));
             $('#total_price_include_vat').text((price_after_discount + vat).toFixed(2));
         }
@@ -555,16 +579,6 @@
                         $('#discount_fixed_amount').val(0);
                         $('#advance_payment_amount').text(response.appointment.advance_amount);
                         discount_calculate();
-                        // $('#addr0').find('.service').val(response.appointment.service_id)
-                        // $('#addr0').find('.price').val(response.service.price)
-                        // $('#addr0').find('.qty').val(1)
-                        // // $('#tax').val(response.vat_percentage)
-                        // $('#tax').val(0)
-                        // $('#discount').val(response.discount_percentage)
-                        // $('#fixed_discount').val(0)
-                        // $('#advance_payment_amount').val(response.appointment.advance_amount)
-                        // calc();
-                        // calc_total();
                     }
                 });
             }
@@ -601,7 +615,6 @@
                         discount_percentage: $('#discount_percentage').val(),
                         fixed_discount: $('#discount_fixed_amount').val(),
                         advance_payment_amount: parseFloat($('#advance_payment_amount').text()),
-                        // new_payment_amount: document.getElementById('new_payment_amount').value,
                         new_payment_amount: parseFloat($('#have_to_pay').text()),
                     },
                     dataType: 'JSON',
@@ -624,7 +637,6 @@
                             $('#modal').modal('show');
                             $('#modal-body').html(`<iframe src="` + data.invoice_url +
                                 `" width="100%" height="400"></iframe>`);
-
                             // $(".mdal_close_a").attr("href", data.btn_url)
                         } else {
                             Swal.fire({
