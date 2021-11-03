@@ -73,6 +73,17 @@
                                         @enderror
                                     </div>
                                 </div>
+                               <div class="col-md-6">
+                                    <div class="form-group has-success">
+                                    <label for="user_address">Address</label>
+                                            <textarea class="form-control" name="user_address"  id="user_address">{{ $user->address }} </textarea>
+                                            @error('user_address')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                    </div>
+                                </div>
 
                                 <!--/span-->
                                 <div class="col-md-6">
