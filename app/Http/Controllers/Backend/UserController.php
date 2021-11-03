@@ -34,7 +34,14 @@ class UserController extends Controller
     {
         $userCategories = UserCategory::all();
         $roles = Role::all();
-        return view('backend.user.create', compact('userCategories', 'roles'));
+        $selected_role = null;
+        if(request()->role){
+            $selected_role   = 'Customer';
+        }else{
+            $selected_role = null;
+
+        }
+        return view('backend.user.create', compact('userCategories', 'roles', 'selected_role'));
     }
 
     /**
@@ -47,26 +54,37 @@ class UserController extends Controller
     {
         $request->validate([
             'user_name'     => 'required|string',
-            'user_email'    => 'required|unique:users,email',
+            'user_email'    => 'nullable|email',
             'user_phone'    => 'nullable|string|max:11|unique:users,phone',
             'user_category' => 'nullable|exists:user_categories,id',
             'user_role'     => 'required|exists:roles,name',
             'user_address'     => 'nullable',
-            'user_pass'     => 'required|min:4',
+            'user_pass'     => 'nullable|min:4',
         ]);
-
         $user = new User();
         $user->name = $request->user_name;
         $user->email = $request->user_email;
         $user->phone = $request->user_phone;
         $user->address = $request->user_address;
         $user->category_id = $request->user_category;
+        if($request->user_role=='Customer')
+        {
+        $user->password = Hash::make(Str::random(8));
+        }
+        else{
         $user->password = Hash::make($request->user_pass);
+        }
         if ($request->file('image')) {
             $user->image = file_uploader('uploads/user-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') . '-' . Str::slug($request->user_name, '-'));
         }
         $user->save();
-        $user->assignRole($request->user_role);
+        if($request->user_role=='Customer')
+        {            
+            $user->assignRole('Customer');
+        }
+        else{
+            $user->assignRole($request->user_role);
+        }
 
         toastr()->success('Successfully Saved!');
         return back();

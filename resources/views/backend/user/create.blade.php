@@ -73,6 +73,17 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-success">
+                                    <label for="user_address">Address</label>
+                                            <textarea class="form-control" name="user_address"  id="user_address"> </textarea>
+                                            @error('user_address')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                    </div>
+                                </div>
 
                                 <!--/span-->
                                 <div class="col-md-6">
@@ -109,6 +120,28 @@
                                         </div>
                                     </div>
                                 </div>
+                                @if($selected_role)
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-12" for="user_role">User Role <b class="text-danger">*</b></label>
+                                        <div class="input-group">
+                                            <select name="user_role" id="user_role" class="form-control" required>
+                                                <option value="" selected disabled>Select user role
+                                                </option>
+                                                @foreach ($roles as $role)
+                                                    <option @if($selected_role == $role->name) selected @endif value="{{ $role->name }}">
+                                                        {{ $role->name ?? '#' }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('user_role')
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                @else
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="col-md-12" for="user_role">User Role <b class="text-danger">*</b></label>
@@ -129,15 +162,18 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endif
+                                @if(!$selected_role)
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="user_pass" class="form-label">Password <b class="text-danger">*</b></label>
                                         <input type="password" name="user_pass" class="form-control" id="user_pass"
-                                            placeholder="Password" required>
+                                            placeholder="Password">
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        @endif
                         <div class="form-actions">
                             <div class="card-body">
                                 <button type="submit" class="btn btn-success text-white"> <i class="fa fa-check"></i>
