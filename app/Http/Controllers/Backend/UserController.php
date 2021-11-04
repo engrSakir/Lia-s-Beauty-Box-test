@@ -34,13 +34,7 @@ class UserController extends Controller
     {
         $userCategories = UserCategory::all();
         $roles = Role::all();
-        $selected_role = null;
-        if(request()->role){
-            $selected_role   = 'Customer';
-        }else{
-            $selected_role = null;
-
-        }
+        $selected_role = request()->role ?? null;
         return view('backend.user.create', compact('userCategories', 'roles', 'selected_role'));
     }
 
@@ -58,7 +52,7 @@ class UserController extends Controller
             'user_phone'    => 'nullable|string|max:11|unique:users,phone',
             'user_category' => 'nullable|exists:user_categories,id',
             'user_role'     => 'required|exists:roles,name',
-            'user_address'     => 'nullable',
+            'user_address'  => 'nullable',
             'user_pass'     => 'nullable|min:4',
         ]);
         $user = new User();
@@ -67,25 +61,12 @@ class UserController extends Controller
         $user->phone = $request->user_phone;
         $user->address = $request->user_address;
         $user->category_id = $request->user_category;
-        if($request->user_role=='Customer')
-        {
-        $user->password = Hash::make(Str::random(8));
-        }
-        else{
-        $user->password = Hash::make($request->user_pass);
-        }
+        $user->password = $request->user_pass ?? Str::random(8);
         if ($request->file('image')) {
             $user->image = file_uploader('uploads/user-image/', $request->image, Carbon::now()->format('Y-m-d H-i-s-a') . '-' . Str::slug($request->user_name, '-'));
         }
         $user->save();
-        if($request->user_role=='Customer')
-        {            
-            $user->assignRole('Customer');
-        }
-        else{
-            $user->assignRole($request->user_role);
-        }
-
+        $user->assignRole($request->user_role);
         toastr()->success('Successfully Saved!');
         return back();
     }
@@ -161,7 +142,7 @@ class UserController extends Controller
         try {
             $user->assignRole($request->user_role);
             $user->syncPermissions([$request->permissions]);
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             toastr()->error($exception->getMessage(), 'Error!');
             return back();
         }
@@ -197,16 +178,17 @@ class UserController extends Controller
         ];
     }
 
-    public function changeUsercategory(Request $request){
+    public function changeUsercategory(Request $request)
+    {
         $request->validate([
             'category' => 'required|exists:user_categories,id',
             'users' => 'required'
         ]);
-        try{
+        try {
             User::whereIn('id', $request->users)->update([
                 'category_id' =>  $request->category
             ]);
-        }catch(\Exception $exception){
+        } catch (\Exception $exception) {
             return [
                 'type' => 'error',
                 'message' => $exception->getMessage(),
