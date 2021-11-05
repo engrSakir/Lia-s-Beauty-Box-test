@@ -107,7 +107,7 @@
                                             </div>
                                         </div>
                                     </div>
-
+ 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <div class="input-group">
@@ -127,6 +127,14 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                        <input type="text"  name="address" class="form-control" placeholder="Address" >
+
+                                        </div>
+                                    </div>
+                                </div>
                                 @endguest
                                 <div class="col-md-12">
                                     <h5><i>{{ get_static_option('advance_message') }}</i></h3>
@@ -319,6 +327,7 @@
                     schedule: $('#schedule_id').val(),
                     name: $("#appointment_form [name='name']").val(),
                     email: $("#appointment_form [name='email']").val(),
+                    address: $("#appointment_form [name='address']").val(),
                     phone: $("#appointment_form [name='phone']").val(),
                     transaction_id: $("#appointment_form [name='transaction_id']").val(),
                     advance_amount: $("#appointment_form [name='advance_amount']").val(),

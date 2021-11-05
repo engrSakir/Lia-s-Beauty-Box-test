@@ -53,7 +53,7 @@
                                                 class="text-danger">*</b></label>
                                         <input type="email" id="user_email" name="user_email"
                                             class="form-control" placeholder="Your Email"
-                                            value="{{ old('user_email') }}" required>
+                                            value="{{ old('user_email') }}">
                                         @error('user_email')
                                             <div class="alert alert-danger" role="alert">
                                                 {{ $message }}
