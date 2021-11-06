@@ -23,7 +23,7 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $appointments = Appointment::orderBy('id', 'desc')->paginate(20);
+        $appointments = Appointment::orderBy('created_at', 'desc')->paginate(20);
         return view('backend.appointment.index', compact('appointments'));
     }
 
@@ -401,7 +401,7 @@ class AppointmentController extends Controller
 
     public function advancePayment()
     {
-        $appointments = Appointment::where('status', 'Approved')->orderBy('id', 'desc')->paginate(500);
+        $appointments = Appointment::where('status', 'Approved')->orderBy('created_at', 'desc')->paginate(500);
         return view('backend.appointment.advance', compact('appointments'));
     }
 

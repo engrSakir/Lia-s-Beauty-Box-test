@@ -27,7 +27,7 @@ class InvoiceController extends Controller
     {
         $total_paid = total_sale_amount();
         $total_vat = total_vat();
-        $invoices = Invoice::orderBy('id', 'desc')->paginate(500);
+        $invoices = Invoice::orderBy('created_at', 'desc')->paginate(500);
         return view('backend.invoice.index', compact('invoices', 'total_paid', 'total_vat'));
     }
 
