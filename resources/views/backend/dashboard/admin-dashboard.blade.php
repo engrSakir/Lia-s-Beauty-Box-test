@@ -24,12 +24,14 @@
     <!-- Column -->
     @foreach ($dashboard_items as $dashboard_item)
     <div class="col-md-6 col-lg-4 col-xlg-2">
+       <a href="{{ $dashboard_item['url'] ?? 'javascript:void(0)' }}">
         <div class="card">
             <div class="box @if($loop->odd) bg-info @else bg-success @endif text-center">
                 <h1 class="font-light text-white">{{ $dashboard_item['count'] }}</h1>
                 <h6 class="text-white">{{ $dashboard_item['title'] }}</h6>
             </div>
         </div>
+       </a>
     </div>
     @endforeach
     <!-- Chart -->

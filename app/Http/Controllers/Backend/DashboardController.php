@@ -28,27 +28,33 @@ class DashboardController extends Controller
                 [
                     'title' => 'Total Customer of '.Carbon::now()->format('F'),
                     'count' => User::role('Customer')->whereMonth('created_at', date('m'))->count(),
+                    // 'url' => route('backend.user.index', 'month='.date('m')),
                 ],
                 [
                     'title' => 'Total Sale Amount of '.Carbon::now()->format('F'),
                     'count' => total_sale_amount_of_this_month() ?? 0,
+                    'url' => route('backend.invoice.index', 'month='.date('m')),
                 ],
                 [
                     'title' => 'Total Expense of '.Carbon::now()->format('F'),
                     'count' => Expense::whereMonth('created_at', date('m'))->get()->sum('amount') +  EmployeeSalary::whereMonth('created_at', date('m'))->get()->sum('amount'),
+                    // 'url' => route('backend.expense.index', 'month='.date('m')),
                 ],
 
                 [
                     'title' => 'Total Appointment of '.Carbon::now()->format('F'),
                     'count' => Appointment::whereMonth('created_at', date('m'))->count(),
+                    // 'url' => route('backend.appointment.index', 'month='.date('m')),
                 ],
                 [
                     'title' => 'Total VAT of '.Carbon::now()->format('F'),
                     'count' => total_vat_of_the_month() ?? 0,
+                    // 'url' => '#',
                 ],
                 [
                     'title' => 'Total Amount in Hand',
                     'count' => total_sale_amount() - Expense::all()->sum('amount') - EmployeeSalary::all()->sum('amount') + Appointment::where('status', 'Approved')->sum('advance_amount'),
+                    // 'url' => '#',
                 ],
 
             ];
