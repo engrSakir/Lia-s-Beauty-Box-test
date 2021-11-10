@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Appointment;
+use App\Models\EmployeeSalary;
+use App\Models\Expense;
 use App\Models\Invoice;
 use App\Models\Schedule;
 use App\Models\StaticOption;
@@ -129,6 +132,17 @@ if (!function_exists('random_code')) {
             $total_vat += $invoice->vat();
         }
         return  $total_vat;
+    }
+
+    function amount_in_hand_of_this_month(){
+
+        $amount_in_hand_of_this_month =
+        total_sale_amount_of_this_month()
+        + Appointment::whereMonth('created_at', date('m'))->where('status', 'Approved')->sum('advance_amount')
+        - Expense::whereMonth('created_at', date('m'))->sum('amount')
+        - EmployeeSalary::whereMonth('created_at', date('m'))->sum('amount');
+
+        return $amount_in_hand_of_this_month;
     }
 
 

@@ -52,8 +52,8 @@ class DashboardController extends Controller
                     // 'url' => '#',
                 ],
                 [
-                    'title' => 'Total Amount in Hand',
-                    'count' => total_sale_amount() - Expense::all()->sum('amount') - EmployeeSalary::all()->sum('amount') + Appointment::where('status', 'Approved')->sum('advance_amount'),
+                    'title' => 'Total Amount in Hand of '.Carbon::now()->format('F'),
+                    'count' => amount_in_hand_of_this_month(),
                     // 'url' => '#',
                 ],
 
