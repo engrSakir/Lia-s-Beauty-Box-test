@@ -21,6 +21,7 @@ use App\Http\Controllers\Backend\UserCategoryController;
 use App\Http\Controllers\Backend\EmployeeSalaryController;
 use App\Http\Controllers\Backend\ReferralDiscountPercentageController;
 use App\Http\Controllers\Backend\PaymentMethodController;
+use App\Http\Controllers\Backend\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,11 +39,12 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'
     Route::post('profile', [ProfileController::class, 'update']);
 
     Route::group(['middleware' => ['role:Admin|Employee']], function () {
-        Route::get('payment/{invoice}', [InvoiceController::class, 'payment'])->name('invoice.payment');
-        Route::patch('payment/{invoice}', [InvoiceController::class, 'paymentStore']);
-        Route::get('payment-receipt/{payment}', [InvoiceController::class, 'paymentReceipt'])->name('paymentReceipt');
+        Route::get('/ajax/get-items-by-category/{category}', [InvoiceController::class, 'getItemsBycategory'])->middleware(['auth'])->name('getItemsBycategory');
+
+
         Route::resource('appointment', AppointmentController::class);
         Route::resource('invoice', InvoiceController::class);
+        Route::resource('product', ProductController::class);
         Route::resource('schedule', ScheduleController::class);
         Route::resource('service', ServiceController::class);
         Route::resource('serviceCategory', ServiceCategoryController::class);
@@ -54,6 +56,14 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'
         Route::get('admin', [DashboardController::class, 'indexAdmin'])->name('admin.index');
         Route::get('employee', [DashboardController::class, 'indexEmployee'])->name('employee.index');
         Route::get('customer', [DashboardController::class, 'indexCustomer'])->name('customer.index');
+        Route::get('/appointment-data/customer-information', [AppointmentController::class, 'customerInfo'])->name('ajax.customerInfo');
+        Route::post('/change-user-category', [UserController::class, 'changeUsercategory'])->name('ajax.changeUserCategory');
+        Route::get('/report', [DashboardController::class, 'indexReport'])->name('report.index');
+        Route::post('/report', [DashboardController::class, 'storeReport'])->name('report.store');
+        Route::get('/advancePayment', [AppointmentController::class, 'advancePayment'])->name('advancePayment.index');
+        Route::get('/advancePayment/{appointment}', [AppointmentController::class, 'advancePaymentShow'])->name('advancePayment.show');
+
+
 
         Route::resource('user', UserController::class);
         Route::resource('client', ClientController::class);

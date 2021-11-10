@@ -2,14 +2,14 @@
 @push('title') Booking @endpush
 @section('content')
     <!-- INNER PAGE BANNER -->
-    <div class="wt-bnr-inr overlay-wraper" style="background-image:url(assets/frontend/images/banner/product-banner.jpg);">
+   <!-- <div class="wt-bnr-inr overlay-wraper" style="background-image:url(assets/frontend/images/banner/product-banner.jpg);">
         <div class="overlay-main bg-black opacity-07"></div>
         <div class="container">
             <div class="wt-bnr-inr-entry">
                 <h1 class="text-white">Booking</h1>
             </div>
         </div>
-    </div>
+    </div>-->
     <!-- INNER PAGE BANNER END -->
 
     <!-- BREADCRUMB ROW -->
@@ -17,7 +17,7 @@
         <div class="container">
             <ul class="wt-breadcrumb breadcrumb-style-2">
                 <li><a href="javascript:void(0);"><i class="fa fa-home"></i> Home</a></li>
-                <li>Product</li>
+                <li>Booking</li>
             </ul>
         </div>
     </div>
@@ -107,7 +107,7 @@
                                             </div>
                                         </div>
                                     </div>
-
+ 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <div class="input-group">
@@ -127,6 +127,14 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                        <input type="text"  name="address" class="form-control" placeholder="Address" >
+
+                                        </div>
+                                    </div>
+                                </div>
                                 @endguest
                                 <div class="col-md-12">
                                     <h5><i>{{ get_static_option('advance_message') }}</i></h3>
@@ -319,6 +327,7 @@
                     schedule: $('#schedule_id').val(),
                     name: $("#appointment_form [name='name']").val(),
                     email: $("#appointment_form [name='email']").val(),
+                    address: $("#appointment_form [name='address']").val(),
                     phone: $("#appointment_form [name='phone']").val(),
                     transaction_id: $("#appointment_form [name='transaction_id']").val(),
                     advance_amount: $("#appointment_form [name='advance_amount']").val(),

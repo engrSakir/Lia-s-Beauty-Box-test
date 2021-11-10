@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendEmailJob;
 use App\Models\Appointment;
 use App\Models\ReferralDiscountPercentage;
 use App\Models\Schedule;
@@ -10,6 +11,8 @@ use App\Models\ServiceCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use PDF;
 
 class AppointmentController extends Controller
 {
@@ -20,7 +23,7 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $appointments = Appointment::orderBy('id', 'desc')->paginate(20);
+        $appointments = Appointment::orderBy('created_at', 'desc')->paginate(20);
         return view('backend.appointment.index', compact('appointments'));
     }
 
@@ -45,26 +48,40 @@ class AppointmentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'email'     => 'required',
+            'phone'     => 'nullable|string',
+            'email'     => 'nullable|email',
+            'address'     => 'nullable',
+            'name'     => 'required|string',
+            'service'           => 'required|exists:services,id',
         ]);
 
-        $user = User::where('email', $request->email)->first();
+        if ($request->email) {
+            $user = User::where('email', $request->email)->first();
+        } else if ($request->phone) {
+            $user = User::where('phone', $request->phone)->first();
+        } else {
+            $user = User::where('name', $request->name)->first();
+        }
+
+        $password = null;
 
         if ($user) {
             $request->validate([
                 'appointment_data'  => 'required|string', // get from hidden
                 'schedule'          => 'required|exists:schedules,id', // get from hidden
-                'service'           => 'required|exists:services,id',
             ]);
         } else {
             $request->validate(
                 [
                     'name'      => 'required|string',
-                    'email'     => 'required|unique:users,email',
+                    'email'     => 'nullable|email',
                     'phone'     => 'required|unique:users,phone',
+                    'address'     => 'nullable',
                     'appointment_data' => 'required|string', // get from hidden
                     'schedule'  => 'required|exists:schedules,id', // get from hidden
-                    'service'   => 'required|exists:services,id'
+                    'service'   => 'required|exists:services,id',
+                    'transaction_id'  => 'nullable', // get from hidden
+                    'advance_amount'   => 'nullable|numeric'
                 ],
                 [
                     'email.unique' => 'This email already used. Please use another email.',
@@ -73,23 +90,29 @@ class AppointmentController extends Controller
             );
             $password = Str::random(8);
             $user = new User();
-            $user->name         = $request->name;
-            $user->email        = $request->email;
-            $user->phone        = $request->phone;
             $user->password     = bcrypt($password);
-            $user->save();
+        }
+        //New save or auto update
+        $user->name         = $request->name;
+        $user->email        = $request->email;
+        $user->phone        = $request->phone;
+        $user->address      = $request->address;
+        $user->save();
+        if ($password) {
             $user->assignRole('Customer');
         }
 
         try {
             $schedule = \App\Models\Schedule::find($request->schedule) ?? null;
-            $max_participent_in_this_day = Appointment::where('appointment_data', date('Y-m-d', strtotime(request()->appointment_data)))->where('schedule_id',  $request->schedule)->where('status','!=', 'Reject')->count();
+            $max_participent_in_this_day = Appointment::where('appointment_data', date('Y-m-d', strtotime(request()->appointment_data)))->where('schedule_id',  $request->schedule)->where('status', '!=', 'Reject')->count();
             if ($max_participent_in_this_day < $schedule->maximum_participant) {
                 $appointment = new Appointment();
                 $appointment->customer_id       = $user->id;
                 $appointment->appointment_data  = date('Y-m-d', strtotime($request->appointment_data));
                 $appointment->schedule_id       = $request->schedule;
                 $appointment->service_id        = $request->service;
+                $appointment->transaction_id    = $request->transaction_id;
+                $appointment->advance_amount    = $request->advance_amount ?? 0;
                 $appointment->status            = 'Approved'; //Administritive auto approve
                 $appointment->save();
             } else {
@@ -103,7 +126,7 @@ class AppointmentController extends Controller
                 return [
                     'type' => 'error',
                     'message' => 'Something went wrong.',
-                    // 'message' => $exception->getMessage(),
+                    'message' => $exception->getMessage(),
                 ];
             }
             toastr()->error('Something went wrong!');
@@ -131,12 +154,12 @@ class AppointmentController extends Controller
     {
         if (request()->ajax()) {
             $discount_percentage = $appointment->customer->category->discount_percentage ?? 0;
-            if($appointment->customer->referBy){
+            if ($appointment->customer->referBy) {
                 $discount_percentage += ReferralDiscountPercentage::latest()->first()->amount ?? 0;
             }
-            if(auth()->user()->hasPermissionTo('Invoice create with vat permission')){
+            if (auth()->user()->hasPermissionTo('Invoice create with vat permission')) {
                 $vat_percentage = $appointment->customer->category->vat_percentage ?? 0;
-            }else{
+            } else {
                 $vat_percentage = 0;
             }
             return [
@@ -217,6 +240,32 @@ class AppointmentController extends Controller
             }
             $appointment->status = $request->status;
             $appointment->save();
+            if ($appointment->customer->email && $appointment->status == 'Approved') {
+                try {
+                    $data = [
+                        'from'    => 'from@email.com',
+                        'to'      => $appointment->customer->email,
+                        'subject' => 'Booking Approved',
+                        'pdf'     => PDF::loadView('backend.invoice.advance-inv-pdf', compact('appointment')),
+                    ];
+                    Mail::send(
+                        'emails.adance_payment',
+                        ['data' => $data],
+                        function ($message) use ($data) {
+                            $message
+                                ->from($data['from'])
+                                ->to($data['to'])
+                                ->subject($data['subject'])
+                                ->attachData($data['pdf']->output(), 'invoice.pdf');
+                        }
+                    );
+                } catch (\Exception $exception) {
+                    return response()->json([
+                        'type' => 'warning',
+                        'message' => 'Email problem ' . $exception->getMessage()
+                    ]);
+                }
+            }
             if (request()->ajax()) {
                 return response()->json([
                     'type' => 'success',
@@ -228,25 +277,34 @@ class AppointmentController extends Controller
         } else {
             //Full update
             $request->validate([
-                'email'     => 'required',
+                'phone'     => 'nullable|string',
+                'email'     => 'nullable|email',
+                'name'     => 'required|string',
+                'service'           => 'required|exists:services,id',
             ]);
 
-            $user = User::where('email', $request->email)->first();
+            if ($request->email) {
+                $user = User::where('email', $request->email)->first();
+            } else if ($request->phone) {
+                $user = User::where('phone', $request->phone)->first();
+            } else {
+                $user = User::where('name', $request->name)->first();
+            }
 
             if ($user) {
                 $request->validate([
                     // 'appointment_datE'  => 'required|string', // get from hidden
                     'schedule'          => 'required|exists:schedules,id', // get from hidden
                     'service'           => 'required|exists:services,id',
-                    'message'           => 'nullable|string',
                 ]);
             } else {
                 $request->validate(
                     [
                         'name'      => 'required|string',
-                        'email'     => 'required|unique:users,email',
+                        //'email'     => 'required|unique:users,email',
+                        'email'     => 'nullable|email',
                         'phone'     => 'required|unique:users,phone',
-                        // 'appointment_data' => 'required|string', // get from hidden
+                        'address' => 'nullable', // get from hidden
                         'schedule'  => 'required|exists:schedules,id', // get from hidden
                         'service'   => 'required|exists:services,id',
                         'message'   => 'nullable|string',
@@ -263,6 +321,7 @@ class AppointmentController extends Controller
                 $user->name         = $request->name;
                 $user->email        = $request->email;
                 $user->phone        = $request->phone;
+                $user->address        = $request->address;
                 $user->password     = bcrypt($password);
                 $user->save();
                 $user->assignRole('Customer');
@@ -274,7 +333,7 @@ class AppointmentController extends Controller
                 $appointment->schedule_id       = $request->schedule;
                 $appointment->service_id        = $request->service;
                 $appointment->transaction_id        = $request->transaction_id;
-                $appointment->advance_amount           = $request->advance_amount;
+                $appointment->advance_amount           = $request->advance_amount ?? 0;
                 $appointment->message           = $request->message;
                 $appointment->booked_by_admin   = true;
                 $appointment->save();
@@ -314,5 +373,41 @@ class AppointmentController extends Controller
             'type' => 'success',
             'message' => 'Successfully destroy',
         ];
+    }
+
+    public function customerInfo()
+    {
+        if (request()->request_for == 'email') {
+            return User::where('email', 'LIKE', '%' . request()->query_data . '%')
+                ->select('name', 'email', 'phone', 'address')
+                ->get();
+        }
+        if (request()->request_for == 'name') {
+            return User::where('name', 'LIKE', '%' . request()->query_data . '%')
+                ->select('name', 'email', 'phone', 'address')
+                ->get();
+        }
+        if (request()->request_for == 'phone') {
+            return User::where('phone', 'LIKE', '%' . request()->query_data . '%')
+                ->select('name', 'email', 'phone', 'address')
+                ->get();
+        }
+        if (request()->request_for == 'address') {
+            return User::where('address', 'LIKE', '%' . request()->query_data . '%')
+                ->select('name', 'email', 'phone', 'address')
+                ->get();
+        }
+    }
+
+    public function advancePayment()
+    {
+        $appointments = Appointment::where('status', 'Approved')->orderBy('created_at', 'desc')->paginate(500);
+        return view('backend.appointment.advance', compact('appointments'));
+    }
+
+    public function advancePaymentShow(Appointment $appointment)
+    {
+        $pdf = PDF::loadView('backend.invoice.advance-inv-pdf', compact('appointment'));
+        return $pdf->stream('Advance-' . config('app.name') . '.pdf');
     }
 }

@@ -75,52 +75,61 @@ if (!function_exists('random_code')) {
         }
     }
 
-    function inv_calculator(Invoice $invoice){
-        $main_price = $invoice->items()->sum(DB::raw('quantity * price'));
-        $price = $main_price;
-        if($invoice->vat_percentage > 0){
-            $vat_percentage = $invoice->vat_percentage;
-            $vat_amount     = ($main_price / 100) * $invoice->vat_percentage;
-            $price_after_vat = $main_price + ($main_price / 100) * $invoice->vat_percentage;
-        }else{
-            $vat_percentage = 0;
-            $vat_amount     = 0;
-            $price_after_vat = $main_price;
+    function total_sale_amount_of_this_month(){
+        $total_sale_amount_of_this_month = 0;
+        foreach(Invoice::whereMonth('created_at', date('m'))->get() as $inv){
+            $total_sale_amount_of_this_month += $inv->price();
         }
-
-        if($invoice->discount_percentage > 0){
-            $discount_percentage = $invoice->discount_percentage;
-            $discount_amount     = ($main_price / 100) * $invoice->discount_percentage;
-            $price_after_discount= $main_price - ($main_price / 100) * $invoice->discount_percentage;
-        }else{
-            $discount_percentage = 0;
-            $discount_amount = 0;
-            $price_after_discount = $main_price;
-        }
-        $price +=$vat_amount;
-        $price -=$discount_amount;
-        $price -=$invoice->fixed_amount;
-
-        $paid = $invoice->payments->sum('amount');
-        $due = $price - $paid;
-        // dd('Price:'.$price.' Paid:'.$paid.' Due: '.round($due, 0));
-        $data = [
-            'vat_percentage'    => round($vat_percentage),
-            'vat_amount'        => round($vat_amount),
-            'discount_percentage'    => round($discount_percentage),
-            'discount_amount'        => round($discount_amount),
-            'price' => round($price),
-            'main_price' => round($main_price),
-            'price_after_discount' => round($price_after_discount),
-            'price_after_vat' => round($price_after_vat),
-            'paid' => round($paid),
-            'due' => round($due),
-            'fixed_discount' => round($invoice->fixed_amount),
-        ];
-        return $data;
+        return $total_sale_amount_of_this_month;
     }
 
-/*
-Schedule has lot of appointment
-*/
+    function total_sale_amount_of_this_year(){
+        $total_sale_amount_of_this_year = 0;
+        foreach(Invoice::whereYear('created_at', date('Y'))->get() as $inv){
+            $total_sale_amount_of_this_year += $inv->price();
+        }
+        return $total_sale_amount_of_this_year;
+    }
+
+    function total_sale_amount_between($start_date,$end_date){
+        $total_sale_amount_of_this_between = 0;
+        foreach(Invoice::whereBetween('created_at',[$start_date,$end_date])->get() as $inv){
+            $total_sale_amount_of_this_between += $inv->price();
+        }
+        return $total_sale_amount_of_this_between;
+    }
+
+    function total_sale_amount(){
+        $total_sale_amount = 0;
+        foreach(Invoice::all() as $inv){
+            $total_sale_amount += $inv->price();
+        }
+        return $total_sale_amount;
+    }
+
+    function total_vat_of_the_month(){
+        $total_vat_of_the_month = 0;
+        foreach(Invoice::whereMonth('created_at', date('m'))->get() as $invoice){
+            $total_vat_of_the_month += $invoice->vat();
+        }
+        return  $total_vat_of_the_month;
+    }
+
+    function total_vat_of_the_year(){
+        $total_vat_of_the_year = 0;
+        foreach(Invoice::whereYear('created_at', date('Y'))->get() as $invoice){
+            $total_vat_of_the_year += $invoice->vat();
+        }
+        return  $total_vat_of_the_year;
+    }
+
+    function total_vat(){
+        $total_vat = 0;
+        foreach(Invoice::all() as $invoice){
+            $total_vat += $invoice->vat();
+        }
+        return  $total_vat;
+    }
+
+
 }

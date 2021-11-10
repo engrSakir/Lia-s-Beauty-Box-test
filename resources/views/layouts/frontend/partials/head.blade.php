@@ -60,6 +60,26 @@
 
 <!--====== AJAX ======-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+@media only screen and (max-width: 768px) {
+    .topemail{
+   display:none;
+ }
+}
+</style>
 @toastr_css
 <!--Page Lavel code -->
 @stack('head')
+<style>
+    @media screen and (min-width: 0px) and (max-width: 997px) {
+        .show_on_desktop_only {
+            display: none;
+        }
+        .logo-header{
+            width:200px;
+            height:70px;
+        }
+
+        /* hide it elsewhere */
+    }
+</style>

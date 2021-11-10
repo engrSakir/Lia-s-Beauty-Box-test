@@ -13,6 +13,7 @@ use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\User;
 use App\Models\Banner;
+use App\Models\Invoice;
 use App\Models\Testimonial;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -258,5 +259,17 @@ class FrontEndController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
 
+    }
+
+    public function about()
+    {
+        return view('frontend.about');
+    }
+
+    public function gallery()
+    {
+        $galleries = Gallery::all();
+        $imageCategories = ImageCategory::all();
+        return view('frontend.gallery', compact('galleries','imageCategories'));
     }
 }

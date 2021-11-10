@@ -55,6 +55,15 @@
                             <div class="widget bg-white  recent-posts-entry">
                                 <h4 class="widget-title">Booking</h4>
                                 <div class="section-content">
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-xs-100pc p-tb20 ">
+                            <div class="row" id="schedule">
+                                {{-- Schedules show using jQuery --}}
+                                <div class="alert alert-success text-center m-3"
+                                    style="border: 2px solid red; padding: 10px; border-radius: 50px 20px;" role="alert">
+                                    <h3>Please pick a date from calendar</h3>
+                                </div>
+                            </div>
+                        </div>
                                     <div class="wt-tabs tabs-default border">
                                         <ul class="nav nav-tabs">
                                             <li class="active"><a data-toggle="tab"
@@ -71,15 +80,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 col-sm-12 col-xs-12 col-xs-100pc p-tb20 ">
-                            <div class="row" id="schedule">
-                                {{-- Schedules show using jQuery --}}
-                                <div class="alert alert-success text-center m-3"
-                                    style="border: 2px solid red; padding: 10px; border-radius: 50px 20px;" role="alert">
-                                    <h3>Please pick a date from calendar</h3>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -221,10 +222,10 @@
                     $.each(response.schedules, function(schedule_index, schedule) {
                         var schedule_counter = 0;
                         $('#schedule_id').val(schedule.id);
-                        var starting_time = moment(Date("1/1/1900 " + schedule.starting_time)).format(
-                            'hh:mm:ss a');
-                        var ending_time = moment(Date("1/1/1900 " + schedule.ending_time)).format(
-                            'hh:mm:ss a');
+                        var strtime= (new Date("1/1/1900 "+schedule.starting_time).toLocaleString()).split(',');
+                      var starting_time =strtime[1];
+                        var endtime = (new Date("1/1/1900 " + schedule.ending_time).toLocaleString()).split(',');
+                        var ending_time=endtime[1];
                         var title = schedule.title;
                         var maximum_participant = schedule.maximum_participant;
                         var html = `<div class="widget bg-white recent-posts-entry schedule-box btn waves-effect waves-light btn-outline-primary"
@@ -278,10 +279,10 @@
                 success: function(response) {
                     console.log(response);
                     if (response.booking_count < response.schedule.maximum_participant) {
-                        var starting_time = moment(Date("1/1/1900 " + response.schedule.starting_time)).format(
-                            'hh:mm:ss a');
-                        var ending_time = moment(Date("1/1/1900 " + response.schedule.ending_time)).format(
-                            'hh:mm:ss a');
+                        var strtime= (new Date("1/1/1900 "+response.schedule.starting_time).toLocaleString()).split(',');
+                      var starting_time =strtime[1];
+                        var endtime = (new Date("1/1/1900 " + response.schedule.ending_time).toLocaleString()).split(',');
+                        var ending_time=endtime[1];
                         $('#schedule_title').text(response.schedule.title);
                         $('#schedule_date').text($("#appointment_data").val());
                         $('#schedule_time').text(starting_time + ' To ' + ending_time);

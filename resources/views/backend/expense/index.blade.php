@@ -48,7 +48,7 @@
                                             <i class="fa fa-pen"></i>
                                         </a>
                                         <button type="button" class="btn btn-danger btn-circle delete-btn"
-                                            value="{{ route('backend.expense.show', $expense) }}">
+                                            value="{{ route('backend.expense.destroy', $expense) }}">
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </td>

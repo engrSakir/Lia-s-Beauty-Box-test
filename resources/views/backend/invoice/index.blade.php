@@ -22,6 +22,7 @@
 
 @section('content')
     <div class="row">
+
         <!-- Invoice -->
         <div class="col-md-6 col-lg-4 col-xlg-2">
             <div class="card">
@@ -71,10 +72,12 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>INV</th>
+                                    <th>ID</th>
                                     <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Services</th>
                                     <th>Price</th>
-                                    <th>Paid</th>
+
                                     @can('Total vat amount visibility permission')
                                     <th>Vat</th>
                                     @endcan
@@ -87,16 +90,20 @@
                                 @foreach ($invoices as $invoice)
                                     <tr>
                                         <td scope="row">{{ $loop->iteration }}</td>
-                                        <td>{{ '#1010' }}</td>
+                                        <td>{{ $invoice->id }}</td>
                                         <td>{{ $invoice->appointment->customer->name ?? '#' }}</td>
+                                        <td>{{ $invoice->appointment->customer->phone ?? '#' }}</td>
                                         <td>
-                                            {{ inv_calculator($invoice)['price'] ?? '#' }}
+                                        @foreach($invoice->items as $item)
+                                        {{ $item->service->name ?? '#' }},
+                                        @endforeach
                                         </td>
-                                        <td>{{ $invoice->payments->sum('amount') }}</td>
-                                        {{-- <td>{{ inv_calculator($invoice)['due'] }}</td> --}}
+                                        <td>
+                                            {{ $invoice->price() }}
+                                        </td>
                                         @can('Total vat amount visibility permission')
                                         <td>
-                                            {{ inv_calculator($invoice)['vat_amount'] ?? '#' }}
+                                            {{ $invoice->vat() }}
                                         </td>
                                         @endcan
                                         <td>{{ $invoice->created_at->format('d/m/Y h:i A') }}</td>
@@ -104,9 +111,12 @@
                                             <a href="{{ route('backend.invoice.show', $invoice) }}" target="_blank"
                                                 class="btn btn-primary waves-effect btn-rounded waves-light"> <i
                                                     class="fas fa-print"></i> </a>
-                                            <a href="{{ route('backend.invoice.payment', $invoice) }}"
-                                                class="btn btn-info waves-effect btn-rounded waves-light"> <i
-                                                    class="fas fa-credit-card"></i> </a>
+                                            <a target="_blank" href="{{ route('backend.invoice.edit', $invoice) }}"
+                                                class="btn btn-secondary waves-effect btn-rounded waves-light"> <i
+                                                    class="fas fa-pen"></i> </a>
+                                                    <button value="{{ route('backend.invoice.destroy', $invoice) }}"
+                                                class="btn btn-danger btn-circle delete-btn"><i class="fa fa-trash"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                 @endforeach

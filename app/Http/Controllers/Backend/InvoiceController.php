@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
-use App\Models\Payment;
 use App\Models\PaymentMethod;
 use App\Models\ReferralDiscountPercentage;
+use App\Models\Service;
 use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -25,14 +25,26 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $total_paid = Payment::all()->sum('amount');
-        $total_due = InvoiceItem::sum(DB::raw('quantity * price')) - Payment::all()->sum('amount');
-        $total_vat = 0;
-        foreach (Invoice::all() as $invoice) {
-            $total_vat += $invoice->items()->sum(DB::raw('quantity * price')) / 100 * $invoice->vat_percentage;
+        $invoices = Invoice::get();
+        if(request()->month){
+            $invoices = Invoice::orderBy('created_at', 'desc')
+            ->whereMonth('created_at', request()->month)->get();
         }
-        $invoices = Invoice::orderBy('id', 'desc')->paginate(20);
-        return view('backend.invoice.index', compact('invoices', 'total_paid', 'total_due', 'total_vat'));
+        $total_paid = 0;
+        foreach($invoices as $inv){
+            $total_paid += $inv->price();
+        }
+        $total_vat = 0;
+        foreach(Invoice::all() as $invoice){
+            $total_vat += $invoice->vat();
+        }
+
+        $invoices = Invoice::orderBy('created_at', 'desc')->paginate(500);
+        if(request()->month){
+            $invoices = Invoice::orderBy('created_at', 'desc')
+            ->whereMonth('created_at', request()->month)->paginate(500);
+        }
+        return view('backend.invoice.index', compact('invoices', 'total_paid', 'total_vat'));
     }
 
     /**
@@ -43,9 +55,10 @@ class InvoiceController extends Controller
     public function create()
     {
         $appointments = Appointment::where('status', 'Approved')->get();
-        $serviceCategories = ServiceCategory::all();
+        $itemCategories = ServiceCategory::all();
+        $items = Service::all();
         $paymentmethods = PaymentMethod::all();
-        return view('backend.invoice.create', compact('appointments', 'serviceCategories','paymentmethods'));
+        return view('backend.invoice.create', compact('appointments', 'itemCategories', 'items', 'paymentmethods'));
     }
 
     /**
@@ -59,7 +72,7 @@ class InvoiceController extends Controller
         $request->validate([
             'appointment_id'    => 'required|exists:appointments,id',
             'service_data_set'  => 'required',
-            'vat_percentage'    => 'nullable|numeric|min:0|max:100',
+            // 'vat_percentage'    => 'nullable|numeric|min:0|max:100',
             'discount_percentage' => 'nullable|numeric|min:0|max:100',
             'fixed_discount' => 'nullable|numeric',
             // 'advance_payment_amount'=> 'nullable|numeric', // get from invoice
@@ -71,7 +84,6 @@ class InvoiceController extends Controller
         //Change appointment status
         $appointment = Appointment::find($request->appointment_id);
         if ($appointment->status != 'Approved') {
-            // return back();
             return [
                 'type' => 'error',
                 'message' => 'This appointment is not approved. (' . $appointment->id . ')',
@@ -82,9 +94,9 @@ class InvoiceController extends Controller
             //Create invoice
             $invoice = new Invoice();
             $invoice->appointment_id = $appointment->id;
-            $invoice->vat_percentage = $request->vat_percentage ?? 0;
+            $invoice->vat_percentage = 15; //Always 15% as discouse in meeting
             $invoice->discount_percentage = $request->discount_percentage ?? 0;
-            $invoice->discount_fixed_amount = $request->fixed_discount ?? 0;
+            $invoice->fixed_discount = $request->fixed_discount ?? 0;
             $invoice->payment_method_id = $request->payment_method;
             $invoice->note = $request->note;
             $invoice->save();
@@ -98,15 +110,10 @@ class InvoiceController extends Controller
                     $invoiceItem->price     = $service_data['price'];
                     $invoiceItem->save();
                 }
-                $payment = new Payment();
-                $payment->invoice_id = $invoice->id;
-                $payment->amount = $request->new_payment_amount + $appointment->advance_amount ?? 0;
-                $payment->save();
                 return [
                     'type' => 'success',
                     'message' => 'Successfully Created',
                     'invoice_url' => route('backend.invoice.show', $invoice),
-                    'btn_url' => route('backend.invoice.payment', $invoice),
                 ];
             } catch (\Exception $e) {
                 // Appointment status back and invoice delete
@@ -129,9 +136,8 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        // $pdf = PDF::loadView('backend.invoice.invoice-pdf', compact('invoice'));
-        $pdf = PDF::loadView('backend.invoice.pos-invoice-pdf', compact('invoice'));
-        return $pdf->stream('Invoice-'.config('app.name').'.pdf');
+        $pdf = PDF::loadView('backend.invoice.pos-pdf', compact('invoice'));
+        return $pdf->stream('Invoice-' . config('app.name') . '.pdf');
     }
 
     /**
@@ -142,7 +148,11 @@ class InvoiceController extends Controller
      */
     public function edit(Invoice $invoice)
     {
-        //
+        $appointments = Appointment::all();
+        $itemCategories = ServiceCategory::all();
+        $paymentmethods = PaymentMethod::all();
+        $items = Service::all();
+        return view('backend.invoice.edit', compact('appointments', 'itemCategories', 'paymentmethods', 'invoice', 'items'));
     }
 
     /**
@@ -154,7 +164,58 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, Invoice $invoice)
     {
-        //
+        $request->validate([
+            'appointment_id'    => 'required|exists:appointments,id',
+            'service_data_set'  => 'required',
+            // 'vat_percentage'    => 'nullable|numeric|min:0|max:100',
+            'discount_percentage' => 'nullable|numeric|min:0|max:100',
+            'fixed_discount' => 'nullable|numeric',
+            // 'advance_payment_amount'=> 'nullable|numeric', // get from invoice
+            'new_payment_amount' => 'nullable|numeric',
+            'note'              => 'nullable|string',
+            'payment_method'  => 'required',
+
+        ]);
+        //Change appointment status
+        $appointment = Appointment::find($request->appointment_id);
+        if ($invoice->appointment_id != $request->appointment_id) {
+            $appointment->status = 'Done';
+            $appointment->save();
+        }
+        //Update invoice
+        $invoice->appointment_id = $appointment->id;
+        $invoice->vat_percentage = 15;
+        $invoice->discount_percentage = $request->discount_percentage ?? 0;
+        $invoice->fixed_discount = $request->fixed_discount ?? 0;
+        $invoice->payment_method_id = $request->payment_method;
+        $invoice->note = $request->note;
+        $invoice->save();
+        //Invoice item save with this invoice ID
+        $invoice->items()->delete(); // First delete all items of this invoice
+        try {
+            foreach ($request->service_data_set as $service_data) {
+                $invoiceItem = new InvoiceItem();
+                $invoiceItem->invoice_id   = $invoice->id;
+                $invoiceItem->service_id   = $service_data['service'];
+                $invoiceItem->quantity  = $service_data['quantity'];
+                $invoiceItem->price     = $service_data['price'];
+                $invoiceItem->save();
+            }
+            return [
+                'type' => 'success',
+                'message' => 'Successfully Created',
+                'invoice_url' => route('backend.invoice.show', $invoice),
+            ];
+        } catch (\Exception $e) {
+            // Appointment status back and invoice delete
+            $invoice->delete();
+            $appointment->status = 'Approved';
+            $appointment->save();
+            return [
+                'type' => 'error',
+                'message' => $e->getMessage(),
+            ];
+        }
     }
 
     /**
@@ -172,29 +233,12 @@ class InvoiceController extends Controller
         ];
     }
 
-    public function payment(Invoice $invoice)
+    public function getItemsBycategory($category = null)
     {
-        return view('backend.invoice.payment', compact('invoice'));
-    }
-
-    public function paymentStore(Request $request, Invoice $invoice)
-    {
-        $request->validate([
-            'payment_amount'    => 'required|numeric|min:1',
-        ]);
-
-        $payment = new Payment();
-        $payment->invoice_id = $invoice->id;
-        $payment->amount = $request->payment_amount;
-        $payment->save();
-
-        toastr()->success('successfully payment done!');
-        return back();
-    }
-
-    public function paymentReceipt(Payment $payment)
-    {
-        $pdf = PDF::loadView('backend.invoice.receipt-pdf', compact('payment'));
-        return $pdf->stream('Payment Receipt-' . config('app.name') . '.pdf');
+        $items = Service::all();
+        if ($category != 'All') {
+            $items = Service::where('category_id', $category)->get();
+        }
+        return $items;
     }
 }

@@ -14,7 +14,7 @@
                     <li class="breadcrumb-item active">Appointment Create Page</li>
                 </ol>
                 <a href="{{ route('backend.invoice.create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
-                    class="fa fa-plus-circle"></i>Direct Invoice</a>
+                        class="fa fa-plus-circle"></i>Direct Invoice</a>
             </div>
         </div>
     </div>
@@ -69,8 +69,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input name="name" type="text" required="" class="form-control"
-                                                placeholder="Name">
+                                            <input name="name" type="text" required=""
+                                                class="form-control customer_information" placeholder="Name">
                                         </div>
                                     </div>
                                 </div>
@@ -78,8 +78,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input name="phone" type="text" required="" class="form-control"
-                                                placeholder="Phone">
+                                            <input name="phone" type="text" required=""
+                                                class="form-control customer_information" placeholder="Phone">
                                         </div>
                                     </div>
                                 </div>
@@ -87,12 +87,36 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input name="email" type="email" class="form-control" required=""
-                                                placeholder="Email">
+                                            <input name="email" type="email" class="form-control customer_information"
+                                                 placeholder="Email">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                        <input type="text"  name="address" class="form-control customer_information" placeholder="Address" >
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input name="transaction_id" type="text" class="form-control"
+                                                placeholder="Transaction ID">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input name="advance_amount" type="number" class="form-control"
+                                                placeholder="Advance amount">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="input-group">
                                             <select name="service" class="form-control" required="">
@@ -137,12 +161,21 @@
             border-radius: 12px;
         }
 
+        .ui-front {
+            z-index: 9999999 !important;
+        }
+
     </style>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 @endpush
 
 @push('foot')
     <script src="{{ asset('assets/frontend/calender/calendar.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script> --}}
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
     <script type="text/javascript">
         function selectDate(date) {
@@ -165,10 +198,12 @@
                     $('#schedule').html('')
                     $.each(response.schedules, function(schedule_index, schedule) {
                         var schedule_counter = 0;
-                        var strtime= (new Date("1/1/1900 "+schedule.starting_time).toLocaleString()).split(',');
-                      var starting_time =strtime[1];
-                        var endtime = (new Date("1/1/1900 " + schedule.ending_time).toLocaleString()).split(',');
-                        var ending_time=endtime[1];
+                        var strtime = (new Date("1/1/1900 " + schedule.starting_time).toLocaleString())
+                            .split(',');
+                        var starting_time = strtime[1];
+                        var endtime = (new Date("1/1/1900 " + schedule.ending_time).toLocaleString())
+                            .split(',');
+                        var ending_time = endtime[1];
                         var title = schedule.title;
                         var html = `<a href="javascript:void(0)"  onclick="bookingModal(` + schedule
                             .id + `)">
@@ -209,10 +244,12 @@
                 },
                 success: function(response) {
                     //console.log(response);
-                    var strtime= (new Date("1/1/1900 "+response.schedule.starting_time).toLocaleString()).split(',');
-                      var starting_time =strtime[1];
-                        var endtime = (new Date("1/1/1900 " + response.schedule.ending_time).toLocaleString()).split(',');
-                        var ending_time=endtime[1];
+                    var strtime = (new Date("1/1/1900 " + response.schedule.starting_time).toLocaleString())
+                        .split(',');
+                    var starting_time = strtime[1];
+                    var endtime = (new Date("1/1/1900 " + response.schedule.ending_time).toLocaleString())
+                        .split(',');
+                    var ending_time = endtime[1];
                     $('#schedule_title').text(response.schedule.title);
                     $('#schedule_date').text($("#appointment_data").val());
                     $('#schedule_time').text(starting_time + ' To ' + ending_time);
@@ -235,7 +272,11 @@
                     name: $("#appointment_form [name='name']").val(),
                     email: $("#appointment_form [name='email']").val(),
                     phone: $("#appointment_form [name='phone']").val(),
+                    address: $("#appointment_form [name='address']").val(),
                     service: $("#appointment_form [name='service']").val(),
+                    transaction_id: $("#appointment_form [name='transaction_id']").val(),
+                    advance_amount: $("#appointment_form [name='advance_amount']").val(),
+
                 },
                 dataType: 'JSON',
                 beforeSend: function() {
@@ -257,6 +298,58 @@
                     validation_error(error);
                 },
             });
+        });
+
+        //Auto Search
+        $(".customer_information").autocomplete({
+            source: function(request, response) {
+                // console.log(request.term);
+                request_for = this.element.attr('name');
+                var query_data = request.term;
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('backend.ajax.customerInfo') }}",
+                    data: {
+                        'request_for': request_for,
+                        'query_data': query_data
+                    },
+                    success: function(data) {
+                        console.log(data)
+                        var array = $.map(data, function(obj) {
+                            if(request_for == 'name'){
+                                pointed_value = obj.name;
+                            }
+                            if(request_for == 'email'){
+                                pointed_value = obj.email;
+                            }
+                            if(request_for == 'phone'){
+                                pointed_value = obj.phone;
+                            }
+                            if(request_for == 'address'){
+                                pointed_value = obj.address;
+                            }
+                            return {
+                                value: pointed_value, //Fillable in input field
+                                label: 'Name:'+obj.name +' Email:'+ obj.email +' Phone:'+ obj
+                                    .phone + 'Address:' + obj.address, //Show as label of input field
+                                name: obj.name,
+                                email: obj.email,
+                                phone: obj.phone,
+                                address: obj.address,
+                            }
+                        })
+                        response($.ui.autocomplete.filter(array, request.term));
+                    },
+                });
+            },
+            minLength: 1,
+            select: function(event, ui) {
+                $('[name=name]').val(ui.item.name);
+                $('[name=email]').val(ui.item.email);
+                $('[name=phone]').val(ui.item.phone);
+                $('[name=address]').val(ui.item.address);
+
+            }
         });
     </script>
 @endpush

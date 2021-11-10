@@ -44,9 +44,9 @@
                 <div>
                     <hr> </div>
                 <div class="card-body"> <small class="text-muted">Email address </small>
-                    <h6>#</h6> <small class="text-muted p-t-30 db">Phone</small>
-                    <h6>#</h6> <small class="text-muted p-t-30 db">Address</small>
-                    <h6>#</h6>
+                    <h6>{{ $user->email }}</h6> <small class="text-muted p-t-30 db">Phone</small>
+                    <h6>{{ $user->phone }}</h6> <small class="text-muted p-t-30 db">Address</small>
+                    <h6>{{ $user->address }}</h6>
                 </div>
             </div>
         </div>

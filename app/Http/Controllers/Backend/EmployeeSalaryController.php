@@ -32,7 +32,7 @@ class EmployeeSalaryController extends Controller
         $selected_employee = null;
         if(request()->employee){
             $selected_employee   = User::findOrFail(request()->employee);
-        }
+        } 
 
         $employees = User::role('Employee')->get();
         return view('backend.salary.create', compact('employees', 'selected_employee'));

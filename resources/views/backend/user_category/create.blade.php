@@ -1,17 +1,17 @@
 @extends('layouts.backend.app')
 
-@section('title') User Category @endsection
+@section('title') Customer privilege @endsection
 
 @section('bread-crumb')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h4 class="text-themecolor">User Category</h4>
+            <h4 class="text-themecolor">Customer privilege</h4>
         </div>
         <div class="col-md-7 align-self-center text-end">
             <div class="d-flex justify-content-end align-items-center">
                 <ol class="breadcrumb justify-content-end">
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                    <li class="breadcrumb-item active">User Category</li>
+                    <li class="breadcrumb-item active">Customer privilege</li>
                 </ol>
 
             </div>
@@ -24,7 +24,7 @@
         <div class="col-12">
             <div class="card">
             <div class="card-header bg-info">
-                    <h4 class="mb-0 text-white">Create User Category</h4>
+                    <h4 class="mb-0 text-white">Create Customer privilege</h4>
                 </div>
                 <div class="card-body">
                 <form action="{{ route('backend.userCategory.store') }}" method="POST" class="form-horizontal form-material" enctype="multipart/form-data">
@@ -34,7 +34,7 @@
                             <div class="row pt-3">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="form-label" for="category_name">User Category<b class="text-danger">*</b> </label>
+                                        <label class="form-label" for="category_name">Customer privilege<b class="text-danger">*</b> </label>
                                         <input type="text" id="category_name" name="category_name" class="form-control" placeholder="Category Name" value="{{ old('category_name') }}" required>
                                         @error('category_name')
                                         <div class="alert alert-danger" role="alert">

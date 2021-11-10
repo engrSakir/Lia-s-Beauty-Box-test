@@ -1,17 +1,17 @@
 @extends('layouts.backend.app')
 
-@section('title') User Category @endsection
+@section('title') Customer privilege @endsection
 
 @section('bread-crumb')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h4 class="text-themecolor">User Category</h4>
+            <h4 class="text-themecolor">Customer privilege</h4>
         </div>
         <div class="col-md-7 align-self-center text-end">
             <div class="d-flex justify-content-end align-items-center">
                 <ol class="breadcrumb justify-content-end">
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                    <li class="breadcrumb-item active">User Category</li>
+                    <li class="breadcrumb-item active">Customer privilege</li>
                 </ol>
                 <a href="{{ route('backend.userCategory.create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create
                     New</a>
@@ -29,7 +29,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">User Category Name</th>
+                                <th scope="col">Customer privilege Name</th>
                                 <th scope="col">VAT %</th>
                                 <th scope="col">OFF %</th>
                                 <th scope="col">Created At</th>
