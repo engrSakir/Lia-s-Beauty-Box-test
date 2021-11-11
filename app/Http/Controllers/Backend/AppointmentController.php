@@ -23,7 +23,11 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $appointments = Appointment::orderBy('created_at', 'desc')->paginate(20);
+        $appointments = Appointment::orderBy('created_at', 'desc')->paginate(500);
+        if(request()->month){
+            $appointments = Appointment::orderBy('created_at', 'desc')
+            ->whereMonth('created_at', request()->month)->where('status', 'Approved')->paginate(500);
+        }
         return view('backend.appointment.index', compact('appointments'));
     }
 

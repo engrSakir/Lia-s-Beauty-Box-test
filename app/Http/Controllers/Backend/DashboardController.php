@@ -42,9 +42,9 @@ class DashboardController extends Controller
                 ],
 
                 [
-                    'title' => 'Total Appointment of '.Carbon::now()->format('F'),
-                    'count' => Appointment::whereMonth('created_at', date('m'))->count(),
-                    // 'url' => route('backend.appointment.index', 'month='.date('m')),
+                    'title' => 'Total Advance of '.Carbon::now()->format('F'),
+                    'count' => Appointment::whereMonth('created_at', date('m'))->where('status', 'Approved')->sum('advance_amount'),
+                    'url' => route('backend.appointment.index', 'month='.date('m')),
                 ],
                 [
                     'title' => 'Total VAT of '.Carbon::now()->format('F'),
