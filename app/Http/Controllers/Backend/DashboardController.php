@@ -27,7 +27,10 @@ class DashboardController extends Controller
             $dashboard_items = [
                 [
                     'title' => 'Total Customer of '.Carbon::now()->format('F'),
-                    'count' => User::role('Customer')->whereMonth('created_at', date('m'))->count(),
+                    'count' => User::role('Customer')
+                    ->whereMonth('created_at', date('m'))
+                    ->whereYear('created_at', date('Y'))
+                    ->count(),
                     // 'url' => route('backend.user.index', 'month='.date('m')),
                 ],
                 [
@@ -37,13 +40,15 @@ class DashboardController extends Controller
                 ],
                 [
                     'title' => 'Total Expense of '.Carbon::now()->format('F'),
-                    'count' => Expense::whereMonth('created_at', date('m'))->get()->sum('amount') +  EmployeeSalary::whereMonth('created_at', date('m'))->get()->sum('amount'),
+                    'count' => Expense::whereMonth('created_at', date('m'))
+                    ->whereYear('created_at', date('Y'))->get()->sum('amount') +  
+                    EmployeeSalary::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->get()->sum('amount'),
                     // 'url' => route('backend.expense.index', 'month='.date('m')),
                 ],
 
                 [
                     'title' => 'Total Advance of '.Carbon::now()->format('F'),
-                    'count' => Appointment::whereMonth('created_at', date('m'))->where('status', 'Approved')->sum('advance_amount'),
+                    'count' => Appointment::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->where('status', 'Approved')->sum('advance_amount'),
                     'url' => route('backend.appointment.index', 'month='.date('m')),
                 ],
                 [
@@ -136,12 +141,16 @@ class DashboardController extends Controller
             ],
             [
                 'title' => 'Total Profit of this month',
-                'count' => total_sale_amount_of_this_month() - Expense::whereMonth('created_at', date('m'))->get()->sum('amount') - EmployeeSalary::whereMonth('created_at', date('m'))->get()->sum('amount'),
+                'count' => total_sale_amount_of_this_month() - 
+                Expense::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->get()->sum('amount') - 
+                EmployeeSalary::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->get()->sum('amount'),
                 'url' => null,
             ],
             [
                 'title' => 'Total Profit of this year',
-                'count' => total_sale_amount_of_this_year() - Expense::whereYear('created_at', date('Y'))->get()->sum('amount') - EmployeeSalary::whereYear('created_at', date('Y'))->get()->sum('amount'),
+                'count' => total_sale_amount_of_this_year() - 
+                Expense::whereYear('created_at', date('Y'))->get()->sum('amount') - 
+                EmployeeSalary::whereYear('created_at', date('Y'))->get()->sum('amount'),
                 'url' => null,
             ],
             [
@@ -156,12 +165,12 @@ class DashboardController extends Controller
             ],
             [
                 'title' => 'Total Expense of this month',
-                'count' => Expense::whereMonth('created_at', date('m'))->get()->sum('amount'),
+                'count' => Expense::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->get()->sum('amount'),
                 'url' => null,
             ],
             [
                 'title' => 'Total Salary of this month',
-                'count' => EmployeeSalary::whereMonth('created_at', date('m'))->get()->sum('amount'),
+                'count' => EmployeeSalary::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->get()->sum('amount'),
                 'url' => null,
             ],
             [

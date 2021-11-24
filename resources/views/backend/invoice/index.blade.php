@@ -27,8 +27,8 @@
         <div class="col-md-6 col-lg-4 col-xlg-2">
             <div class="card">
                 <div class="box bg-warning text-center">
-                    <h1 class="font-light text-white">{{ $invoices->count() }}</h1>
-                    <h6 class="text-white">Total Invoice</h6>
+                    <h1 class="font-light text-white">{{ $total_inv_of_this_month }}</h1>
+                    <h6 class="text-white">Total Invoice of {{ date('F') }}</h6>
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
             <div class="card">
                 <div class="box bg-info text-center">
                     <h1 class="font-light text-white">{{ $total_paid }}</h1>
-                    <h6 class="text-white">Total Paid Amount</h6>
+                    <h6 class="text-white">Total Paid Amount of {{ date('F') }}</h6>
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@
             <div class="card">
                 <div class="box bg-primary text-center">
                     <h1 class="font-light text-white">{{ $total_vat }}</h1>
-                    <h6 class="text-white">Total VAT Amount</h6>
+                    <h6 class="text-white">Total VAT Amount of {{ date('F') }}</h6>
                 </div>
             </div>
         </div>

@@ -80,7 +80,7 @@ if (!function_exists('random_code')) {
 
     function total_sale_amount_of_this_month(){
         $total_sale_amount_of_this_month = 0;
-        foreach(Invoice::whereMonth('created_at', date('m'))->get() as $inv){
+        foreach(Invoice::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->get() as $inv){
             $total_sale_amount_of_this_month += $inv->price();
         }
         return $total_sale_amount_of_this_month;
@@ -112,7 +112,7 @@ if (!function_exists('random_code')) {
 
     function total_vat_of_the_month(){
         $total_vat_of_the_month = 0;
-        foreach(Invoice::whereMonth('created_at', date('m'))->get() as $invoice){
+        foreach(Invoice::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->get() as $invoice){
             $total_vat_of_the_month += $invoice->vat();
         }
         return  $total_vat_of_the_month;
@@ -138,9 +138,9 @@ if (!function_exists('random_code')) {
 
         $amount_in_hand_of_this_month =
         total_sale_amount_of_this_month()
-        + Appointment::whereMonth('created_at', date('m'))->where('status', 'Approved')->sum('advance_amount')
-        - Expense::whereMonth('created_at', date('m'))->sum('amount')
-        - EmployeeSalary::whereMonth('created_at', date('m'))->sum('amount');
+        + Appointment::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->where('status', 'Approved')->sum('advance_amount')
+        - Expense::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->sum('amount')
+        - EmployeeSalary::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->sum('amount');
 
         return $amount_in_hand_of_this_month;
     }

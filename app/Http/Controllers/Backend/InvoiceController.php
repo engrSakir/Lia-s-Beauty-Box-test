@@ -25,26 +25,31 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $invoices = Invoice::get();
-        if(request()->month){
-            $invoices = Invoice::orderBy('created_at', 'desc')
-            ->whereMonth('created_at', request()->month)->get();
-        }
-        $total_paid = 0;
-        foreach($invoices as $inv){
-            $total_paid += $inv->price();
-        }
-        $total_vat = 0;
-        foreach(Invoice::all() as $invoice){
-            $total_vat += $invoice->vat();
-        }
 
+        $total_invoices_of_this_month =  Invoice::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->get();
         $invoices = Invoice::orderBy('created_at', 'desc')->paginate(500);
         if(request()->month){
             $invoices = Invoice::orderBy('created_at', 'desc')
-            ->whereMonth('created_at', request()->month)->paginate(500);
+            ->whereMonth('created_at', request()->month)->whereYear('created_at', date('Y'))->paginate(500);
         }
-        return view('backend.invoice.index', compact('invoices', 'total_paid', 'total_vat'));
+
+        $total_inv_of_this_month = $total_invoices_of_this_month->count();
+
+        $total_paid = 0;
+        foreach($total_invoices_of_this_month as $inv){
+            $total_paid += $inv->price();
+        }
+        $total_vat = 0;
+        foreach($total_invoices_of_this_month as $invoice){
+            $total_vat += $invoice->vat();
+        }
+
+        // $invoices = Invoice::orderBy('created_at', 'desc')->paginate(500);
+        // if(request()->month){
+        //     $invoices = Invoice::orderBy('created_at', 'desc')
+        //     ->whereMonth('created_at', request()->month)->whereYear('created_at', date('Y'))->paginate(500);
+        // }
+        return view('backend.invoice.index', compact('invoices', 'total_paid', 'total_vat', 'total_inv_of_this_month'));
     }
 
     /**
