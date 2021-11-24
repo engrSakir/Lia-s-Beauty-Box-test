@@ -119,6 +119,32 @@ class AppointmentController extends Controller
                 $appointment->advance_amount    = $request->advance_amount ?? 0;
                 $appointment->status            = 'Approved'; //Administritive auto approve
                 $appointment->save();
+                if ($appointment->customer->email) {
+                    try {
+                        $data = [
+                            'from'    => 'from@email.com',
+                            'to'      => $appointment->customer->email,
+                            'subject' => 'Booking Approved',
+                            'pdf'     => PDF::loadView('backend.invoice.advance-inv-pdf', compact('appointment')),
+                        ];
+                        Mail::send(
+                            'emails.adance_payment',
+                            ['data' => $data],
+                            function ($message) use ($data) {
+                                $message
+                                    ->from($data['from'])
+                                    ->to($data['to'])
+                                    ->subject($data['subject'])
+                                    ->attachData($data['pdf']->output(), 'invoice.pdf');
+                            }
+                        );
+                    } catch (\Exception $exception) {
+                        return response()->json([
+                            'type' => 'warning',
+                            'message' => 'Email problem ' . $exception->getMessage()
+                        ]);
+                    }
+                }
             } else {
                 return [
                     'type' => 'error',

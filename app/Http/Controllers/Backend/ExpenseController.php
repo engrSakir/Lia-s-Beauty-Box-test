@@ -16,7 +16,9 @@ class ExpenseController extends Controller
     public function index()
     {
         $expenses = Expense::orderBy('id','DESC')->get();
-        return view('backend.expense.index', compact('expenses'));
+        $total_expenses_of_this_month =  Expense::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->get()->sum('amount');
+        $total_count = Expense::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->count();
+        return view('backend.expense.index', compact('expenses', 'total_expenses_of_this_month', 'total_count'));
     }
 
     /**

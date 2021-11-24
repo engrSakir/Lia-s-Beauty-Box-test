@@ -22,7 +22,24 @@
 @endsection
 
 @section('content')
-    <div class="row">
+    <div class="row"> <div class="col-md-6 col-lg-4 col-xlg-2">
+            <div class="card">
+                <div class="box bg-warning text-center">
+                    <h1 class="font-light text-white">{{ $total_expenses_of_this_month }}</h1>
+                    <h6 class="text-white">Total Expense of {{ date('F') }}</h6>
+                </div>
+            </div>
+        </div>
+        <!-- Paid -->
+        <div class="col-md-6 col-lg-4 col-xlg-2">
+            <div class="card">
+                <div class="box bg-info text-center">
+                    <h1 class="font-light text-white">{{ $total_count }}</h1>
+                    <h6 class="text-white">Total Expense of {{ date('F') }}</h6>
+                </div>
+            </div>
+        </div>
+
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
@@ -32,6 +49,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Amount</th>
                                 <th scope="col">Category</th>
+                                <th scope="col">Description</th>
                                 <th scope="col">Created At</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -42,6 +60,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $expense->amount }}</td>
                                     <td>{{ $expense->category->name ?? '#' }}</td>
+                                    <td>{{ $expense->description}}</td>
                                     <td>{{ $expense->created_at->format('d/m/Y') }}</td>
                                     <td>
                                         <a class="btn btn-warning btn-circle" href="{{ route('backend.expense.edit', $expense) }}">
