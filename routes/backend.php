@@ -56,6 +56,7 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'
         Route::get('admin', [DashboardController::class, 'indexAdmin'])->name('admin.index');
         Route::get('employee', [DashboardController::class, 'indexEmployee'])->name('employee.index');
         Route::get('customer', [DashboardController::class, 'indexCustomer'])->name('customer.index');
+        Route::get('priority-customer', [DashboardController::class, 'showCustomer'])->name('customer.show');
         Route::get('/appointment-data/customer-information', [AppointmentController::class, 'customerInfo'])->name('ajax.customerInfo');
         Route::post('/change-user-category', [UserController::class, 'changeUsercategory'])->name('ajax.changeUserCategory');
         Route::get('/report', [DashboardController::class, 'indexReport'])->name('report.index');

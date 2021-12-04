@@ -229,6 +229,15 @@ class DashboardController extends Controller
         return view('backend.customer.index', compact('customers', 'customer_categories'));
     }
 
+    public function showCustomer()
+    {
+        $cuss = User::role('Customer')->get();
+        $appointments = Appointment::select('customer_id')->where('status', 'Done')->groupBy('customer_id')->havingRaw('COUNT("customer_id") > 2')->get();
+       
+        $customer_categories = UserCategory::all();
+        return view('backend.prioritycustomer.index', compact('appointments', 'customer_categories'));
+    }
+
     public function indexReport()
     {
         $services = Service::orderBy('id','DESC')->get();

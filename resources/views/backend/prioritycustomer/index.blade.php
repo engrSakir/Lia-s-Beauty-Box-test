@@ -58,42 +58,31 @@
                                 <th scope="col">Email</th>
                                 <th scope="col">Phone</th>
                                 <th scope="col">Address</th>
-                                <th scope="col">Category</th>
                                 <th scope="col">Created At</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($customers as $customer)
+                            @foreach ($appointments as $app)
                                 <tr>
                                     <td>
                                         <label class="btn btn-success">
                                             <div class="custom-control custom-checkbox mr-sm-2">
-                                                <input type="checkbox" value="{{ $customer->id }}" name="customer"
-                                                    class="custom-control-input" id="customer-{{ $loop->iteration }}">
+                                                <input type="checkbox" value="{{ $app->id }}" name="app"
+                                                    class="custom-control-input" id="app-{{ $loop->iteration }}">
                                                 <label class="custom-control-label font-weight-bold"
-                                                    for="customer-{{ $loop->iteration }}">#
+                                                    for="app-{{ $loop->iteration }}">#
                                                     {{ $loop->iteration }}</label>
                                             </div>
                                         </label>
                                     </td>
-                                    <td>{{ $customer->name }}</td>
-                                    <td>{{ $customer->email }}</td>
-                                    <td>{{ $customer->phone }} </td>
-                                    <td>{{ $customer->address }}</td>
-                                    <td>{{ $customer->category->name ?? '-' }}</td>
-                                    <td>{{ $customer->created_at->format('d/m/Y') }}</td>
+                                    <td>{{ $app->customer->name }}</td>
+                                    <td>{{ $app->customer->email }}</td>
+                                    <td>{{ $app->customer->phone }}</td>
+                                    <td>{{ $app->customer->address }}</td>
                                     <td>
-                                        <a href="{{ route('backend.user.show', $customer) }}"
-                                            class="btn btn-info btn-circle"><i class="fa fa-eye"></i> </a>
-                                        <a class="btn btn-warning btn-circle"
-                                            href="{{ route('backend.user.edit', $customer) }}">
-                                            <i class="fa fa-pen"></i>
-                                        </a>
-                                        <button class="btn btn-danger btn-circle delete-btn"
-                                            value="{{ route('backend.user.show', $customer) }}">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
+                                        
+                                       
                                     </td>
                                 </tr>
                             @endforeach
@@ -114,25 +103,25 @@
         $(document).ready(function() {
             // Get current page and set current in nav
             $('input[type="checkbox"]').change(function() {
-                $('.counter_display').html($("[name='customer']:checked").length)
+                $('.counter_display').html($("[name='app']:checked").length)
             });
             $('.select-all').click(function(event) {
-                $('.counter_display').html($("[name='customer']:checked").length)
+                $('.counter_display').html($("[name='app']:checked").length)
             });
 
             $('.un-select-all').click(function(event) {
-                $('.counter_display').html($("[name='customer']:checked").length)
+                $('.counter_display').html($("[name='app']:checked").length)
             });
 
             $('.category_change_btn').click(function() {
                 category_id = $(this).val();
                 var users = []
-                $("[name='customer']:checked").each(function() {
+                $("[name='app']:checked").each(function() {
                     users.push($(this).val())
                 });
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: "Category will be updated of selected customer!",
+                    text: "Category will be updated of selected app!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
