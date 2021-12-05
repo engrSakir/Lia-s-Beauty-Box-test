@@ -118,11 +118,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="confirm_password" class="form-label">Confirm Password</label>
-                                        <input type="password" class="form-control" id="confirm_password"
-                                            placeholder="Confirm Password" autocomplete="new-password">
-                                    </div>
+                                    
                                     <span id='message'></span>
                                 </div>
                                 <div class="form-group">
