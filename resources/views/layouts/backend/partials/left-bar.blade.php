@@ -133,6 +133,13 @@
                     <span class="hide-menu">Report</span>
                 </a>
             </li>
+            <li>
+                <a class="waves-effect waves-dark" href="{{ route('backend.report.daily') }}"
+                    aria-expanded="false">
+                    <i class="far fa-circle text-danger"></i>
+                    <span class="hide-menu">Daily Report</span>
+                </a>
+            </li>
             <hr>
             @endrole
             @hasanyrole('Admin|Employee')

@@ -299,4 +299,109 @@ class DashboardController extends Controller
 
         // return view('backend.report.view', compact('start','end','expense','income','user','invoice','appointment','salary','services','expenses','employees','customers'));
     }
+
+    public function indexDailyReport()
+    {
+        $dashboard_items = [
+            [
+                'title' => 'Total Customer of '.Carbon::now()->format('d/m/Y'),
+                'count' => User::role('Customer')
+                ->where('created_at', '>=', Carbon::today())
+                ->whereMonth('created_at', date('m'))
+                ->whereYear('created_at', date('Y'))
+                ->count(),
+                // 'url' => route('backend.user.index', 'month='.date('m')),
+            ],
+            [
+                'title' => 'Total Sale Amount of '.Carbon::now()->format('d/m/Y'),
+                'count' => total_sale_amount_of_this_day() ?? 0,
+            ],
+            [
+                'title' => 'Total Expense of '.Carbon::now()->format('d/m/Y'),
+                'count' => Expense::where('created_at', '>=', Carbon::today())
+                ->whereMonth('created_at', date('m'))
+                ->whereYear('created_at', date('Y'))->get()->sum('amount') +  
+                EmployeeSalary::where('created_at', '>=', Carbon::today())
+                ->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->get()->sum('amount'),
+                // 'url' => route('backend.expense.index', 'month='.date('m')),
+            ],
+
+            [
+                'title' => 'Total Advance of '.Carbon::now()->format('d/m/Y'),
+                'count' => Appointment::where('created_at', '>=', Carbon::today())
+                ->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->where('status', 'Approved')->sum('advance_amount'),
+                'url' => route('backend.appointment.index', 'month='.date('m')),
+            ],
+            [
+                'title' => 'Total VAT of '.Carbon::now()->format('d/m/Y'),
+                'count' => total_vat_of_the_day() ?? 0,
+                // 'url' => '#',
+            ],
+            [
+                'title' => 'Total Amount in Hand of '.Carbon::now()->format('d/m/Y'),
+                'count' => amount_in_hand_of_this_day(),
+                // 'url' => '#',
+            ],
+
+        ];
+
+        
+
+        return view('backend.dailyreport.index', compact('dashboard_items'));
+
+    }
+
+    public function showDailyReport()
+    {
+        $today=Carbon::now()->format('d/m/Y');
+        $invoices = Invoice::where('created_at', '>=', Carbon::today())->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))
+->get();
+        $expenses = Expense::where('created_at', '>=', Carbon::today())->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))
+->get();
+        $salaryes = EmployeeSalary::where('created_at', '>=', Carbon::today())->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))
+->get();
+
+        $total_sale_amount_of_this_day = 0;
+        foreach($invoices as $inv){
+            $total_sale_amount_of_this_day += $inv->price();
+        }
+        $count_items = [
+            [
+                'title' => 'Total Invoice : ',
+                'count' => Invoice::where('created_at', '>=', Carbon::today())->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))
+->count(),
+            ],
+            [
+                'title' => 'Total Sale Amount : ',
+                'count' => $total_sale_amount_of_this_day,
+            ],
+            [
+                'title' => 'Total Expense : ',
+                'count' => Expense::where('created_at', '>=', Carbon::today())->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))
+->get()->sum('amount'),
+            ],
+            [
+                'title' => 'Total Appointment : ',
+                'count' => Appointment::where('created_at', '>=', Carbon::today())->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))
+->count(),
+            ],
+            [
+                'title' => 'Total Salary : ',
+                'count' => EmployeeSalary::where('created_at', '>=', Carbon::today())->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))
+->get()->sum('amount'),
+            ],
+
+            [
+                'title' => 'Amount in Hand : ',
+                'count' =>  amount_in_hand_of_this_day(),
+            ],
+        ];
+
+
+
+        $pdf = PDF::loadView('backend.dailyreport.pdf-report', compact('today','count_items', 'invoices', 'expenses', 'salaryes'));
+        return $pdf->stream('Report-' . config('app.name') . '.pdf');
+
+        // return view('backend.report.view', compact('start','end','expense','income','user','invoice','appointment','salary','services','expenses','employees','customers'));
+    }
 }

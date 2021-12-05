@@ -10,6 +10,7 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 
 if (!function_exists('random_code')) {
@@ -78,6 +79,14 @@ if (!function_exists('random_code')) {
         }
     }
 
+    function total_sale_amount_of_this_day(){
+        $total_sale_amount_of_this_day = 0;
+        foreach(Invoice::where('created_at', '>=', Carbon::today())->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->get() as $inv){
+            $total_sale_amount_of_this_day += $inv->price();
+        }
+        return $total_sale_amount_of_this_day;
+    }
+
     function total_sale_amount_of_this_month(){
         $total_sale_amount_of_this_month = 0;
         foreach(Invoice::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->get() as $inv){
@@ -109,6 +118,15 @@ if (!function_exists('random_code')) {
         }
         return $total_sale_amount;
     }
+
+    function total_vat_of_the_day(){
+        $total_vat_of_the_day = 0;
+        foreach(Invoice::where('created_at', '>=', Carbon::today())->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->get() as $invoice){
+            $total_vat_of_the_day += $invoice->vat();
+        }
+        return  $total_vat_of_the_day;
+    }
+
 
     function total_vat_of_the_month(){
         $total_vat_of_the_month = 0;
@@ -144,6 +162,18 @@ if (!function_exists('random_code')) {
 
         return $amount_in_hand_of_this_month;
     }
+
+    function amount_in_hand_of_this_day(){
+
+        $amount_in_hand_of_this_day =
+        total_sale_amount_of_this_day()
+        + Appointment::where('created_at', '>=', Carbon::today())->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->where('status', 'Approved')->sum('advance_amount')
+        - Expense::where('created_at', '>=', Carbon::today())->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->sum('amount')
+        - EmployeeSalary::where('created_at', '>=', Carbon::today())->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->sum('amount');
+
+        return $amount_in_hand_of_this_day;
+    }
+
 
 
 }

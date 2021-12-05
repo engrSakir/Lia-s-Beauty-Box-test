@@ -63,6 +63,9 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'
         Route::post('/report', [DashboardController::class, 'storeReport'])->name('report.store');
         Route::get('/advancePayment', [AppointmentController::class, 'advancePayment'])->name('advancePayment.index');
         Route::get('/advancePayment/{appointment}', [AppointmentController::class, 'advancePaymentShow'])->name('advancePayment.show');
+        Route::get('/daily-report', [DashboardController::class, 'indexDailyReport'])->name('report.daily');
+        Route::get('/daily-report-show', [DashboardController::class, 'showDailyReport'])->name('dailyreport.show');
+
 
 
 
