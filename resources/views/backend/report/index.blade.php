@@ -59,61 +59,7 @@
                                 <!--/span-->
                             </div>
 
-                           <!-- <div class="row">
-                            <div class="col-md-6">
-                                    <div class="form-group has-danger">
-                                    <label class="form-label">Services</label>
-                                    <select name="service_id" class="form-select col-12" id="service_id">
-                                    <option value="">--Select Service--</option>
-                                    @foreach($services as $serv)
-                                    <option value="{{ $serv->id }}">{{ $serv->name }}</option>
-                                    @endforeach
-                                    </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group has-danger">
-                                    <label class="form-label">Expenses</label>
-                                    <select name="expense_id" class="form-select col-12" id="expense_id">
-                                    <option value="">--Select Expense--</option>
-                                    @foreach($expenses as $exp)
-                                    <option value="{{ $exp->id }}">{{ $exp->amount }}</option>
-                                    @endforeach
-                                    </select>
-                                    </div>
-                                </div>
-
-
-
-                            </div>
-
-                            <div class="row">
-                            <div class="col-md-6">
-                                    <div class="form-group has-danger">
-                                    <label class="form-label">Customers</label>
-                                    <select name="customer_id" class="form-select col-12" id="customer_id">
-                                    <option value="">--Select Service--</option>
-                                    @foreach($customers as $cus)
-                                    <option value="{{ $cus->id }}">{{ $cus->name }}</option>
-                                    @endforeach
-                                    </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group has-danger">
-                                    <label class="form-label">Employee</label>
-                                    <select name="employee_id" class="form-select col-12" id="employee_id">
-                                    <option value="">--Select Employee--</option>
-                                    @foreach($employees as $emp)
-                                    <option value="{{ $emp->id }}">{{ $emp->name }}</option>
-                                    @endforeach
-                                    </select>
-                                    </div>
-                                </div>
-
-
-
-                            </div>-->
+                           
 
                         <div class="form-actions">
                             <div class="card-body">

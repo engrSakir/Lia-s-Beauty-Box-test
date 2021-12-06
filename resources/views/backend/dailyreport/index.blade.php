@@ -43,6 +43,52 @@
         class="fas fa-print"></i> </a>
 
     </div>
+    <hr>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                
+                <div class="card-header bg-info">
+                    <h4 class="mb-0 text-white">Datewise Report</h4>
+                </div>
+
+    <form action="{{ route('backend.dailyreport.store') }}" method="POST" class="form-horizontal form-material" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-body">
+                        <div class="card-body">
+                        <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group has-success">
+                                    <label class="form-label" for="starting_date">Date <b class="text-danger">*</b></label>
+                                        <input type="date" id="starting_date" name="starting_date" class="form-control form-control-danger" value="{{ old('starting_date') }}" required>
+                                        @error('starting_date')
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                
+
+                           
+
+                        <div class="form-actions">
+                            <div class="card-body">
+                                <button type="submit" class="btn btn-success text-white"> <i class="fa fa-check"></i> View</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </form>
+
+                  
+                </div>
+            </div>
+        </div>
+    </div>
 
    
 </div>

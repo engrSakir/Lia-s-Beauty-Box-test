@@ -174,6 +174,13 @@ if (!function_exists('random_code')) {
         return $amount_in_hand_of_this_day;
     }
 
+    function total_sale_amount_datewise($start_date){
+        $total_sale_amount_of_this_date = 0;
+        foreach(Invoice::whereDate('created_at','=',$start_date)->get() as $inv){
+            $total_sale_amount_of_this_date += $inv->price();
+        }
+        return $total_sale_amount_of_this_date;
+    }
 
 
 }

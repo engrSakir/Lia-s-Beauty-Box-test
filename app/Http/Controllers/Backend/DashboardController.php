@@ -405,4 +405,55 @@ class DashboardController extends Controller
 
         // return view('backend.report.view', compact('start','end','expense','income','user','invoice','appointment','salary','services','expenses','employees','customers'));
     }
+
+    public function storeDailyReport(Request $request)
+    {
+        $request->validate([
+            'starting_date' => 'required',
+        ]);
+        $start = new Carbon($request->starting_date);
+        $today = $request->starting_date;
+        $invoices = Invoice::whereDate('created_at','=',$start)->get();
+        $expenses = Expense::whereDate('created_at','=',$start)->get();
+        $salaryes = EmployeeSalary::whereDate('created_at','=',$start)->get();
+
+        $total_sale_amount_of_this_date = 0;
+        foreach($invoices as $inv){
+            $total_sale_amount_of_this_date += $inv->price();
+        }
+        $count_items = [
+            [
+                'title' => 'Total Invoice : ',
+                'count' => Invoice::whereDate('created_at','=',$start)->count(),
+            ],
+            [
+                'title' => 'Total Sale Amount : ',
+                'count' => total_sale_amount_datewise($start),
+            ],
+            [
+                'title' => 'Total Expense : ',
+                'count' => Expense::whereDate('created_at','=',$start)->get()->sum('amount'),
+            ],
+            [
+                'title' => 'Total Appointment : ',
+                'count' => Appointment::whereDate('created_at','=',$start)->count(),
+            ],
+            [
+                'title' => 'Total Salary : ',
+                'count' => EmployeeSalary::whereDate('created_at','=',$start)->get()->sum('amount'),
+            ],
+
+            [
+                'title' => 'Amount in Hand : ',
+                'count' => total_sale_amount_datewise($start) - Expense::whereDate('created_at','=',$start)->get()->sum('amount') - EmployeeSalary::whereDate('created_at','=',$start)->get()->sum('amount'),
+            ],
+        ];
+
+
+
+        $pdf = PDF::loadView('backend.dailyreport.pdf-report', compact('today', 'count_items', 'invoices', 'expenses', 'salaryes'));
+        return $pdf->stream('Report-' . config('app.name') . '.pdf');
+
+        // return view('backend.report.view', compact('start','end','expense','income','user','invoice','appointment','salary','services','expenses','employees','customers'));
+    }
 }
