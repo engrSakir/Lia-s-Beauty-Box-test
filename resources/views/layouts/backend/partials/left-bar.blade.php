@@ -66,6 +66,12 @@
             @endhasanyrole
             @role('Admin')
             <li>
+                <a class="waves-effect waves-dark" href="{{ route('backend.schedule.index') }}" aria-expanded="false">
+                    <i class="far fa-circle text-danger"></i>
+                    <span class="hide-menu">Schedule</span>
+                </a>
+            </li>
+            <li>
                 <a class="waves-effect waves-dark" href="{{ route('backend.product.index') }}"
                     aria-expanded="false">
                     <i class="far fa-circle text-danger"></i>
@@ -143,11 +149,13 @@
             <hr>
             @endrole
             @hasanyrole('Admin|Employee')
-            <li>
-                <a class="waves-effect waves-dark" href="{{ route('backend.schedule.index') }}" aria-expanded="false">
-                    <i class="far fa-circle text-danger"></i>
-                    <span class="hide-menu">Schedule</span>
-                </a>
+           
+            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i
+                        class="far fa-circle text-danger"></i><span class="hide-menu">Expense</span></a>
+                <ul aria-expanded="false" class="collapse">
+                    <li><a href="{{ route('backend.expense.index') }}">Expense List</a></li>
+                    <li><a href="{{ route('backend.expenseCategory.index') }}">Expense Category</a></li>
+                </ul>
             </li>
             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i
                         class="far fa-circle text-danger"></i><span class="hide-menu">Services</span></a>
@@ -158,13 +166,7 @@
             </li>
             @endhasanyrole
             @role('Admin')
-            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i
-                        class="far fa-circle text-danger"></i><span class="hide-menu">Expense</span></a>
-                <ul aria-expanded="false" class="collapse">
-                    <li><a href="{{ route('backend.expense.index') }}">Expense List</a></li>
-                    <li><a href="{{ route('backend.expenseCategory.index') }}">Expense Category</a></li>
-                </ul>
-            </li>
+           
             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"> <i
                         class="far fa-circle text-danger"></i><span class="hide-menu">All User</span></a>
                 <ul aria-expanded="false" class="collapse">

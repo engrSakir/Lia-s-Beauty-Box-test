@@ -94,12 +94,13 @@ class DashboardController extends Controller
         }else if (auth()->user()->hasRole('Employee')) {
             $dashboard_items = [
                 [
-                    'title' => 'Title 1',
-                    'count' => 0,
+                    'title' => 'Total Sale Amount of '.Carbon::now()->format('d/m/Y'),
+                'count' => total_sale_amount_of_this_day() ?? 0,
                 ],
                 [
-                    'title' => 'Title 2',
-                    'count' => 0,
+                    'title' => 'Total Expense : '.Carbon::now()->format('d/m/Y'),
+                'count' => Expense::where('created_at', '>=', Carbon::today())->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))
+->get()->sum('amount'),
                 ],
 
             ];

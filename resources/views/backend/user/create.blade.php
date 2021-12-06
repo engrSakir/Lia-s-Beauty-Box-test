@@ -127,7 +127,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="user_pass" class="form-label">Password <b
-                                                class="text-danger">*</b></label>
+                                                class="text-danger">* (Minimum 6 letters)</b></label>
                                         <input type="password" name="user_pass" class="form-control" id="user_pass"
                                             placeholder="Password" required>
                                     </div>

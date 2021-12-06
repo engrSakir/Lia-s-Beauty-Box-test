@@ -36,7 +36,7 @@
                                     <th>Transaction ID</th>
                                     <th>Advance Amount</th>
                                     <th>Service</th>
-                                    <th>Date Time</th>
+                                    <th>Appointment Date</th>
                                     <th>Day And Time</th>
                                     <th>Status</th>
                                     <th>Request At</th>
@@ -52,12 +52,14 @@
                                         <td>{{ $appointment->transaction_id ?? '#' }}</td>
                                         <td>{{ $appointment->advance_amount ?? '#' }}</td>
                                         <td>{{ $appointment->service->name ?? '#' }}</td>
-                                        <td>{{ $appointment->appointment_data }}</td>
+                                        <td><span style="background-color:#e9ff32; font-weight:bold; paddin:5px;">{{ $appointment->appointment_data }}</span></td>
                                         <td>
+                                        <span style="background-color:#e9ff32;">
                                             {{ date('h:i A', strtotime($appointment->schedule->starting_time)) ?? '#' }}
                                             to
                                             {{ date('h:i A', strtotime($appointment->schedule->ending_time)) ?? '#' }} of
                                             {{ $appointment->schedule->schedule_day ?? '#' }}
+                                            </span>
                                         </td>
                                         <td class="status_group">
                                             <input type="hidden" class="appointment_id" value="{{ $appointment->id }}">
