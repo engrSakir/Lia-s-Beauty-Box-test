@@ -22,7 +22,7 @@
 
 @section('content')
     <div class="row">
-
+    @if (auth()->user()->hasRole('Admin')) 
         <!-- Invoice -->
         <div class="col-md-6 col-lg-4 col-xlg-2">
             <div class="card">
@@ -41,15 +41,7 @@
                 </div>
             </div>
         </div>
-        {{-- <!-- Due -->
-        <div class="col-md-6 col-lg-4 col-xlg-2">
-            <div class="card">
-                <div class="box bg-primary text-center">
-                    <h1 class="font-light text-white">{{ $total_due }}</h1>
-                    <h6 class="text-white">Total Due Amount</h6>
-                </div>
-            </div>
-        </div> --}}
+       
         @can('Total vat amount visibility permission')
         <!-- VAT -->
         <div class="col-md-6 col-lg-4 col-xlg-2">
@@ -61,6 +53,7 @@
             </div>
         </div>
         @endcan
+        @endif
     </div>
 
     <div class="row">
