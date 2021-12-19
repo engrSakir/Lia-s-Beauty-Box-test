@@ -254,8 +254,8 @@
                                                 </td>
                                                 <td id="selected_item_price_for_{{ $item->service->id }}"
                                                     class="selected_item_price">{{ round($item->price, 2) }}</td>
-                                                <td class="selected_item_total_price">
-                                                    {{ round($item->price + ($invoice->vat_percentage / 100) * $item->price, 2) }}
+                                                <td>
+                                                    <input type="number" class="form-control border-dark w-100px selected_item_total_price" id="selected_item_total_price_for_{{ $item->service->id }}" value="{{ round($item->price + ($invoice->vat_percentage / 100) * $item->price, 2) }}"/>
                                                 </td>
                                                 <td>
                                                     <div class="card-toolbar text-right">
@@ -506,12 +506,14 @@
             var item_price = ((100 * $(this).find('.item_price').val()) / 115).toFixed(2);
             var item_vat = ($(this).find('.item_price').val() - (100 * $(this).find('.item_price').val()) / 115)
                 .toFixed(2);
+            let qunatity = $("#selected_item_qty_for_" + item_id).val();
+            if (qunatity == null) {
+                qunatity = 1;
+            }
             // alert(item_name);
             if ($("#selected_item_for_" + item_id).length > 0) {
                 // update price with incease quantity
-                $("#selected_item_qty_for_" + item_id).val(parseInt($("#selected_item_qty_for_" + item_id).val()) +
-                    1);
-                inner_calculation();
+                $("#selected_item_qty_for_" + item_id).val(parseInt(qunatity) + 1);
             } else {
                 //jQuery append row in table
                 table_tr = `<tr id="selected_item_for_` + item_id + `">
@@ -523,8 +525,10 @@
                             <td id="selected_item_vat_for_` + item_id + `" class="selected_item_vat">` +
                     item_vat + `</td>
                             <td id="selected_item_price_for_` + item_id + `" class="selected_item_price">` +
-                    item_price + `</td>
-                            <td class="selected_item_total_price">000</td>
+                    item_price +
+                    `</td>
+                            <td><input type="number" class="form-control border-dark w-100px selected_item_total_price" id="selected_item_total_price_for_` +
+                    item_id + `"/></td>
                             <td>
                             <div class="card-toolbar text-right">
                             <a href="javascript:void(0)" class="item_remover" title="Delete"><i class="fas fa-trash-alt text-danger"></i></a>
@@ -532,8 +536,9 @@
                             </td>
                             </tr>`;
                 $('#orderTable  > tbody').append(table_tr);
-                inner_calculation();
+
             }
+            inner_calculation();
         });
 
         $('#orderTable').on('click', '.item_remover', function() {
@@ -542,13 +547,32 @@
         });
 
         $('#orderTable').on('keyup change', function() {
-            inner_calculation();
+            // inner_calculation();
         });
 
         $('#counter_table').on('keyup change', function() {
             discount_calculate();
-            // console.log('%'+$('#discount_percentage').val());
-            // console.log('F'+$('#discount_fixed_amount').val());
+        });
+
+
+        $('#orderTable').on('keyup change', '.selected_item_total_price', function() {
+            let total_price = 0;
+            let total_vat = 0;
+            $('#orderTable tbody tr').each(function(i, element) {
+                let sub_total_price = parseFloat($(this).find('.selected_item_total_price').val());
+                let qty = parseInt($(this).find('.selected_item_qty').val());
+                let price_with_vat_for_one = sub_total_price/qty;
+                let price_for_one = ((100 * price_with_vat_for_one) / 115).toFixed(2);
+                let vat_for_one = (price_with_vat_for_one - (100 * price_with_vat_for_one) / 115).toFixed(2);
+                $(this).find('.selected_item_price').text(price_for_one);
+                $(this).find('.selected_item_vat').text(vat_for_one);
+
+                total_price += qty * price_for_one;
+                total_vat += qty * vat_for_one;
+            });
+            $('#total_price').text((total_price).toFixed(2));
+            $('#total_vat').text((total_vat).toFixed(2));
+            discount_calculate();
         });
 
         function inner_calculation() {
@@ -558,7 +582,7 @@
                 var qty = parseInt($(this).find('.selected_item_qty').val());
                 var price = parseFloat($(this).find('.selected_item_price').text());
                 var vat = parseFloat($(this).find('.selected_item_vat').text());
-                $(this).find('.selected_item_total_price').text((qty * (price + vat)).toFixed(2));
+                $(this).find('.selected_item_total_price').val((qty * (price + vat)).toFixed(2));
                 total_price += qty * price;
                 total_vat += qty * vat;
             });
@@ -580,8 +604,6 @@
             $('#total_price_include_vat').text((price_after_discount + vat).toFixed(2));
         }
 
-
-
         $("#appointment").change(function() {
             let appointment_id = this.value;
             if ($('.item_card').length < 1) {
@@ -598,16 +620,6 @@
                         $('#discount_fixed_amount').val(0);
                         $('#advance_payment_amount').text(response.appointment.advance_amount);
                         discount_calculate();
-                        // $('#addr0').find('.service').val(response.appointment.service_id)
-                        // $('#addr0').find('.price').val(response.service.price)
-                        // $('#addr0').find('.qty').val(1)
-                        // // $('#tax').val(response.vat_percentage)
-                        // $('#tax').val(0)
-                        // $('#discount').val(response.discount_percentage)
-                        // $('#fixed_discount').val(0)
-                        // $('#advance_payment_amount').val(response.appointment.advance_amount)
-                        // calc();
-                        // calc_total();
                     }
                 });
             }
