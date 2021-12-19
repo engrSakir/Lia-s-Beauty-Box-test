@@ -524,8 +524,8 @@
                 $(this).find('.selected_item_price').text(price_for_one);
                 $(this).find('.selected_item_vat').text(vat_for_one);
 
-                // total_price += qty * price;
-                // total_vat += qty * vat;
+                total_price += qty * price_for_one;
+                total_vat += qty * vat_for_one;
             });
             $('#total_price').text((total_price).toFixed(2));
             $('#total_vat').text((total_vat).toFixed(2));
@@ -589,6 +589,7 @@
             $('#modal').modal('hide');
             location.reload();
         });
+
         $('#save_invoice').click(function() {
             var services = document.getElementsByName('services[]');
             const service_data_set = [];
