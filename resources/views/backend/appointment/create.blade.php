@@ -21,6 +21,8 @@
 @endsection
 
 @section('content')
+    @livewire('widgets.appointment')
+    <hr>
     <div class="row">
         <div class="col-lg-6">
             <div class="card">
@@ -88,14 +90,15 @@
                                     <div class="form-group">
                                         <div class="input-group">
                                             <input name="email" type="email" class="form-control customer_information"
-                                                 placeholder="Email">
+                                                placeholder="Email">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="input-group">
-                                        <input type="text"  name="address" class="form-control customer_information" placeholder="Address" >
+                                            <input type="text" name="address" class="form-control customer_information"
+                                                placeholder="Address">
 
                                         </div>
                                     </div>
@@ -316,22 +319,24 @@
                     success: function(data) {
                         console.log(data)
                         var array = $.map(data, function(obj) {
-                            if(request_for == 'name'){
+                            if (request_for == 'name') {
                                 pointed_value = obj.name;
                             }
-                            if(request_for == 'email'){
+                            if (request_for == 'email') {
                                 pointed_value = obj.email;
                             }
-                            if(request_for == 'phone'){
+                            if (request_for == 'phone') {
                                 pointed_value = obj.phone;
                             }
-                            if(request_for == 'address'){
+                            if (request_for == 'address') {
                                 pointed_value = obj.address;
                             }
                             return {
                                 value: pointed_value, //Fillable in input field
-                                label: 'Name:'+obj.name +' Email:'+ obj.email +' Phone:'+ obj
-                                    .phone + 'Address:' + obj.address, //Show as label of input field
+                                label: 'Name:' + obj.name + ' Email:' + obj.email +
+                                    ' Phone:' + obj
+                                    .phone + 'Address:' + obj
+                                    .address, //Show as label of input field
                                 name: obj.name,
                                 email: obj.email,
                                 phone: obj.phone,
