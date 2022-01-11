@@ -3,12 +3,19 @@
 namespace App\Http\Livewire\Widgets;
 
 use App\Models\Schedule;
+use App\Models\Service;
+use App\Models\ServiceCategory;
 use Livewire\Component;
 
 class Appointment extends Component
 {
-    public $date, $schedules, $selected_schedule;
+    public $date, $schedules, $selected_schedule, $services, $service_categories, $service_category;
 
+    public function mount()
+    {
+        $this->service_categories = ServiceCategory::all();
+        $this->services = Service::all();
+    }
     public function render()
     {
         if ($this->date) {
