@@ -2,15 +2,16 @@
 
 namespace App\Http\Livewire\Widgets;
 
+use App\Models\Schedule;
 use Livewire\Component;
 
 class Appointment extends Component
 {
-    public $date, $schedules;
+    public $date, $schedules, $selected_schedule;
 
     public function render()
     {
-        if($this->date){
+        if ($this->date) {
             // $this->schedules = 'Yes';
             $weekMap = [
                 0 => 'sunday',
@@ -25,9 +26,19 @@ class Appointment extends Component
             $this->schedules = [
                 'day_name' => $day_name,
                 'date' => $this->date,
-                'schedules' => \App\Models\Schedule::where('schedule_day', $day_name)->get()
+                'data_set' => \App\Models\Schedule::where('schedule_day', $day_name)->get()
             ];
         }
         return view('livewire.widgets.appointment');
+    }
+
+    public function select_schedule(Schedule $schedule)
+    {
+        $this->selected_schedule = $schedule;
+    }
+
+    public function store()
+    {
+        dd('store');
     }
 }
