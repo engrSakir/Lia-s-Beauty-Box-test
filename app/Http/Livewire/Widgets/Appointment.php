@@ -9,7 +9,8 @@ use Livewire\Component;
 
 class Appointment extends Component
 {
-    public $date, $schedules, $selected_schedule, $services, $service_categories, $service_category;
+    public $date, $schedules, $selected_schedule, $services, $service_categories, $service_category, $searched_key_in_busket;
+    public $basket = array();
 
     public function mount()
     {
@@ -39,6 +40,7 @@ class Appointment extends Component
         return view('livewire.widgets.appointment');
     }
 
+
     public function select_schedule(Schedule $schedule)
     {
         $this->selected_schedule = $schedule;
@@ -47,5 +49,60 @@ class Appointment extends Component
     public function store()
     {
         dd('store');
+    }
+
+    public function addToCard($id)
+    {
+        foreach ($this->basket as $array_key => $val) {
+            if ($val['id'] === $id) {
+                $this->searched_key_in_busket =  $array_key;
+            }
+        }
+        if ($this->searched_key_in_busket === null || count($this->basket) < 1) {
+            array_push($this->basket, [
+                'id' => $id,
+                'qty' => 1,
+                'name' => Service::find($id)->name,
+                'price' => Service::find($id)->price,
+                'sub_total_price' => Service::find($id)->price,
+            ]);
+        } else {
+            $this->basket[$this->searched_key_in_busket]['qty']++;
+            $this->basket[$this->searched_key_in_busket]['sub_total_price'] += Service::find($id)->price;
+        }
+    }
+
+    public function removeFromCard($id)
+    {
+        try {
+            $this->searched_key_in_busket = null;
+            foreach ($this->basket as $array_key => $val) {
+                if ($val['id'] === $id) {
+                    $this->searched_key_in_busket =  $array_key;
+                }
+            }
+            if ($this->basket[$this->searched_key_in_busket]['qty'] > 1) {
+                $this->basket[$this->searched_key_in_busket]['qty']--;
+                $this->basket[$this->searched_key_in_busket]['sub_total_price'] -= Service::find($id)->price;
+            } else {
+                unset($this->basket[$this->searched_key_in_busket]);
+            }
+        } catch (\Exception $e) {
+        }
+    }
+
+
+    public function allRemoveFromCard($id)
+    {
+        try {
+            $this->searched_key_in_busket = null;
+            foreach ($this->basket as $array_key => $val) {
+                if ($val['id'] === $id) {
+                    $this->searched_key_in_busket =  $array_key;
+                }
+            }
+            unset($this->basket[$this->searched_key_in_busket]);
+        } catch (\Exception $e) {
+        }
     }
 }

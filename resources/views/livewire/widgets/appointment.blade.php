@@ -114,6 +114,39 @@
 
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
+
+                <table class="table table-striped table-hover mt-3">
+                    <thead class="bg-info text-white">
+                        <tr>
+                            <td>#</td>
+                            <td>Name</td>
+                            <td style="text-align: right;">Price</td>
+                            <td style="text-align: right;">QT</td>
+                            <td style="text-align: right;">Total</td>
+                            <td style="text-align: right;">Action</td>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach ($basket as $basket_item)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td style="font-size:12px;">{{ $basket_item['name'] }}</td>
+                            <td style="text-align: right;">{{ $basket_item['price'] }}</td>
+                            <td style="text-align: right;">{{ $basket_item['qty'] }}</td>
+                            <td style="text-align: right;">{{ $basket_item['price'] * $basket_item['qty'] }}</td>
+                            <td style="text-align: right;">
+                                <i class="fa fa-plus-square fa-lg text-success hoverable"
+                                    wire:click="addToCard({{ $basket_item['id'] }})"></i>
+                                <i class="fa fa-minus-square fa-lg text-warning hoverable"
+                                    wire:click="removeFromCard({{ $basket_item['id'] }})"></i>
+                                <i class="fa fa-trash fa-lg text-danger hoverable"
+                                    wire:click="allRemoveFromCard({{ $basket_item['id'] }})"></i>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
