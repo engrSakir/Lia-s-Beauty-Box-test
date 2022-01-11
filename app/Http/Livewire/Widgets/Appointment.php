@@ -5,17 +5,19 @@ namespace App\Http\Livewire\Widgets;
 use App\Models\Schedule;
 use App\Models\Service;
 use App\Models\ServiceCategory;
+use App\Models\User;
 use Livewire\Component;
 
 class Appointment extends Component
 {
-    public $date, $schedules, $selected_schedule, $services, $service_categories, $service_category, $searched_key_in_busket;
+    public $date, $schedules, $selected_schedule, $services, $service_categories, $service_category, $searched_key_in_busket, $staffs;
     public $basket = array();
 
     public function mount()
     {
         $this->service_categories = ServiceCategory::all();
         $this->services = Service::all();
+        $this->staffs = User::role('Employee')->get();
     }
     public function render()
     {
