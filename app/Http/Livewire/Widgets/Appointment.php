@@ -174,6 +174,7 @@ class Appointment extends Component
                     $appointment_item->quantity = $basket['qty'];
                     $appointment_item->save();
                 }
+                $this->basket = array();
                 $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Successfully Save']);
                 //Email Sending..
                 if ($appointment->customer->email) {
