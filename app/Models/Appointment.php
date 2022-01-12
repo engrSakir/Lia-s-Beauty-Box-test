@@ -39,4 +39,9 @@ class Appointment extends Model
     {
         return $this->hasOne(Invoice::class, 'appointment_id', 'id');
     }
+
+    public function items()
+    {
+        return $this->hasMany(AppointmentItem::class, 'appointment_id', 'id');
+    }
 }

@@ -23,6 +23,8 @@
 @section('content')
 @livewire('widgets.appointment' , ['admin_mode' => true])
 <hr>
+@livewire('widgets.invoice')
+<hr>
 <div class="row">
     <div class="col-lg-6">
         <div class="card">

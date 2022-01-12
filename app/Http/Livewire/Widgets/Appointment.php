@@ -57,7 +57,6 @@ class Appointment extends Component
 
     public function store()
     {
-        // dd($this->basket);
         if (count($this->basket) == 0) {
             //return alert
             $this->dispatchBrowserEvent('alert', ['type' => 'error',  'message' => 'You have to select some service']);
