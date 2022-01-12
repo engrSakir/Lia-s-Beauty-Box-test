@@ -39,7 +39,10 @@
                     <option value="" disabled>Chose appointment</option>
                     @foreach ($appointments as $appointment)
                     <option value="{{ $appointment->id }}">
-                        {{ $loop->iteration }}) {{ $appointment->customer->name ?? '#' }} {{ date('h:i A', strtotime($appointment->schedule->starting_time)) ?? '#' }} to {{ date('h:i A', strtotime($appointment->schedule->ending_time)) ?? '#' }} ({{ date('d-M-Y', strtotime($appointment->appointment_data)) }})
+                        {{ $loop->iteration }}) {{ $appointment->customer->name ?? '#' }} {{ date('h:i A',
+                        strtotime($appointment->schedule->starting_time)) ?? '#' }} to {{ date('h:i A',
+                        strtotime($appointment->schedule->ending_time)) ?? '#' }} ({{ date('d-M-Y',
+                        strtotime($appointment->appointment_data)) }})
                     </option>
                     @endforeach
                 </select>
@@ -49,28 +52,39 @@
                         <thead class="bg-info text-white">
                             <tr>
                                 <td>Service</td>
-                                <td>Staff</td>
+                                <td>Sub Total</td>
                                 <td style="text-align: right;">Action</td>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($basket as $array_key => $basket_item)
                             <tr>
-                                <td style="font-size:12px;">{{ $basket_item['name'] }} -
-                                    {{ $basket_item['staff_id'] }}
-                                    <br> Price: {{ $basket_item['price'] }}
-                                    <br> QTY: {{ $basket_item['qty'] }}
-                                    <br> Total: {{ $basket_item['price'] * $basket_item['qty'] }}
+                                <td>
+                                    {{ $basket_item['name'] }}
+                                    <div class="input-group input-group-sm mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Price</span>
+                                        </div>
+                                        <input type="number" class="form-control form-control-sm" style="width: 80px;" value="{{ $basket_item['price'] }}"
+                                            wire:keydown.enter="chnage_price($event.target.value, {{ $array_key }})">
+                                    </div>
+                                    <select class="form-control form-control-sm" wire:keydown.enter="chnage_employee($event.target.value, {{ $array_key }})">
+                                        <option value="" disabled>Chose employee</option>
+                                        @foreach ($employees as $employee)
+                                        <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </td>
-                                <td style="font-size:12px;">
-                                    STAFF
+                                <td style="font-size:16px;">
+                                    QTY: {{ $basket_item['qty'] }}
+                                    <br> Total: {{ $basket_item['price'] * $basket_item['qty'] }}
                                 </td>
 
                                 <td style="text-align: right;">
                                     <i class="fa fa-plus-square fa-lg text-success hoverable"
-                                        wire:click="addToCard({{ $basket_item['id'] }})"></i>
+                                        wire:click="addToCard({{ $basket_item['id'] }})"></i> <br>
                                     <i class="fa fa-minus-square fa-lg text-warning hoverable"
-                                        wire:click="removeFromCard({{ $basket_item['id'] }})"></i>
+                                        wire:click="removeFromCard({{ $basket_item['id'] }})"></i> <br>
                                     <i class="fa fa-trash fa-lg text-danger hoverable"
                                         wire:click="allRemoveFromCard({{ $basket_item['id'] }})"></i>
                                 </td>
