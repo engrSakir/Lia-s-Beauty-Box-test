@@ -5,18 +5,16 @@
                 <h6 class="m-b-0 text-white">Services</h6>
             </div>
             <div class="card-body">
-                <div class="list-group">
-                    @foreach ($services as $service)
-                    <a href="javascript:void(0)" wire:click="addToCard({{ $service->id }})"
-                        class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h6 class="mb-1">{{ $loop->iteration }} .
-                                {{ $service->name }}</h6>
-                        </div>
-                        <small>{{ $service->price }}</small>
-                    </a>
-                    @endforeach
+               <div class="row">
+                @foreach ($services as $service)
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-primary btn-lg btn-block m-1" wire:click="addToCard({{ $service->id }})">
+                        {{ $loop->iteration }}. {{ $service->name }} ({{ $service->price }})
+                    </button>
                 </div>
+                
+                @endforeach
+               </div>
             </div>
         </div>
     </div>
@@ -35,8 +33,8 @@
                     </ul>
                 </div>
                 @endif
-                <select name="" id="" class="form-control" wire:change="select_appointment($event.target.value)">
-                    <option value="" disabled>Chose appointment</option>
+                <select name="" id="" class="form-control" wire:model="selected_appointment" wire:change="select_appointment($event.target.value)">
+                    <option value="">Chose appointment</option>
                     @foreach ($appointments as $appointment)
                     <option value="{{ $appointment->id }}">
                         {{ $loop->iteration }}) {{ $appointment->customer->name ?? '#' }} {{ date('h:i A',
@@ -46,7 +44,7 @@
                     </option>
                     @endforeach
                 </select>
-                <form wire:submit.prevent="store" class="mt-3">
+                <form wire:submit.prevent="save_invoice" class="mt-3">
                     @if(count($basket) > 0)
                     <table class="table table-striped table-hover mt-3">
                         <thead class="bg-info text-white">
@@ -69,7 +67,7 @@
                                             wire:keydown.enter="chnage_price($event.target.value, {{ $array_key }})">
                                     </div>
                                     <select class="form-control form-control-sm" wire:keydown.enter="chnage_employee($event.target.value, {{ $array_key }})">
-                                        <option value="" disabled>Chose employee</option>
+                                        <option value="">Chose employee</option>
                                         @foreach ($employees as $employee)
                                         <option value="{{ $employee->id }}">{{ $employee->name }}</option>
                                         @endforeach
@@ -95,58 +93,58 @@
                     @endif
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <input wire:model="name" type="text" class="form-control" id="name" placeholder="Name"
-                                required>
-                            @error('name')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <b>Total Price: </b> {{ $total_price }}
+                                </li>
+                                <li class="list-group-item">
+                                    Price after discount: {{ $price_after_discount }}
+                                </li>
+                                <li class="list-group-item">
+                                    Total Vat: {{ $total_vat }}
+                                </li>
+                            </ul>
                         </div>
                         <div class="form-group col-md-6">
-                            <input wire:model="email" type="email" class="form-control" id="email"
-                                placeholder="Enter Email">
-                            @error('email')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    Advance amount: {{ $advance_payment }}
+                                </li>
+                                <li class="list-group-item">
+                                    Have to pay: {{ $have_to_pay }}
+                                </li>
+                                <li class="list-group-item">
+                                    Total include vat: {{ $total_include_vat }}
+                                </li>
+                            </ul>
                         </div>
                         <div class="form-group col-md-6">
-                            <input wire:model="phone" type="text" class="form-control" id="phone" placeholder="Phone"
-                                required>
-                            @error('phone')
-                            <div class="alert alert-danger">
-                                {{ $message }}
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="">Dis %</span>
+                                </div>
+                                <input type="number" class="form-control form-control-sm" value="0"
+                                    wire:keydown.enter="chnage_discount_percentage($event.target.value)">
                             </div>
-                            @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <input wire:model="address" type="text" class="form-control" id="address"
-                                placeholder="Address" required>
-                            @error('address')
-                            <div class="alert alert-danger">
-                                {{ $message }}
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="">Dis Fix</span>
+                                </div>
+                                <input type="number" class="form-control form-control-sm" value="0"
+                                    wire:keydown.enter="chnage_discount_fixed($event.target.value)">
                             </div>
-                            @enderror
                         </div>
-                        <div class="form-group col-md-6">
-                            <input wire:model="transaction_id" type="text" class="form-control" id="transaction_id"
-                                placeholder="Transaction Id">
-                            @error('transaction_id')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="form-group col-md-6">
-                            <input wire:model="advance_amount" type="number" class="form-control" id="advance_amount"
-                                placeholder="Advance Amount">
-                            @error('advance_amount')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                        <div class="form-group col-md-12">
+                            <select name="" id="" class="form-control" wire:model="selected_payment_method">
+                                <option value="">Chose payment method</option>
+                                @foreach ($payment_methods as $payment_method)
+                                <option value="{{ $payment_method->id }}">
+                                    {{ $payment_method->name ?? '#' }}
+                                </option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary col-md-12">Submit</button>
