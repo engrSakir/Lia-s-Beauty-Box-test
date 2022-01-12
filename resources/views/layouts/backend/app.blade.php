@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-@include('layouts.backend.partials.head')
-@livewireStyles
+    @include('layouts.backend.partials.head')
+    @livewireStyles
 </head>
 
 <body class="skin-red-dark fixed-layout">
@@ -59,9 +59,9 @@
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 @if(isset($slot))
-                    {{ $slot }}
+                {{ $slot }}
                 @else
-                    @yield('content')
+                @yield('content')
                 @endif
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
@@ -99,8 +99,17 @@
     <!-- End Wrapper -->
     <!-- ============================================================== -->
     <!-- ============================================================== -->
-@include('layouts.backend.partials.foot')
-@livewireScripts
+    @include('layouts.backend.partials.foot')
+    @livewireScripts
+    <script>
+        window.addEventListener('alert', event => { 
+    toastr[event.detail.type](event.detail.message, 
+    event.detail.title ?? ''), toastr.options = {
+           "closeButton": true,
+           "progressBar": true,
+       }
+   });
+    </script>
 </body>
 
 </html>
