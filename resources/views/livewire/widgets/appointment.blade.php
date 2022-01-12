@@ -157,7 +157,7 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <input wire:model="advance_amount" type="text" class="form-control" id="advance_amount"
+                            <input wire:model="advance_amount" type="number" class="form-control" id="advance_amount"
                                 placeholder="Advance Amount" @if(!$admin_mode) required @endif>
                             @error('advance_amount')
                             <div class="alert alert-danger">

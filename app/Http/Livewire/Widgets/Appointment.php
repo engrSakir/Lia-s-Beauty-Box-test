@@ -158,14 +158,13 @@ class Appointment extends Component
                 $appointment = new ModelsAppointment();
                 $appointment->customer_id       = $user->id;
                 $appointment->appointment_data  = date('Y-m-d', strtotime($this->date));
-                $appointment->schedule_id       = $this->selected_schedule;
+                $appointment->schedule_id       = $this->selected_schedule->id;
                 $appointment->transaction_id    = $this->transaction_id;
-                $appointment->advance_amount    = $this->advance_amount ?? 0;
+                $appointment->advance_amount    = $this->advance_amount;
                 if ($this->admin_mode) {
                     $appointment->status            = 'Approved'; //Administritive auto approve 
                 }
                 $appointment->save();
-
                 //Create ModelsAppointment Items
                 foreach ($this->basket as $array_key => $basket) {
                     $appointment_item = new AppointmentItem();
