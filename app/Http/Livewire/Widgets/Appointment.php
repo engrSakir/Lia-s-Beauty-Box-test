@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Widgets;
 
+use App\Models\Appointment as ModelsAppointment;
 use App\Models\AppointmentItem;
 use App\Models\Schedule;
 use App\Models\Service;
@@ -17,6 +18,7 @@ class Appointment extends Component
 {
     public $date, $schedules, $selected_schedule, $services, $service_categories, $service_category, $searched_key_in_busket, $staffs, $admin_mode;
     public $basket = array();
+    public $name, $email, $phone, $address, $transaction_id, $advance_amount, $message;
 
     public function mount()
     {
@@ -55,13 +57,14 @@ class Appointment extends Component
 
     public function store()
     {
+        // dd($this->basket);
         if (count($this->basket) == 0) {
             //return alert
             $this->dispatchBrowserEvent('alert', ['type' => 'error',  'message' => 'You have to select some service']);
         } else {
             $this->validate([
                 'date'  => 'required|string',
-                'selected_schedule' => 'required|exists:schedules,id',
+                'selected_schedule' => 'required',
             ]);
             if (!$this->admin_mode) {
                 //Common Validation check for all user
@@ -75,7 +78,7 @@ class Appointment extends Component
                     $this->validate(
                         [
                             'name'      => 'required|string',
-                            'email'     => 'nullable|email', //Not Unique because Email is Nullable
+                            'email'     => 'nullable|email', //Not Unique because Email is Nullable.
                             'phone'     => 'required|unique:users,phone',
                             'address'     => 'nullable|string',
                             'message'   => 'nullable|string',
@@ -144,15 +147,15 @@ class Appointment extends Component
                 }
             }
             //Create Schedule
-            $max_participent_in_this_day = Appointment::where('appointment_data', date('Y-m-d', strtotime($this->date)))
+            $max_participent_in_this_day = ModelsAppointment::where('appointment_data', date('Y-m-d', strtotime($this->date)))
                 ->where('schedule_id',  $this->selected_schedule->id)
                 ->where('status', '!=', 'Reject')->count();
             if ($max_participent_in_this_day > $this->selected_schedule->maximum_participant) {
                 //Not Available Caz Max Participent.
                 $this->dispatchBrowserEvent('alert', ['type' => 'error',  'message' => 'Max Participent Is Over']);
             } else {
-                // Available For New Appointment.
-                $appointment = new Appointment();
+                // Available For New ModelsAppointment.
+                $appointment = new ModelsAppointment();
                 $appointment->customer_id       = $user->id;
                 $appointment->appointment_data  = date('Y-m-d', strtotime($this->date));
                 $appointment->schedule_id       = $this->selected_schedule;
@@ -163,7 +166,7 @@ class Appointment extends Component
                 }
                 $appointment->save();
 
-                //Create Appointment Items
+                //Create ModelsAppointment Items
                 foreach ($this->basket as $array_key => $basket) {
                     $appointment_item = new AppointmentItem();
                     $appointment_item->appointment_id = $appointment->id;
@@ -263,6 +266,6 @@ class Appointment extends Component
 
     public function staff_assign($staff_id, $basket_key)
     {
-        $this->basket[$basket_key]['staff_id'] = $staff_id;
+        $this->basket[$basket_key]['staff_id'] = (int)$staff_id;
     }
 }

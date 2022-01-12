@@ -60,6 +60,15 @@
                 <h6 class="m-b-0 text-white">{{ $selected_schedule->title }}</h6>
             </div>
             <div class="card-body">
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 <form wire:submit.prevent="store">
                     <table class="table table-striped table-hover mt-3">
                         <thead class="bg-info text-white">
@@ -105,26 +114,56 @@
                         <div class="form-group col-md-6">
                             <input wire:model="name" type="text" class="form-control" id="name" placeholder="Name"
                                 required>
+                            @error('name')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <input wire:model="email" type="email" class="form-control" id="email"
                                 placeholder="Enter Email">
+                            @error('email')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <input wire:model="phone" type="text" class="form-control" id="phone" placeholder="Phone"
                                 required>
+                            @error('phone')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <input wire:model="address" type="text" class="form-control" id="address"
                                 placeholder="Address" required>
+                            @error('address')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <input wire:model="transaction_id" type="text" class="form-control" id="transaction_id"
                                 placeholder="Transaction Id" @if(!$admin_mode) required @endif>
+                            @error('transaction_id')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <input wire:model="advance_amount" type="text" class="form-control" id="advance_amount"
                                 placeholder="Advance Amount" @if(!$admin_mode) required @endif>
+                            @error('advance_amount')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary col-md-12">Submit</button>
