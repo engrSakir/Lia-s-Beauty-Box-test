@@ -19,6 +19,7 @@ class Appointment extends Component
         $this->services = Service::all();
         $this->staffs = User::role('Employee')->get();
     }
+
     public function render()
     {
         if ($this->date) {
@@ -42,7 +43,6 @@ class Appointment extends Component
         return view('livewire.widgets.appointment');
     }
 
-
     public function select_schedule(Schedule $schedule)
     {
         $this->selected_schedule = $schedule;
@@ -50,11 +50,12 @@ class Appointment extends Component
 
     public function store()
     {
-        dd('store');
+        dd($this->basket);
     }
 
     public function addToCard($id)
     {
+        $this->searched_key_in_busket = null;
         foreach ($this->basket as $array_key => $val) {
             if ($val['id'] === $id) {
                 $this->searched_key_in_busket =  $array_key;
@@ -67,6 +68,7 @@ class Appointment extends Component
                 'name' => Service::find($id)->name,
                 'price' => Service::find($id)->price,
                 'sub_total_price' => Service::find($id)->price,
+                'staff_id' => null,
             ]);
         } else {
             $this->basket[$this->searched_key_in_busket]['qty']++;
@@ -106,5 +108,10 @@ class Appointment extends Component
             unset($this->basket[$this->searched_key_in_busket]);
         } catch (\Exception $e) {
         }
+    }
+
+    public function staff_assign($staff_id, $basket_key)
+    {
+        $this->basket[$basket_key]['staff_id'] = $staff_id;
     }
 }
