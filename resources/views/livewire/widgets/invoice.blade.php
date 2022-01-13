@@ -68,10 +68,10 @@
                                         <input type="number" step="0.01" min="0" lang="en"
                                             class="form-control form-control-sm" style="width: 80px;"
                                             value="{{ $basket_item['price'] }}"
-                                            wire:keydown.enter="chnage_price($event.target.value, {{ $array_key }})">
+                                            wire:change="chnage_price($event.target.value, {{ $array_key }})">
                                     </div>
                                     <select class="form-control form-control-sm"
-                                        wire:keydown.enter="chnage_employee($event.target.value, {{ $array_key }})">
+                                        wire:change="chnage_employee($event.target.value, {{ $array_key }})">
                                         <option value="">Chose employee</option>
                                         @foreach ($employees as $employee)
                                         <option value="{{ $employee->id }}">{{ $employee->name }}</option>
@@ -142,11 +142,7 @@
                             </div>
                         </div>
                         <div class="form-group col-md-12">
-                            <label for="checkbox">All Information are Correct</label>
-                            <input type="checkbox" id="checkbox" required>
-                        </div>
-                        <div class="form-group col-md-12">
-                            <select name="" id="" class="form-control" required wire:model="payment_method">
+                            <select name="" id="" class="form-control" wire:model="payment_method">
                                 <option value="">Chose payment method</option>
                                 @foreach ($payment_methods as $payment_method)
                                 <option value="{{ $payment_method->id }}">
@@ -167,4 +163,29 @@
             </div>
         </div>
     </div>
+
+        {{-- Modal --}}
+        @if ($invoice_url)
+        <div wire:ignore.self class="modal fade" id="inv_modal" data-backdrop="static" data-bs-keyboard="false"
+            data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="">{{ __('Invoice') }}</h5>
+                    </div>
+                    <div class="modal-body">
+                        <iframe src="{{ $invoice_url }}" frameborder="0" width="100%;" height="600px;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+        <script type="text/javascript">
+            function openModal() {
+                var myModal = new bootstrap.Modal(document.getElementById('inv_modal'));
+                myModal.show();
+            }
+            openModal(); 
+        </script>
+        @endif
 </div>

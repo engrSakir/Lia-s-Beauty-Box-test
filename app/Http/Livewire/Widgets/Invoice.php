@@ -16,6 +16,7 @@ class Invoice extends Component
     public $appointments, $selected_appointment, $services, $service_categories, $employees, $payment_methods;
     public $basket = array();
     public $total_price, $price_after_discount, $total_vat, $advance_payment, $have_to_pay, $total_include_vat, $discount_percentage, $discount_fixed, $payment_method, $note;
+    public $invoice_url = null;
 
     public function mount()
     {
@@ -34,6 +35,7 @@ class Invoice extends Component
 
     public function select_appointment($appointment)
     {
+        $this->invoice_url = null;
         if (!$appointment) {
             $this->basket = array();
         } else {
@@ -64,6 +66,7 @@ class Invoice extends Component
 
     public function addToCard($id)
     {
+        $this->invoice_url = null;
         if (!$this->selected_appointment) {
             $this->dispatchBrowserEvent('alert', ['type' => 'error',  'message' => 'Selected appointment not found']);
         } else {
@@ -152,7 +155,7 @@ class Invoice extends Component
             $this->dispatchBrowserEvent('alert', ['type' => 'error',  'message' => 'Your Basket Is Empty']);
         } else {
             $this->validate([
-                'payment_method' => 'required',
+                'payment_method' => 'required|exists:payment_methods,id',
             ]);
             $appointment = Appointment::find($this->selected_appointment);
             $appointment->status = 'Done';
@@ -180,6 +183,7 @@ class Invoice extends Component
                 $this->basket = array();
                 $this->selected_appointment = $this->payment_method = $this->discount_percentage = $this->discount_fixed = null;
                 $this->appointments = Appointment::where('status', 'Approved')->get();
+                $this->invoice_url = route('backend.invoice.show', $invoice);
                 $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Successfully Done']);
             } catch (\Exception $e) {
                 // Appointment status back and invoice delete

@@ -18,7 +18,7 @@ class EditInvoice extends Component
     public $services, $service_categories, $employees, $payment_methods;
     public $basket = array();
     public $total_price, $price_after_discount, $total_vat, $advance_payment, $have_to_pay, $total_include_vat, $discount_percentage, $discount_fixed, $payment_method, $note;
-
+    public $invoice_url = null;
     public function mount()
     {
         $this->service_categories = ServiceCategory::all();
@@ -50,17 +50,20 @@ class EditInvoice extends Component
 
     public function chnage_price($price, $basket_key)
     {
+        $this->invoice_url = null;
         $this->basket[$basket_key]['price'] = (float)$price;
         $this->basket[$basket_key]['sub_total_price'] = (float)$price * $this->basket[$basket_key]['qty'];
     }
 
     public function chnage_employee($staff_id, $basket_key)
     {
+        $this->invoice_url = null;
         $this->basket[$basket_key]['staff_id'] = (int)$staff_id;
     }
 
     public function addToCard($id)
     {
+        $this->invoice_url = null;
         $this->searched_key_in_busket = null;
         foreach ($this->basket as $array_key => $val) {
             if ($val['id'] === $id) {
@@ -142,7 +145,7 @@ class EditInvoice extends Component
             $this->dispatchBrowserEvent('alert', ['type' => 'error',  'message' => 'Your Basket Is Empty']);
         } else {
             $this->validate([
-                'payment_method' => 'required',
+                'payment_method' => 'required|exists:payment_methods,id',
             ]);
             //Update invoice
             $invoice = $this->invoice;
@@ -165,6 +168,7 @@ class EditInvoice extends Component
                     $invoiceItem->staff_id     = $basket_item['staff_id'];
                     $invoiceItem->save();
                 }
+                $this->invoice_url = route('backend.invoice.show', $invoice);
                 $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Successfully Done']);
             } catch (\Exception $e) {
                 // Appointment status back and invoice delete
