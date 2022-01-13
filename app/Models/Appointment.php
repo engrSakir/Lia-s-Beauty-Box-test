@@ -30,6 +30,11 @@ class Appointment extends Model
         return $this->belongsTo(Service::class, 'service_id', 'id');
     }
 
+    public function appointment_items()
+    {
+        return $this->hasMany(AppointmentItem::class, 'appointment_id', 'id');
+    }
+
     public function schedule()
     {
         return $this->belongsTo(Schedule::class, 'schedule_id', 'id');

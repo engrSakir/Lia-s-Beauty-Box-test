@@ -13,7 +13,8 @@ class InvoiceItem extends Model
         'invoice_id',
         'service_id',
         'quantity',
-        'price'
+        'price',
+        'staff_id'
     ];
 
     public function invoice()
@@ -24,5 +25,10 @@ class InvoiceItem extends Model
     public function service()
     {
         return $this->belongsTo(Service::class, 'service_id', 'id');
+    }
+
+    public function staff()
+    {
+        return $this->belongsTo(User::class, 'staff_id', 'id');
     }
 }

@@ -123,37 +123,39 @@
         h3 {
             font-size: 10px;
         }
+
         h2 {
             font-size: 16px;
         }
-
     </style>
 </head>
 
 </html>
 <br>
 <div style="width: 100%; text-align:center;">
-    <img src="{{ asset(get_static_option('logo') ?? 'assets/frontend/images/logo.png') }}" width="216" height="37" alt=""> <br>
+    <img src="{{ asset(get_static_option('logo') ?? 'assets/frontend/images/logo.png') }}" width="216" height="37"
+        alt=""> <br>
     <p style="font-size: 18px; margin:20px 0px 5px 0px;">
-       <b> Lia's Beauty Box</b>
+        <b> Lia's Beauty Box</b>
     </p>
     <p style="font-size: 12px; margin:0px 5px 5px 5px;;  text-align: center; text-justify: inter-word;">
-        House 116 (Level 11), Road 11, Block E, Banani(same building of coopers and Gelatissimo) 1213 Dhaka, Dhaka Division, Bangladesh
+        House 116 (Level 11), Road 11, Block E, Banani(same building of coopers and Gelatissimo) 1213 Dhaka, Dhaka
+        Division, Bangladesh
     </p>
     <p style="font-size: 12px; margin:0px 5px 5px 5px;;  text-align: center;">
         Phone: 01534304782
     </p>
     <h2 style="margin-top: 5px;">
-        Booking Receipt:  {{ $appointment->id }}
+        Booking Receipt: {{ $appointment->id }}
     </h2>
 </div>
 <table style="font-size: 10px;">
     <tr>
         <td>
-            Date: {{  $appointment->created_at->format('d.m.y') }}
+            Date: {{ $appointment->created_at->format('d.m.y') }}
         </td>
         <td>
-            Time: {{  $appointment->created_at->format('h:i:s A') }}
+            Time: {{ $appointment->created_at->format('h:i:s A') }}
         </td>
     </tr>
     <tr>
@@ -170,20 +172,33 @@
             <table>
                 <tr class="">
                     <td class="Rate" style="width: 50%; text-align:left;">
+                        Service
+                    </td>
+                    <td class="payment" style="width: 50%; text-align:right;">
+                        Price
+                    </td>
+                </tr>
+                @foreach($appointment->appointment_items as $key => $appointment_item)
+                <tr class="">
+                    <td class="Rate" style="width: 50%; text-align:left;">
+                        <h3>{{ $appointment_item->service->name ?? '#'}}</h3>
+                        <p style="font-size: 10px;">({{ $appointment_item->staff->name ?? '#'}})</p>
+                    </td>
+                    <td class="payment" style="width: 50%; text-align:right;">
+                        {{ $appointment_item->service->price ?? 0}}
+                    </td>
+                </tr>
+                @endforeach
+                @if($appointment->service)
+                <tr class="bg-success">
+                    <td class="Rate" style="width: 50%; text-align:left;">
                         <h3>Service</h3>
                     </td>
                     <td class="payment" style="width: 50%; text-align:right;">
                         {{ $appointment->service->name ?? '#' }}
                     </td>
                 </tr>
-                {{-- <tr class="">
-                    <td class="Rate" style="width: 50%; text-align:left;">
-                        <h3>Total (+VAT)</h3>
-                    </td>
-                    <td class="payment" style="width: 50%; text-align:right;">
-                        {{ $appointment->service->price ?? '#' }}
-                    </td>
-                </tr> --}}
+                @endif
                 <tr class="">
                     <td class="Rate">
                         <h3>Advance amount</h3>
@@ -197,7 +212,9 @@
                         <h3>Due amount</h3>
                     </td>
                     <td class="payment" style="text-align:right;">
+                        @if($appointment->service)
                         {{ $appointment->service->price - $appointment->advance_amount ?? '#' }}
+                        @endif
                     </td>
                 </tr>
 
@@ -206,7 +223,8 @@
             <table cellpadding="0" cellspacing="0" style="margin-top: 60px;">
                 <tr>
                     <th>
-                        Developed By <br> <a href="https://www.iciclecorporation.com/" target="_blank">iciclecorporation.com</a>
+                        Developed By <br> <a href="https://www.iciclecorporation.com/"
+                            target="_blank">iciclecorporation.com</a>
                     </th>
                 </tr>
             </table>
