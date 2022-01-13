@@ -26,6 +26,8 @@ class EditInvoice extends Component
         $this->employees = User::role('Employee')->get();
         $this->payment_methods = PaymentMethod::all();
         $this->payment_method = $this->invoice->payment_method_id;
+        $this->discount_percentage = $this->invoice->discount_percentage;
+        $this->discount_fixed = $this->invoice->fixed_discount;
 
         $this->basket = array();
         foreach ($this->invoice->items as $item) {
