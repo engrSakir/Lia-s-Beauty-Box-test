@@ -47,7 +47,7 @@
                             <h6 class="mb-1">{{ $loop->iteration }} .
                                 {{ $service->name }}</h6>
                         </div>
-                        <small>{{ $service->price }}</small>
+                        <small>{{ $service->price }} BDT</small>
                     </a>
                     @endforeach
                 </div>
