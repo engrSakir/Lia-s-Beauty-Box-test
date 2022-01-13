@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Widgets;
 
 use App\Models\Appointment;
+use App\Models\Invoice as ModelsInvoice;
+use App\Models\InvoiceItem;
 use App\Models\PaymentMethod;
 use App\Models\Service;
 use App\Models\ServiceCategory;
@@ -13,7 +15,7 @@ class Invoice extends Component
 {
     public $appointments, $selected_appointment, $services, $service_categories, $employees, $payment_methods;
     public $basket = array();
-    public $total_price, $price_after_discount, $total_vat, $advance_payment, $have_to_pay, $total_include_vat, $selected_payment_method, $discount_percentage, $discount_fixed;
+    public $total_price, $price_after_discount, $total_vat, $advance_payment, $have_to_pay, $total_include_vat, $discount_percentage, $discount_fixed, $payment_method, $note;
 
     public function mount()
     {
@@ -146,6 +148,46 @@ class Invoice extends Component
 
     public function save_invoice()
     {
-        dd('Inv');
+        if (count($this->basket) == 0) {
+            $this->dispatchBrowserEvent('alert', ['type' => 'error',  'message' => 'Your Basket Is Empty']);
+        } else {
+            $this->validate([
+                'payment_method' => 'required',
+            ]);
+            $appointment = Appointment::find($this->selected_appointment);
+            $appointment->status = 'Done';
+            $appointment->save();
+            //Create invoice
+            $invoice = new ModelsInvoice();
+            $invoice->appointment_id = $appointment->id;
+            $invoice->vat_percentage = 15; //Always 15% as discouse in meeting
+            $invoice->discount_percentage = (float)$this->discount_percentage;
+            $invoice->fixed_discount = (float)$this->discount_fixed;
+            $invoice->payment_method_id = (int)$this->payment_method;
+            $invoice->note = $this->note;
+            $invoice->save();
+
+            try {
+                foreach ($this->basket as $array_key => $basket_item) {
+                    $invoiceItem = new InvoiceItem();
+                    $invoiceItem->invoice_id   = $invoice->id;
+                    $invoiceItem->service_id   = $basket_item['id'];
+                    $invoiceItem->quantity  = $basket_item['qty'];
+                    $invoiceItem->price     = $basket_item['price'];
+                    $invoiceItem->staff_id     = $basket_item['staff_id'];
+                    $invoiceItem->save();
+                }
+                $this->basket = array();
+                $this->selected_appointment = $this->payment_method = $this->discount_percentage = $this->discount_fixed = null;
+                $this->appointments = Appointment::where('status', 'Approved')->get();
+                $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Successfully Done']);
+            } catch (\Exception $e) {
+                // Appointment status back and invoice delete
+                $invoice->delete();
+                $appointment->status = 'Approved';
+                $appointment->save();
+                $this->dispatchBrowserEvent('alert', ['type' => 'error',  'message' => $e->getMessage()]);
+            }
+        }
     }
 }
