@@ -2,7 +2,7 @@
 @push('title') Service Details @endpush
 @section('content')
     <!-- INNER PAGE BANNER -->
-    <div class="wt-bnr-inr overlay-wraper"
+   <!-- <div class="wt-bnr-inr overlay-wraper"
         style="background-image:url({{ asset('assets/frontend/images/banner/product-banner.jpg') }});">
         <div class="overlay-main bg-black opacity-07"></div>
         <div class="container">
@@ -10,7 +10,7 @@
                 <h1 class="text-white">{{ $service->name }}</h1>
             </div>
         </div>
-    </div>
+    </div>-->
     <!-- INNER PAGE BANNER END -->
 
     <!-- BREADCRUMB ROW -->

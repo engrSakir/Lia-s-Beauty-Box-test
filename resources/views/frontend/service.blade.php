@@ -1,15 +1,24 @@
 @extends('layouts.frontend.app')
 @push('title') Service @endpush
 @section('content')
+<style>
+    .service-media img{
+        height:300px !important;
+    }
+    
+    .service-media .wt-info{
+        height:300px !important;
+    }
+</style>
     <!-- INNER PAGE BANNER -->
-    <div class="wt-bnr-inr overlay-wraper" style="background-image:url(assets/frontend/images/banner/product-banner.jpg);">
+    <!--<div class="wt-bnr-inr overlay-wraper" style="background-image:url(assets/frontend/images/banner/product-banner.jpg);">
         <div class="overlay-main bg-black opacity-07"></div>
         <div class="container">
             <div class="wt-bnr-inr-entry">
                 <h1 class="text-white">Services</h1>
             </div>
         </div>
-    </div>
+    </div>-->
     <!-- INNER PAGE BANNER END -->
 
     <!-- BREADCRUMB ROW -->
@@ -53,11 +62,11 @@
                                         <div class="section-content">
                                             <div class="row">
                                                 @foreach ($serviceCategory->services as $service)
-                                                    <div class="col-md-4 col-sm-4 p-tb15">
-                                                        <div class="wt-box bg-white text-center">
-                                                            <div class="wt-media ">
+                                                    <div class="col-md-3 col-sm-4 p-tb15">
+                                                        <div class="wt-box service-media  bg-white text-center">
+                                                            <div class="wt-media">
                                                                 <a href="javascript:void(0);">
-                                                                    <img width="200"
+                                                                    <img width="200" height="300"
                                                                         src="{{ asset($service->image ?? 'uploads/images/no_image.png') }}"
                                                                         alt=""></a>
                                                             </div>

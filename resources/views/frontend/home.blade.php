@@ -32,7 +32,7 @@
                             data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 11;
                                     white-space: nowrap;
                                     text-transform:uppercase;">
-                            <div class="text-secondry"> {{ $banner->secondary_text }}</div>
+                            <div class="text-secondry"> <span class="text-primary"> {{ $banner->secondary_text }} </span></div>
                         </div>
 
                         <!-- LAYER NR. 2 -->
@@ -49,7 +49,7 @@
                                    font-weight: 700;
                                     ">
                             <div class="text-secondry">
-                                {{ $banner->primary_text }}
+                              <span class="text-primary">  {{ $banner->primary_text }} </span>
                             </div>
                         </div>
 
@@ -79,7 +79,7 @@
                                     ]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
                             data-paddingright="[40,40,40,40]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
                             style="z-index:13; text-transform:uppercase; font-weight:700;">
-                            <a href="{{ $banner->link }}" class="site-button radius-sm button-lg">View More</a>
+                            <a href="{{ $banner->link }}" class="site-button radius-sm button-lg">Book Now</a>
                         </div>
                         <!-- LAYER NR. 5 -->
 
@@ -171,9 +171,8 @@
     </div>
     <!-- WELCOME COMPANY SECTION END -->
     <!-- Service SECTION START  -->
-    <div class="section-full bg-white p-t80 p-b120">
+   <!-- <div class="section-full bg-white p-t80 p-b120">
         <div class="container">
-            <!-- TITLE START-->
             <div class="section-head text-center">
                 <h1><span class="text-primary">Our</span> Services</h1>
                 <div class="wt-separator-outer">
@@ -185,12 +184,9 @@
                 </div>
                 <p></p>
             </div>
-            <!-- TITLE END-->
             <div class="tab-content">
-                <!-- Block 1 -->
                 <div id="pricing-item1" class="pricing-tab-content-block tab-pane active active-arrow">
                     <div class="section-content p-t50">
-                        <!-- TABS DEFAULT NAV LEFT -->
                         <div class="wt-tabs vertical bg-tabs">
                             <ul class="nav nav-tabs">
                                 @foreach ($serviceCategories as $serviceCategory)
@@ -236,7 +232,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
     <!-- Service SECTION END  -->
     <!-- OUR SPECIAL OFFER SECTION END  -->
    <!-- <div class="section-full bg-primary">
@@ -268,8 +264,240 @@
         </div>
     </div>-->
     <!-- OUR SPECIAL OFFER SECTION END  -->
+         <div class="container ">
+
+     <div class="section-full p-t80">
+        <div class="container">
+
+            <!-- TITLE START-->
+            <div class="section-head text-center">
+                <h1><span class="text-primary">Our</span> Works</h1>
+                <div class="wt-separator-outer ">
+                    <div class="wt-separator style-icon">
+                        <i class="fa fa-leaf text-black"></i>
+                        <span class="separator-left bg-primary"></span>
+                        <span class="separator-right bg-primary"></span>
+                    </div>
+                </div>
+              
+            </div>
+           
+
+        </div>
+        <!-- GALLERY CONTENT START -->
+        <div class="portfolio-wrap  clearfix">
+            <div class="container-fluid">
+                <div class="row">
+
+
+                        <div class="masonry-item cat-filter-1 col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-duration="3000">
+                            <div class="flip-container">
+                                <div class="wt-box">
+                                    <div class="wt-thum-bx">
+                                        <img id="image_display" width="100"
+                                            src="{{ asset('uploads/images/mehedi1.jpg') }}"
+                                            class="image-display" alt="User image" />
+                                    </div>
+                                    <div class="wt-info bg-white text-center bdr-5 bdr-primary">
+                                        <div class="wt-info-media-zoom">
+                                            <a href="{{ asset($gallery->image ?? 'uploads/images/hair1.png') }}"
+                                                class="mfp-link">
+                                                <i class="fa fa-arrows-alt font-24 p-a10"></i>
+                                            </a>
+                                        </div>
+                                        <div class="wt-info-text p-a30">
+                                            <h3>kl</h3>
+                                            <p>pl</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="masonry-item cat-filter-1 col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-duration="3000">
+                            <div class="flip-container">
+                                <div class="wt-box">
+                                    <div class="wt-thum-bx">
+                                        <img id="image_display" width="100"
+                                            src="{{ asset('uploads/images/bou2.jpg') }}"
+                                            class="image-display" alt="User image" />
+                                    </div>
+                                    <div class="wt-info bg-white text-center bdr-5 bdr-primary">
+                                        <div class="wt-info-media-zoom">
+                                            <a href="{{ asset($gallery->image ?? 'uploads/images/no_image.png') }}"
+                                                class="mfp-link">
+                                                <i class="fa fa-arrows-alt font-24 p-a10"></i>
+                                            </a>
+                                        </div>
+                                        <div class="wt-info-text p-a30">
+                                            <h3>kl</h3>
+                                            <p>pl</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="masonry-item cat-filter-1 col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-duration="3000">
+                            <div class="flip-container">
+                                <div class="wt-box">
+                                    <div class="wt-thum-bx">
+                                        <img id="image_display" width="100"
+                                            src="{{ asset('uploads/images/holud1.jpg') }}"
+                                            class="image-display" alt="User image" />
+                                    </div>
+                                    <div class="wt-info bg-white text-center bdr-5 bdr-primary">
+                                        <div class="wt-info-media-zoom">
+                                            <a href="{{ asset($gallery->image ?? 'uploads/images/no_image.png') }}"
+                                                class="mfp-link">
+                                                <i class="fa fa-arrows-alt font-24 p-a10"></i>
+                                            </a>
+                                        </div>
+                                        <div class="wt-info-text p-a30">
+                                            <h3>kl</h3>
+                                            <p>pl</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="masonry-item cat-filter-1 col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-duration="3000">
+                            <div class="flip-container">
+                                <div class="wt-box">
+                                    <div class="wt-thum-bx">
+                                        <img id="image_display" width="100"
+                                            src="{{ asset('uploads/images/hair5.jpg') }}"
+                                            class="image-display" alt="User image" />
+                                    </div>
+                                    <div class="wt-info bg-white text-center bdr-5 bdr-primary">
+                                        <div class="wt-info-media-zoom">
+                                            <a href="{{ asset($gallery->image ?? 'uploads/images/no_image.png') }}"
+                                                class="mfp-link">
+                                                <i class="fa fa-arrows-alt font-24 p-a10"></i>
+                                            </a>
+                                        </div>
+                                        <div class="wt-info-text p-a30">
+                                            <h3>kl</h3>
+                                            <p>pl</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="masonry-item cat-filter-1 col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-duration="3000">
+                            <div class="flip-container">
+                                <div class="wt-box">
+                                    <div class="wt-thum-bx">
+                                        <img id="image_display" width="100"
+                                            src="{{ asset('uploads/images/hair2.jpg') }}"
+                                            class="image-display" alt="User image" />
+                                    </div>
+                                    <div class="wt-info bg-white text-center bdr-5 bdr-primary">
+                                        <div class="wt-info-media-zoom">
+                                            <a href="{{ asset($gallery->image ?? 'uploads/images/no_image.png') }}"
+                                                class="mfp-link">
+                                                <i class="fa fa-arrows-alt font-24 p-a10"></i>
+                                            </a>
+                                        </div>
+                                        <div class="wt-info-text p-a30">
+                                            <h3>kl</h3>
+                                            <p>pl</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="masonry-item cat-filter-1 col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-duration="3000">
+                            <div class="flip-container">
+                                <div class="wt-box">
+                                    <div class="wt-thum-bx">
+                                        <img id="image_display" width="100"
+                                            src="{{ asset('uploads/images/bou9.jpg') }}"
+                                            class="image-display" alt="User image" />
+                                    </div>
+                                    <div class="wt-info bg-white text-center bdr-5 bdr-primary">
+                                        <div class="wt-info-media-zoom">
+                                            <a href="{{ asset($gallery->image ?? 'uploads/images/no_image.png') }}"
+                                                class="mfp-link">
+                                                <i class="fa fa-arrows-alt font-24 p-a10"></i>
+                                            </a>
+                                        </div>
+                                        <div class="wt-info-text p-a30">
+                                            <h3>kl</h3>
+                                            <p>pl</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="masonry-item cat-filter-1 col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-duration="3000">
+                            <div class="flip-container">
+                                <div class="wt-box">
+                                    <div class="wt-thum-bx">
+                                        <img id="image_display" width="100"
+                                            src="{{ asset('uploads/images/holud.jpg') }}"
+                                            class="image-display" alt="User image" />
+                                    </div>
+                                    <div class="wt-info bg-white text-center bdr-5 bdr-primary">
+                                        <div class="wt-info-media-zoom">
+                                            <a href="{{ asset($gallery->image ?? 'uploads/images/no_image.png') }}"
+                                                class="mfp-link">
+                                                <i class="fa fa-arrows-alt font-24 p-a10"></i>
+                                            </a>
+                                        </div>
+                                        <div class="wt-info-text p-a30">
+                                            <h3>kl</h3>
+                                            <p>pl</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="masonry-item cat-filter-1 col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-duration="3000">
+                            <div class="flip-container">
+                                <div class="wt-box">
+                                    <div class="wt-thum-bx">
+                                        <img id="image_display" width="100"
+                                            src="{{ asset('uploads/images/hair4.jpg') }}"
+                                            class="image-display" alt="User image" />
+                                    </div>
+                                    <div class="wt-info bg-white text-center bdr-5 bdr-primary">
+                                        <div class="wt-info-media-zoom">
+                                            <a href="{{ asset($gallery->image ?? 'uploads/images/no_image.png') }}"
+                                                class="mfp-link">
+                                                <i class="fa fa-arrows-alt font-24 p-a10"></i>
+                                            </a>
+                                        </div>
+                                        <div class="wt-info-text p-a30">
+                                            <h3>kl</h3>
+                                            <p>pl</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+        <!-- GALLERY CONTENT END -->
+
+    </div>
+    </div>
 
     <!-- OUR GALLERY SECTION END  -->
+        <div class="container ">
+
     <div class="section-content text-center about-spa">
                 <div class="row">
                     <div class="m-b30">
@@ -287,7 +515,7 @@
                                 src="{{ get_static_option('brand_link') }}"></iframe></div>
                     </div>
                 </div>
-
+</div>
                 
             </div>
         </div>
@@ -295,10 +523,9 @@
         <!-- OUR GALLERY CONTENT END  -->
 
         <!-- CONTACT US SECTION END  -->
-        <div class="section-full p-tb80">
+        <!--<div class="section-full p-tb80">
             <div class="container equal-wraper no-col-gap">
 
-                <!-- TITLE START -->
                 <div class="section-head text-center">
                     <h1><span class="text-primary"> Contact</span> Us</h1>
                     <div class="wt-separator-outer ">
@@ -309,7 +536,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- TITLE END -->
 
                 <div class="row conntact-home bg-gray">
                     <div class="col-md-4 col-sm-6 contact-home-left bg-no-repeat bg-primary bg-left-center"
@@ -395,8 +621,11 @@
 
             </div>
 
-        </div>
+        </div>-->
         <!-- CONTACT US OFFER SECTION END  -->
+         <script>
+  AOS.init();
+</script>
     @endsection
 
     @push('head')

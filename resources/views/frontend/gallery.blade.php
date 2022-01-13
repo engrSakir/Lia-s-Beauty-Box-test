@@ -58,7 +58,7 @@
 
             </div>
             <!-- GALLERY CONTENT START -->
-            <div class="portfolio-wrap mfp-gallery no-col-gap clearfix">
+            <div class="portfolio-wrap mfp-gallery  clearfix">
                 <div class="container-fluid">
                     <div class="row">
                         @foreach ($galleries as $gallery)

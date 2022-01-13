@@ -1,6 +1,6 @@
 <footer class="site-footer footer-light">
     <!-- COLL-TO ACTION START -->
-    <div class="section-full overlay-wraper bg-primary" style="background-image:url(assets/frontend/images/background/bg-7.png);">
+   <!-- <div class="section-full overlay-wraper bg-primary" style="background-image:url(assets/frontend/images/background/bg-7.png);">-->
 
         <div class="section-content ">
             <!-- COLL-TO ACTION START -->
@@ -16,9 +16,7 @@
 
                         <div class="col-md-3">
                             <div class="call-to-action-right p-tb30">
-                                <a href="{{ url('/contact-us') }}" class="site-button-secondry text-uppercase radius-sm font-weight-600">
-                                    Contact us
-                                </a>
+                               
                             </div>
                         </div>
                     </div>
@@ -36,13 +34,22 @@
                 <!-- ABOUT COMPANY -->
                 <div class="col-md-3 col-sm-6">
                     <div class="widget widget_about">
-                        <h4 class="widget-title">About Company</h4>
                         <div class="logo-footer clearfix p-b15">
-                            <a href="{{ url('/') }}"><img src="{{ asset('assets/frontend/images/logo.png') }}" width="230" height="67" alt=""/></a>
+                            <a href="{{ url('/') }}"><img src="{{ asset('assets/frontend/images/logo.png') }}" width="230" height="77" alt=""/></a>
                         </div>
-                      <p>
+                                             
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget widget_about">
+                       
+                                                <h4 class="widget-title">Contact Us</h4>
+<p>Email : {{ get_static_option('email') }} <br>
+Phone : {{ get_static_option('mobile') }}
+</p>
+         <p>
                         {!! html_entity_decode(get_static_option('about')) !!}
-                       </p>
+                       </p>               
                     </div>
                 </div>
                 <!-- RESENT POST -->
@@ -117,7 +124,7 @@
                 </div>
                 <!-- NEWSLETTER -->
                 <div class="col-md-3 col-sm-6">
-                    <div class="widget widget_newsletter">
+                    <!--<div class="widget widget_newsletter">
                         <h4 class="widget-title">Newsletter</h4>
                         <div class="newsletter-bx">
                             <form role="search" method="post">
@@ -129,15 +136,15 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
+                    </div>-->
                     <!-- SOCIAL LINKS -->
                     <div class="widget widget_social_inks">
                         <h4 class="widget-title">Social Links</h4>
                         <ul class="social-icons social-square social-darkest">
                             <li><a href="{{ get_static_option('facebook') }}" class="fa fa-facebook"></a></li>
-                            <li><a href="{{ get_static_option('twitter') }}" class="fa fa-twitter"></a></li>
+                           <!-- <li><a href="{{ get_static_option('twitter') }}" class="fa fa-twitter"></a></li>
                             <li><a href="{{ get_static_option('linkedin') }}" class="fa fa-linkedin"></a></li>
-                            <li><a href="{{ get_static_option('rss') }}" class="fa fa-rss"></a></li>
+                            <li><a href="{{ get_static_option('rss') }}" class="fa fa-rss"></a></li>-->
                             <li><a href="{{ get_static_option('youtube') }}" class="fa fa-youtube"></a></li>
                             <li><a href="{{ get_static_option('instagram') }}" class="fa fa-instagram"></a></li>
                         </ul>
