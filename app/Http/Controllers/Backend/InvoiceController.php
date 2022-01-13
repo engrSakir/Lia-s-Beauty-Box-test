@@ -28,19 +28,19 @@ class InvoiceController extends Controller
 
         $total_invoices_of_this_month =  Invoice::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->get();
         $invoices = Invoice::orderBy('created_at', 'desc')->paginate(500);
-        if(request()->month){
+        if (request()->month) {
             $invoices = Invoice::orderBy('created_at', 'desc')
-            ->whereMonth('created_at', request()->month)->whereYear('created_at', date('Y'))->paginate(500);
+                ->whereMonth('created_at', request()->month)->whereYear('created_at', date('Y'))->paginate(500);
         }
 
         $total_inv_of_this_month = $total_invoices_of_this_month->count();
 
         $total_paid = 0;
-        foreach($total_invoices_of_this_month as $inv){
+        foreach ($total_invoices_of_this_month as $inv) {
             $total_paid += $inv->price();
         }
         $total_vat = 0;
-        foreach($total_invoices_of_this_month as $invoice){
+        foreach ($total_invoices_of_this_month as $invoice) {
             $total_vat += $invoice->vat();
         }
 
@@ -59,11 +59,7 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        $appointments = Appointment::where('status', 'Approved')->get();
-        $itemCategories = ServiceCategory::all();
-        $items = Service::all();
-        $paymentmethods = PaymentMethod::all();
-        return view('backend.invoice.create', compact('appointments', 'itemCategories', 'items', 'paymentmethods'));
+        return view('backend.invoice.create');
     }
 
     /**
@@ -153,11 +149,7 @@ class InvoiceController extends Controller
      */
     public function edit(Invoice $invoice)
     {
-        $appointments = Appointment::all();
-        $itemCategories = ServiceCategory::all();
-        $paymentmethods = PaymentMethod::all();
-        $items = Service::all();
-        return view('backend.invoice.edit', compact('appointments', 'itemCategories', 'paymentmethods', 'invoice', 'items'));
+        return view('backend.invoice.edit', compact('invoice'));
     }
 
     /**

@@ -34,18 +34,6 @@
                     </ul>
                 </div>
                 @endif
-                <select name="" id="" class="form-control" wire:model="selected_appointment"
-                    wire:change="select_appointment($event.target.value)">
-                    <option value="">Chose appointment</option>
-                    @foreach ($appointments as $appointment)
-                    <option value="{{ $appointment->id }}">
-                        {{ $loop->iteration }}) {{ $appointment->customer->name ?? '#' }} {{ date('h:i A',
-                        strtotime($appointment->schedule->starting_time)) ?? '#' }} to {{ date('h:i A',
-                        strtotime($appointment->schedule->ending_time)) ?? '#' }} ({{ date('d-M-Y',
-                        strtotime($appointment->appointment_data)) }})
-                    </option>
-                    @endforeach
-                </select>
                 <form wire:submit.prevent="save_invoice" class="mt-3">
                     @if(count($basket) > 0)
                     <table class="table table-striped table-hover mt-3">
@@ -142,10 +130,6 @@
                             </div>
                         </div>
                         <div class="form-group col-md-12">
-                            <label for="checkbox">All Information are Correct</label>
-                            <input type="checkbox" id="checkbox" required>
-                        </div>
-                        <div class="form-group col-md-12">
                             <select name="" id="" class="form-control" required wire:model="payment_method">
                                 <option value="">Chose payment method</option>
                                 @foreach ($payment_methods as $payment_method)
@@ -160,6 +144,10 @@
                                 {{ $message }}
                             </div>
                             @enderror
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="checkbox">All Information are Correct</label>
+                            <input type="checkbox" id="checkbox" required>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary col-md-12">Submit</button>
