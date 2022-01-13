@@ -137,8 +137,12 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        $pdf = PDF::loadView('backend.invoice.pos-pdf', compact('invoice'));
-        return $pdf->stream('Invoice-' . config('app.name') . '.pdf');
+        if (request()->pos_view != 'no') {
+            $pdf = PDF::loadView('backend.invoice.pos-pdf', compact('invoice'));
+            return $pdf->stream('Invoice-' . config('app.name') . '.pdf');
+        } else {
+            return view('backend.invoice.show', compact('invoice'));
+        }
     }
 
     /**
