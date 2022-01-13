@@ -22,43 +22,45 @@
 
 @section('content')
 <div class="card">
-    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column center">
-        <header class="masthead mb-auto">
-            <div class="inner">
-                <h3 class="masthead-brand">Customer Name : {{ $invoice->appointment->customer->name ?? '#' }}</h3>
+    <div class="row m-2">
+        <a href="{{ route('backend.invoice.show', $invoice) }}" target="_blank" class="btn btn-primary col-12 mb-3"> 
+            <i class="fas fa-print"></i> </a>
+        <div class="col-md-6">
+            <div class="card-header bg-primary text-white">
+                <b>Service list</b>
             </div>
-        </header>
-        <div class="col-md-12">
-            <table class="table table-striped my-3">
-                <thead class=" thead-dark">
-                    <tr>
-                        <th scope="col">Service</th>
-                        <th scope="col">Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($invoice->items as $key => $item)
-                    <tr>
-                        <td>{{ $item->service->name ?? '#'}}</td>
-                        <td>{{ $item->service->price ?? 0}}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="list-group">
+                @foreach ($invoice->items as $item)
+                <a href="javascript:void(0)" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-1">{{ $item->service->name }}</h5>
+                      <small class="text-muted">Price: {{ $item->price }} * {{ $item->quantity }} = {{ $item->price * $item->quantity }}</small>
+                    </div>
+                    <small class="text-muted">{{ $item->staff->name ?? '#' }}</small>
+                  </a>
+                @endforeach
+              </div>
         </div>
-        <h3>Price : {{ $invoice->price() }} BDT</h3>
-        <h3>Vat : {{ $invoice->vat() }}</h3>
-        <h4 class="mb-5">Created Time : {{ $invoice->created_at->format('d/m/Y h:i A') }}</h4>
-        <td>
-            <a href="{{ route('backend.invoice.show', $invoice) }}" target="_blank"
-                class="btn btn-primary waves-effect btn-rounded waves-light my-2"> Print Invoice </a>
-            <a target="_blank" href="{{ route('backend.invoice.edit', $invoice) }}"
-                class="btn btn-success waves-effect btn-rounded waves-light my-2">Edit Invoice</a>
-            <button value="{{ route('backend.invoice.destroy', $invoice) }}"
-                class="btn btn-danger waves-effect btn-rounded waves-light delete-btn my-2">
-                Delete Invoice
-            </button>
-        </td>
+        <div class="col-md-6">
+            <ul class="list-group">
+                <li class="list-group-item active text-center">Customer information</li>
+                <li class="list-group-item">Customer id: #{{ $invoice->appointment->customer->id ?? '#' }}</li>
+                <li class="list-group-item">Customer name: {{ $invoice->appointment->customer->name ?? '#' }}</li>
+                <li class="list-group-item">Customer email: {{ $invoice->appointment->customer->email ?? '#' }}</li>
+                <li class="list-group-item">Customer phone: {{ $invoice->appointment->customer->phone ?? '#' }}</li>
+                <li class="list-group-item">Customer address: {{ $invoice->appointment->customer->address ?? '#' }}</li>
+                <li class="list-group-item active text-center">Price information</li>
+                <li class="list-group-item">VAT Percentage: {{ $invoice->vat_percentage }}</li>
+                <li class="list-group-item">Discount Percentage: {{ $invoice->discount_percentage }}</li>
+                <li class="list-group-item">Discount Fixed: {{ $invoice->fixed_discount }}</li>
+                <li class="list-group-item">Total without vat price: {{ $invoice->price() - $invoice->vat() }}</li>
+                <li class="list-group-item">Total with vat price: {{ $invoice->price() }}</li>
+                <li class="list-group-item">Total vat: {{ $invoice->vat() }}</li>
+                <li class="list-group-item">Advance: {{ $invoice->appointment->advance_amount ?? 'Not Found' }}</li>
+                <li class="list-group-item">Advance Date: {{ $invoice->appointment->created_at->format('h:i A d-m-Y') ?? 'Not Found' }}</li>
+                <li class="list-group-item">Invoice Date: {{ $invoice->created_at->format('h:i A d-m-Y') ?? 'Not Found' }}</li>
+              </ul>
+        </div>
     </div>
 </div>
 </div>

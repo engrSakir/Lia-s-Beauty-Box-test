@@ -226,6 +226,7 @@
                 <tr class="">
                     <td class="Rate">
                         <h3>Discount ({{ $invoice->discount_percentage }}%)</h3>
+                        
                     </td>
                     <td class="payment" style="text-align:right;">
                        {{  round(($invoice->discount_percentage / 100) * $total_price, 2) }}
