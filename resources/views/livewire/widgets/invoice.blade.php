@@ -1,4 +1,11 @@
 <div class="row m-2">
+    <style>
+        .card {
+            height: 5.5in;
+            overflow: auto;
+            background: #fff;
+        }
+    </style>
     <div class="col-md-6">
         <div class="card border-danger">
             <div class="card-header bg-danger">
@@ -96,6 +103,7 @@
                         </tbody>
                     </table>
                     @endif
+                    <hr class="bg-success" style="height: 10px;">
                     <div class="row">
                         <div class="form-group col-md-6">
                             <ul class="list-group list-group-flush">
@@ -164,28 +172,28 @@
         </div>
     </div>
 
-        {{-- Modal --}}
-        @if ($invoice_url)
-        <div wire:ignore.self class="modal fade" id="inv_modal" data-backdrop="static" data-bs-keyboard="false"
-            data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="">{{ __('Invoice') }}</h5>
-                    </div>
-                    <div class="modal-body">
-                        <iframe src="{{ $invoice_url }}" frameborder="0" width="100%;" height="600px;"></iframe>
-                    </div>
+    {{-- Modal --}}
+    @if ($invoice_url)
+    <div wire:ignore.self class="modal fade" id="inv_modal" data-backdrop="static" data-bs-keyboard="false"
+        data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="">{{ __('Invoice') }}</h5>
+                </div>
+                <div class="modal-body">
+                    <iframe src="{{ $invoice_url }}" frameborder="0" width="100%;" height="600px;"></iframe>
                 </div>
             </div>
         </div>
-        {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
-        <script type="text/javascript">
-            function openModal() {
+    </div>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+    <script type="text/javascript">
+        function openModal() {
                 var myModal = new bootstrap.Modal(document.getElementById('inv_modal'));
                 myModal.show();
             }
             openModal(); 
-        </script>
-        @endif
+    </script>
+    @endif
 </div>

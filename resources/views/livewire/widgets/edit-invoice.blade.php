@@ -1,4 +1,11 @@
 <div class="row m-2">
+    <style>
+        .card {
+            height: 5.5in;
+            overflow: auto;
+            background: #fff;
+        }
+    </style>
     <div class="col-md-6">
         <div class="card border-danger">
             <div class="card-header bg-danger">
@@ -83,6 +90,7 @@
                         </tbody>
                     </table>
                     @endif
+                    <hr class="bg-success" style="height: 10px;">
                     <div class="row">
                         <div class="form-group col-md-6">
                             <ul class="list-group list-group-flush">
