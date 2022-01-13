@@ -137,7 +137,10 @@ class Invoice extends Component
             $this->price_after_discount = $this->total_price - round(((float)$this->discount_percentage / 100) * $this->total_price, 2);
             $this->price_after_discount = $this->price_after_discount - (float)$this->discount_fixed;
             //Have to pay
-            $this->have_to_pay = $this->price_after_discount - $this->advance_payment;
+
+            $this->total_vat = round((15 / 100) * $this->total_price, 2);
+            $this->total_include_vat = $this->total_vat + $this->price_after_discount;
+            $this->have_to_pay =  $this->total_include_vat - $this->advance_payment;
         }
     }
 

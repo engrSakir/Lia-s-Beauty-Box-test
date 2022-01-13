@@ -65,7 +65,8 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="">Price</span>
                                         </div>
-                                        <input type="number" class="form-control form-control-sm" style="width: 80px;"
+                                        <input type="number" step="0.01" min="0" lang="en"
+                                            class="form-control form-control-sm" style="width: 80px;"
                                             value="{{ $basket_item['price'] }}"
                                             wire:keydown.enter="chnage_price($event.target.value, {{ $array_key }})">
                                     </div>
@@ -127,10 +128,8 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="">Dis %</span>
                                 </div>
-                                <input type="number" class="form-control form-control-sm" value="0"
-                                    wire:model="discount_percentage">
-                                {{-- <input type="number" class="form-control form-control-sm" value="0"
-                                    wire:keydown.enter="chnage_discount_percentage($event.target.value)"> --}}
+                                <input type="number" step="0.01" min="0" lang="en" class="form-control form-control-sm"
+                                    value="0" wire:model="discount_percentage">
                             </div>
                         </div>
                         <div class="form-group col-md-6">
@@ -138,10 +137,8 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="">Dis Fix</span>
                                 </div>
-                                <input type="number" class="form-control form-control-sm" value="0"
-                                    wire:model="discount_fixed">
-                                {{-- <input type="number" class="form-control form-control-sm" value="0"
-                                    wire:keydown.enter="chnage_discount_fixed($event.target.value)"> --}}
+                                <input type="number" step="0.01" min="0" lang="en" class="form-control form-control-sm"
+                                    value="0" wire:model="discount_fixed">
                             </div>
                         </div>
                         <div class="form-group col-md-12">
