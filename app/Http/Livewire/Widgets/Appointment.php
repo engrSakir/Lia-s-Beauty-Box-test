@@ -159,7 +159,7 @@ class Appointment extends Component
                 $appointment->appointment_data  = date('Y-m-d', strtotime($this->date));
                 $appointment->schedule_id       = $this->selected_schedule->id;
                 $appointment->transaction_id    = $this->transaction_id;
-                $appointment->advance_amount    = $this->advance_amount;
+                $appointment->advance_amount    = (float)$this->advance_amount;
                 if ($this->admin_mode) {
                     $appointment->status            = 'Approved'; //Administritive auto approve 
                 }
@@ -174,6 +174,7 @@ class Appointment extends Component
                     $appointment_item->save();
                 }
                 $this->basket = array();
+                $this->name = $this->email = $this->phone = $this->address = $this->transaction_id = $this->advance_amount = null;
                 $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Successfully Save']);
                 //Email Sending..
                 if ($appointment->customer->email) {
