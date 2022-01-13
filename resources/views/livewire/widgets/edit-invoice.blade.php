@@ -8,7 +8,7 @@
                 <div class="row">
                     @foreach ($services as $service)
                     <div class="col-md-6">
-                        <button type="button" class="btn btn-primary btn-lg btn-block m-1"
+                        <button type="button" style="font-size: 12px;" class="btn btn-primary btn-lg btn-block m-1"
                             wire:click="addToCard({{ $service->id }})">
                             {{ $loop->iteration }}. {{ $service->name }} ({{ $service->price }})
                         </button>
