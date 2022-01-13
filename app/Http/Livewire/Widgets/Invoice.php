@@ -13,7 +13,7 @@ class Invoice extends Component
 {
     public $appointments, $selected_appointment, $services, $service_categories, $employees, $payment_methods;
     public $basket = array();
-    public $total_price, $price_after_discount, $total_vat, $advance_payment, $have_to_pay, $total_include_vat, $selected_payment_method;
+    public $total_price, $price_after_discount, $total_vat, $advance_payment, $have_to_pay, $total_include_vat, $selected_payment_method, $discount_percentage, $discount_fixed;
 
     public function mount()
     {
@@ -122,20 +122,27 @@ class Invoice extends Component
     }
 
 
-    public function calculation(){
-        $this->total_price =  $this->price_after_discount = $this->total_vat = $this->advance_payment 
-        = $this->have_to_pay = $this->total_include_vat = 0;
-        if($this->selected_appointment){
+    public function calculation()
+    {
+        $this->total_price =  $this->price_after_discount = $this->total_vat = $this->advance_payment
+            = $this->have_to_pay = $this->total_include_vat = 0;
+        if ($this->selected_appointment) {
             $appointment = Appointment::find($this->selected_appointment);
+            //Total Price
             $this->advance_payment = $appointment->advance_amount;
-            foreach($this->basket as $array_key => $basket_item){
-                $this->total_price += $basket_item['price'];
+            foreach ($this->basket as $array_key => $basket_item) {
+                $this->total_price += $basket_item['price'] * $basket_item['qty'];
             }
+            //Price After Discount
+            $this->price_after_discount = $this->total_price - round(((float)$this->discount_percentage / 100) * $this->total_price, 2);
+            $this->price_after_discount = $this->price_after_discount - (float)$this->discount_fixed;
+            //Have to pay
+            $this->have_to_pay = $this->price_after_discount - $this->advance_payment;
         }
-
     }
 
-    public function save_invoice(){
+    public function save_invoice()
+    {
         dd('Inv');
     }
 }

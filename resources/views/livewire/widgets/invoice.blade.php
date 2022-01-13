@@ -5,16 +5,17 @@
                 <h6 class="m-b-0 text-white">Services</h6>
             </div>
             <div class="card-body">
-               <div class="row">
-                @foreach ($services as $service)
-                <div class="col-md-6">
-                    <button type="button" class="btn btn-primary btn-lg btn-block m-1" wire:click="addToCard({{ $service->id }})">
-                        {{ $loop->iteration }}. {{ $service->name }} ({{ $service->price }})
-                    </button>
+                <div class="row">
+                    @foreach ($services as $service)
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-primary btn-lg btn-block m-1"
+                            wire:click="addToCard({{ $service->id }})">
+                            {{ $loop->iteration }}. {{ $service->name }} ({{ $service->price }})
+                        </button>
+                    </div>
+
+                    @endforeach
                 </div>
-                
-                @endforeach
-               </div>
             </div>
         </div>
     </div>
@@ -33,7 +34,8 @@
                     </ul>
                 </div>
                 @endif
-                <select name="" id="" class="form-control" wire:model="selected_appointment" wire:change="select_appointment($event.target.value)">
+                <select name="" id="" class="form-control" wire:model="selected_appointment"
+                    wire:change="select_appointment($event.target.value)">
                     <option value="">Chose appointment</option>
                     @foreach ($appointments as $appointment)
                     <option value="{{ $appointment->id }}">
@@ -63,10 +65,12 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="">Price</span>
                                         </div>
-                                        <input type="number" class="form-control form-control-sm" style="width: 80px;" value="{{ $basket_item['price'] }}"
+                                        <input type="number" class="form-control form-control-sm" style="width: 80px;"
+                                            value="{{ $basket_item['price'] }}"
                                             wire:keydown.enter="chnage_price($event.target.value, {{ $array_key }})">
                                     </div>
-                                    <select class="form-control form-control-sm" wire:keydown.enter="chnage_employee($event.target.value, {{ $array_key }})">
+                                    <select class="form-control form-control-sm"
+                                        wire:keydown.enter="chnage_employee($event.target.value, {{ $array_key }})">
                                         <option value="">Chose employee</option>
                                         @foreach ($employees as $employee)
                                         <option value="{{ $employee->id }}">{{ $employee->name }}</option>
@@ -124,7 +128,9 @@
                                     <span class="input-group-text" id="">Dis %</span>
                                 </div>
                                 <input type="number" class="form-control form-control-sm" value="0"
-                                    wire:keydown.enter="chnage_discount_percentage($event.target.value)">
+                                    wire:model="discount_percentage">
+                                {{-- <input type="number" class="form-control form-control-sm" value="0"
+                                    wire:keydown.enter="chnage_discount_percentage($event.target.value)"> --}}
                             </div>
                         </div>
                         <div class="form-group col-md-6">
@@ -133,7 +139,9 @@
                                     <span class="input-group-text" id="">Dis Fix</span>
                                 </div>
                                 <input type="number" class="form-control form-control-sm" value="0"
-                                    wire:keydown.enter="chnage_discount_fixed($event.target.value)">
+                                    wire:model="discount_fixed">
+                                {{-- <input type="number" class="form-control form-control-sm" value="0"
+                                    wire:keydown.enter="chnage_discount_fixed($event.target.value)"> --}}
                             </div>
                         </div>
                         <div class="form-group col-md-12">
