@@ -137,7 +137,7 @@
                             </div>
                         </div>
                         <div class="form-group col-md-12">
-                            <select name="" id="" class="form-control" wire:model="selected_payment_method">
+                            <select name="" id="" class="form-control" required wire:model="selected_payment_method">
                                 <option value="">Chose payment method</option>
                                 @foreach ($payment_methods as $payment_method)
                                 <option value="{{ $payment_method->id }}">
