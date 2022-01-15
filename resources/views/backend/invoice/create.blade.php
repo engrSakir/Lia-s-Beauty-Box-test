@@ -21,9 +21,14 @@
 @endsection
 
 @section('content')
+<div class="alert alert-success text-center" role="alert">
+  <h1><b>Create appointment</b></h1>
+</div>
+@livewire('widgets.appointment' , ['admin_mode' => true])
+<div class="alert alert-success text-center" role="alert">
+  <h1><b>Create invoice</b></h1>
+</div>
 @livewire('widgets.invoice')
-{{-- <hr>
-@livewire('widgets.appointment' , ['admin_mode' => true]) --}}
 @endsection
 
 @push('head')
