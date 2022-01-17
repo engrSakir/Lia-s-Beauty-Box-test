@@ -63,6 +63,21 @@
                 </a>
             </li>
             <hr>
+            <li>
+                <a class="waves-effect waves-dark" href="{{ route('backend.customer.index') }}"
+                    aria-expanded="false">
+                    <i class="far fa-circle text-danger"></i>
+                    <span class="hide-menu">Customer</span>
+                </a>
+            </li>
+             <li>
+                <a class="waves-effect waves-dark" href="{{ route('backend.customer.show') }}"
+                    aria-expanded="false">
+                    <i class="far fa-circle text-danger"></i>
+                    <span class="hide-menu">Prioritised Customer</span>
+                </a>
+            </li>
+            <hr>
             @endhasanyrole
             @role('Admin')
             <li>

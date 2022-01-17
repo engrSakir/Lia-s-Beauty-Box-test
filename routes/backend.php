@@ -41,6 +41,12 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'
     Route::group(['middleware' => ['role:Admin|Employee']], function () {
         Route::get('/ajax/get-items-by-category/{category}', [InvoiceController::class, 'getItemsBycategory'])->middleware(['auth'])->name('getItemsBycategory');
 
+        Route::get('/advancePayment', [AppointmentController::class, 'advancePayment'])->name('advancePayment.index');
+        Route::get('/advancePayment/{appointment}', [AppointmentController::class, 'advancePaymentShow'])->name('advancePayment.show');
+                Route::get('customer', [DashboardController::class, 'indexCustomer'])->name('customer.index');
+                Route::get('priority-customer', [DashboardController::class, 'showCustomer'])->name('customer.show');
+
+        Route::resource('user', UserController::class);
 
         Route::resource('appointment', AppointmentController::class);
         Route::resource('invoice', InvoiceController::class);
@@ -48,6 +54,9 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'
         Route::resource('schedule', ScheduleController::class);
         Route::resource('service', ServiceController::class);
         Route::resource('serviceCategory', ServiceCategoryController::class);
+        Route::resource('expense', ExpenseController::class);
+        Route::resource('expenseCategory', ExpenseCategoryController::class);
+
     });
 
     Route::group(['middleware' => ['role:Admin']], function () {
@@ -55,14 +64,10 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'
         Route::post('setting', [SettingController::class, 'update']);
         Route::get('admin', [DashboardController::class, 'indexAdmin'])->name('admin.index');
         Route::get('employee', [DashboardController::class, 'indexEmployee'])->name('employee.index');
-        Route::get('customer', [DashboardController::class, 'indexCustomer'])->name('customer.index');
-        Route::get('priority-customer', [DashboardController::class, 'showCustomer'])->name('customer.show');
         Route::get('/appointment-data/customer-information', [AppointmentController::class, 'customerInfo'])->name('ajax.customerInfo');
         Route::post('/change-user-category', [UserController::class, 'changeUsercategory'])->name('ajax.changeUserCategory');
         Route::get('/report', [DashboardController::class, 'indexReport'])->name('report.index');
         Route::post('/report', [DashboardController::class, 'storeReport'])->name('report.store');
-        Route::get('/advancePayment', [AppointmentController::class, 'advancePayment'])->name('advancePayment.index');
-        Route::get('/advancePayment/{appointment}', [AppointmentController::class, 'advancePaymentShow'])->name('advancePayment.show');
         Route::get('/daily-report', [DashboardController::class, 'indexDailyReport'])->name('report.daily');
         Route::get('/daily-report-show', [DashboardController::class, 'showDailyReport'])->name('dailyreport.show');
         Route::post('/daily-report', [DashboardController::class, 'storeDailyReport'])->name('dailyreport.store');
@@ -70,12 +75,9 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend/', 'middleware' => 'auth'
 
 
 
-        Route::resource('user', UserController::class);
         Route::resource('client', ClientController::class);
         Route::resource('gallery', GalleryController::class);
         Route::resource('imageCategory', ImageCategoryController::class);
-        Route::resource('expense', ExpenseController::class);
-        Route::resource('expenseCategory', ExpenseCategoryController::class);
         Route::resource('banner', BannerController::class);
         Route::resource('testimonial', TestimonialController::class);
         Route::resource('questionaire', QuestionaireController::class);
